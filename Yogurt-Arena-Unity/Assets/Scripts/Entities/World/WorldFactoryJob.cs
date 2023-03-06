@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public struct WorldFactoryJob
     {
-        Assets Assets => Query.Single<Assets>();
+        private Assets Assets => Query.Single<Assets>();
         
         public async UniTask Run()
         {
@@ -13,6 +13,9 @@ namespace Yogurt.Arena
                 {
                     GameObject = await Assets.World.Spawn()
                 });
+
+            await new CameraFactoryJob().Run();
+            await new InputFieldFactoryJob().Run();
         }
     }
 }

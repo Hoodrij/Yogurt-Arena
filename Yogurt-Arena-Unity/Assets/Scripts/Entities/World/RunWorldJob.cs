@@ -6,9 +6,9 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            new WorldFactoryJob().Run();
-            
-            
+            await new WorldFactoryJob().Run();
+            new UpdateMoveInputJob().Run();
+            new UpdateCameraPositionJob().Run();
         }
     }
 }
