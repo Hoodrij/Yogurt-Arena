@@ -1,7 +1,7 @@
 ﻿using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Yogurt.Arena.Tools
+namespace Yogurt.Arena
 {
     public class EmptyGraphics : Graphic, IPointerClickHandler,
         IBeginDragHandler, IDragHandler, IEndDragHandler
