@@ -6,12 +6,24 @@ namespace Yogurt.Arena
     {
         public void Update()
         {
+            Data data = Query.Single<Data>();
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
             BeaconAspect beacon = Query.Single<BeaconAspect>();
 
-            beacon.Transform.position += new Vector3(inputField.Input.MoveDelta.x, 0, inputField.Input.MoveDelta.y);
-            beacon.Destination.Destination = beacon.Transform.position;
-            beacon.Destination.RawDestination = beacon.Transform.position;
+            Vector2 moveDelta = inputField.Input.MoveDelta;
+            beacon.Destination.AddDelta(moveDelta);
+
+            beacon.Transform.position = Vector3.Lerp(beacon.Transform.position, beacon.Destination.Destination, data.Beacon.SmoothValue);
+            // SpecifyTransformY(Transform, BeaconDestination);
         }
+            
+        // private static void SpecifyTransformY(Transform transform, BeaconDestinationComp destination)
+        // {
+            // Vector3 requiredPos = transform.position.WithY(destination.Destination.y);
+            // if (NavMesh.SamplePosition(requiredPos, out var hit, 10, NavMesh.AllAreas))
+            // {
+                // transform.position = transform.position.WithY(hit.position.y);
+            // }
+        // }
     }
 }

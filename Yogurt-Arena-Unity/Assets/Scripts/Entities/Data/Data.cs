@@ -6,12 +6,20 @@ namespace Yogurt.Arena
     public class Data : ScriptableObject , IComponent
     {
         public CameraData Camera;
+        public BeaconData Beacon;
     }
 
     [System.Serializable]
     public class CameraData
     {
-        public float SmoothValue = 0.1f;
-        public float Sensitivity = 0.05f;
+        public float SmoothValue;
+        public float Sensitivity;
+    }
+
+    [System.Serializable]
+    public class BeaconData
+    {
+        public float SmoothValue;
+        public float Elasticity;
     }
 }
