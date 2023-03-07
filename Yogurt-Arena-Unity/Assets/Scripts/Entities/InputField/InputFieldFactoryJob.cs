@@ -12,7 +12,7 @@ namespace Yogurt.Arena
 
             Entity entity = World.Create()
                 .Add(inputFieldView.MoveInputReader)
-                .Add<InputData>();
+                .Add<InputValues>();
         }
     }
 }
