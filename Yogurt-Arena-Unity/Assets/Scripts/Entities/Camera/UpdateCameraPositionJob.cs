@@ -1,20 +1,10 @@
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public struct UpdateCameraPositionJob
+    public struct UpdateCameraPositionJob : IUpdateJob
     {
-        public async void Run()
-        {
-            while (true)
-            {
-                await UniTask.Yield();
-                Update();
-            }
-        }
-
-        private void Update()
+        public void Update()
         {
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
             CameraAspect camera = Query.Single<CameraAspect>();

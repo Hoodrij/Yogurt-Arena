@@ -9,8 +9,8 @@ namespace Yogurt.Arena
         public async UniTask Run()
         {
             InputFieldView inputFieldView = await Assets.InputField.Spawn();
-            
-            Entity.Create()
+
+            Entity entity = World.Create()
                 .Add(inputFieldView.MoveInputReader)
                 .Add<InputData>();
         }

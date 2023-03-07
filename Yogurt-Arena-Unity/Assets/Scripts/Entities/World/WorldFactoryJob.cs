@@ -6,16 +6,15 @@ namespace Yogurt.Arena
     {
         private Assets Assets => Query.Single<Assets>();
         
-        public async UniTask Run()
+        public async UniTask<Entity> Run()
         {
-            Entity.Create()
-                .Add(new World
-                {
-                    GameObject = await Assets.World.Spawn()
-                });
+            Entity entity = Entity.Create()
+                .Add(await Assets.World.Spawn());
 
             await new CameraFactoryJob().Run();
             await new InputFieldFactoryJob().Run();
+
+            return entity;
         }
     }
 }

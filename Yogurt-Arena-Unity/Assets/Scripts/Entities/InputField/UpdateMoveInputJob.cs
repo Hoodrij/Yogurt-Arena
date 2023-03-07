@@ -1,20 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public struct UpdateMoveInputJob
+    public struct UpdateMoveInputJob : IUpdateJob
     {
-        public async void Run()
-        {
-            while (true)
-            {
-                await UniTask.Yield();
-                Update();
-            }
-        }
-
-        private void Update()
+        public void Update()
         {
             const float smoothValue = 0.1f;
             const float sensitivity = 0.05f;

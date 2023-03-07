@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public class Assets : IComponent
     {
-        public Asset World = new Asset("World");
+        public Asset<World> World = new Asset<World>("World");
         public Asset<CameraView> Camera = new Asset<CameraView>("Camera");
         public Asset<InputFieldView> InputField = new Asset<InputFieldView>("InputField");
     }

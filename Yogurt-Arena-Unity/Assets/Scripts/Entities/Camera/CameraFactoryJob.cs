@@ -10,7 +10,7 @@ namespace Yogurt.Arena
         {
             CameraView cameraView = await Assets.Camera.Spawn();
 
-            Entity.Create()
+            Entity entity = World.Create()
                 .Add(cameraView);
         }
     }

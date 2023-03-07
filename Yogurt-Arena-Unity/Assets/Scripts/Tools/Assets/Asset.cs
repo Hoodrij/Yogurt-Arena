@@ -1,5 +1,8 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Yogurt.Arena;
+using Object = UnityEngine.Object;
 
 namespace Yogurt.Roguelike.Tools
 {
@@ -30,6 +33,15 @@ namespace Yogurt.Roguelike.Tools
             TComponent result = Object.Instantiate(prefab);
             return result;
         } 
+        
+        // public async UniTask<TComponent> Spawn(Lifetime life)
+        // {
+            // TComponent gameObject = await Spawn();
+            // if (gameObject is IDisposable disposable)
+                // life.AddDisposable(disposable);
+
+            // return gameObject;
+        // }
     }
     
     public class SO<Tso> : Asset where Tso : ScriptableObject

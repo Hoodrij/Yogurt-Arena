@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         private async void Awake()
         {
-            new InitializeGameJob().Run();
+            new GameFactoryJob().Run();
             await new RunWorldJob().Run();
         }
     }
