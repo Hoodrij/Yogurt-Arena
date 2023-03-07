@@ -11,6 +11,7 @@ namespace Yogurt.Arena
             InputFieldView inputFieldView = await Assets.InputField.Spawn();
 
             Entity entity = World.Create()
+                .AddDisposable(inputFieldView)
                 .Add(inputFieldView.MoveInputReader)
                 .Add<InputValues>();
         }

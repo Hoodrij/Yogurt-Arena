@@ -9,7 +9,7 @@ namespace Yogurt.Arena
         public async UniTask<Entity> Run()
         {
             Entity entity = Entity.Create()
-                .Add(await Assets.World.Spawn());
+                .AddDisposable(await Assets.World.Spawn());
 
             await new CameraFactoryJob().Run();
             await new InputFieldFactoryJob().Run();
