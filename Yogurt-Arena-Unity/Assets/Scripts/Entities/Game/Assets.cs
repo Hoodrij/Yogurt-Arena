@@ -9,5 +9,6 @@ namespace Yogurt.Arena
         public readonly Asset<World> World = new Asset<World>("World");
         public readonly Asset<CameraView> Camera = new Asset<CameraView>("Camera");
         public readonly Asset<InputFieldView> InputField = new Asset<InputFieldView>("InputField");
+        public readonly Asset<BeaconView> Beacon = new Asset<BeaconView>("Beacon");
     }
 }
