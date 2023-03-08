@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public void Update()
         {
-            CameraData data = Query.Single<Data>().Camera;
+            InputData data = Query.Single<Data>().Input;
             
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
             MoveInputReader reader = inputField.MoveInputReader;

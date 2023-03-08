@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
@@ -14,16 +15,16 @@ namespace Yogurt.Arena
             beacon.Destination.AddDelta(moveDelta);
 
             beacon.Transform.position = Vector3.Lerp(beacon.Transform.position, beacon.Destination.Destination, data.Beacon.SmoothValue);
-            // SpecifyTransformY(Transform, BeaconDestination);
+            SpecifyTransformY(beacon.Transform, beacon.Destination);
         }
             
-        // private static void SpecifyTransformY(Transform transform, BeaconDestinationComp destination)
-        // {
-            // Vector3 requiredPos = transform.position.WithY(destination.Destination.y);
-            // if (NavMesh.SamplePosition(requiredPos, out var hit, 10, NavMesh.AllAreas))
-            // {
-                // transform.position = transform.position.WithY(hit.position.y);
-            // }
-        // }
+        private static void SpecifyTransformY(Transform transform, BeaconDestination destination)
+        {
+            Vector3 requiredPos = transform.position.WithY(destination.Destination.y);
+            if (NavMesh.SamplePosition(requiredPos, out var hit, 10, NavMesh.AllAreas))
+            {
+                transform.position = transform.position.WithY(hit.position.y);
+            }
+        }
     }
 }
