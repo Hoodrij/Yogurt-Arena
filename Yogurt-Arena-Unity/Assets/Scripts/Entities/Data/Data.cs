@@ -8,6 +8,7 @@ namespace Yogurt.Arena
         public InputData Input;
         public CameraData Camera;
         public BeaconData Beacon;
+        public AgentsData Agent;
     }
 
     [System.Serializable]
@@ -28,5 +29,14 @@ namespace Yogurt.Arena
     {
         public float SmoothValue;
         public float Elasticity;
+    }
+    
+    [System.Serializable]
+    public class AgentsData
+    {
+        public int NavMeshID = 0;
+    
+        public float MoveSpeed;
+        public float MoveSmoothValue;
     }
 }

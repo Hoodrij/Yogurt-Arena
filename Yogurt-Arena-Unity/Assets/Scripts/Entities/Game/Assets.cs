@@ -12,5 +12,6 @@ namespace Yogurt.Arena
         public readonly Asset<CameraView> Camera = new Asset<CameraView>(PREFABS_PATH + "Camera");
         public readonly Asset<InputFieldView> InputField = new Asset<InputFieldView>(PREFABS_PATH + "InputField");
         public readonly Asset<BeaconView> Beacon = new Asset<BeaconView>(PREFABS_PATH + "Beacon");
+        public readonly Asset<AgentView> Agent = new Asset<AgentView>(PREFABS_PATH + "Agent");
     }
 }

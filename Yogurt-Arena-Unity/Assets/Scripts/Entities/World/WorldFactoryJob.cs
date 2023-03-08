@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
@@ -14,6 +15,7 @@ namespace Yogurt.Arena
             await new CameraFactoryJob().Run();
             await new InputFieldFactoryJob().Run();
             await new BeaconFactoryJob().Run();
+            await new AgentFactoryJob().Run();
 
             return entity;
         }

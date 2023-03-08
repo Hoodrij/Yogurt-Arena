@@ -31,5 +31,15 @@ namespace Yogurt.Arena
         {
             return new Vector3(v2.x, 0, v2.y);
         }
+        
+        public static Vector3 ClampMagnitude(this Vector3 v, float length)
+        {
+            if (v.magnitude > length)
+            {
+                v = v.normalized * length;    
+            }
+            
+            return v;
+        }
     }
 }
