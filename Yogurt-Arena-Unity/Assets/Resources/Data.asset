@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf027ffd92c245728acebb1d4006f773, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
-  Camera:
+  Input:
     SmoothValue: 0.05
-    Sensitivity: 0.07
+    Sensitivity: 0.02
+  Camera:
+    SmoothValue: 0.1
+  Beacon:
+    SmoothValue: 0.05
+    Elasticity: 50
