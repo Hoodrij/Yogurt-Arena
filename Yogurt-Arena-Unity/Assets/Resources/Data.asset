@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Input:
     SmoothValue: 0.05
-    Sensitivity: 0.02
+    Sensitivity: 0.07
   Camera:
     SmoothValue: 0.1
   Beacon:
-    SmoothValue: 0.05
-    Elasticity: 50
+    SmoothValue: 0.1
+    Elasticity: 100
