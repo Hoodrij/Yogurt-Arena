@@ -6,7 +6,6 @@ namespace Yogurt.Arena
     public class CameraView : MonoBehaviour, IComponent, IDisposable
     {
         public Camera Camera;
-        public Transform Transform;
 
         public void Dispose()
         {

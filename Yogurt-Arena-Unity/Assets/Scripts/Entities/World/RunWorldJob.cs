@@ -12,6 +12,7 @@ namespace Yogurt.Arena
             world.Run(new CameraFollowJob());
             world.Run(new BeaconMoveJob());
             world.Run(new AgentMoveJob());
+            world.Run(new AgentLookJob());
         }
     }
 }
