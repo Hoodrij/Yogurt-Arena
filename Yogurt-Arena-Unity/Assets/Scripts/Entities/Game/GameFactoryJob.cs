@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -6,6 +7,8 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
+            Application.targetFrameRate = 1000;
+            
             Assets assets = new Assets();
             Data data = await assets.Data.Load();
 
