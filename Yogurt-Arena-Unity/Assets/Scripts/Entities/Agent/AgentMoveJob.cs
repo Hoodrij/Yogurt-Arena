@@ -13,7 +13,7 @@ namespace Yogurt.Arena
             float dt = Time.deltaTime;
             
 	        BeaconAspect beacon = Query.Single<BeaconAspect>();
-            Vector3 followPoint = beacon.Destination.Destination;
+            Vector3 followPoint = beacon.State.Destination;
             
             foreach (AgentAspect agent in Query.Of<AgentAspect>())
             {

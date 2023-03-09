@@ -25,7 +25,7 @@ namespace Yogurt.Arena
         private static Vector3 GetFollowPoint()
         {
             BeaconAspect beacon = Query.Single<BeaconAspect>();
-            return beacon.Destination.Destination;
+            return beacon.State.Destination;
         }
     }
 }

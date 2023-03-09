@@ -2,7 +2,7 @@
 
 namespace Yogurt.Arena
 {
-    public class InputValues : IComponent
+    public class InputState : IComponent
     {
         public Vector2 MoveDelta;
 

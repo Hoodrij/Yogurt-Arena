@@ -10,22 +10,22 @@ namespace Yogurt.Arena
             
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
             MoveInputReader reader = inputField.MoveInputReader;
-            InputValues inputValues = inputField.Input;
+            InputState inputState = inputField.Input;
 
             Vector2 delta = Vector2.zero;
             if (reader.IsDown)
             {
                 delta = -reader.Delta;
                 delta *= data.Sensitivity;
-                inputValues.CumulativeVelocity = Vector2.Lerp(inputValues.CumulativeVelocity, delta, data.SmoothValue);
+                inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, delta, data.SmoothValue);
             }
             else
             {
-                delta = inputValues.CumulativeVelocity;
-                inputValues.CumulativeVelocity = Vector2.Lerp(inputValues.CumulativeVelocity, Vector2.zero, data.SmoothValue);
+                delta = inputState.CumulativeVelocity;
+                inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, Vector2.zero, data.SmoothValue);
             }
 
-            inputValues.MoveDelta = AddCameraRotation(delta);
+            inputState.MoveDelta = AddCameraRotation(delta);
             reader.Delta = Vector2.zero;
         }
         

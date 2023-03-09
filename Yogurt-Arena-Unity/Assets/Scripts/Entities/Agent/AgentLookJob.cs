@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -10,7 +11,7 @@ namespace Yogurt.Arena
             {
                 if (agent.State.Velocity.magnitude < 0.01f) continue;
 
-                agent.Transform.LookAt(agent.Transform.position + agent.State.Velocity.WithY(0));
+                agent.Transform.DOLookAt(agent.Transform.position + agent.State.Velocity.WithY(0), 0.3f);
             }
         }
     }

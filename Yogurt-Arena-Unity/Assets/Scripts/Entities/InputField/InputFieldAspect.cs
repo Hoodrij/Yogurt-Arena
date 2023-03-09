@@ -4,7 +4,7 @@
     {
         public Entity Entity { get; set; }
 
-        public InputValues Input => this.Get<InputValues>();
+        public InputState Input => this.Get<InputState>();
         public MoveInputReader MoveInputReader => this.Get<MoveInputReader>();
     }
 }
