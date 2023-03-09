@@ -18,7 +18,7 @@ namespace Yogurt.Arena
 
         public void OnDrag(PointerEventData eventData)
         {
-            Delta = eventData.delta;
+            Delta = eventData.delta / Screen.dpi;
         }
 
         public void OnPointerDown(PointerEventData eventData)

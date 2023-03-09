@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Yogurt.Arena
 {
@@ -14,7 +15,8 @@ namespace Yogurt.Arena
     [System.Serializable]
     public class InputData
     {
-        public float SmoothValue;
+        public float AccumulativeValue;
+        [FormerlySerializedAs("AccumulativeBackValue")] public float DeAccumulativeValue;
         public float Sensitivity;
     }
 

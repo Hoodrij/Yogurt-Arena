@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            Application.targetFrameRate = 1000;
+            Application.targetFrameRate = 90;
             
             Assets assets = new Assets();
             Data data = await assets.Data.Load();
