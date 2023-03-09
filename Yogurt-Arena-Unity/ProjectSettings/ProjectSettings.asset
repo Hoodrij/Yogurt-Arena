@@ -739,7 +739,8 @@ PlayerSettings:
     Android: 1
   il2cppCodeGeneration:
     Android: 1
-  managedStrippingLevel: {}
+  managedStrippingLevel:
+    Android: 3
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0

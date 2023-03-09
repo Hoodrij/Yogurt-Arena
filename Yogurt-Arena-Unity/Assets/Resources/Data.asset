@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data
   m_EditorClassIdentifier: 
   Input:
-    AccumulativeValue: 0.3
+    AccumulativeValue: 0.2
     DeAccumulativeValue: 0.05
     Sensitivity: 10
   Camera:

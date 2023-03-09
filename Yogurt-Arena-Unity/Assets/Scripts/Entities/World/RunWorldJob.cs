@@ -9,8 +9,8 @@ namespace Yogurt.Arena
             Entity world = await new WorldFactoryJob().Run();
             
             world.Run(new UpdateMoveInputJob());
-            world.Run(new CameraFollowJob());
             world.Run(new BeaconMoveJob());
+            world.Run(new CameraFollowJob());
             world.Run(new AgentMoveJob());
             world.Run(new AgentLookJob());
         }
