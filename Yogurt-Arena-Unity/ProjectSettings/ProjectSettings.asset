@@ -85,7 +85,7 @@ PlayerSettings:
   hideHomeButton: 0
   submitAnalytics: 1
   usePlayerLog: 1
-  bakeCollisionMeshes: 0
+  bakeCollisionMeshes: 1
   forceSingleInstance: 0
   useFlipModelSwapchain: 1
   resizableWindow: 0
@@ -379,7 +379,11 @@ PlayerSettings:
   - m_BuildTarget: WebGL
     m_StaticBatching: 0
     m_DynamicBatching: 0
-  m_BuildTargetShaderSettings: []
+  m_BuildTargetShaderSettings:
+  - m_BuildTarget: Android
+    m_ChunkSizeInMB: 16
+    m_MaxChunks: 0
+    m_OverrideDefaultSettings: 0
   m_BuildTargetGraphicsJobs:
   - m_BuildTarget: MacStandaloneSupport
     m_GraphicsJobs: 0
@@ -730,7 +734,8 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
-  il2cppCompilerConfiguration: {}
+  il2cppCompilerConfiguration:
+    Android: 1
   il2cppCodeGeneration:
     Android: 1
   managedStrippingLevel: {}
@@ -738,7 +743,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 0
+  selectedPlatform: 2
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1
