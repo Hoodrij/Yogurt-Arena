@@ -46,7 +46,9 @@ namespace Yogurt.Arena
 		}
 
 		private static Vector3 GetNextVelocityByPath(float speed, NavMeshPath path)
-	    {
+		{
+			if (path.corners == null || !path.corners.Any()) return Vector3.zero;
+			
 		    float soFar = 0.0f;
 		    Vector3 finalPoint = path.corners.Last();
 
