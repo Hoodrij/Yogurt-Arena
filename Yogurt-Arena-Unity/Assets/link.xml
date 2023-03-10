@@ -1,0 +1,3 @@
+﻿<linker>
+    <assembly fullname="Unity.AI.Navigation" preserve="all"/>
+</linker>
