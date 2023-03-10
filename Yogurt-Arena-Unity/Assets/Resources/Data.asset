@@ -20,7 +20,7 @@ MonoBehaviour:
     SmoothValue: 0.1
   Beacon:
     SmoothValue: 0.2
-    Elasticity: 100
+    Elasticity: 10
   Agent:
     NavMeshID: 0
     MoveSpeed: 20

@@ -67,8 +67,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 40
+  far clip plane: 100
+  field of view: 45
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -202,7 +202,7 @@ Transform:
   m_Children:
   - {fileID: 3376568823518933138}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!114 &6382533241439433006
 MonoBehaviour:

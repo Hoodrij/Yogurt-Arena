@@ -10,7 +10,7 @@ namespace Yogurt.Arena
 	    
         public void Update()
         {
-            float dt = Time.deltaTime;
+	        float dt = Time.deltaTime;
             
 	        BeaconAspect beacon = Query.Single<BeaconAspect>();
             Vector3 followPoint = beacon.State.Destination;
