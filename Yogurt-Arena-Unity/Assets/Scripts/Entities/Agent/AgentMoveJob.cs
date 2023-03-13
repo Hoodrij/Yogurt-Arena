@@ -22,8 +22,9 @@ namespace Yogurt.Arena
 
         private void UpdateState(AgentState state, float dt)
 		{
+			NavMesh.SamplePosition(state.Destination, out var destinationHit, 100, NavMesh.AllAreas);
+			Vector3 requiredPos = destinationHit.position;
 			Vector3 currentPos = state.Position;
-			Vector3 requiredPos = state.Destination;
 
 			NavMeshPath path = CalculatePath(currentPos, requiredPos);
 			Vector3 requiredVelocity = GetNextVelocityByPath(data.Agent.MoveSpeed * dt, path);
