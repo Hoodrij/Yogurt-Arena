@@ -32,6 +32,7 @@ namespace Yogurt.Arena
 
             if (path.status != NavMeshPathStatus.PathComplete)
             {
+                // return prevDest;
                 return CalcDestination(prevDest, newDest.WithY(10));
             }
 

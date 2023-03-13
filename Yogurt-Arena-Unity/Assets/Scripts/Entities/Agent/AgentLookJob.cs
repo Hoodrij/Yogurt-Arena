@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using UnityEngine;
 
 namespace Yogurt.Arena
 {
