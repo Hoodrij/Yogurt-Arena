@@ -27,7 +27,6 @@ namespace Yogurt.Arena
 
             NavMesh.SamplePosition(randomPoint, out var hit, 100, NavMesh.AllAreas);
 
-            UnityEngine.Debug.Log(hit.position);
             return hit.position;
         }
     }

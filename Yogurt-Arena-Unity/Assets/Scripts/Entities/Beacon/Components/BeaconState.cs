@@ -25,7 +25,7 @@ namespace Yogurt.Arena
         private static Vector3 CalcDestination(Vector3 prevDest, Vector3 newDest)
         {
             int mask = NavMesh.AllAreas;
-            NavMesh.SamplePosition(newDest, out var newHit, 50, mask);
+            NavMesh.SamplePosition(newDest, out var newHit, 100, mask);
 
             NavMeshPath path = new NavMeshPath();
             NavMesh.CalculatePath(prevDest, newHit.position, mask, path);
