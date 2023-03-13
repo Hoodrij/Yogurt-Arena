@@ -12,19 +12,19 @@ namespace Yogurt.Arena
         {
 	        float dt = Time.deltaTime;
             
-	        BeaconAspect beacon = Query.Single<BeaconAspect>();
-            Vector3 followPoint = beacon.State.Destination;
-            
             foreach (AgentAspect agent in Query.Of<AgentAspect>())
             {
-		        UpdateMoveData(agent.State, agent.State.Position, followPoint, dt);
+		        UpdateState(agent.State, dt);
 
 		        agent.View.transform.position = agent.State.Position;
             }
         }
 
-        private void UpdateMoveData(AgentState state, Vector3 currentPos, Vector3 requiredPos, float dt)
+        private void UpdateState(AgentState state, float dt)
 		{
+			Vector3 currentPos = state.Position;
+			Vector3 requiredPos = state.Destination;
+
 			NavMeshPath path = CalculatePath(currentPos, requiredPos);
 			Vector3 requiredVelocity = GetNextVelocityByPath(data.Agent.MoveSpeed * dt, path);
 			float distanceToTarget = (currentPos - requiredPos).magnitude;
