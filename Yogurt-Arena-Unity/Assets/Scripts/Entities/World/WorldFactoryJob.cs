@@ -14,6 +14,7 @@ namespace Yogurt.Arena
             await new CameraFactoryJob().Run();
             await new InputFieldFactoryJob().Run();
             await new BeaconFactoryJob().Run();
+            await new PlayerFactoryJob().Run();
             await new AgentFactoryJob().Run();
 
             return entity;
