@@ -6,10 +6,10 @@ namespace Yogurt.Arena
     {
         public async UniTask<Entity> Run()
         {
-            Entity entity = await new AgentFactoryJob().Run();
-            entity.Add<PlayerTag>();
+            AgentAspect agent = await new AgentFactoryJob().Run();
+            agent.Add<PlayerTag>();
 
-            return entity;
+            return agent.Entity;
         }
     }
 }

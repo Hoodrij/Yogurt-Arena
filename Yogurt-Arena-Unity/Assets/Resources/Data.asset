@@ -25,3 +25,5 @@ MonoBehaviour:
     NavMeshID: 0
     MoveSpeed: 20
     MoveSmoothValue: 0.2
+  Overmind:
+    EnemiesCount: 5

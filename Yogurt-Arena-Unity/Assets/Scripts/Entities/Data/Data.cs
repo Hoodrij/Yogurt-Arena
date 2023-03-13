@@ -10,6 +10,13 @@ namespace Yogurt.Arena
         public CameraData Camera;
         public BeaconData Beacon;
         public AgentsData Agent;
+        public OvermindData Overmind;
+    }
+
+    [System.Serializable]
+    public class OvermindData
+    {
+        public int EnemiesCount;
     }
 
     [System.Serializable]

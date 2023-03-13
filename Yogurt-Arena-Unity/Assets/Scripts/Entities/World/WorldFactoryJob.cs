@@ -11,11 +11,12 @@ namespace Yogurt.Arena
             Entity entity = Entity.Create()
                 .AddDisposable(await Assets.World.Spawn());
 
+            await new LevelFactoryJob().Run();
             await new CameraFactoryJob().Run();
             await new InputFieldFactoryJob().Run();
             await new BeaconFactoryJob().Run();
             await new PlayerFactoryJob().Run();
-            await new AgentFactoryJob().Run();
+            await new OvermindFactoryJob().Run();
 
             return entity;
         }
