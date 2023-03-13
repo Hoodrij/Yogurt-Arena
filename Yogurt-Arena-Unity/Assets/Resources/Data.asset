@@ -26,4 +26,4 @@ MonoBehaviour:
     MoveSpeed: 20
     MoveSmoothValue: 0.2
   Overmind:
-    EnemiesCount: 5
+    EnemiesCount: 53
