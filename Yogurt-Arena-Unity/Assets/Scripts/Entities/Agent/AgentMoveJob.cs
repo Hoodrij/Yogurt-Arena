@@ -16,7 +16,7 @@ namespace Yogurt.Arena
             {
 		        UpdateState(agent.State, dt);
 
-		        agent.View.transform.position = agent.State.Position;
+		        agent.Transform.position = agent.State.Position;
             }
         }
 

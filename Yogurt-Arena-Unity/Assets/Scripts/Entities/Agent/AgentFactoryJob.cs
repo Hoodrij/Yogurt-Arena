@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public struct AgentFactoryJob
     {
-        public async UniTask<Entity> Run()
+        public async UniTask<AgentAspect> Run()
         {
             AgentView agentView = await Query.Single<Assets>().Agent.Spawn();
             
@@ -12,7 +12,7 @@ namespace Yogurt.Arena
                 .AddDisposable(agentView)
                 .Add<AgentState>();
 
-            return entity;
+            return entity.As<AgentAspect>();
         }
     }
 }
