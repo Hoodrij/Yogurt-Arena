@@ -10,7 +10,7 @@ namespace Yogurt.Arena
 
             Entity entity = World.Create()
                 .Add(beaconView)
-                .Add<BeaconState>();
+                .Add<BeaconBodyState>();
 
             return entity;
         }

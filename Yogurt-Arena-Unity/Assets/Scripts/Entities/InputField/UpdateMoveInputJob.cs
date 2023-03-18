@@ -32,7 +32,7 @@ namespace Yogurt.Arena
         
         private static Vector2 AddCameraRotation(Vector2 delta)
         {
-            Transform cameraTransform = Query.Single<CameraAspect>().Transform;
+            Transform cameraTransform = Query.Single<CameraAspect>().View.transform;
 
             float cameraRotation = cameraTransform.eulerAngles.y;
             return delta.Rotate(-cameraRotation);

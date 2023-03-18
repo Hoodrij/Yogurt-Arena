@@ -14,13 +14,13 @@ namespace Yogurt.Arena
             
             foreach (AgentAspect agent in Query.Of<AgentAspect>())
             {
-		        UpdateState(agent.State, dt);
+		        UpdateState(agent.Body, dt);
 
-		        agent.Transform.position = agent.State.Position;
+		        agent.View.transform.position = agent.Body.Position;
             }
         }
 
-        private void UpdateState(AgentState state, float dt)
+        private void UpdateState(BodyState state, float dt)
 		{
 			NavMesh.SamplePosition(state.Destination, out var destinationHit, 100, NavMesh.AllAreas);
 			Vector3 requiredPos = destinationHit.position;
@@ -35,7 +35,6 @@ namespace Yogurt.Arena
 			NavMesh.SamplePosition(newPos, out var hit, 1, NavMesh.AllAreas);
 			
 			state.Position = hit.position;
-			state.FullPath = path;
 			state.Velocity = requiredVelocity;
 		}
 

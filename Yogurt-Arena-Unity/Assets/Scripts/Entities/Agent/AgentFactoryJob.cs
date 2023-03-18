@@ -5,13 +5,18 @@ namespace Yogurt.Arena
 {
     public struct AgentFactoryJob
     {
-        public async UniTask<AgentAspect> Run(Asset<AgentView> asset)
+        public async UniTask<AgentAspect> Run(Asset<AgentView> asset, Team team)
         {
             AgentView agentView = await asset.Spawn();
             
             Entity entity = World.Create()
                 .AddDisposable(agentView)
-                .Add<AgentState>();
+                .Add<BodyState>()
+                .Add<AgentBattleState>()
+                .Add(new AgentId
+                {
+                    Team = team
+                });
 
             return entity.As<AgentAspect>();
         }

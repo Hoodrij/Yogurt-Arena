@@ -8,9 +8,20 @@ namespace Yogurt.Arena
         {
             foreach (AgentAspect agent in Query.Of<AgentAspect>())
             {
-                if (agent.State.Velocity.magnitude < 0.01f) continue;
+                // if (agent.State.Velocity.magnitude < 0.01f) continue;
 
-                agent.Transform.DOLookAt(agent.Transform.position + agent.State.Velocity.WithY(0), 0.3f);
+                if (agent.BattleState.Target.Exist)
+                {
+                    BodyState targetBody = agent.BattleState.Target.Get<BodyState>();
+                    agent.Body.LookTarget = targetBody.Position;
+                }
+                else
+                {
+                    BodyState body = agent.Body;
+                    body.LookTarget = body.Position + body.Velocity.WithY(0);
+                }
+                
+                agent.View.transform.DOLookAt(agent.Body.LookTarget, 0.3f);
             }
         }
     }

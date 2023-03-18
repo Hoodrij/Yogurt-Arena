@@ -3,11 +3,11 @@ using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
-    public class AgentState : IComponent
+    public class BodyState : IComponent
     {
         public Vector3 Destination;
         public Vector3 Position;
         public Vector3 Velocity;
-        public NavMeshPath FullPath;
+        public Vector3 LookTarget;
     }
 }

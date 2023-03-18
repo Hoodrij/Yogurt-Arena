@@ -13,6 +13,7 @@ namespace Yogurt.Arena
             world.Run(new CameraFollowJob());
             world.Run(new UpdatePlayerDestinationJob());
             world.Run(new UpdateOvermindDestinationJob());
+            world.Run(new AgentFindTargetJob());
             world.Run(new AgentMoveJob());
             world.Run(new AgentLookJob());
         }

@@ -12,15 +12,16 @@ namespace Yogurt.Arena
             BeaconAspect beacon = Query.Single<BeaconAspect>();
 
             Vector2 moveDelta = inputField.Input.MoveDelta;
-            beacon.State.AddDelta(moveDelta);
+            beacon.Body.AddDelta(moveDelta);
 
-            beacon.Transform.position = Vector3.Lerp(beacon.Transform.position, beacon.State.Destination, data.Beacon.SmoothValue);
-            SpecifyTransformY(beacon.Transform, beacon.State);
+            Transform transform;
+            (transform = beacon.View.transform).position = Vector3.Lerp(beacon.View.transform.position, beacon.Body.Destination, data.Beacon.SmoothValue);
+            SpecifyTransformY(transform, beacon.Body);
         }
             
-        private static void SpecifyTransformY(Transform transform, BeaconState state)
+        private static void SpecifyTransformY(Transform transform, BeaconBodyState body)
         {
-            Vector3 requiredPos = transform.position.WithY(state.Destination.y);
+            Vector3 requiredPos = transform.position.WithY(body.Destination.y);
             if (NavMesh.SamplePosition(requiredPos, out var hit, 10, NavMesh.AllAreas))
             {
                 transform.position = transform.position.WithY(hit.position.y);

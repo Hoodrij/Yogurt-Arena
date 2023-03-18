@@ -16,7 +16,7 @@ namespace Yogurt.Arena
                 
                 float moveRadius = 0.1f;
                 float time = Time.realtimeSinceStartup + agentIndex;
-                agentAspect.State.Destination += new Vector3(moveRadius * Mathf.Sin(time), 0, moveRadius * Mathf.Cos(time));
+                agentAspect.Body.Destination += new Vector3(moveRadius * Mathf.Sin(time), 0, moveRadius * Mathf.Cos(time));
                 agentIndex++;
             }
         }

@@ -7,7 +7,7 @@
             BeaconAspect beaconAspect = Query.Single<BeaconAspect>();
             AgentAspect agentAspect = Query.Of<AgentAspect>().With<PlayerTag>().Single();
 
-            agentAspect.State.Destination = beaconAspect.State.Destination;
+            agentAspect.Body.Destination = beaconAspect.Body.Destination;
         }
     }
 }

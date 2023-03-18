@@ -9,6 +9,5 @@ namespace Yogurt.Arena
         public CameraView View => this.Get<CameraView>();
         
         public Camera Camera => View.Camera;
-        public Transform Transform => View.transform;
     }
 }

@@ -14,10 +14,10 @@ namespace Yogurt.Arena
             
             for (int i = 0; i < data.Overmind.EnemiesCount; i++)
             {
-                AgentAspect agent = await new AgentFactoryJob().Run(assets.Enemy_1);
+                AgentAspect agent = await new AgentFactoryJob().Run(assets.Enemy_1, Team.Red);
                 Vector3 spawnPoint = GetFreeSpawnPoint();
-                agent.State.Position = spawnPoint;
-                agent.State.Destination = spawnPoint;
+                agent.Body.Position = spawnPoint;
+                agent.Body.Destination = spawnPoint;
             }
         }
 

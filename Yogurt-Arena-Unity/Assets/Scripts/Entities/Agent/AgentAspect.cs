@@ -6,9 +6,10 @@ namespace Yogurt.Arena
     {
         public Entity Entity { get; set; }
 
+        public AgentId Id => this.Get<AgentId>();
+        public BodyState Body => this.Get<BodyState>();
         public AgentView View => this.Get<AgentView>();
-        public AgentState State => this.Get<AgentState>();
-
-        public Transform Transform => View.transform;
+        public AgentBattleState BattleState => this.Get<AgentBattleState>();
+        
     }
 }
