@@ -10,10 +10,11 @@ namespace Yogurt.Arena
         public async UniTask Run()
         {
             Data data = Query.Single<Data>();
+            Assets assets = Query.Single<Assets>();
             
             for (int i = 0; i < data.Overmind.EnemiesCount; i++)
             {
-                AgentAspect agent = await new AgentFactoryJob().Run();
+                AgentAspect agent = await new AgentFactoryJob().Run(assets.Enemy_1);
                 Vector3 spawnPoint = GetFreeSpawnPoint();
                 agent.State.Position = spawnPoint;
                 agent.State.Destination = spawnPoint;

@@ -6,7 +6,8 @@ namespace Yogurt.Arena
     {
         public async UniTask<Entity> Run()
         {
-            AgentAspect agent = await new AgentFactoryJob().Run();
+            Assets assets = Query.Single<Assets>();
+            AgentAspect agent = await new AgentFactoryJob().Run(assets.Player);
             agent.Add<PlayerTag>();
 
             return agent.Entity;

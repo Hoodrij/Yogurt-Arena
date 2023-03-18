@@ -6,6 +6,7 @@ namespace Yogurt.Arena
     {
         private async void Awake()
         {
+            Destroy(gameObject);
             await new GameFactoryJob().Run();
             await new RunWorldJob().Run();
         }
