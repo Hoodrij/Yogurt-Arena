@@ -15,16 +15,27 @@ namespace Yogurt.Arena
 
         private Entity GetTarget(AgentAspect agent)
         {
-            AgentAspect target = GetHostileAgents(agent).First();
+            AgentAspect target = Query.Of<AgentAspect>()
+                .Where(other => IsHostile(agent, other))
+                .Where(other => IsInRange(agent, other))
+                .OrderBy(other => GetDistance(agent, other))
+                .FirstOrDefault();
             return target.Entity;
         }
 
-        private IEnumerable<AgentAspect> GetHostileAgents(AgentAspect agent)
+        private float GetDistance(AgentAspect agent, AgentAspect other)
         {
-            return Query.Of<AgentAspect>().Where(other =>
-            {
-                return !other.Id.Team.HasFlag(agent.Id.Team);
-            });
+            return (agent.Body.Position - other.Body.Position).magnitude.Abs();
+        }
+
+        private bool IsHostile(AgentAspect agent, AgentAspect other)
+        {
+            return !other.Id.Team.HasFlag(agent.Id.Team);
+        }
+        
+        private bool IsInRange(AgentAspect agent, AgentAspect other)
+        {
+            return GetDistance(agent, other) < 10;
         }
     }
 }
