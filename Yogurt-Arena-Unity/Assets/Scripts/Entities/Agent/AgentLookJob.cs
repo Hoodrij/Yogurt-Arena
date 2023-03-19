@@ -1,9 +1,12 @@
 ﻿using DG.Tweening;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct AgentLookJob : IUpdateJob
     {
+        const float MIN_LOOK_MAGNITUDE = 0.01f;
+        
         public void Update()
         {
             foreach (AgentAspect agent in Query.Of<AgentAspect>())
@@ -13,18 +16,18 @@ namespace Yogurt.Arena
                 if (agent.BattleState.Target.Exist)
                 {
                     BodyState targetBody = agent.BattleState.Target.Get<BodyState>();
-                    body.LookTarget = targetBody.Position;
+                    body.LookPoint = targetBody.Position;
                 }
                 else
                 {
-                    if (body.Velocity.magnitude > 0.01f)
-                    {
-                        body.LookTarget = body.Position + body.Velocity.WithY(0);
-                    }
+                    body.LookPoint = body.Position + body.Velocity.WithY(0);
                 }
-                body.LookTarget.y = body.Position.y;
-                
-                agent.View.transform.DOLookAt(agent.Body.LookTarget, 0.3f);
+
+                Vector3 lookVector = body.LookPoint - body.Position;
+                if (lookVector.sqrMagnitude < MIN_LOOK_MAGNITUDE)
+                    continue;
+
+                agent.View.transform.DOLookAt(body.LookPoint, 0.3f);
             }
         }
     }
