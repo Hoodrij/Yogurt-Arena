@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Yogurt.Arena
 {
@@ -12,6 +14,11 @@ namespace Yogurt.Arena
         public static float RandomTo(this float f)
         {
             return Random.Range(0, f);
+        }
+
+        public static TimeSpan Seconds(this float f)
+        {
+            return TimeSpan.FromSeconds(f);
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Yogurt.Arena
     public class Assets : IComponent
     {
         public const string PREFABS_PATH = "Prefabs/";
+        public const string WEAPONS_PATH = "Prefabs/Weapons/";
         public const string LEVELS_PATH = "Levels/";
         
         public readonly SO<Data> Data = new("Data"); 
@@ -15,7 +16,9 @@ namespace Yogurt.Arena
         public readonly Asset<BeaconView> Beacon = new Asset<BeaconView>(PREFABS_PATH + "Beacon");
         public readonly Asset<AgentView> Player = new Asset<AgentView>(PREFABS_PATH + "Player");
         public readonly Asset<AgentView> Enemy_1 = new Asset<AgentView>(PREFABS_PATH + "Enemy_1");
-        
+
+        public readonly Asset<BulletView> RifleBullet = new Asset<BulletView>(WEAPONS_PATH + "RifleBullet");
+
         public readonly Asset<Level> Level = new Asset<Level>(LEVELS_PATH + "Level");
     }
 }

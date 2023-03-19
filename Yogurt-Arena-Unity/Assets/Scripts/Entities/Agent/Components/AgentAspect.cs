@@ -8,6 +8,6 @@
         public BodyState Body => this.Get<BodyState>();
         public AgentView View => this.Get<AgentView>();
         public AgentBattleState BattleState => this.Get<AgentBattleState>();
-        
+        public ItemsCollection Items => this.Get<ItemsCollection>();
     }
 }

@@ -13,6 +13,7 @@ namespace Yogurt.Arena
                 .AddDisposable(agentView)
                 .Add<BodyState>()
                 .Add<AgentBattleState>()
+                .Add<ItemsCollection>()
                 .Add(new AgentId
                 {
                     Team = team
