@@ -8,8 +8,6 @@ namespace Yogurt.Arena
         {
             foreach (AgentAspect agent in Query.Of<AgentAspect>())
             {
-                // if (agent.State.Velocity.magnitude < 0.01f) continue;
-
                 BodyState body = agent.Body;
                 
                 if (agent.BattleState.Target.Exist)
@@ -19,7 +17,10 @@ namespace Yogurt.Arena
                 }
                 else
                 {
-                    body.LookTarget = body.Position + body.Velocity.WithY(0);
+                    if (body.Velocity.magnitude > 0.01f)
+                    {
+                        body.LookTarget = body.Position + body.Velocity.WithY(0);
+                    }
                 }
                 body.LookTarget.y = body.Position.y;
                 
