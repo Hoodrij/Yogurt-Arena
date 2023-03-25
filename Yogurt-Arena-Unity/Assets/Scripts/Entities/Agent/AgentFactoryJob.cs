@@ -10,7 +10,8 @@ namespace Yogurt.Arena
             AgentView agentView = await asset.Spawn();
             
             Entity entity = World.Create()
-                .AddDisposable(agentView)
+                .AddLink(agentView.gameObject)
+                .Add(agentView)
                 .Add<BodyState>()
                 .Add<AgentBattleState>()
                 .Add<ItemsCollection>()
@@ -18,7 +19,7 @@ namespace Yogurt.Arena
                 {
                     Team = team
                 });
-
+            
             return entity.As<AgentAspect>();
         }
     }
