@@ -14,19 +14,16 @@ namespace Yogurt.Arena
             Vector3 position = ownerBody.Position.WithY(ownerBody.Position.y + 0.3f);
 
             Entity entity = World.Create()
-                .AddDisposable(view)
+                .AddLink(view.gameObject)
+                .Add(view)
                 .Add(new BulletState
                 {
                     Owner = owner,
-                    RigidBody = view.Body
+                    RigidBody = view.Body,
+                    LifeTime = 0.5f,
                 })
-                .Add(new BodyState
-                {
-                    Position = position
-                });
+                .Add(view.CollisionDetector);
             
-            // entity.Run(new BulletUpdateViewJob());
-
             view.transform.position = position;
             
             return entity.As<BulletAspect>();

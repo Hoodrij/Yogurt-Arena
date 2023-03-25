@@ -6,6 +6,7 @@ namespace Yogurt.Arena
     public class BulletView : MonoBehaviour, IComponent, IDisposable
     {
         public Rigidbody Body;
+        public CollisionDetector CollisionDetector;
         
         public void Dispose()
         {

@@ -9,7 +9,7 @@ namespace Yogurt.Arena
             AgentBattleState ownerBattleState = bullet.State.Owner.Get<AgentBattleState>();
             BodyState targetBody = ownerBattleState.Target.Get<BodyState>();
 
-            Vector3 dir = (targetBody.Position.WithY(0) - bullet.Body.Position.WithY(0))
+            Vector3 dir = (targetBody.Position.WithY(0) - bullet.Position.WithY(0))
                 .WithY(0)
                 .normalized;
 
