@@ -9,8 +9,8 @@ namespace Yogurt.Arena
         {
             while (true)
             {
-                GameObject hitGO = await bullet.CollisionDetector.WaitForCollision();
-                if (!hitGO.TryGetComponent(out EntityLink link)) 
+                RaycastHit hit = await bullet.CollisionDetector.CollisionEvent;
+                if (!hit.transform.TryGetComponent(out EntityLink link)) 
                     continue;
                 if (link.Entity == bullet.State.Owner)
                     continue;
@@ -21,8 +21,6 @@ namespace Yogurt.Arena
                     Position = bullet.Position
                 };
             }
-            
-            return default;
         }
     }
 }

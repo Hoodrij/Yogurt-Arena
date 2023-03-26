@@ -4,43 +4,34 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(SphereCollider))]
     public class CollisionDetector : MonoBehaviour, IComponent
     {
+        public Event<RaycastHit> CollisionEvent = new Event<RaycastHit>();
+        
         public LayerMask Mask;
-        private bool hasCollision;
-        private GameObject lastCollision;
-        
-        public async UniTask<GameObject> WaitForCollision()
+
+        private Rigidbody body;
+        private SphereCollider collider;
+        private float radius;
+
+        private void Awake()
         {
-            await UniTask.WaitWhile(() => !hasCollision);
-            return lastCollision;
+            body = GetComponent<Rigidbody>();
+            collider = GetComponent<SphereCollider>();
+            radius = collider.radius;
+        }
+
+        private void FixedUpdate()
+        {
+            Vector3 moveDir = body.velocity.normalized;
+            float moveSpeed = body.velocity.magnitude * Time.fixedDeltaTime;
             
-        }
-
-        public static bool IsInLayerMask(int layer, LayerMask layermask)
-        {
-            return layermask == (layermask | (1 << layer));
-        }
-        
-        private void OnTriggerEnter(Collider other)
-        {
-            if (IsInLayerMask(gameObject.layer, Mask))
+            if (Physics.SphereCast(transform.position, radius, moveDir, out RaycastHit hit, moveSpeed, Mask))
             {
-                return;
+                CollisionEvent.Fire(hit);
             }
-
-            hasCollision = true;
-            lastCollision = other.gameObject;
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.layer != Mask)
-            {
-                return;
-            }
-
-            hasCollision = false;
         }
     }
 }

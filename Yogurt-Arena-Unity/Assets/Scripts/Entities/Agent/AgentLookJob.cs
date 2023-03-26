@@ -27,7 +27,7 @@ namespace Yogurt.Arena
                 if (lookVector.sqrMagnitude < MIN_LOOK_MAGNITUDE)
                     continue;
 
-                agent.View.transform.DOLookAt(body.LookPoint, 0.3f);
+                agent.View.transform.DOLookAt(body.LookPoint, 0.1f);
             }
         }
     }
