@@ -10,8 +10,7 @@ namespace Yogurt.Arena
             bullet.State.RigidBody.isKinematic = true;
             bullet.View.transform.position = collisionInfo.Position;
 
-            await UniTask.Delay(0.3f.Seconds());
-            bullet.Kill();
+            await new KillBulletJob().Run(bullet);
         }
         
         static async UniTask<CollisionInfo> WaitForHit(BulletAspect bullet)

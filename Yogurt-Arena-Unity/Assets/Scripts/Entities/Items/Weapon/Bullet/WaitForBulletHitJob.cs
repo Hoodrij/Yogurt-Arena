@@ -27,7 +27,7 @@ namespace Yogurt.Arena
                     };
                 }
 
-                await UniTask.Yield();
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
             };
         }
 
