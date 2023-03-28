@@ -13,7 +13,7 @@ namespace Yogurt.Arena
                 .WithY(0)
                 .normalized;
 
-            bullet.State.RigidBody.velocity = dir * 100;
+            bullet.State.RigidBody.velocity = dir * bullet.Data.Speed;
         }
     }
 }

@@ -42,6 +42,7 @@ namespace Yogurt.Arena
     
         public float MoveSpeed;
         public float MoveSmoothValue;
+        public float FindTargetDistance;
     }
     
     [System.Serializable]
@@ -55,5 +56,6 @@ namespace Yogurt.Arena
     {
         public LayerMask HitMask;
         public float LifeTime;
+        public float Speed;
     }
 }

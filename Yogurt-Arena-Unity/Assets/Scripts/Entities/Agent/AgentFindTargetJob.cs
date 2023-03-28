@@ -34,7 +34,7 @@ namespace Yogurt.Arena
         
         private bool IsInRange(AgentAspect agent, AgentAspect other)
         {
-            return GetDistance(agent, other) < 10;
+            return GetDistance(agent, other) < Query.Single<Data>().Agent.FindTargetDistance;
         }
     }
 }

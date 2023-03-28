@@ -25,6 +25,7 @@ MonoBehaviour:
     NavMeshID: 0
     MoveSpeed: 20
     MoveSmoothValue: 0.2
+    FindTargetDistance: 15
   Overmind:
     EnemiesCount: 10
   Bullet:
@@ -32,3 +33,4 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
     LifeTime: 0.5
+    Speed: 100
