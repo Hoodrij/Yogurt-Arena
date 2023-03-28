@@ -3752,6 +3752,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3908363147600742976, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908363147600742976, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
       propertyPath: m_VersionIndex
       value: 37
@@ -4250,6 +4258,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 3908363147600742976, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908363147600742976, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
       propertyPath: m_VersionIndex
       value: 44
@@ -4719,6 +4735,14 @@ PrefabInstance:
     - target: {fileID: 89828329635631301, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908363147600742976, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908363147600742976, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
       propertyPath: m_VersionIndex
