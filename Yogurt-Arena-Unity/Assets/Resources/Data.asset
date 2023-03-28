@@ -27,3 +27,8 @@ MonoBehaviour:
     MoveSmoothValue: 0.2
   Overmind:
     EnemiesCount: 10
+  Bullet:
+    HitMask:
+      serializedVersion: 2
+      m_Bits: 256
+    LifeTime: 0.5

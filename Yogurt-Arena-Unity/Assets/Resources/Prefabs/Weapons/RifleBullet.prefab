@@ -157,7 +157,6 @@ GameObject:
   - component: {fileID: 1014813079041708076}
   - component: {fileID: 1688249514412486282}
   - component: {fileID: 3951249269984852549}
-  - component: {fileID: 2032274471442085712}
   m_Layer: 7
   m_Name: RifleBullet
   m_TagString: Untagged
@@ -195,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Body: {fileID: 1688249514412486282}
-  CollisionDetector: {fileID: 2032274471442085712}
+  Collider: {fileID: 3951249269984852549}
 --- !u!54 &1688249514412486282
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -244,21 +243,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2032274471442085712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7036511241227750618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f42930939c444c898e6e4ed989f8ec05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &7849753161361449804
 GameObject:
   m_ObjectHideFlags: 0

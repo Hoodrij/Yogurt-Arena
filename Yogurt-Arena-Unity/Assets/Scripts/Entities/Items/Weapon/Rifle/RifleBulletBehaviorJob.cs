@@ -13,7 +13,6 @@ namespace Yogurt.Arena
         static async UniTask WaitForHit(BulletAspect bullet)
         {
             CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
-            UnityEngine.Debug.Log(collisionInfo.Entity);
         }
 
         static async UniTask WaitForLifeTime(BulletAspect bullet)

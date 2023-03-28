@@ -6,7 +6,6 @@ namespace Yogurt.Arena
     {
         public Entity Owner;
         public Rigidbody RigidBody;
-        
-        public float LifeTime;
+        public SphereCollider Collider;
     }
 }

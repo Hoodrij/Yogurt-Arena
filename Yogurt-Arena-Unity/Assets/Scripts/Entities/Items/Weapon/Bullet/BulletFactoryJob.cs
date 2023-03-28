@@ -15,14 +15,14 @@ namespace Yogurt.Arena
 
             Entity entity = World.Create()
                 .AddLink(view.gameObject)
+                .Add(Query.Single<Data>().Bullet)
                 .Add(view)
                 .Add(new BulletState
                 {
                     Owner = owner,
                     RigidBody = view.Body,
-                    LifeTime = 0.5f,
-                })
-                .Add(view.CollisionDetector);
+                    Collider = view.Collider,
+                });
             
             view.transform.position = position;
             

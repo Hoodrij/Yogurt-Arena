@@ -11,12 +11,7 @@ namespace Yogurt.Arena
         public BeaconData Beacon;
         public AgentsData Agent;
         public OvermindData Overmind;
-    }
-
-    [System.Serializable]
-    public class OvermindData
-    {
-        public int EnemiesCount;
+        public BulletData Bullet;
     }
 
     [System.Serializable]
@@ -47,5 +42,18 @@ namespace Yogurt.Arena
     
         public float MoveSpeed;
         public float MoveSmoothValue;
+    }
+    
+    [System.Serializable]
+    public class OvermindData
+    {
+        public int EnemiesCount;
+    }
+    
+    [System.Serializable]
+    public class BulletData : IComponent
+    {
+        public LayerMask HitMask;
+        public float LifeTime;
     }
 }
