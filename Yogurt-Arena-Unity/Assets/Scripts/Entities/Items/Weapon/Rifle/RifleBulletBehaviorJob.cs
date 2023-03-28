@@ -6,18 +6,26 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
-            await UniTask.WhenAny(WaitForHit(bullet), WaitForLifeTime(bullet));
+            CollisionInfo collisionInfo = await UniTaskEx.WhenAny(WaitForHit(bullet), WaitForLifeTime(bullet));
+            bullet.State.RigidBody.isKinematic = true;
+            bullet.View.transform.position = collisionInfo.Position;
+
+            await UniTask.Delay(0.3f.Seconds());
             bullet.Kill();
         }
         
-        static async UniTask WaitForHit(BulletAspect bullet)
+        static async UniTask<CollisionInfo> WaitForHit(BulletAspect bullet)
         {
-            CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
+            return await new WaitForBulletHitJob().Run(bullet);
         }
 
-        static async UniTask WaitForLifeTime(BulletAspect bullet)
+        static async UniTask<CollisionInfo> WaitForLifeTime(BulletAspect bullet)
         {
             await new WaitForBulletLiteTimeJob().Run(bullet);
+            return new CollisionInfo
+            {
+                Position = bullet.Position
+            };
         }
 
     }

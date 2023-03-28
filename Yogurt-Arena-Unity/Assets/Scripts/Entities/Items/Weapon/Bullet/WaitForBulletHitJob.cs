@@ -7,37 +7,40 @@ namespace Yogurt.Arena
     {
         public async UniTask<CollisionInfo> Run(BulletAspect bullet)
         {
+            RaycastHit[] hits = new RaycastHit[10];
+            
             while (true)
             {
-                RaycastHit hit = await WaitForCollision(bullet);
-                if (!hit.transform.TryGetComponent(out EntityLink link)) 
-                    continue;
-                if (link.Entity == bullet.State.Owner)
-                    continue;
-
-                return new CollisionInfo
+                int hitsCount = GetHits(bullet, ref hits);
+                for (var i = 0; i < hitsCount; i++)
                 {
-                    Entity = link,
-                    Position = bullet.Position
-                };
-            }
+                    RaycastHit hit = hits[i];
+                    if (!hit.transform.TryGetComponent(out EntityLink link)) 
+                        continue;
+                    if (link.Entity == bullet.State.Owner)
+                        continue;
+
+                    return new CollisionInfo
+                    {
+                        Position = hit.point,
+                        Entity = link.Entity
+                    };
+                }
+
+                await UniTask.Yield();
+            };
         }
 
-        private static async UniTask<RaycastHit> WaitForCollision(BulletAspect bullet)
+        private static int GetHits(BulletAspect bullet, ref RaycastHit[] result)
         {
-            RaycastHit hit = default;
             Rigidbody body = bullet.State.RigidBody;
             float radius = bullet.State.Collider.radius;
-
-            await UniTask.WaitUntil(() =>
-            {
-                Vector3 moveDir = body.velocity.normalized;
-                float moveSpeed = body.velocity.magnitude * Time.fixedDeltaTime;
-
-                return Physics.SphereCast(body.position, radius, moveDir, out hit, moveSpeed, bullet.Data.HitMask);
-            });
             
-            return hit;
+            Vector3 moveDir = body.velocity.normalized;
+            float moveSpeed = body.velocity.magnitude * Time.fixedDeltaTime;
+
+            int hitsCount = Physics.SphereCastNonAlloc(bullet.Position, radius, moveDir, result, moveSpeed, bullet.Data.HitMask);
+            return hitsCount;
         }
     }
 }
