@@ -27,11 +27,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MyTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Density: 0.7
     - _FogMaxHeight: 0.99
     - _FogMinHeight: -0.28
-    - _IntersectionThresholdMax: 0.03
+    - _IntersectionThresholdMax: 0.1
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _FogColor: {r: 1, g: 0.20971608, b: 0, a: 0.6117647}
