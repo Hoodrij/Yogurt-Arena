@@ -51,7 +51,7 @@ Shader "Custom/VerticalFogIntersection"
                float depth = LinearEyeDepth (tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.scrPos)));
                float diff = saturate(_IntersectionThresholdMax * (depth - i.scrPos.w));
   
-               fixed4 col = lerp(fixed4(_Color.rgb, 0.0), _Color, diff * diff * diff * (diff * (6 * diff - 15) + 10));
+               fixed4 col = lerp(fixed4(_Color.rgb, 0.0), _Color, diff * diff * diff * (diff * (10 * diff - 15) + 10));
   
                UNITY_APPLY_FOG(i.fogCoord, col);
                return col;
