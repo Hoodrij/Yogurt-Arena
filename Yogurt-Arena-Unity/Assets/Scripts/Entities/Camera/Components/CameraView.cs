@@ -1,15 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class CameraView : MonoBehaviour, IComponent, IDisposable
+    public class CameraView : MonoBehaviour, IComponent
     {
         public Camera Camera;
-
-        public void Dispose()
-        {
-            Destroy(gameObject);
-        }
     }
 }

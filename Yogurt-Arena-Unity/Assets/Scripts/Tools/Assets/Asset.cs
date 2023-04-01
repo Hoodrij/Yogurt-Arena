@@ -4,7 +4,7 @@ using Object = UnityEngine.Object;
 
 namespace Yogurt.Roguelike.Tools
 {
-    public class Asset
+    public class Asset : IAsset
     {
         protected IAssetLoader loader => ResourcesLoader.Instance;
         protected string path;
@@ -21,7 +21,7 @@ namespace Yogurt.Roguelike.Tools
         }
     }
 
-    public class Asset<TComponent> : Asset where TComponent : Component
+    public class Asset<TComponent> : Asset, IAsset<TComponent> where TComponent : Component
     {
         public Asset(string path) : base(path) { }
 

@@ -1,13 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class AgentView : MonoBehaviour, IComponent, IDisposable
+    public class AgentView : MonoBehaviour, IComponent
     {
-        public void Dispose()
-        {
-            Destroy(gameObject);
-        }
+
     }
 }

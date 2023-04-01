@@ -5,7 +5,7 @@ namespace Yogurt.Arena
 {
     public struct AgentFactoryJob
     {
-        public async UniTask<AgentAspect> Run(Asset<AgentView> asset, Team team)
+        public async UniTask<AgentAspect> Run(IAsset<AgentView> asset, Team team)
         {
             AgentView agentView = await asset.Spawn();
             

@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using Yogurt.Roguelike.Tools;
 
@@ -6,7 +7,7 @@ namespace Yogurt.Arena
 {
     public struct BulletFactoryJob
     {
-        public async UniTask<BulletAspect> Run(Asset<BulletView> asset, Entity owner)
+        public async UniTask<BulletAspect> Run(IAsset<BulletView> asset, Entity owner)
         {
             BulletView view = await asset.Spawn();
 
@@ -25,7 +26,10 @@ namespace Yogurt.Arena
                 });
             
             view.transform.position = position;
-            
+            entity.Get<BulletState>().RigidBody.isKinematic = false;
+            view.transform.DOKill();
+            view.transform.localScale = Vector3.one;
+
             return entity.As<BulletAspect>();
         }
     }

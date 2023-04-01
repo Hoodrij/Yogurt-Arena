@@ -8,7 +8,11 @@ namespace Yogurt.Arena
     {
         public static Entity AddLink(this Entity entity, GameObject go)
         {
-            EntityLink link = go.AddComponent<EntityLink>();
+            if (!go.TryGetComponent(out EntityLink link))
+            {
+                link = go.AddComponent<EntityLink>();
+            }
+            
             entity.Add(link);
             link.Set(entity);
             entity.WaitForDeadAndDispose(link);

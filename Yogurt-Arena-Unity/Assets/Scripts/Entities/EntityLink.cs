@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
 {
@@ -17,7 +18,14 @@ namespace Yogurt.Arena
 
         public void Dispose()
         {
-            Destroy(gameObject);
+            if (TryGetComponent(out PoolLink poolLink))
+            {
+                poolLink.Release();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

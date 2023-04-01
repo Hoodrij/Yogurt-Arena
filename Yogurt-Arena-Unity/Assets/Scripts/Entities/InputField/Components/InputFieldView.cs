@@ -1,15 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class InputFieldView : MonoBehaviour, IDisposable, IComponent
+    public class InputFieldView : MonoBehaviour, IComponent
     {
         public MoveInputReader MoveInputReader;
-
-        public void Dispose()
-        {
-            Destroy(gameObject);
-        }
     }
 }

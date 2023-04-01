@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(Entity owner)
         {
-            Asset<BulletView> asset = Query.Single<Assets>().RifleBullet;
+            IAsset<BulletView> asset = Query.Single<Assets>().RifleBullet;
 
             while (owner.Exist)
             {
