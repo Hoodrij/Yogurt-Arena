@@ -2,6 +2,6 @@
 {
     public class Item : IComponent
     {
-        public ItemUseJob Job;
+        public IItemUseJob Job;
     }
 }

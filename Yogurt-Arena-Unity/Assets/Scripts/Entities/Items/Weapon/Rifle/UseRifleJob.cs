@@ -3,18 +3,17 @@ using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
 {
-    public class UseRifleJob : ItemUseJob
+    public class UseRifleJob : IItemUseJob
     {
-        public async UniTask Run(Entity owner)
+        public async UniTask Run(ItemAspect itemAspect, Entity owner)
         {
-            IAsset<BulletView> asset = Query.Single<Assets>().RifleBullet;
+            IAsset<BulletView> bulletAsset = Query.Single<Assets>().RifleBullet;
 
-            while (owner.Exist)
+            while (itemAspect.Exist())
             {
                 await WaitForTarget(owner);
                 
-                BulletAspect bullet = await new BulletFactoryJob().Run(asset, owner);
-                new FireBulletJob().Run(bullet);
+                BulletAspect bullet = await new BulletFactoryJob().Run(bulletAsset, owner);
                 new RifleBulletBehaviorJob().Run(bullet); 
 
                 await UniTask.Delay(0.1f.Seconds());

@@ -9,11 +9,11 @@ namespace Yogurt.Arena
             Assets assets = Query.Single<Assets>();
             AgentAspect player = await new AgentFactoryJob().Run(assets.Player, Team.Green);
             player.Add<PlayerTag>();
-            player.Items.Items.Add(await new RifleFactoryJob().Run());
             
-            foreach (ItemAspect itemAspect in player.Items.Items)
+            player.Items.List.Add(await new RifleFactoryJob().Run());
+            foreach (ItemAspect itemAspect in player.Items.List)
             {
-                itemAspect.Item.Job.Run(player.Entity);
+                itemAspect.Item.Job.Run(itemAspect, player.Entity);
             }
 
             return player.Entity;

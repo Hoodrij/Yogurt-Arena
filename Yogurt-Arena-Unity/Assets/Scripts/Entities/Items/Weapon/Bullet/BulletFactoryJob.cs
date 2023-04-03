@@ -14,7 +14,7 @@ namespace Yogurt.Arena
             BodyState ownerBody = owner.Get<BodyState>();
             Vector3 position = ownerBody.Position.WithY(ownerBody.Position.y + 0.3f);
 
-            Entity entity = World.Create()
+            BulletAspect bullet = World.Create()
                 .AddLink(view.gameObject)
                 .Add(Query.Single<Data>().Bullet)
                 .Add(view)
@@ -23,14 +23,17 @@ namespace Yogurt.Arena
                     Owner = owner,
                     RigidBody = view.Body,
                     Collider = view.Collider,
-                });
+                })
+                .As<BulletAspect>();
             
-            view.transform.position = position;
-            entity.Get<BulletState>().RigidBody.isKinematic = false;
-            view.transform.DOKill();
-            view.transform.localScale = Vector3.one;
+            bullet.State.RigidBody.isKinematic = false;
+            bullet.View.transform.position = position;
+            bullet.View.transform.DOKill();
+            bullet.View.transform.localScale = Vector3.one;
+            
+            new FireBulletJob().Run(bullet);
 
-            return entity.As<BulletAspect>();
+            return bullet;
         }
     }
 }
