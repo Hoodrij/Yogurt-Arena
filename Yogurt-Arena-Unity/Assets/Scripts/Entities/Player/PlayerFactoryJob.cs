@@ -10,8 +10,8 @@ namespace Yogurt.Arena
             AgentAspect player = await new AgentFactoryJob().Run(assets.Player, Team.Green);
             player.Add<PlayerTag>();
             
-            player.Items.List.Add(await new RifleFactoryJob().Run());
-            foreach (ItemAspect itemAspect in player.Items.List)
+            player.Items.Value.Add(await new RifleFactoryJob().Run());
+            foreach (ItemAspect itemAspect in player.Items.Value)
             {
                 itemAspect.Item.Job.Run(itemAspect, player.Entity);
             }

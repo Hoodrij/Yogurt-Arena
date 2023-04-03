@@ -55,6 +55,7 @@ namespace Yogurt.Arena
     public class BulletData : IComponent
     {
         public LayerMask HitMask;
+        public int Damage;
         public float LifeTime;
         public float Speed;
     }

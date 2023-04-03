@@ -7,6 +7,8 @@ namespace Yogurt.Arena
         public async UniTask Run(BulletAspect bullet)
         {
             CollisionInfo collisionInfo = await UniTaskEx.WhenAny(WaitForHit(bullet), WaitForLifeTime(bullet));
+            new DealDamageJob().Run(collisionInfo.Entity, bullet.Data.Damage);
+            
             bullet.State.RigidBody.isKinematic = true;
             bullet.View.transform.position = collisionInfo.Position;
 

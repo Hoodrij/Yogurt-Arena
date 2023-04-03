@@ -4,6 +4,6 @@ namespace Yogurt.Arena
 {
     public class ItemsCollection : IComponent
     {
-        public List<ItemAspect> List = new List<ItemAspect>();
+        public List<ItemAspect> Value = new List<ItemAspect>();
     }
 }

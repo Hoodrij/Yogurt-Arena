@@ -18,6 +18,10 @@ namespace Yogurt.Arena
                 .Add(new AgentId
                 {
                     Team = team
+                })
+                .Add(new Health
+                {
+                    Value = 5
                 });
             
             return entity.As<AgentAspect>();
