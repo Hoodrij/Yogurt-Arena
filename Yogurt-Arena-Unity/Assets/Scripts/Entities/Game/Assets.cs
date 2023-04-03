@@ -17,7 +17,7 @@ namespace Yogurt.Arena
         public readonly IAsset<BeaconView> Beacon = new Asset<BeaconView>(PREFABS_PATH + "Beacon");
         
         public readonly IAsset<AgentView> Player = new Asset<AgentView>(AGENTS_PATH + "Player");
-        public readonly IAsset<AgentView> Enemy_1 = new Asset<AgentView>(AGENTS_PATH + "Enemy_1");
+        public readonly IAsset<AgentView> Enemy_1 = new PooledAsset<AgentView>(AGENTS_PATH + "Enemy_1");
 
         public readonly IAsset<BulletView> RifleBullet = new PooledAsset<BulletView>(WEAPONS_PATH + "RifleBullet");
 
