@@ -19,10 +19,15 @@ namespace Yogurt.Arena
 
             return entity;
         }
+
+        public static async UniTask WaitForDead(this Entity entity)
+        {
+            await UniTask.WaitWhile(() => Application.isPlaying && entity.Exist);
+        }
         
         private static async void WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
         {
-            await UniTask.WaitWhile(() => Application.isPlaying && entity.Exist);
+            await entity.WaitForDead();
 
             if (Application.isPlaying)
             {
