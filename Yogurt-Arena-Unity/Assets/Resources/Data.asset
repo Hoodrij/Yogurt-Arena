@@ -27,7 +27,11 @@ MonoBehaviour:
     MoveSmoothValue: 0.2
     FindTargetDistance: 15
   Overmind:
-    EnemiesCount: 20
+    WaveAgentsCount:
+      Min: 3
+      Max: 5
+    MinimumAgents: 20
+    WavesDelay: 1
   Bullet:
     HitMask:
       serializedVersion: 2

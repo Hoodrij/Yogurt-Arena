@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Yogurt.Arena
@@ -48,7 +49,9 @@ namespace Yogurt.Arena
     [System.Serializable]
     public class OvermindData
     {
-        public int EnemiesCount;
+        public MinMax WaveAgentsCount;
+        public int MinimumAgents;
+        public int WavesDelay;
     }
     
     [System.Serializable]

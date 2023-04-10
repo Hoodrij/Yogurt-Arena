@@ -21,7 +21,7 @@ namespace Yogurt.Arena
                 })
                 .Add(new Health
                 {
-                    Value = 5
+                    Value = 1
                 });
             
             return entity.As<AgentAspect>();
