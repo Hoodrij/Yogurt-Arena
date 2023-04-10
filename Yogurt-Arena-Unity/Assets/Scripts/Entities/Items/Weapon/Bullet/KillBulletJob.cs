@@ -7,10 +7,10 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
-            await UniTask.Delay(0.05f.Seconds());
+            await UniTask.Delay(0.05f.ToSeconds());
             bullet.View.transform.DOScale(0, 0.1f);
 
-            await UniTask.Delay(0.3f.Seconds());
+            await UniTask.Delay(0.3f.ToSeconds());
             bullet.Kill();
         }
     }

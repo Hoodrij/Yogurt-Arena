@@ -31,7 +31,9 @@ MonoBehaviour:
       Min: 3
       Max: 5
     MinimumAgents: 20
-    WavesDelay: 1
+    WavesDelay:
+      Min: 0.1
+      Max: 2
   Bullet:
     HitMask:
       serializedVersion: 2

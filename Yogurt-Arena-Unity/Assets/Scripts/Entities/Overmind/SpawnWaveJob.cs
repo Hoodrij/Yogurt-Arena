@@ -7,7 +7,7 @@ namespace Yogurt.Arena
 {
     public struct SpawnWaveJob
     {
-        public async UniTask Run(OvermindAspect overmind, MinMax count)
+        public async UniTask Run(OvermindAspect overmind, MinMaxInt count)
         {
             Assets assets = Query.Single<Assets>();
 

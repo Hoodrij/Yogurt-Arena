@@ -16,7 +16,7 @@ namespace Yogurt.Arena
                 BulletAspect bullet = await new BulletFactoryJob().Run(bulletAsset, owner);
                 new RifleBulletBehaviorJob().Run(bullet); 
 
-                await UniTask.Delay(0.1f.Seconds());
+                await UniTask.Delay(0.1f.ToSeconds());
             }
         }
 

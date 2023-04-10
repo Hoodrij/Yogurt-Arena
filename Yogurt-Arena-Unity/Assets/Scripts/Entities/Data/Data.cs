@@ -49,9 +49,9 @@ namespace Yogurt.Arena
     [System.Serializable]
     public class OvermindData
     {
-        public MinMax WaveAgentsCount;
+        public MinMaxInt WaveAgentsCount;
         public int MinimumAgents;
-        public int WavesDelay;
+        public MinMax WavesDelay;
     }
     
     [System.Serializable]

@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             while (overmind.Exist())
             {
                 await new SpawnWaveJob().Run(overmind, data.Overmind.WaveAgentsCount);
-                await UniTask.Delay(data.Overmind.WavesDelay.ToSeconds());
+                await UniTask.Delay(data.Overmind.WavesDelay.GetRandom().ToSeconds());
                 await UniTask.WaitWhile(() => overmind.State.HasEnoughAgents());
             }
         }
