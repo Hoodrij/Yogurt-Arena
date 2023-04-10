@@ -18,6 +18,8 @@ namespace Yogurt.Arena
                 Vector3 spawnPoint = GetFreeSpawnPoint();
                 agent.Body.Position = spawnPoint;
                 agent.Body.Destination = spawnPoint;
+                
+                // agent.Items.Add(await new RifleFactoryJob().Run(agent));
             }
         }
 

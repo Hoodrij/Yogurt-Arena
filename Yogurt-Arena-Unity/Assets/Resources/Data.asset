@@ -27,7 +27,7 @@ MonoBehaviour:
     MoveSmoothValue: 0.2
     FindTargetDistance: 15
   Overmind:
-    EnemiesCount: 10
+    EnemiesCount: 20
   Bullet:
     HitMask:
       serializedVersion: 2

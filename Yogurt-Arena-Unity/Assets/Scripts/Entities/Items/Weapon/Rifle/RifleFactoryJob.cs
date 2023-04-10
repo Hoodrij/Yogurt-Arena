@@ -4,14 +4,19 @@ namespace Yogurt.Arena
 {
     public class RifleFactoryJob
     {
-        public async UniTask<ItemAspect> Run()
+        public async UniTask<ItemAspect> Run(AgentAspect owner)
         {
-            return World.Create()
+            ItemAspect itemAspect = Entity.Create()
                 .Add(new Item
                 {
                     Job = new UseRifleJob()
                 })
                 .As<ItemAspect>();
+
+            itemAspect.Entity.SetParent(owner.Entity);
+            itemAspect.Item.Job.Run(itemAspect, owner.Entity);
+            
+            return itemAspect;
         }
     }
 }
