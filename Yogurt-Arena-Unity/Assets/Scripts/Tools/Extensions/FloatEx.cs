@@ -16,7 +16,7 @@ namespace Yogurt.Arena
             return Random.Range(0, f);
         }
 
-        public static TimeSpan Seconds(this float f)
+        public static TimeSpan ToSeconds(this float f)
         {
             return TimeSpan.FromSeconds(f);
         }

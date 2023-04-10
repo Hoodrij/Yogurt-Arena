@@ -4,12 +4,12 @@ using Random = UnityEngine.Random;
 namespace Yogurt.Arena
 {
     [Serializable]
-    public struct MinMax
+    public struct MinMaxInt
     {
-        public float Min;
-        public float Max;
+        public int Min;
+        public int Max;
 
-        public float GetRandom()
+        public int GetRandom()
         {
             return Random.Range(Min, Max);
         }
