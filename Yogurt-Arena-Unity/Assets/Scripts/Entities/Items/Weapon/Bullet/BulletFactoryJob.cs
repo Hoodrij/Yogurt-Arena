@@ -7,16 +7,16 @@ namespace Yogurt.Arena
 {
     public struct BulletFactoryJob
     {
-        public async UniTask<BulletAspect> Run(IAsset<BulletView> asset, Entity owner)
+        public async UniTask<BulletAspect> Run(BulletData data, Entity owner)
         {
-            BulletView view = await asset.Spawn();
+            BulletView view = await data.Asset.Spawn();
 
             BodyState ownerBody = owner.Get<BodyState>();
             Vector3 position = ownerBody.Position.WithY(ownerBody.Position.y + 0.3f);
 
             BulletAspect bullet = World.Create()
                 .AddLink(view.gameObject)
-                .Add(Query.Single<Data>().Bullet)
+                .Add(data)
                 .Add(view)
                 .Add(new BulletState
                 {

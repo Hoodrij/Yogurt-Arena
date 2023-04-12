@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Yogurt.Arena
@@ -7,24 +8,58 @@ namespace Yogurt.Arena
     {
         public void Update()
         {
-            Data data = Query.Single<Data>();
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
             BeaconAspect beacon = Query.Single<BeaconAspect>();
+            BeaconData data = beacon.Data;
+            BeaconBodyState body = beacon.Body;
 
-            Vector2 moveDelta = inputField.Input.MoveDelta;
-            beacon.Body.AddDelta(moveDelta);
+            AddDelta(inputField.Input.MoveDelta.ToV3XZ());
 
             Transform transform;
-            (transform = beacon.View.transform).position = Vector3.Lerp(beacon.View.transform.position, beacon.Body.Destination, data.Beacon.SmoothValue);
-            SpecifyTransformY(transform, beacon.Body);
-        }
+            (transform = beacon.View.transform).position = Vector3.Lerp(beacon.View.transform.position, body.Destination, data.SmoothValue);
+            SpecifyTransformY(transform, body);
             
-        private static void SpecifyTransformY(Transform transform, BeaconBodyState body)
-        {
-            Vector3 requiredPos = transform.position.WithY(body.Destination.y);
-            if (NavMesh.SamplePosition(requiredPos, out var hit, 10, NavMesh.AllAreas))
+            
+            void AddDelta(Vector3 delta)
             {
-                transform.position = transform.position.WithY(hit.position.y);
+                if (delta == Vector3.zero) return;
+                
+                body.RawDestination += delta;
+                body.Destination = CalcDestination(body.Destination, body.RawDestination);
+                body.RawDestination = body.RawDestination.WithY(body.Destination.y);
+                body.RawDestination = ClampRawDestination(body.RawDestination, body.Destination, data.Elasticity);
+            }
+
+            Vector3 CalcDestination(Vector3 prevDest, Vector3 newDest)
+            {
+                int mask = NavMesh.AllAreas;
+                NavMesh.SamplePosition(newDest, out var newHit, 100, mask);
+
+                NavMeshPath path = new NavMeshPath();
+                NavMesh.CalculatePath(prevDest, newHit.position, mask, path);
+
+                if (path.status != NavMeshPathStatus.PathComplete)
+                {
+                    // return prevDest;
+                    return CalcDestination(prevDest, newDest.WithY(10));
+                }
+
+                return path.corners.Last();
+            }
+        
+            Vector3 ClampRawDestination(Vector3 rawDest, Vector3 dest, float elasticity)
+            {
+                float magnitude = (rawDest - dest).magnitude * (1/elasticity);
+                return Vector3.Lerp(rawDest, dest, magnitude);
+            }
+                
+            void SpecifyTransformY(Transform transform, BeaconBodyState body)
+            {
+                Vector3 requiredPos = transform.position.WithY(body.Destination.y);
+                if (NavMesh.SamplePosition(requiredPos, out var hit, 10, NavMesh.AllAreas))
+                {
+                    transform.position = transform.position.WithY(hit.position.y);
+                }
             }
         }
     }

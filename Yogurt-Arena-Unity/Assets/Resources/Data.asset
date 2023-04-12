@@ -12,39 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf027ffd92c245728acebb1d4006f773, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
-  Assets:
-    World:
-      Prefab: {fileID: 6010830135608539927, guid: 5fb0efdc5d163c447b432e799b8e22b8, type: 3}
-    Level:
-      Prefab: {fileID: 238997165645100861, guid: 358c1dc01a765b746b3cd6c70421ff5d, type: 3}
-    Camera:
-      Prefab: {fileID: 3376568824622968467, guid: 5c99e910810318f4688e2d64e1d4ae57, type: 3}
-    InputField:
-      Prefab: {fileID: 2346468616466672681, guid: 67cb5b8d2da54ff4d815852dde211387, type: 3}
-    Beacon:
-      Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
-    Player:
-      Prefab: {fileID: 39607511721595333, guid: 9845d6291ccbb5942b5c33655dc76d82, type: 3}
-    Enemy_1:
-      asset:
-        Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-    RifleBullet:
-      asset:
-        Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
+  World:
+    Prefab: {fileID: 6010830135608539927, guid: 5fb0efdc5d163c447b432e799b8e22b8, type: 3}
+  Level:
+    Prefab: {fileID: 238997165645100861, guid: 358c1dc01a765b746b3cd6c70421ff5d, type: 3}
   Input:
+    Asset:
+      Prefab: {fileID: 2346468616466672681, guid: 67cb5b8d2da54ff4d815852dde211387, type: 3}
     AccumulativeValue: 0.2
     DeAccumulativeValue: 0.05
     Sensitivity: 10
   Camera:
+    Asset:
+      Prefab: {fileID: 3376568824622968467, guid: 5c99e910810318f4688e2d64e1d4ae57, type: 3}
     SmoothValue: 0.1
   Beacon:
+    Asset:
+      Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
     SmoothValue: 0.2
     Elasticity: 10
-  Agent:
-    NavMeshID: 0
+  Player:
+    Asset:
+      asset:
+        Prefab: {fileID: 39607511721595333, guid: 9845d6291ccbb5942b5c33655dc76d82, type: 3}
     MoveSpeed: 20
     MoveSmoothValue: 0.2
     FindTargetDistance: 15
+  ChargeEnemy:
+    Asset:
+      asset:
+        Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
+    MoveSpeed: 1
+    MoveSmoothValue: 0.2
+    FindTargetDistance: 5
   Overmind:
     WaveAgentsCount:
       Min: 3
@@ -53,7 +53,10 @@ MonoBehaviour:
     WavesDelay:
       Min: 0.1
       Max: 2
-  Bullet:
+  RifleBullet:
+    Asset:
+      asset:
+        Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
     HitMask:
       serializedVersion: 2
       m_Bits: 256

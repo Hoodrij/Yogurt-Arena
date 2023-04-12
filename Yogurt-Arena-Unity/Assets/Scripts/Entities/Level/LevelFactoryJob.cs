@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
 {
@@ -7,10 +6,10 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            IAsset<Level> level = Query.Single<Assets>().Level;
-            
+            Level view = await Query.Single<Data>().Level.Spawn();
+
             Entity entity = World.Create()
-                .Add(await level.Spawn());
+                .Add(view);
         }
     }
 }

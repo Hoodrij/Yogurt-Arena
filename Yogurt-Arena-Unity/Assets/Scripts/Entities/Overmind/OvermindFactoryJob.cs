@@ -7,6 +7,7 @@ namespace Yogurt.Arena
         public async UniTask<OvermindAspect> Run()
         {
             OvermindAspect overmind = World.Create()
+                .Add(Query.Single<Data>().Overmind)
                 .Add<OvermindState>()
                 .As<OvermindAspect>();
 

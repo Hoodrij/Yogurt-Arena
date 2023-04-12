@@ -7,15 +7,15 @@ namespace Yogurt.Arena
 {
     public struct SpawnWaveJob
     {
-        public async UniTask Run(OvermindAspect overmind, MinMaxInt count)
+        public async UniTask Run(OvermindAspect overmind)
         {
-            Assets assets = Query.Single<Assets>();
-
-            int agentsCount = count.GetRandom();
+            AgentData data = Query.Single<Data>().ChargeEnemy;
+            
+            int agentsCount = overmind.Data.WaveAgentsCount.GetRandom();
 
             for (int i = 0; i < agentsCount; i++)
             {
-                AgentAspect agent = await new AgentFactoryJob().Run(assets.ChargeEnemy, Team.Red);
+                AgentAspect agent = await new AgentFactoryJob().Run(data, Team.Red);
                 Vector3 spawnPoint = GetFreeSpawnPoint();
                 agent.Body.Position = spawnPoint;
                 agent.Body.Destination = spawnPoint;
@@ -23,7 +23,7 @@ namespace Yogurt.Arena
                 
                 // agent.Items.Add(await new RifleFactoryJob().Run(agent));
                 
-                overmind.State.KeepAgent(agent);
+                overmind.State.AddAgent(agent);
                 
             }
         }

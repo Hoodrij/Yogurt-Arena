@@ -7,13 +7,13 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(ItemAspect itemAspect, Entity owner)
         {
-            IAsset<BulletView> bulletAsset = Query.Single<Assets>().RifleBullet;
+            BulletData bulletData = Query.Single<Data>().RifleBullet;
 
             while (itemAspect.Exist())
             {
                 await WaitForTarget(owner);
                 
-                BulletAspect bullet = await new BulletFactoryJob().Run(bulletAsset, owner);
+                BulletAspect bullet = await new BulletFactoryJob().Run(bulletData, owner);
                 new RifleBulletBehaviorJob().Run(bullet); 
 
                 await UniTask.Delay(0.1f.ToSeconds());

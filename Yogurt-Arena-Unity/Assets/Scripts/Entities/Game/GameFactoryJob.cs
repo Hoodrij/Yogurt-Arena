@@ -13,8 +13,7 @@ namespace Yogurt.Arena
 
             Entity.Create()
                 .Add<Game>()
-                .Add(data)
-                .Add(data.Assets);
+                .Add(data);
         }
     }
 }

@@ -6,10 +6,12 @@ namespace Yogurt.Arena
     {
         public async UniTask<Entity> Run()
         {
-            BeaconView beaconView = await Query.Single<Assets>().Beacon.Spawn();
+            BeaconData beaconData = Query.Single<Data>().Beacon;
+            BeaconView view = await beaconData.Asset.Spawn();
 
             Entity entity = World.Create()
-                .Add(beaconView)
+                .Add(beaconData)
+                .Add(view)
                 .Add<BeaconBodyState>();
 
             return entity;

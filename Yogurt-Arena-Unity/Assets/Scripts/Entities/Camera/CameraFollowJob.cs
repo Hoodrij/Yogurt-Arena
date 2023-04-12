@@ -8,16 +8,15 @@ namespace Yogurt.Arena
         {
             float dt = Time.deltaTime * 100;
             
-            Data data = Query.Single<Data>();
             CameraAspect camera = Query.Single<CameraAspect>();
             
             Vector3 currentPos = camera.View.transform.position;
             Vector3 followPoint = GetFollowPoint();
 		
             Vector3 lerpPoint = new Vector3(
-                Mathf.Lerp(currentPos.x, followPoint.x, data.Camera.SmoothValue * dt), 
-                Mathf.Lerp(currentPos.y, followPoint.y, data.Camera.SmoothValue / 5 * dt), 
-                Mathf.Lerp(currentPos.z, followPoint.z, data.Camera.SmoothValue * dt));
+                Mathf.Lerp(currentPos.x, followPoint.x, camera.Data.SmoothValue * dt), 
+                Mathf.Lerp(currentPos.y, followPoint.y, camera.Data.SmoothValue / 5 * dt), 
+                Mathf.Lerp(currentPos.z, followPoint.z, camera.Data.SmoothValue * dt));
 		
             camera.View.transform.position = lerpPoint;
         }

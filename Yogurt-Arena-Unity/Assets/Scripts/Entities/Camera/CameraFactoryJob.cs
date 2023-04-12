@@ -4,15 +4,15 @@ namespace Yogurt.Arena
 {
     public struct CameraFactoryJob
     {
-        private Assets Assets => Query.Single<Assets>();
-        
         public async UniTask Run()
         {
-            CameraView cameraView = await Assets.Camera.Spawn();
+            CameraData cameraData = Query.Single<Data>().Camera;
+            CameraView view = await cameraData.Asset.Spawn();
 
             Entity entity = World.Create()
-                .AddLink(cameraView.gameObject)
-                .Add(cameraView);
+                .AddLink(view.gameObject)
+                .Add(cameraData)
+                .Add(view);
         }
     }
 }

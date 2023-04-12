@@ -7,9 +7,9 @@ namespace Yogurt.Arena
         public void Update()
         {
             float dt = Time.deltaTime * 100;
-            InputData data = Query.Single<Data>().Input;
             
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
+            InputData data = inputField.Data;
             MoveInputReader reader = inputField.MoveInputReader;
             InputState inputState = inputField.Input;
 

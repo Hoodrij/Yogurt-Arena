@@ -4,11 +4,9 @@ namespace Yogurt.Arena
 {
     public struct WorldFactoryJob
     {
-        private Assets Assets => Query.Single<Assets>();
-        
         public async UniTask<Entity> Run()
         {
-            World world = await Assets.World.Spawn();
+            World world = await Query.Single<Data>().World.Spawn();
             
             Entity entity = Entity.Create()
                 .AddLink(world.gameObject)

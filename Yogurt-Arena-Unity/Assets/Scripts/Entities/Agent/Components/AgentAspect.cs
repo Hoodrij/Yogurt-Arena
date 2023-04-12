@@ -4,6 +4,8 @@
     {
         public Entity Entity { get; set; }
 
+        public AgentData Data => this.Get<AgentData>();
+
         public AgentId Id => this.Get<AgentId>();
         public BodyState Body => this.Get<BodyState>();
         public Health Health => this.Get<Health>();

@@ -6,36 +6,36 @@ namespace Yogurt.Arena
 {
     public struct AgentMoveJob : IUpdateJob
     {
-	    private Data data => Query.Single<Data>();
-	    
-        public void Update()
+	    public void Update()
         {
 	        float dt = Time.deltaTime;
             
             foreach (AgentAspect agent in Query.Of<AgentAspect>())
             {
-		        UpdateState(agent.Body, dt);
+		        UpdateState(agent, dt);
 
 		        agent.View.transform.position = agent.Body.Position;
             }
         }
 
-        private void UpdateState(BodyState state, float dt)
-		{
-			NavMesh.SamplePosition(state.Destination, out var destinationHit, 100, NavMesh.AllAreas);
+        private void UpdateState(AgentAspect agent, float dt)
+        {
+	        BodyState body = agent.Body;
+
+	        NavMesh.SamplePosition(body.Destination, out var destinationHit, 100, NavMesh.AllAreas);
 			Vector3 requiredPos = destinationHit.position;
-			Vector3 currentPos = state.Position;
+			Vector3 currentPos = body.Position;
 
 			NavMeshPath path = CalculatePath(currentPos, requiredPos);
-			Vector3 requiredVelocity = GetNextVelocityByPath(data.Agent.MoveSpeed * dt, path);
+			Vector3 requiredVelocity = GetNextVelocityByPath(agent.Data.MoveSpeed * dt, path);
 			float distanceToTarget = (currentPos - requiredPos).magnitude;
-			requiredVelocity = GetSmoothedVelocity(distanceToTarget, requiredVelocity, state.Velocity, dt);
+			requiredVelocity = GetSmoothedVelocity(agent, distanceToTarget, requiredVelocity, dt);
 
 			Vector3 newPos = currentPos + requiredVelocity;
 			NavMesh.SamplePosition(newPos, out var hit, 1, NavMesh.AllAreas);
 			
-			state.Position = hit.position;
-			state.Velocity = requiredVelocity;
+			body.Position = hit.position;
+			body.Velocity = requiredVelocity;
 		}
 
         private static NavMeshPath CalculatePath(Vector3 startPos, Vector3 endPos)
@@ -69,19 +69,22 @@ namespace Yogurt.Arena
 	        return finalPoint - path.corners.First();
 	    }
 		
-		private Vector3 GetSmoothedVelocity(float distanceToTarget, Vector3 requiredVelocity, Vector3 prevVelocity, float dt)
+		private Vector3 GetSmoothedVelocity(AgentAspect agent, float distanceToTarget, Vector3 requiredVelocity, float dt)
 		{
+			AgentData data = agent.Data;
+			Vector3 prevVelocity = agent.Body.Velocity;
+
 			Vector3 velocity;
-			if (distanceToTarget < prevVelocity.magnitude * data.Agent.MoveSpeed * 0.5f)
+			if (distanceToTarget < prevVelocity.magnitude * data.MoveSpeed * 0.5f)
 			{
-				velocity = requiredVelocity * (distanceToTarget * data.Agent.MoveSmoothValue * 2);
+				velocity = requiredVelocity * (distanceToTarget * data.MoveSmoothValue * 2);
 			}
 			else
 			{
-				velocity = Vector3.Lerp(prevVelocity, requiredVelocity, data.Agent.MoveSmoothValue);
+				velocity = Vector3.Lerp(prevVelocity, requiredVelocity, data.MoveSmoothValue);
 			}
 
-			velocity = velocity.ClampMagnitude(data.Agent.MoveSpeed * dt);
+			velocity = velocity.ClampMagnitude(data.MoveSpeed * dt);
 			
 			return velocity;
 		}
