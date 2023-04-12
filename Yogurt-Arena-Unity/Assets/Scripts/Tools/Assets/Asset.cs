@@ -1,45 +1,19 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Yogurt.Roguelike.Tools
 {
-    public class Asset : IAsset
+    [Serializable]
+    public class Asset<TComponent> : IAsset<TComponent> where TComponent : Component
     {
-        protected IAssetLoader loader => ResourcesLoader.Instance;
-        protected string path;
+        public GameObject Prefab;
 
-        public Asset(string path)
+        public async UniTask<TComponent> Spawn()
         {
-            this.path = path;
-        }
-
-        public async UniTask<GameObject> Spawn()
-        {
-            Object asset = await loader.Load(path);
-            return (GameObject)Object.Instantiate(asset);
-        }
-    }
-
-    public class Asset<TComponent> : Asset, IAsset<TComponent> where TComponent : Component
-    {
-        public Asset(string path) : base(path) { }
-
-        public new async UniTask<TComponent> Spawn()
-        {
-            TComponent prefab = await loader.Load<TComponent>(path);
-            TComponent result = Object.Instantiate(prefab);
+            TComponent result = Object.Instantiate(Prefab).GetComponent<TComponent>();
             return result;
         }
-    }
-    
-    public class SO<Tso> : Asset where Tso : ScriptableObject
-    {
-        public SO(string path) : base(path) { }
-
-        public async UniTask<Tso> Load()
-        {
-            return await loader.Load(path) as Tso;
-        } 
     }
 }

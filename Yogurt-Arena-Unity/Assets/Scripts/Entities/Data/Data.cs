@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Yogurt.Arena
 {
     [CreateAssetMenu]
     public class Data : ScriptableObject , IComponent
     {
+        public Assets Assets;
+
         public InputData Input;
         public CameraData Camera;
         public BeaconData Beacon;
@@ -15,28 +16,28 @@ namespace Yogurt.Arena
         public BulletData Bullet;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class InputData
     {
         public float AccumulativeValue;
-        [FormerlySerializedAs("AccumulativeBackValue")] public float DeAccumulativeValue;
+        public float DeAccumulativeValue;
         public float Sensitivity;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class CameraData
     {
         public float SmoothValue;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class BeaconData
     {
         public float SmoothValue;
         public float Elasticity;
     }
     
-    [System.Serializable]
+    [Serializable]
     public class AgentsData
     {
         public int NavMeshID = 0;
@@ -46,7 +47,7 @@ namespace Yogurt.Arena
         public float FindTargetDistance;
     }
     
-    [System.Serializable]
+    [Serializable]
     public class OvermindData
     {
         public MinMaxInt WaveAgentsCount;
@@ -54,7 +55,7 @@ namespace Yogurt.Arena
         public MinMax WavesDelay;
     }
     
-    [System.Serializable]
+    [Serializable]
     public class BulletData : IComponent
     {
         public LayerMask HitMask;

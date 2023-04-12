@@ -8,14 +8,13 @@ namespace Yogurt.Arena
         public async UniTask Run()
         {
             Application.targetFrameRate = 90;
-            
-            Assets assets = new Assets();
-            Data data = await assets.Data.Load();
+
+            Data data = Resources.Load<Data>("Data");
 
             Entity.Create()
                 .Add<Game>()
-                .Add(assets)
-                .Add(data);
+                .Add(data)
+                .Add(data.Assets);
         }
     }
 }

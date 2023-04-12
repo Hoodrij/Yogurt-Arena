@@ -27,6 +27,10 @@ namespace Yogurt.Roguelike.Tools
             else
             {
                 go = pool.Pop();
+                if (go == null)
+                {
+                    return await Pop();
+                }
             }
 
             go.SetActive(true);

@@ -1,26 +1,20 @@
-﻿using Yogurt.Roguelike.Tools;
+﻿using System;
+using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
 {
+    [Serializable]
     public class Assets : IComponent
     {
-        private const string PREFABS_PATH = "Prefabs/";
-        private const string LEVELS_PATH = "Levels/";
-        private const string WEAPONS_PATH = PREFABS_PATH + "Weapons/";
-        private const string AGENTS_PATH = PREFABS_PATH + "Agents/";
-        
-        public readonly SO<Data> Data = new("Data"); 
-        
-        public readonly IAsset<World> World = new Asset<World>(PREFABS_PATH + "World");
-        public readonly IAsset<CameraView> Camera = new Asset<CameraView>(PREFABS_PATH + "Camera");
-        public readonly IAsset<InputFieldView> InputField = new Asset<InputFieldView>(PREFABS_PATH + "InputField");
-        public readonly IAsset<BeaconView> Beacon = new Asset<BeaconView>(PREFABS_PATH + "Beacon");
-        
-        public readonly IAsset<AgentView> Player = new Asset<AgentView>(AGENTS_PATH + "Player");
-        public readonly IAsset<AgentView> Enemy_1 = new PooledAsset<AgentView>(AGENTS_PATH + "Enemy_1");
+        public Asset<World> World;
+        public Asset<Level> Level;
+        public Asset<CameraView> Camera;
+        public Asset<InputFieldView> InputField;
+        public Asset<BeaconView> Beacon;
 
-        public readonly IAsset<BulletView> RifleBullet = new PooledAsset<BulletView>(WEAPONS_PATH + "RifleBullet");
+        public Asset<AgentView> Player;
+        public PooledAsset<AgentView> Enemy_1;
 
-        public readonly IAsset<Level> Level = new Asset<Level>(LEVELS_PATH + "Level");
+        public PooledAsset<BulletView> RifleBullet;
     }
 }

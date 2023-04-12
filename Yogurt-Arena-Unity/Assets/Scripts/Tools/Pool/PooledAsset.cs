@@ -1,21 +1,18 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yogurt.Roguelike.Tools
 {
+    [Serializable]
     public class PooledAsset<TComponent> : IAsset<TComponent> where TComponent : Component
     {
-        private Asset asset;
+        public Asset<TComponent> asset;
         private Pool pool;
-
-        public PooledAsset(string path)
-        {
-            asset = new(path);
-            pool = new(() => asset.Spawn());
-        }
 
         public async UniTask<TComponent> Spawn()
         {
+            pool ??= new(async () => (await asset.Spawn()).gameObject);
             return (await pool.Pop()).GetComponent<TComponent>();
         }
     }

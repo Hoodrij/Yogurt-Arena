@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             if (seed == "random")
                 seed = Time.realtimeSinceStartup.ToString();
 
-            Random pseudoRandom = new System.Random(seed.GetHashCode());
+            Random pseudoRandom = new Random(seed.GetHashCode());
 
             float x = pseudoRandom.Next((int) (bounds.min.x * 100), (int) (bounds.max.x * 100)) / 100f;
             float y = pseudoRandom.Next((int) (bounds.min.y * 100), (int) (bounds.max.y * 100)) / 100f;
