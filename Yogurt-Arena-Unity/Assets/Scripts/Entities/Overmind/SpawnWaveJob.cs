@@ -15,7 +15,7 @@ namespace Yogurt.Arena
 
             for (int i = 0; i < agentsCount; i++)
             {
-                AgentAspect agent = await new AgentFactoryJob().Run(assets.Enemy_1, Team.Red);
+                AgentAspect agent = await new AgentFactoryJob().Run(assets.ChargeEnemy, Team.Red);
                 Vector3 spawnPoint = GetFreeSpawnPoint();
                 agent.Body.Position = spawnPoint;
                 agent.Body.Destination = spawnPoint;
