@@ -8,7 +8,10 @@ namespace Yogurt.Arena
         {
             ChargeData data = Query.Single<Data>().Charge;
             
-            return await new ItemFactoryJob().Run(owner, new UseChargeJob(), data);
+            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseChargeJob(), data);
+            item.Item.Job.Run(item, owner.Entity);
+            
+            return item;
         }
     }
 }

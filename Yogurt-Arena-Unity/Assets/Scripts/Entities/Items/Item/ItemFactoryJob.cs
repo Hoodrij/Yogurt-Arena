@@ -15,8 +15,7 @@ namespace Yogurt.Arena
                 .As<ItemAspect>();
 
             itemAspect.Entity.SetParent(owner.Entity);
-            itemAspect.Item.Job.Run(itemAspect, owner.Entity);
-            
+
             return itemAspect;
         }
     }
