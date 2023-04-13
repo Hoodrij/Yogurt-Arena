@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
@@ -22,7 +23,8 @@ namespace Yogurt.Arena
                 transform.DOMove(attackPosition, data.Duration);
 
                 await UniTask.Delay(data.Duration.ToSeconds());
-                owner.Body.Position = owner.Body.Destination = attackPosition;
+                NavMesh.SamplePosition(attackPosition, out var attackPositionHit, 100, NavMesh.AllAreas);
+                owner.Body.Position = owner.Body.Destination = attackPositionHit.position;
                 owner.Remove<Kinematic>();
                 
                 await UniTask.Delay(data.Cooldown.ToSeconds());
