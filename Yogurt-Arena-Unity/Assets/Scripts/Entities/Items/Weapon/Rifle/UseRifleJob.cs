@@ -5,18 +5,18 @@ namespace Yogurt.Arena
 {
     public class UseRifleJob : IItemUseJob
     {
-        public async UniTask Run(ItemAspect itemAspect, Entity owner)
+        public async UniTask Run(ItemAspect item, Entity owner)
         {
-            BulletData bulletData = Query.Single<Data>().RifleBullet;
+            RifleData data = item.Get<RifleData>();
 
-            while (itemAspect.Exist())
+            while (item.Exist())
             {
                 await WaitForTarget(owner);
                 
-                BulletAspect bullet = await new BulletFactoryJob().Run(bulletData, owner);
+                BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
                 new RifleBulletBehaviorJob().Run(bullet); 
 
-                await UniTask.Delay(0.1f.ToSeconds());
+                await UniTask.Delay(data.FireRate.ToSeconds());
             }
         }
 

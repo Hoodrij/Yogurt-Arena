@@ -42,7 +42,7 @@ MonoBehaviour:
     Asset:
       asset:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-    MoveSpeed: 1
+    MoveSpeed: 10
     MoveSmoothValue: 0.2
     FindTargetDistance: 5
   Overmind:
@@ -53,6 +53,18 @@ MonoBehaviour:
     WavesDelay:
       Min: 0.1
       Max: 2
+  Rifle:
+    Bullet:
+      Asset:
+        asset:
+          Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
+      HitMask:
+        serializedVersion: 2
+        m_Bits: 256
+      Damage: 1
+      LifeTime: 0.5
+      Speed: 100
+    FireRate: 0.1
   RifleBullet:
     Asset:
       asset:

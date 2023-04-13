@@ -4,6 +4,6 @@ namespace Yogurt.Arena
 {
     public interface IItemUseJob
     {
-        public UniTask Run(ItemAspect itemAspect, Entity owner);
+        public UniTask Run(ItemAspect item, Entity owner);
     }
 }

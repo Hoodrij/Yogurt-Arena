@@ -7,6 +7,7 @@ namespace Yogurt.Arena
         public async UniTask<ItemAspect> Run(AgentAspect owner)
         {
             ItemAspect itemAspect = Entity.Create()
+                .Add(Query.Single<Data>().Rifle)
                 .Add(new Item
                 {
                     Job = new UseRifleJob()
