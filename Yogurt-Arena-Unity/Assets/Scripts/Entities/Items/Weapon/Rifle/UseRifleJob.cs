@@ -8,24 +8,30 @@ namespace Yogurt.Arena
         public async UniTask Run(ItemAspect item, Entity owner)
         {
             RifleData data = item.Get<RifleData>();
-
-            await UniTask.WaitUntil(owner.Has<Active>);
             
             while (item.Exist())
             {
-                await WaitForTarget(owner);
+                await WaitForActivation();
+                await WaitForTarget();
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
                 new RifleBulletBehaviorJob().Run(bullet); 
 
                 await UniTask.Delay(data.FireRate.ToSeconds());
             }
+            
+            
+            async UniTask WaitForTarget()
+            {
+                AgentBattleState battleState = owner.Get<AgentBattleState>();
+                await UniTask.WaitWhile(() => !battleState.Target.Exist);
+            }
+            
+            async UniTask WaitForActivation()
+            {
+                await UniTask.WaitUntil(owner.Has<Active>);
+            }
         }
 
-        private async UniTask WaitForTarget(Entity owner)
-        {
-            AgentBattleState battleState = owner.Get<AgentBattleState>();
-            await UniTask.WaitWhile(() => !battleState.Target.Exist);
-        }
     }
 }
