@@ -33,7 +33,7 @@ namespace Yogurt.Arena
 			requiredVelocity = GetSmoothedVelocity(agent, distanceToTarget, requiredVelocity, dt);
 
 			Vector3 newPos = currentPos + requiredVelocity;
-			NavMesh.SamplePosition(newPos, out var hit, 1, NavMesh.AllAreas);
+			NavMesh.SamplePosition(newPos, out var hit, 100, NavMesh.AllAreas);
 			
 			body.Position = hit.position;
 			body.Velocity = requiredVelocity;
