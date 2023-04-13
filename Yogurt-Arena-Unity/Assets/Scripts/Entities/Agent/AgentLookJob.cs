@@ -9,7 +9,7 @@ namespace Yogurt.Arena
         
         public void Update()
         {
-            foreach (AgentAspect agent in Query.Of<AgentAspect>())
+            foreach (AgentAspect agent in Query.Of<AgentAspect>().With<Active>())
             {
                 BodyState body = agent.Body;
                 
@@ -27,7 +27,7 @@ namespace Yogurt.Arena
                 if (lookVector.sqrMagnitude < MIN_LOOK_MAGNITUDE)
                     continue;
 
-                agent.View.transform.DOLookAt(body.LookPoint, 0.1f);
+                agent.View.transform.DOLookAt(body.LookPoint, agent.Data.LookSmoothValue);
             }
         }
     }

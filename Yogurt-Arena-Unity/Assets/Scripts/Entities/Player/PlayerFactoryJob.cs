@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -8,7 +9,7 @@ namespace Yogurt.Arena
         {
             AgentData data = Query.Single<Data>().Player;
             
-            AgentAspect player = await new AgentFactoryJob().Run(data, Team.Green);
+            AgentAspect player = await new AgentSpawnJob().Run(data, Team.Green, Vector3.zero);
             player.Add<PlayerTag>();
             player.Health.Value = 100;
 

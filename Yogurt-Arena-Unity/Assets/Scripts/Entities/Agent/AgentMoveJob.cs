@@ -10,7 +10,7 @@ namespace Yogurt.Arena
         {
 	        float dt = Time.deltaTime;
             
-            foreach (AgentAspect agent in Query.Of<AgentAspect>())
+            foreach (AgentAspect agent in Query.Of<AgentAspect>().With<Active>())
             {
 		        UpdateState(agent, dt);
 

@@ -10,5 +10,6 @@ namespace Yogurt.Arena
         public float MoveSpeed;
         public float MoveSmoothValue;
         public float FindTargetDistance;
+        public float LookSmoothValue;
     }
 }

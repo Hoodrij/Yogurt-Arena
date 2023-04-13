@@ -36,15 +36,17 @@ MonoBehaviour:
       asset:
         Prefab: {fileID: 39607511721595333, guid: 9845d6291ccbb5942b5c33655dc76d82, type: 3}
     MoveSpeed: 20
-    MoveSmoothValue: 0.2
+    MoveSmoothValue: 0.1
     FindTargetDistance: 15
+    LookSmoothValue: 0.2
   ChargeEnemy:
     Asset:
       asset:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
     MoveSpeed: 10
-    MoveSmoothValue: 0.2
+    MoveSmoothValue: 0.1
     FindTargetDistance: 5
+    LookSmoothValue: 0.5
   Overmind:
     WaveAgentsCount:
       Min: 3
@@ -65,13 +67,3 @@ MonoBehaviour:
       LifeTime: 0.5
       Speed: 100
     FireRate: 0.1
-  RifleBullet:
-    Asset:
-      asset:
-        Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
-    HitMask:
-      serializedVersion: 2
-      m_Bits: 256
-    Damage: 1
-    LifeTime: 0.5
-    Speed: 100

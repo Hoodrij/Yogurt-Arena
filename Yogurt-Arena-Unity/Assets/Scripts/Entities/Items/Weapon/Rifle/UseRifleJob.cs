@@ -9,6 +9,8 @@ namespace Yogurt.Arena
         {
             RifleData data = item.Get<RifleData>();
 
+            await UniTask.WaitUntil(owner.Has<Active>);
+            
             while (item.Exist())
             {
                 await WaitForTarget(owner);
