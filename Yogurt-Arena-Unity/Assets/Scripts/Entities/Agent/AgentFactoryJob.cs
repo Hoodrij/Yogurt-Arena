@@ -22,7 +22,7 @@ namespace Yogurt.Arena
                 })
                 .Add(new Health
                 {
-                    Value = 1
+                    Value = data.Health
                 });
             
             return entity.As<AgentAspect>();

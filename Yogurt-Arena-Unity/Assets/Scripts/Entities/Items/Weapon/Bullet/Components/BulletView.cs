@@ -6,5 +6,6 @@ namespace Yogurt.Arena
     {
         public Rigidbody Body;
         public SphereCollider Collider;
+        public TrailRenderer Trail;
     }
 }

@@ -16,5 +16,6 @@ namespace Yogurt.Arena
         public AgentData ChargeEnemy;
         public OvermindData Overmind;
         public RifleData Rifle;
+        public ChargeData Charge;
     }
 }

@@ -30,7 +30,8 @@ namespace Yogurt.Arena
             bullet.View.transform.position = position;
             bullet.View.transform.DOKill();
             bullet.View.transform.localScale = Vector3.one;
-            
+            bullet.View.Trail.Clear();
+
             new FireBulletJob().Run(bullet);
 
             return bullet;

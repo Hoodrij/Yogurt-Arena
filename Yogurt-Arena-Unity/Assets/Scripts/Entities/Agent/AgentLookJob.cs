@@ -5,11 +5,12 @@ namespace Yogurt.Arena
 {
     public struct AgentLookJob : IUpdateJob
     {
-        const float MIN_LOOK_MAGNITUDE = 0.01f;
+        const float MIN_LOOK_MAGNITUDE = 0.001f;
         
         public void Update()
         {
-            foreach (AgentAspect agent in Query.Of<AgentAspect>().With<Active>())
+            foreach (AgentAspect agent in Query.Of<AgentAspect>()
+                         .Without<Kinematic>())
             {
                 BodyState body = agent.Body;
                 

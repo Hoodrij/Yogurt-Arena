@@ -1,25 +1,23 @@
 ﻿using Cysharp.Threading.Tasks;
-using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
 {
-    public class UseRifleJob : IItemUseJob
+    public struct UseChargeJob : IItemUseJob
     {
         public async UniTask Run(ItemAspect item, Entity owner)
         {
-            RifleData data = item.Get<RifleData>();
-            
+            ChargeData data = item.Get<ChargeData>();
+
             while (item.Exist())
             {
                 await WaitForActivation();
                 await WaitForTarget();
                 
-                BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
-                new RifleBulletBehaviorJob().Run(bullet); 
-
-                await UniTask.Delay(data.FireRate.ToSeconds(), DelayType.Realtime);
+                owner.Add<Kinematic>();
+                await UniTask.Delay(data.Duration.ToSeconds());
+                owner.Remove<Kinematic>();
+                await UniTask.Delay(data.Cooldown.ToSeconds());
             }
-            
             
             async UniTask WaitForTarget()
             {
@@ -32,6 +30,5 @@ namespace Yogurt.Arena
                 await UniTask.WaitUntil(() => !owner.Has<Kinematic>());
             }
         }
-
     }
 }

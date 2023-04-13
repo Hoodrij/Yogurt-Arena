@@ -17,11 +17,9 @@ namespace Yogurt.Arena
             {
                 Vector3 spawnPoint = GetFreeSpawnPoint();
                 AgentAspect agent = await new AgentSpawnJob().Run(data, Team.Red, spawnPoint);
+                agent.Items.Add(await new ChargeFactoryJob().Run(agent));
 
-                // agent.Items.Add(await new RifleFactoryJob().Run(agent));
-                
                 overmind.State.AddAgent(agent);
-                
             }
         }
         

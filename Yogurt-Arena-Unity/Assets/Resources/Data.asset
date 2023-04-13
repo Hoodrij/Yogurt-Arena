@@ -25,7 +25,7 @@ MonoBehaviour:
   Camera:
     Asset:
       Prefab: {fileID: 3376568824622968467, guid: 5c99e910810318f4688e2d64e1d4ae57, type: 3}
-    SmoothValue: 0.1
+    SmoothValue: 0.2
   Beacon:
     Asset:
       Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
@@ -37,21 +37,23 @@ MonoBehaviour:
         Prefab: {fileID: 39607511721595333, guid: 9845d6291ccbb5942b5c33655dc76d82, type: 3}
     MoveSpeed: 20
     MoveSmoothValue: 0.1
-    FindTargetDistance: 15
+    FindTargetDistance: 10
     LookSmoothValue: 0.2
+    Health: 100
   ChargeEnemy:
     Asset:
       asset:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-    MoveSpeed: 10
+    MoveSpeed: 15
     MoveSmoothValue: 0.1
-    FindTargetDistance: 5
-    LookSmoothValue: 0.5
+    FindTargetDistance: 10
+    LookSmoothValue: 0.1
+    Health: 182
   Overmind:
     WaveAgentsCount:
-      Min: 3
-      Max: 5
-    MinimumAgents: 20
+      Min: 2
+      Max: 3
+    MinimumAgents: 1
     WavesDelay:
       Min: 0.1
       Max: 2
@@ -67,3 +69,6 @@ MonoBehaviour:
       LifeTime: 0.5
       Speed: 100
     FireRate: 0.1
+  Charge:
+    Duration: 1
+    Cooldown: 2

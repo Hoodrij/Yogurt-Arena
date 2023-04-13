@@ -6,18 +6,9 @@ namespace Yogurt.Arena
     {
         public async UniTask<ItemAspect> Run(AgentAspect owner)
         {
-            ItemAspect itemAspect = Entity.Create()
-                .Add(Query.Single<Data>().Rifle)
-                .Add(new Item
-                {
-                    Job = new UseRifleJob()
-                })
-                .As<ItemAspect>();
-
-            itemAspect.Entity.SetParent(owner.Entity);
-            itemAspect.Item.Job.Run(itemAspect, owner.Entity);
+            RifleData data = Query.Single<Data>().Rifle;
             
-            return itemAspect;
+            return await new ItemFactoryJob().Run(owner, new UseRifleJob(), data);
         }
     }
 }

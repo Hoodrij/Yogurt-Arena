@@ -13,6 +13,7 @@ namespace Yogurt.Arena
             position = hit.position;
             
             AgentAspect agent = await new AgentFactoryJob().Run(data, team);
+            agent.Add<Kinematic>();
             agent.Body.Position = position;
             agent.Body.Destination = position;
             agent.View.transform.position = agent.Body.Position;
@@ -24,7 +25,7 @@ namespace Yogurt.Arena
             async void ActivateAgent()
             {
                 await RunAnimation();
-                agent.Add<Active>();
+                agent.Remove<Kinematic>();
             }
 
             async UniTask RunAnimation()
