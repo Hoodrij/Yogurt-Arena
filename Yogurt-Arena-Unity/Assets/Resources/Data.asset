@@ -70,5 +70,8 @@ MonoBehaviour:
       Speed: 100
     FireRate: 0.1
   Charge:
-    Duration: 1
+    Duration: 0.4
     Cooldown: 2
+    Strength: 10
+    Range: 5
+    AngleToAttack: 10

@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             
             foreach (AgentAspect agent in Query.Of<AgentAspect>().Without<PlayerTag>())
             {
-                if (agent.BattleState.Target.Exist)
+                if (agent.BattleState.Target.Exist())
                 {
                     agent.Body.Destination = agent.BattleState.Target.Get<BodyState>().Position;
                 }

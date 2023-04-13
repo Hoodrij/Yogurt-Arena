@@ -12,14 +12,14 @@ namespace Yogurt.Arena
             }
         }
 
-        private Entity GetTarget(AgentAspect agent)
+        private AgentAspect GetTarget(AgentAspect agent)
         {
             AgentAspect target = Query.Of<AgentAspect>()
                 .Where(other => IsHostile(agent, other))
                 .Where(other => IsInRange(agent, other))
                 .OrderBy(other => GetDistance(agent, other))
                 .FirstOrDefault();
-            return target.Entity;
+            return target;
         }
 
         private float GetDistance(AgentAspect agent, AgentAspect other)

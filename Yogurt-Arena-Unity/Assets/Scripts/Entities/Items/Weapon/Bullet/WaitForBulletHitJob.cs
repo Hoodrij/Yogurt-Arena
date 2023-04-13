@@ -17,7 +17,7 @@ namespace Yogurt.Arena
                     RaycastHit hit = hits[i];
                     if (!hit.transform.TryGetComponent(out EntityLink link)) 
                         continue;
-                    if (link.Entity == bullet.State.Owner)
+                    if (link.Entity == bullet.State.Owner.Entity)
                         continue;
 
                     return new CollisionInfo

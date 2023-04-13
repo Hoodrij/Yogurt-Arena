@@ -2,6 +2,6 @@
 {
     public class AgentBattleState : IComponent
     {
-        public Entity Target;
+        public AgentAspect Target;
     }
 }

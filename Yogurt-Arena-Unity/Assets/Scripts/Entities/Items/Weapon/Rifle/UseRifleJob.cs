@@ -5,7 +5,7 @@ namespace Yogurt.Arena
 {
     public class UseRifleJob : IItemUseJob
     {
-        public async UniTask Run(ItemAspect item, Entity owner)
+        public async UniTask Run(ItemAspect item, AgentAspect owner)
         {
             RifleData data = item.Get<RifleData>();
             
@@ -23,8 +23,8 @@ namespace Yogurt.Arena
             
             async UniTask WaitForTarget()
             {
-                AgentBattleState battleState = owner.Get<AgentBattleState>();
-                await UniTask.WaitWhile(() => !battleState.Target.Exist);
+                AgentBattleState battleState = owner.BattleState;
+                await UniTask.WaitWhile(() => !battleState.Target.Exist());
             }
             
             async UniTask WaitForActivation()

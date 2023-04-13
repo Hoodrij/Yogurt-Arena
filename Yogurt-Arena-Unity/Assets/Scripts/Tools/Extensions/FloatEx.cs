@@ -20,5 +20,10 @@ namespace Yogurt.Arena
         {
             return TimeSpan.FromSeconds(f);
         }
+        
+        public static float DotToAngle(this float dot)
+        {
+            return Mathf.Acos(dot) *  Mathf.Rad2Deg;
+        }
     }
 }

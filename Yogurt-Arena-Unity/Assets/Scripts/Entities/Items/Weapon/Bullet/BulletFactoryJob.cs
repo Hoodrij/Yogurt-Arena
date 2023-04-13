@@ -7,7 +7,7 @@ namespace Yogurt.Arena
 {
     public struct BulletFactoryJob
     {
-        public async UniTask<BulletAspect> Run(BulletData data, Entity owner)
+        public async UniTask<BulletAspect> Run(BulletData data, AgentAspect owner)
         {
             BulletView view = await data.Asset.Spawn();
 

@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public class BulletState : IComponent
     {
-        public Entity Owner;
+        public AgentAspect Owner;
         public Rigidbody RigidBody;
         public SphereCollider Collider;
     }
