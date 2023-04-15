@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
-            await UniTask.Delay(bullet.Data.LifeTime.ToSeconds());
+            await UniTask.Delay(bullet.Data.LifeTime.ToSeconds(), DelayType.Realtime);
         }   
     }
 }

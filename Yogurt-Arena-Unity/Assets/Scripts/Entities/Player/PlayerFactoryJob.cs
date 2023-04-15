@@ -13,6 +13,7 @@ namespace Yogurt.Arena
             player.Add<PlayerTag>();
 
             player.Items.Add(await new RifleFactoryJob().Run(player));
+            // player.Items.Add(await new ChargeFactoryJob().Run(player));
 
             return player.Entity;
         }

@@ -1,19 +1,23 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct FireBulletJob
     {
-        public void Run(BulletAspect bullet)
+        public void Run(BulletAspect bullet, Vector3 dir)
         {
-            AgentBattleState ownerBattleState = bullet.State.Owner.Get<AgentBattleState>();
-            BodyState targetBody = ownerBattleState.Target.Get<BodyState>();
-
-            Vector3 dir = (targetBody.Position.WithY(0) - bullet.Position.WithY(0))
-                .WithY(0)
-                .normalized;
-
+            BodyState ownerBody = bullet.State.Owner.Body;
+            Vector3 position = ownerBody.Position.WithY(ownerBody.Position.y + 0.5f);
+            
+            bullet.View.transform.DOKill();
+            bullet.View.transform.position = position;
+            bullet.View.transform.localScale = Vector3.one;
+            
+            bullet.State.RigidBody.isKinematic = false;
             bullet.State.RigidBody.velocity = dir * bullet.Data.Speed;
+            
+            bullet.View.Trail.Clear();
         }
     }
 }

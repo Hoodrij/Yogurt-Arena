@@ -1,8 +1,5 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
@@ -16,18 +13,13 @@ namespace Yogurt.Arena
             {
                 await WaitForActivation();
                 await UniTask.WaitUntil(() => HasTarget() && IsInRange() && IsLookingAtTarget());
-
-                owner.Add<Kinematic>();
-                Transform transform = owner.View.transform;
-                Vector3 attackPosition = transform.position + transform.forward * data.Strength;
-                transform.DOMove(attackPosition, data.Duration);
-
-                await UniTask.Delay(data.Duration.ToSeconds());
-                NavMesh.SamplePosition(attackPosition, out var attackPositionHit, 100, NavMesh.AllAreas);
-                owner.Body.Position = owner.Body.Destination = attackPositionHit.position;
-                owner.Remove<Kinematic>();
                 
-                await UniTask.Delay(data.Cooldown.ToSeconds());
+                BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
+                new FireBulletJob().Run(bullet, GetDir());
+                
+                new ChargeBulletBehaviorJob().Run(bullet); 
+
+                await UniTask.Delay(data.Cooldown.ToSeconds(), DelayType.Realtime);
             }
             
             async UniTask WaitForActivation()
@@ -60,6 +52,11 @@ namespace Yogurt.Arena
                 bool isInRange = distanceToTarget < data.Range;
 
                 return isInRange;
+            }
+
+            Vector3 GetDir()
+            {
+                return owner.View.transform.forward;
             }
         }
     }

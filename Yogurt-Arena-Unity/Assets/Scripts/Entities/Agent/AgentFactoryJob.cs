@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
 {

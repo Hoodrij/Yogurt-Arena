@@ -6,6 +6,6 @@ namespace Yogurt.Arena
     public class RifleData : IComponent
     {
         public BulletData Bullet;
-        public float FireRate;
+        public float Cooldown;
     }
 }

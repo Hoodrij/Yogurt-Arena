@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using Yogurt.Roguelike.Tools;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -15,9 +15,10 @@ namespace Yogurt.Arena
                 await WaitForTarget();
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
-                new RifleBulletBehaviorJob().Run(bullet); 
-
-                await UniTask.Delay(data.FireRate.ToSeconds(), DelayType.Realtime);
+                new FireBulletJob().Run(bullet, GetDir());
+                new RifleBulletBehaviorJob().Run(bullet);
+                
+                await UniTask.Delay(data.Cooldown.ToSeconds(), DelayType.Realtime);
             }
             
             
@@ -30,6 +31,15 @@ namespace Yogurt.Arena
             async UniTask WaitForActivation()
             {
                 await UniTask.WaitUntil(() => !owner.Has<Kinematic>());
+            }
+
+            Vector3 GetDir()
+            {
+                BodyState targetBody = owner.BattleState.Target.Body;
+                Vector3 dir = (targetBody.Position.WithY(0) - owner.Body.Position.WithY(0))
+                    .WithY(0).normalized;
+
+                return dir;
             }
         }
 

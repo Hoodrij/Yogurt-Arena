@@ -9,7 +9,7 @@ namespace Yogurt.Arena
         {
             RaycastHit[] hits = new RaycastHit[10];
             
-            while (true)
+            while (bullet.Exist())
             {
                 int hitsCount = GetHits(bullet, ref hits);
                 for (var i = 0; i < hitsCount; i++)
@@ -29,6 +29,8 @@ namespace Yogurt.Arena
 
                 await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
             };
+
+            return default;
         }
 
         private static int GetHits(BulletAspect bullet, ref RaycastHit[] result)
