@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
 using UnityEngine.AI;
 
 namespace Yogurt.Arena
@@ -10,39 +9,40 @@ namespace Yogurt.Arena
         {
             AgentAspect owner = bullet.State.Owner;
             owner.Add<Kinematic>();
-
-            KillBulletWhenOwnerIsDead();
             TryDealDamage();
-            UpdateOwner();
-            await new WaitForBulletLiteTimeJob().Run(bullet);
-            
-            owner.Remove<Kinematic>();
-            bullet.Kill();
-            
+            bullet.Run(UpdateOwnerPosition);
 
+            await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime());
+            if (owner.Exist())
+            {
+                owner.Remove<Kinematic>();
+            }
+            await new KillBulletJob().Run(bullet);
+
+            
             async void TryDealDamage()
             {
                 CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
-                new DealDamageJob().Run(collisionInfo.Entity, bullet.Data.Damage);
-            }
-            
-            async void UpdateOwner()
-            {
-                Transform ownerTransform = owner.View.transform;
-                
-                while (bullet.Exist())
+                if (bullet.Exist())
                 {
-                    NavMesh.SamplePosition(bullet.View.transform.position, out var attackPositionHit, 100, NavMesh.AllAreas);
-                    ownerTransform.position = owner.Body.Position = owner.Body.Destination = attackPositionHit.position;
-                    await UniTask.Yield();
+                    new DealDamageJob().Run(collisionInfo.Entity, bullet.Data.Damage);
                 }
             }
-
-            async void KillBulletWhenOwnerIsDead()
+            async void UpdateOwnerPosition()
+            {
+                if (owner.Exist())
+                {
+                    NavMesh.SamplePosition(bullet.View.transform.position, out var attackPositionHit, 100, NavMesh.AllAreas);
+                    owner.View.transform.position = owner.Body.Position = owner.Body.Destination = attackPositionHit.position;
+                }
+            }
+            async UniTask WaitForOwnerDeath()
             {
                 await UniTask.WaitWhile(() => owner.Exist());
-                if (bullet.Exist())
-                    bullet.Kill();
+            }
+            async UniTask WaitForLifeTime()
+            {
+                await new WaitForBulletLiteTimeJob().Run(bullet);
             }
         }
     }

@@ -10,28 +10,30 @@ namespace Yogurt.Arena
             ChargeData data = item.Get<ChargeData>();
 
             while (item.Exist())
-            {
+            { 
                 await WaitForActivation();
-                await UniTask.WaitUntil(() => HasTarget() && IsInRange() && IsLookingAtTarget());
+                await UniTask.WaitUntil(() => HasOwner() && HasTarget() && IsInRange() && IsLookingAtTarget());
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
                 new FireBulletJob().Run(bullet, GetDir());
-                
-                new ChargeBulletBehaviorJob().Run(bullet); 
+                await new ChargeBulletBehaviorJob().Run(bullet);
 
-                await UniTask.Delay(data.Cooldown.ToSeconds(), DelayType.Realtime);
+                await UniTask.Delay(data.Cooldown.ToSeconds());
             }
             
+            
+            bool HasOwner()
+            {
+                return owner.Exist();
+            }
             async UniTask WaitForActivation()
             {
                 await UniTask.WaitUntil(() => !owner.Has<Kinematic>());
             }
-            
             bool HasTarget()
             {
                 return owner.BattleState.Target.Exist();
             }
-
             bool IsLookingAtTarget()
             {
                 AgentAspect target = owner.BattleState.Target;
@@ -44,7 +46,6 @@ namespace Yogurt.Arena
 
                 return isLookingAt;
             }
-            
             bool IsInRange()
             {
                 AgentAspect target = owner.BattleState.Target;
@@ -53,7 +54,6 @@ namespace Yogurt.Arena
 
                 return isInRange;
             }
-
             Vector3 GetDir()
             {
                 return owner.View.transform.forward;

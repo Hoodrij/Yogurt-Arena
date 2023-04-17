@@ -21,16 +21,17 @@ namespace Yogurt.Arena
 
                 overmind.State.AddAgent(agent);
             }
-        }
-        
-        private Vector3 GetFreeSpawnPoint()
-        {
-            NavMeshSurface level = Query.Single<Level>().NavSurface;
-            Vector3 randomPoint = level.navMeshData.sourceBounds.GetRandomPoint().WithY(0);
+            
+            
+            Vector3 GetFreeSpawnPoint()
+            {
+                NavMeshSurface level = Query.Single<Level>().NavSurface;
+                Vector3 randomPoint = level.navMeshData.sourceBounds.GetRandomPoint().WithY(0);
 
-            NavMesh.SamplePosition(randomPoint, out var hit, 100, NavMesh.AllAreas);
+                NavMesh.SamplePosition(randomPoint, out var hit, 100, NavMesh.AllAreas);
 
-            return hit.position;
+                return hit.position;
+            }
         }
     }
 }

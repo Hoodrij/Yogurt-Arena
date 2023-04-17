@@ -13,7 +13,7 @@ namespace Yogurt.Arena
                     Job = job
                 })
                 .As<ItemAspect>();
-
+            
             itemAspect.Entity.SetParent(owner.Entity);
 
             return itemAspect;

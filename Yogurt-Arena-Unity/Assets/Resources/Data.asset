@@ -48,12 +48,12 @@ MonoBehaviour:
     MoveSmoothValue: 0.1
     FindTargetDistance: 10
     LookSmoothValue: 0.3
-    Health: 5
+    Health: 3
   Overmind:
     WaveAgentsCount:
       Min: 3
       Max: 5
-    MinimumAgents: 3
+    MinimumAgents: 10
     WavesDelay:
       Min: 0.1
       Max: 2
@@ -68,7 +68,7 @@ MonoBehaviour:
       Damage: 1
       LifeTime: 0.5
       Speed: 100
-    Cooldown: 0
+    Cooldown: 0.1
   Charge:
     Bullet:
       Asset:
@@ -80,8 +80,6 @@ MonoBehaviour:
       Damage: 1
       LifeTime: 0.5
       Speed: 85
-    Duration: 0.5
     Cooldown: 1
-    Strength: 12
     Range: 8
     AngleToAttack: 10

@@ -17,8 +17,8 @@ namespace Yogurt.Arena
                 BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
                 new FireBulletJob().Run(bullet, GetDir());
                 new RifleBulletBehaviorJob().Run(bullet);
-                
-                await UniTask.Delay(data.Cooldown.ToSeconds(), DelayType.Realtime);
+
+                await UniTask.Delay(data.Cooldown.ToSeconds());
             }
             
             
@@ -27,12 +27,10 @@ namespace Yogurt.Arena
                 AgentBattleState battleState = owner.BattleState;
                 await UniTask.WaitWhile(() => !battleState.Target.Exist());
             }
-            
             async UniTask WaitForActivation()
             {
                 await UniTask.WaitUntil(() => !owner.Has<Kinematic>());
             }
-
             Vector3 GetDir()
             {
                 BodyState targetBody = owner.BattleState.Target.Body;
