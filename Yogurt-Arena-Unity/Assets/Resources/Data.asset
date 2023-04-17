@@ -48,7 +48,7 @@ MonoBehaviour:
     MoveSmoothValue: 0.1
     FindTargetDistance: 10
     LookSmoothValue: 0.3
-    Health: 3
+    Health: 5
   Overmind:
     WaveAgentsCount:
       Min: 3

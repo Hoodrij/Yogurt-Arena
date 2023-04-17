@@ -22,7 +22,7 @@ namespace Yogurt.Arena
 
         public static async UniTask WaitForDead(this Entity entity)
         {
-            await UniTask.WaitWhile(() => Application.isPlaying && entity.Exist);
+            await UniTask.WaitWhile(() => entity.Exist);
         }
         
         private static async void WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
@@ -35,36 +35,27 @@ namespace Yogurt.Arena
             }
         }
 
-        public static async void Run(this Entity entity, IUpdateJob job)
+        public static async UniTask Run(this Entity entity, IUpdateJob job)
         {
-            while (Application.isPlaying && entity.Exist)
+            while (entity.Exist)
             {
                 job.Update();
                 await UniTask.Yield();
             }
         }
-        
-        public static async void Run(this Entity entity, Action action)
+
+        public static async UniTask Run(this IAspect aspect, Action action)
         {
-            while (Application.isPlaying && entity.Exist)
+            while (aspect.Exist())
             {
                 action();
                 await UniTask.Yield();
             }
         }
         
-        public static async void Run(this IAspect aspect, Action action)
+        public static async UniTask Run(this IAspect aspect, Func<UniTask> action)
         {
-            while (Application.isPlaying && aspect.Exist())
-            {
-                action();
-                await UniTask.Yield();
-            }
-        }
-        
-        public static async void Run(this IAspect aspect, Func<UniTask> action)
-        {
-            while (Application.isPlaying && aspect.Exist())
+            while (aspect.Exist())
             {
                 await action();
                 await UniTask.Yield();

@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
@@ -10,7 +9,7 @@ namespace Yogurt.Arena
             AgentAspect owner = bullet.State.Owner;
             owner.Add<Kinematic>();
             TryDealDamage();
-            bullet.Run(UpdateOwnerPosition);
+            new ChargeUpdateOwnerPositionJob().Run(bullet);
 
             await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime());
             if (owner.Exist())
@@ -22,19 +21,9 @@ namespace Yogurt.Arena
             
             async void TryDealDamage()
             {
+                int damage = bullet.Data.Damage;
                 CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
-                if (bullet.Exist())
-                {
-                    new DealDamageJob().Run(collisionInfo.Entity, bullet.Data.Damage);
-                }
-            }
-            async void UpdateOwnerPosition()
-            {
-                if (owner.Exist())
-                {
-                    NavMesh.SamplePosition(bullet.View.transform.position, out var attackPositionHit, 100, NavMesh.AllAreas);
-                    owner.View.transform.position = owner.Body.Position = owner.Body.Destination = attackPositionHit.position;
-                }
+                new DealDamageJob().Run(collisionInfo.Entity, damage);
             }
             async UniTask WaitForOwnerDeath()
             {

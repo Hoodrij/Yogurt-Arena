@@ -27,7 +27,7 @@ namespace Yogurt.Arena
                     };
                 }
 
-                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+                await UniTask.Yield();
             };
 
             return default;
@@ -39,7 +39,7 @@ namespace Yogurt.Arena
             float radius = bullet.State.Collider.radius;
             
             Vector3 moveDir = body.velocity.normalized;
-            float moveSpeed = body.velocity.magnitude * Time.fixedDeltaTime;
+            float moveSpeed = body.velocity.magnitude * Time.deltaTime;
 
             int hitsCount = Physics.SphereCastNonAlloc(bullet.Position, radius, moveDir, result, moveSpeed, bullet.Data.HitMask);
             return hitsCount;
