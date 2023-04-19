@@ -6,10 +6,14 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
+            int damage = bullet.Data.Damage;
             CollisionInfo collisionInfo = await UniTaskEx.WhenAny(WaitForHit, WaitForLifeTime);
-            new DealDamageJob().Run(collisionInfo.Entity, bullet.Data.Damage);
+            if (collisionInfo.IsValid)
+            {
+                new DealDamageJob().Run(collisionInfo.Entity, damage);
+                bullet.View.transform.position = collisionInfo.Position;
+            }
             
-            bullet.View.transform.position = collisionInfo.Position;
             await new KillBulletJob().Run(bullet);
 
 
@@ -21,10 +25,7 @@ namespace Yogurt.Arena
             async UniTask<CollisionInfo> WaitForLifeTime()
             {
                 await new WaitForBulletLiteTimeJob().Run(bullet);
-                return new CollisionInfo
-                {
-                    Position = bullet.Position
-                };
+                return default;
             }
         }
     }

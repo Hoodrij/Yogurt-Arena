@@ -79,7 +79,7 @@ MonoBehaviour:
         m_Bits: 256
       Damage: 1
       LifeTime: 0.5
-      Speed: 85
+      Speed: 100
     Cooldown: 1
-    Range: 8
+    Range: 10
     AngleToAttack: 10

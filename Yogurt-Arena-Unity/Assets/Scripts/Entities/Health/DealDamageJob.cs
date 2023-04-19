@@ -4,6 +4,8 @@
     {
         public void Run(Entity target, int damage)
         {
+            if (!target.Exist) return;
+            
             if (target.TryGet(out Health health))
             {
                 health.Value -= damage;

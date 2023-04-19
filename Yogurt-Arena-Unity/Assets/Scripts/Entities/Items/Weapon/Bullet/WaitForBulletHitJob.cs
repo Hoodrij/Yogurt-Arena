@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask<CollisionInfo> Run(BulletAspect bullet)
         {
-            RaycastHit[] hits = new RaycastHit[10];
+            RaycastHit[] hits = new RaycastHit[3];
             
             while (bullet.Exist())
             {
@@ -15,6 +15,8 @@ namespace Yogurt.Arena
                 for (var i = 0; i < hitsCount; i++)
                 {
                     RaycastHit hit = hits[i];
+                    if (hit.point == Vector3.zero)
+                        continue;
                     if (!hit.transform.TryGetComponent(out EntityLink link)) 
                         continue;
                     if (link.Entity == bullet.State.Owner.Entity)
@@ -22,6 +24,7 @@ namespace Yogurt.Arena
 
                     return new CollisionInfo
                     {
+                        IsValid = true,
                         Position = hit.point,
                         Entity = link.Entity
                     };
@@ -39,7 +42,7 @@ namespace Yogurt.Arena
             float radius = bullet.State.Collider.radius;
             
             Vector3 moveDir = body.velocity.normalized;
-            float moveSpeed = body.velocity.magnitude * Time.deltaTime;
+            float moveSpeed = body.velocity.magnitude * Time.fixedDeltaTime;
 
             int hitsCount = Physics.SphereCastNonAlloc(bullet.Position, radius, moveDir, result, moveSpeed, bullet.Data.HitMask);
             return hitsCount;
