@@ -44,15 +44,15 @@ MonoBehaviour:
     Asset:
       asset:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-    MoveSpeed: 0
+    MoveSpeed: 10
     MoveSmoothValue: 0.1
-    FindTargetDistance: 10
+    FindTargetDistance: 15
     LookSmoothValue: 0.3
-    Health: 5
+    Health: 3
   Overmind:
     WaveAgentsCount:
-      Min: 1
-      Max: 3
+      Min: 3
+      Max: 5
     MinimumAgents: 10
     WavesDelay:
       Min: 0.1
@@ -70,7 +70,7 @@ MonoBehaviour:
       Speed: 100
     Cooldown: 0.1
     Range: 10
-    AngleToAttack: 1
+    AngleToAttack: 360
   Charge:
     Bullet:
       Asset:
@@ -80,8 +80,8 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 256
       Damage: 1
-      LifeTime: 0.5
-      Speed: -1
+      LifeTime: 0.3
+      Speed: 1.7
     Cooldown: 1
     Range: 10
-    AngleToAttack: 10
+    AngleToAttack: 15

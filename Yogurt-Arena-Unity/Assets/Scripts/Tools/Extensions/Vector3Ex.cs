@@ -21,6 +21,24 @@ namespace Yogurt.Arena
             v3.Set(v3.x, v3.y, z);
             return v3;
         }
+        
+        public static Vector3 AddX(this Vector3 v3, float x)
+        {
+            v3.Set(v3.x + x, v3.y, v3.z);
+            return v3;
+        }
+        
+        public static Vector3 AddY(this Vector3 v3, float y)
+        {
+            v3.Set(v3.x, v3.y + y, v3.z);
+            return v3;
+        }
+
+        public static Vector3 AddZ(this Vector3 v3, float z)
+        {
+            v3.Set(v3.x, v3.y, v3.z + z);
+            return v3;
+        }
 
         public static Vector3 ToV3XY(this Vector2 v2)
         {

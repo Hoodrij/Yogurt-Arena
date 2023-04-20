@@ -1,4 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using UnityEngine;
+using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
@@ -8,11 +11,22 @@ namespace Yogurt.Arena
         {
             AgentAspect owner = bullet.State.Owner;
             owner.Add<Kinematic>();
-            TryDealDamage();
-            new ChargeUpdateOwnerPositionJob().Run(bullet);
+            // TryDealDamage();
+            new ChargeUpdateBulletPositionJob().Run(bullet);
 
-            await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime(), WaitForEnvironmentHit());
+            Transform transform = owner.View.transform;
+            float speed = bullet.Data.Speed;
+            var tween = DOTween.To(() => speed, x => speed = x, 0, bullet.Data.LifeTime);
+            tween.OnUpdate(() =>
+            {
+                Vector3 newPos = transform.position + transform.forward * speed;
+                NavMesh.SamplePosition(newPos, out var hit, 10, NavMesh.AllAreas);
 
+                transform.position = owner.Body.Position = owner.Body.Destination = hit.position;
+            });
+
+            await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime());
+            tween.Kill();
             if (owner.Exist())
             {
                 owner.Remove<Kinematic>();
@@ -28,7 +42,6 @@ namespace Yogurt.Arena
             }
             async UniTask WaitForOwnerDeath() => await UniTask.WaitWhile(() => owner.Exist());
             async UniTask WaitForLifeTime() => await new WaitForBulletLiteTimeJob().Run(bullet);
-            async UniTask WaitForEnvironmentHit() => await new WaitForBulletNavMeshBoundHitJob().Run(bullet);
         }
     }
 }
