@@ -30,7 +30,7 @@ namespace Yogurt.Arena
                     };
                 }
 
-                await UniTask.Yield();
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
             };
 
             return default;
@@ -38,11 +38,8 @@ namespace Yogurt.Arena
 
         private static int GetHits(BulletAspect bullet, ref RaycastHit[] result)
         {
-            Rigidbody body = bullet.State.RigidBody;
             float radius = bullet.State.Collider.radius;
-            
-            Vector3 moveDir = body.velocity.normalized;
-            float moveSpeed = body.velocity.magnitude * Time.fixedDeltaTime;
+            (Vector3 moveDir, float moveSpeed) = bullet.GetMoveData();
 
             int hitsCount = Physics.SphereCastNonAlloc(bullet.Position, radius, moveDir, result, moveSpeed, bullet.Data.HitMask);
             return hitsCount;
