@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
@@ -15,7 +16,7 @@ namespace Yogurt.Arena
         public AgentData Player;
         public AgentData ChargeEnemy;
         public OvermindData Overmind;
-        public RifleData Rifle;
-        public ChargeData Charge;
+        public WeaponData Rifle;
+        public WeaponData Charge;
     }
 }

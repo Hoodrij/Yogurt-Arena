@@ -3,7 +3,7 @@
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class ChargeData : IComponent
+    public class WeaponData : IComponent
     {
         public BulletData Bullet;
         public float Cooldown;

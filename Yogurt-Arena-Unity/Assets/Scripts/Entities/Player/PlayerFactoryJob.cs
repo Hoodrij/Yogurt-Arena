@@ -12,8 +12,7 @@ namespace Yogurt.Arena
             AgentAspect player = await new AgentSpawnJob().Run(data, Team.Green, Vector3.zero);
             player.Add<PlayerTag>();
 
-            player.Items.Add(await new RifleFactoryJob().Run(player));
-            // player.Items.Add(await new ChargeFactoryJob().Run(player));
+            await new RifleFactoryJob().Run(player);
 
             return player.Entity;
         }

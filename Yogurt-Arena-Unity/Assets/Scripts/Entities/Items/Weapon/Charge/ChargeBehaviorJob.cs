@@ -2,7 +2,7 @@
 
 namespace Yogurt.Arena
 {
-    public struct ChargeBulletBehaviorJob
+    public struct ChargeBehaviorJob
     {
         public async UniTask Run(BulletAspect bullet)
         {

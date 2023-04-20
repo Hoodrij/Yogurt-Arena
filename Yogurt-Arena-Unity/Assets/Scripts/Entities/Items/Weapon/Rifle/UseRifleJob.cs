@@ -5,39 +5,30 @@ namespace Yogurt.Arena
 {
     public class UseRifleJob : IItemUseJob
     {
-        public async UniTask Run(ItemAspect item, AgentAspect owner)
+        public async UniTask Run(ItemAspect item)
         {
-            RifleData data = item.Get<RifleData>();
-            
+            WeaponData data = item.Get<WeaponData>();
+            AgentAspect owner = item.Item.Owner;
+
             while (item.Exist())
             {
-                await WaitForActivation();
-                await WaitForTarget();
+                await new WaitForWeaponReadyJob().Run(item);
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
-                new FireBulletJob().Run(bullet, GetDir());
+                new FireBulletJob().Run(bullet, GetVelocity(bullet));
                 new RifleBulletBehaviorJob().Run(bullet);
 
                 await UniTask.Delay(data.Cooldown.ToSeconds());
             }
             
             
-            async UniTask WaitForTarget()
-            {
-                AgentBattleState battleState = owner.BattleState;
-                await UniTask.WaitWhile(() => !battleState.Target.Exist());
-            }
-            async UniTask WaitForActivation()
-            {
-                await UniTask.WaitUntil(() => !owner.Has<Kinematic>());
-            }
-            Vector3 GetDir()
+            Vector3 GetVelocity(BulletAspect bullet)
             {
                 BodyState targetBody = owner.BattleState.Target.Body;
                 Vector3 dir = (targetBody.Position.WithY(0) - owner.Body.Position.WithY(0))
                     .WithY(0).normalized;
 
-                return dir;
+                return dir * bullet.Data.Speed;
             }
         }
 

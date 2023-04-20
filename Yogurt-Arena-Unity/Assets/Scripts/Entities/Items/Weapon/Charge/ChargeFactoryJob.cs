@@ -6,10 +6,10 @@ namespace Yogurt.Arena
     {
         public async UniTask<ItemAspect> Run(AgentAspect owner)
         {
-            ChargeData data = Query.Single<Data>().Charge;
+            WeaponData data = Query.Single<Data>().Charge;
             
             ItemAspect item = await new ItemFactoryJob().Run(owner, new UseChargeJob(), data);
-            item.Item.Job.Run(item, owner);
+            item.Item.Job.Run(item);
             
             return item;
         }
