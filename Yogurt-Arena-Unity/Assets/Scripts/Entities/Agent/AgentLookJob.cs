@@ -17,7 +17,7 @@ namespace Yogurt.Arena
                 if (agent.BattleState.Target.Exist())
                 {
                     BodyState targetBody = agent.BattleState.Target.Get<BodyState>();
-                    body.LookPoint = targetBody.Position;
+                    body.LookPoint = targetBody.Position.WithY(body.Position.y);
                 }
                 else
                 {

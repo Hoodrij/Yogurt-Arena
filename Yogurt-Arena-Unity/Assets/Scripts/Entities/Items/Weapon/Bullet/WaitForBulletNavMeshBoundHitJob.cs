@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             while (bullet.Exist())
             {
                 Vector3 nextPosition = bullet.GetNextPosition();
-                if (!NavMesh.SamplePosition(nextPosition, out var hit, 2f, NavMesh.AllAreas))
+                if (!NavMesh.SamplePosition(nextPosition, out var hit, 1f, NavMesh.AllAreas))
                 {
                     return;
                 }
