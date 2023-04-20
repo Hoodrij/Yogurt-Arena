@@ -32,7 +32,8 @@ namespace Yogurt.Arena
             {
                 AgentAspect target = owner.BattleState.Target;
                 Vector3 lookDir = owner.View.transform.forward;
-                Vector3 dirToTarget = (target.View.transform.position - owner.View.transform.position).normalized;
+                Vector3 vectorToTarget = target.View.transform.position.WithY(0) - owner.View.transform.position.WithY(0);
+                Vector3 dirToTarget = vectorToTarget.normalized;
                 
                 float dot = Vector3.Dot(lookDir, dirToTarget);
                 float lookAngle = dot.DotToAngle();
