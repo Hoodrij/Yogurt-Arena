@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -15,7 +14,7 @@ namespace Yogurt.Arena
                 await new WaitForWeaponReadyJob().Run(item);
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
-                new FireBulletJob().Run(bullet, owner.View.transform.forward * data.Bullet.Speed);
+                new FireBulletJob().Run(bullet, default);
                 await new ChargeBehaviorJob().Run(bullet);
 
                 await UniTask.Delay(data.Cooldown.ToSeconds());

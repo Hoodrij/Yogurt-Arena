@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             AgentAspect owner = item.Item.Owner;
             WeaponData data = item.Get<WeaponData>();
 
-            await WaitForAgentReady();
+            await UniTask.WaitUntil(() => !owner.Has<Kinematic>());
             await UniTask.WaitUntil(() => 
                 HasOwner() && 
                 HasTarget() && 
@@ -18,8 +18,6 @@ namespace Yogurt.Arena
                 IsLookingAtTarget());
             
             
-            async UniTask WaitForAgentReady() => await UniTask.WaitUntil(() => !owner.Has<Kinematic>());
-
             bool HasOwner()
             {
                 return owner.Exist();

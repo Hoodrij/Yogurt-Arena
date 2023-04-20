@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
