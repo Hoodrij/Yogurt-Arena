@@ -15,8 +15,6 @@ namespace Yogurt.Arena
                 for (var i = 0; i < hitsCount; i++)
                 {
                     RaycastHit hit = hits[i];
-                    if (hit.point == Vector3.zero)
-                        continue;
                     if (!hit.transform.TryGetComponent(out EntityLink link)) 
                         continue;
                     if (link.Entity == bullet.State.Owner.Entity)
@@ -25,12 +23,12 @@ namespace Yogurt.Arena
                     return new CollisionInfo
                     {
                         IsValid = true,
-                        Position = hit.point,
+                        Position = hit.point == Vector3.zero ? bullet.Position : hit.point,
                         Entity = link.Entity
                     };
                 }
 
-                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+                await UniTask.Yield();
             };
 
             return default;
@@ -39,9 +37,11 @@ namespace Yogurt.Arena
         private static int GetHits(BulletAspect bullet, ref RaycastHit[] result)
         {
             float radius = bullet.State.Collider.radius;
-            (Vector3 moveDir, float moveSpeed) = bullet.GetMoveData();
+            Vector3 velocity = bullet.State.RigidBody.velocity;
+            Vector3 dir = velocity.normalized;
+            float speed = velocity.magnitude * Time.deltaTime;
 
-            int hitsCount = Physics.SphereCastNonAlloc(bullet.Position, radius, moveDir, result, moveSpeed, bullet.Data.HitMask);
+            int hitsCount = Physics.SphereCastNonAlloc(bullet.Position, radius, dir, result, speed, bullet.Data.HitMask);
             return hitsCount;
         }
     }

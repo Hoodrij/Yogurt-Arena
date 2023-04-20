@@ -37,9 +37,9 @@ MonoBehaviour:
         Prefab: {fileID: 39607511721595333, guid: 9845d6291ccbb5942b5c33655dc76d82, type: 3}
     MoveSpeed: 20
     MoveSmoothValue: 0.1
-    FindTargetDistance: 10
+    FindTargetDistance: 12
     LookSmoothValue: 0.2
-    Health: 100
+    Health: 20
   ChargeEnemy:
     Asset:
       asset:
@@ -69,7 +69,7 @@ MonoBehaviour:
       LifeTime: 0.5
       Speed: 100
     Cooldown: 0.1
-    Range: 10
+    Range: 12
     AngleToAttack: 360
   Charge:
     Bullet:

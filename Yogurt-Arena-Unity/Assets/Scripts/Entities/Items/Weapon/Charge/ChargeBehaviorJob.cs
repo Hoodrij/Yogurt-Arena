@@ -11,7 +11,7 @@ namespace Yogurt.Arena
         {
             AgentAspect owner = bullet.State.Owner;
             owner.Add<Kinematic>();
-            // TryDealDamage();
+            TryDealDamage();
             new ChargeUpdateBulletPositionJob().Run(bullet);
 
             Transform transform = owner.View.transform;
@@ -19,10 +19,13 @@ namespace Yogurt.Arena
             var tween = DOTween.To(() => speed, x => speed = x, 0, bullet.Data.LifeTime);
             tween.OnUpdate(() =>
             {
-                Vector3 newPos = transform.position + transform.forward * speed;
+                Vector3 velocity = transform.forward * speed;
+                Vector3 newPos = transform.position + velocity;
                 NavMesh.SamplePosition(newPos, out var hit, 10, NavMesh.AllAreas);
 
                 transform.position = owner.Body.Position = owner.Body.Destination = hit.position;
+                bullet.State.RigidBody.isKinematic = false;
+                bullet.State.RigidBody.velocity = velocity;
             });
 
             await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime());

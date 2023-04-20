@@ -84,18 +84,9 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.1592763
+        value: 0.08235675
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.6312937
-        value: 0.0823585
-        inSlope: -0.2252246
-        outSlope: -0.2252246
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
@@ -251,7 +242,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7849753161361449804
 GameObject:
