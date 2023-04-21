@@ -16,8 +16,8 @@ namespace Yogurt.Arena
 
             if (velocity != default)
             {
-                bullet.State.RigidBody.isKinematic = false;
-                bullet.State.RigidBody.velocity = velocity;
+                bullet.Remove<Kinematic>();
+                bullet.Body.Velocity = velocity;
             }
             
             bullet.View.Trail.Clear();

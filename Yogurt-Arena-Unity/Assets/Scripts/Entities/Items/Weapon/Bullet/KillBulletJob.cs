@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
-            bullet.State.RigidBody.isKinematic = true;
+            bullet.Add<Kinematic>();
             await UniTask.Delay(0.05f.ToSeconds());
             bullet.View.transform.DOScale(0, 0.1f);
 

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct BulletAspect : IAspect
     {
@@ -8,10 +6,8 @@ namespace Yogurt.Arena
         
         public BulletData Data => this.Get<BulletData>();
 
-        public BulletView View => this.Get<BulletView>();
+        public BodyState Body => this.Get<BodyState>();
         public BulletState State => this.Get<BulletState>();
-
-        
-        public Vector3 Position => View.transform.position;
+        public BulletView View => this.Get<BulletView>();
     }
 }

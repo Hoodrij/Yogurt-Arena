@@ -14,10 +14,9 @@ namespace Yogurt.Arena
                 .Add(view)
                 .Add(new BulletState
                 {
-                    Owner = owner,
-                    RigidBody = view.Body,
-                    Collider = view.Collider,
+                    Owner = owner
                 })
+                .Add<BodyState>()
                 .As<BulletAspect>();
 
             return bullet;

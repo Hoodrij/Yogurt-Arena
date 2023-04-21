@@ -23,7 +23,7 @@ namespace Yogurt.Arena
                     return new CollisionInfo
                     {
                         IsValid = true,
-                        Position = hit.point == Vector3.zero ? bullet.Position : hit.point,
+                        Position = hit.point == Vector3.zero ? bullet.Body.Position : hit.point,
                         Entity = link.Entity
                     };
                 }
@@ -36,12 +36,11 @@ namespace Yogurt.Arena
 
         private static int GetHits(BulletAspect bullet, ref RaycastHit[] result)
         {
-            float radius = bullet.State.Collider.radius;
-            Vector3 velocity = bullet.State.RigidBody.velocity;
+            Vector3 velocity = bullet.Body.Velocity;
             Vector3 dir = velocity.normalized;
             float speed = velocity.magnitude * Time.deltaTime;
 
-            int hitsCount = Physics.SphereCastNonAlloc(bullet.Position, radius, dir, result, speed, bullet.Data.HitMask);
+            int hitsCount = Physics.SphereCastNonAlloc(bullet.Body.Position, bullet.Data.Radius, dir, result, speed, bullet.Data.HitMask);
             return hitsCount;
         }
     }

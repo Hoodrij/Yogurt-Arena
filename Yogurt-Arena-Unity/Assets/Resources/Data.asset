@@ -51,9 +51,9 @@ MonoBehaviour:
     Health: 3
   Overmind:
     WaveAgentsCount:
-      Min: 3
-      Max: 5
-    MinimumAgents: 10
+      Min: 1
+      Max: 1
+    MinimumAgents: 0
     WavesDelay:
       Min: 0.1
       Max: 2
@@ -65,6 +65,7 @@ MonoBehaviour:
       HitMask:
         serializedVersion: 2
         m_Bits: 256
+      Radius: 0.2
       Damage: 1
       LifeTime: 0.5
       Speed: 100
@@ -79,9 +80,10 @@ MonoBehaviour:
       HitMask:
         serializedVersion: 2
         m_Bits: 256
+      Radius: 0.3
       Damage: 1
       LifeTime: 0.3
-      Speed: 1.7
+      Speed: 180
     Cooldown: 1
     Range: 10
     AngleToAttack: 15

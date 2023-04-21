@@ -9,6 +9,7 @@ namespace Yogurt.Arena
     {
         public PooledAsset<BulletView> Asset;
         public LayerMask HitMask;
+        public float Radius;
         public int Damage;
         public float LifeTime;
         public float Speed;

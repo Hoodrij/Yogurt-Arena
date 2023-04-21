@@ -19,14 +19,14 @@ namespace Yogurt.Arena
             var tween = DOTween.To(() => speed, x => speed = x, 0, bullet.Data.LifeTime);
             tween.OnUpdate(() =>
             {
-                Vector3 velocity = transform.forward * speed;
+                Vector3 velocity = transform.forward * speed * Time.deltaTime;
                 Vector3 newPos = transform.position + velocity;
                 NavMesh.SamplePosition(newPos, out var hit, 10, NavMesh.AllAreas);
 
                 transform.position = owner.Body.Position = owner.Body.Destination = hit.position;
-                bullet.State.RigidBody.isKinematic = false;
-                bullet.State.RigidBody.velocity = velocity;
+                bullet.Body.Velocity = velocity;
             });
+            tween.ManualUpdate(Time.deltaTime, Time.unscaledDeltaTime);
 
             await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime());
             tween.Kill();

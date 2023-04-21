@@ -155,8 +155,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1938733321980805271}
   - component: {fileID: 1014813079041708076}
-  - component: {fileID: 1688249514412486282}
-  - component: {fileID: 3951249269984852549}
   m_Layer: 7
   m_Name: ChargeBullet
   m_TagString: Untagged
@@ -193,57 +191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6367dbb261c5419d8f6125cd7de0d8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Body: {fileID: 1688249514412486282}
-  Collider: {fileID: 3951249269984852549}
+  Body: {fileID: 0}
+  Collider: {fileID: 0}
   Trail: {fileID: 146489862040609576}
---- !u!54 &1688249514412486282
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7036511241227750618}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 5
-  m_AngularDrag: 0.1
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
---- !u!135 &3951249269984852549
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7036511241227750618}
-  m_Material: {fileID: 13400000, guid: fdb98e163dd49074f9cccf48f00dab40, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.3
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7849753161361449804
 GameObject:
   m_ObjectHideFlags: 0
