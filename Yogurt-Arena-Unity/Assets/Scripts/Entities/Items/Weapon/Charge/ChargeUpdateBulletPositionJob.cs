@@ -10,10 +10,10 @@ namespace Yogurt.Arena
             AgentAspect owner = bullet.State.Owner;
             while (bullet.Exist() && owner.Exist())
             {
-                await UniTask.Yield();
-                
                 Transform transform = bullet.View.transform;
                 transform.position = owner.View.transform.position.AddY(0.5f);
+                
+                await UniTask.Yield();
             }
         }
     }

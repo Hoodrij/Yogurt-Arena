@@ -30,8 +30,6 @@ namespace Yogurt.Arena
 
                 while (owner.Exist())
                 {
-                    await UniTask.Yield();
-                    
                     timePassed += Time.deltaTime / bullet.Data.LifeTime;
                     float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
                     
@@ -41,6 +39,8 @@ namespace Yogurt.Arena
                     
                     transform.position = owner.Body.Position = owner.Body.Destination = hit.position;
                     bullet.Body.Velocity = velocity;
+                    
+                    await UniTask.Yield();
                 }
             }
             async void TryDealDamage()

@@ -45,6 +45,5 @@ namespace Yogurt.Arena
                 return hitsCount;
             }
         }
-
     }
 }

@@ -8,8 +8,20 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
+            int damage = bullet.Data.Damage;
+            CollisionInfo collisionInfo = default;
+            DetectHit();
             MoveBullet();
-            await WaitHitAndDealDamage();
+
+            UniTask collisionTask = UniTask.WaitWhile(() => !collisionInfo.IsValid);
+            await UniTask.WhenAny(collisionTask, WaitForLifeTime());
+            
+            if (collisionInfo.IsValid)
+            {
+                new DealDamageJob().Run(collisionInfo.Entity, damage);
+                bullet.Body.Position = bullet.View.transform.position = collisionInfo.Position;
+            }
+
             await new KillBulletJob().Run(bullet);
 
 
@@ -22,31 +34,23 @@ namespace Yogurt.Arena
 
                 while (bullet.Exist() && !bullet.Has<Kinematic>())
                 {
-                    await UniTask.Yield();
-                    
                     Vector3 newPos = body.Position + body.Velocity * Time.deltaTime;
                     body.Position = transform.position = newPos;
                     
                     timePassed += Time.deltaTime / bullet.Data.LifeTime;
                     speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
+                    
+                    await UniTask.Yield();
                 }
             }
-            async UniTask<CollisionInfo> WaitForHit() => await new WaitForBulletHitJob().Run(bullet);
-            async UniTask<CollisionInfo> WaitForLifeTime()
+            async void DetectHit()
+            {
+                collisionInfo = await new WaitForBulletHitJob().Run(bullet);
+            }
+            async UniTask WaitForLifeTime()
             {
                 await new WaitForBulletLiteTimeJob().Run(bullet);
-                return default;
-            }
-            async Task WaitHitAndDealDamage()
-            {
-                int damage = bullet.Data.Damage;
-                CollisionInfo collisionInfo = await UniTaskEx.WhenAny(WaitForHit, WaitForLifeTime);
-                if (collisionInfo.IsValid)
-                {
-                    new DealDamageJob().Run(collisionInfo.Entity, damage);
-                    bullet.Body.Position = bullet.View.transform.position = collisionInfo.Position;
-                }
             }
         }
     }
