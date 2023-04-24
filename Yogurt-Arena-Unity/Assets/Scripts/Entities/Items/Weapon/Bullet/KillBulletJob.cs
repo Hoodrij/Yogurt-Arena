@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -8,8 +9,11 @@ namespace Yogurt.Arena
         public async UniTask Run(BulletAspect bullet)
         {
             bullet.Add<Kinematic>();
-            await UniTask.Delay(0.05f.ToSeconds());
-            bullet.View.transform.DOScale(0, 0.1f);
+            bullet.Body.Velocity = Vector3.zero;
+
+            bullet.View.transform.DOScale(2, 0.1f);
+            await UniTask.Delay(0.1f.ToSeconds());
+            bullet.View.transform.DOScale(0, 0.3f);
 
             await UniTask.Delay(0.3f.ToSeconds());
             bullet.Kill();

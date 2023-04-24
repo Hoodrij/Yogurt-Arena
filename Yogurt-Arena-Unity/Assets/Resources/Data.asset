@@ -51,9 +51,9 @@ MonoBehaviour:
     Health: 3
   Overmind:
     WaveAgentsCount:
-      Min: 1
-      Max: 3
-    MinimumAgents: 10
+      Min: 0
+      Max: 0
+    MinimumAgents: 0
     WavesDelay:
       Min: 0.1
       Max: 2
@@ -64,12 +64,12 @@ MonoBehaviour:
           Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
       HitMask:
         serializedVersion: 2
-        m_Bits: 256
+        m_Bits: 257
       Radius: 0.2
       Damage: 1
-      LifeTime: 0.5
-      Speed: 70
-    Cooldown: 0.1
+      LifeTime: 0.4
+      Speed: 50
+    Cooldown: 1
     Range: 12
     AngleToAttack: 360
   Charge:

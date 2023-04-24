@@ -11,8 +11,6 @@ namespace Yogurt.Arena
             
             while (bullet.Exist())
             {
-                await UniTask.Yield();
-                
                 int hitsCount = GetHits();
                 for (var i = 0; i < hitsCount; i++)
                 {
@@ -30,6 +28,8 @@ namespace Yogurt.Arena
                         Entity = link ? link.Entity : default
                     };
                 }
+                
+                await UniTask.Yield();
             };
 
             return default;
@@ -41,7 +41,7 @@ namespace Yogurt.Arena
                 Vector3 dir = velocity.normalized;
                 float speed = velocity.magnitude * Time.deltaTime;
 
-                int hitsCount = Physics.SphereCastNonAlloc(bullet.Body.Position, bullet.Data.Radius, dir, hits, speed, bullet.Data.HitMask);
+                int hitsCount = Physics.RaycastNonAlloc(bullet.Body.Position, dir, hits, speed, bullet.Data.HitMask);
                 return hitsCount;
             }
         }

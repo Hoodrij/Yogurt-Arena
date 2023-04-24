@@ -8,18 +8,19 @@ namespace Yogurt.Arena
         public void Run(BulletAspect bullet, Vector3 velocity)
         {
             BodyState ownerBody = bullet.State.Owner.Body;
-            Vector3 position = ownerBody.Position.WithY(ownerBody.Position.y + 0.5f);
-            
-            bullet.View.transform.DOKill();
-            bullet.View.transform.position = position;
-            bullet.View.transform.localScale = Vector3.one;
+            Vector3 position = ownerBody.Position.AddY(0.5f);
+
+            Transform transform = bullet.View.transform;
+            transform.DOKill();
+            transform.localScale = Vector3.one;
+            bullet.Body.Position = transform.position = position;
 
             if (velocity != default)
             {
                 bullet.Remove<Kinematic>();
                 bullet.Body.Velocity = velocity;
                 
-                bullet.View.transform.rotation = Quaternion.LookRotation(velocity);
+                transform.rotation = Quaternion.LookRotation(velocity);
             }
             
             bullet.View.Trail.Clear();

@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
@@ -17,20 +16,20 @@ namespace Yogurt.Arena
             async void MoveBullet()
             {
                 Transform transform = bullet.View.transform;
+                BodyState body = bullet.Body;
                 float timePassed = 0;
+                float speed = bullet.Data.Speed;
 
                 while (bullet.Exist() && !bullet.Has<Kinematic>())
                 {
                     await UniTask.Yield();
                     
-                    timePassed += Time.deltaTime / bullet.Data.LifeTime;
-                    float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
+                    Vector3 newPos = body.Position + body.Velocity * Time.deltaTime;
+                    body.Position = transform.position = newPos;
                     
-                    Vector3 velocity = transform.forward * speed * Time.deltaTime;
-                    Vector3 newPos = transform.position + velocity;
-
-                    transform.position = bullet.Body.Position = bullet.Body.Destination = newPos;
-                    bullet.Body.Velocity = velocity;
+                    timePassed += Time.deltaTime / bullet.Data.LifeTime;
+                    speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
+                    body.Velocity = body.Velocity.normalized * speed;
                 }
             }
             async UniTask<CollisionInfo> WaitForHit() => await new WaitForBulletHitJob().Run(bullet);
@@ -46,8 +45,7 @@ namespace Yogurt.Arena
                 if (collisionInfo.IsValid)
                 {
                     new DealDamageJob().Run(collisionInfo.Entity, damage);
-                    bullet.View.transform.position = collisionInfo.Position;
-                    bullet.Add<Kinematic>();
+                    bullet.Body.Position = bullet.View.transform.position = collisionInfo.Position;
                 }
             }
         }
