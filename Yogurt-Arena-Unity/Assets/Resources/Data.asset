@@ -39,7 +39,7 @@ MonoBehaviour:
     MoveSmoothValue: 0.1
     FindTargetDistance: 12
     LookSmoothValue: 0.2
-    Health: 20
+    Health: 5
   ChargeEnemy:
     Asset:
       asset:
@@ -51,8 +51,8 @@ MonoBehaviour:
     Health: 3
   Overmind:
     WaveAgentsCount:
-      Min: 3
-      Max: 5
+      Min: 1
+      Max: 3
     MinimumAgents: 10
     WavesDelay:
       Min: 0.1
@@ -84,6 +84,6 @@ MonoBehaviour:
       Damage: 1
       LifeTime: 0.3
       Speed: 100
-    Cooldown: 2
-    Range: 0
+    Cooldown: 1
+    Range: 10
     AngleToAttack: 15

@@ -11,9 +11,9 @@ namespace Yogurt.Arena
             AgentAspect owner = bullet.State.Owner;
             owner.Add<Kinematic>();
             
-            MoveOwner();
-            TryDealDamage();
             new ChargeUpdateBulletPositionJob().Run(bullet);
+            TryDealDamage();
+            MoveOwner();
             await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime());
             
             if (owner.Exist())
@@ -26,19 +26,21 @@ namespace Yogurt.Arena
             async void MoveOwner()
             {
                 Transform transform = owner.View.transform;
+                BodyState body = owner.Body;
                 float timePassed = 0;
-
-                while (owner.Exist())
+                body.Velocity = transform.forward * bullet.Data.Speed;
+                
+                while (owner.Exist() && owner.Has<Kinematic>())
                 {
+                    Vector3 newPos = body.Position + body.Velocity * Time.deltaTime;
+                    NavMesh.SamplePosition(newPos, out var hit, 10, NavMesh.AllAreas);
+                    body.Position = transform.position = body.Destination = hit.position;
+                    
                     timePassed += Time.deltaTime / bullet.Data.LifeTime;
                     float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
-                    
-                    Vector3 velocity = transform.forward * speed * Time.deltaTime;
-                    Vector3 newPos = transform.position + velocity;
-                    NavMesh.SamplePosition(newPos, out var hit, 10, NavMesh.AllAreas);
-                    
-                    transform.position = owner.Body.Position = owner.Body.Destination = hit.position;
-                    bullet.Body.Velocity = velocity;
+                    body.Velocity = body.Velocity.normalized * speed;
+                    // required for collision detection
+                    bullet.Body.Velocity = body.Velocity;
                     
                     await UniTask.Yield();
                 }

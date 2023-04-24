@@ -30,7 +30,6 @@ namespace Yogurt.Arena
                 Transform transform = bullet.View.transform;
                 BodyState body = bullet.Body;
                 float timePassed = 0;
-                float speed = bullet.Data.Speed;
 
                 while (bullet.Exist() && !bullet.Has<Kinematic>())
                 {
@@ -38,7 +37,7 @@ namespace Yogurt.Arena
                     body.Position = transform.position = newPos;
                     
                     timePassed += Time.deltaTime / bullet.Data.LifeTime;
-                    speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
+                    float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
                     
                     await UniTask.Yield();

@@ -93,7 +93,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 0.06315613
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -191,8 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6367dbb261c5419d8f6125cd7de0d8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Body: {fileID: 0}
-  Collider: {fileID: 0}
   Trail: {fileID: 146489862040609576}
 --- !u!1 &7849753161361449804
 GameObject:

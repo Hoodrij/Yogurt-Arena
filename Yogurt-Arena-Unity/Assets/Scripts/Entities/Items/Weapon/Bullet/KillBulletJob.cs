@@ -12,11 +12,12 @@ namespace Yogurt.Arena
             bullet.Body.Velocity = Vector3.zero;
 
             float t = 0.1f;
+
             bullet.View.transform.DOScale(2, t);
             await UniTask.Delay(t.ToSeconds());
             bullet.View.transform.DOScale(0, t);
+            await UniTask.Delay(t.ToSeconds());
 
-            await UniTask.Delay(0.3f.ToSeconds());
             bullet.Kill();
         }
     }

@@ -11,7 +11,8 @@ namespace Yogurt.Arena
             while (bullet.Exist() && owner.Exist())
             {
                 Transform transform = bullet.View.transform;
-                transform.position = owner.View.transform.position.AddY(0.5f);
+                Vector3 position = owner.View.transform.position.AddY(0.5f);
+                bullet.Body.Position = transform.position = position;
                 
                 await UniTask.Yield();
             }
