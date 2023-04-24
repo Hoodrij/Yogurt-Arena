@@ -11,37 +11,40 @@ namespace Yogurt.Arena
             
             while (bullet.Exist())
             {
-                int hitsCount = GetHits(bullet, ref hits);
+                await UniTask.Yield();
+                
+                int hitsCount = GetHits();
                 for (var i = 0; i < hitsCount; i++)
                 {
                     RaycastHit hit = hits[i];
-                    if (!hit.transform.TryGetComponent(out EntityLink link)) 
-                        continue;
-                    if (link.Entity == bullet.State.Owner.Entity)
-                        continue;
+                    if (hit.transform.TryGetComponent(out EntityLink link))
+                    {
+                        if (link.Entity == bullet.State.Owner.Entity)
+                            continue;
+                    }
 
                     return new CollisionInfo
                     {
                         IsValid = true,
                         Position = hit.point == Vector3.zero ? bullet.Body.Position : hit.point,
-                        Entity = link.Entity
+                        Entity = link ? link.Entity : default
                     };
                 }
-
-                await UniTask.Yield();
             };
 
             return default;
+            
+            
+            int GetHits()
+            {
+                Vector3 velocity = bullet.Body.Velocity;
+                Vector3 dir = velocity.normalized;
+                float speed = velocity.magnitude * Time.deltaTime;
+
+                int hitsCount = Physics.SphereCastNonAlloc(bullet.Body.Position, bullet.Data.Radius, dir, hits, speed, bullet.Data.HitMask);
+                return hitsCount;
+            }
         }
 
-        private static int GetHits(BulletAspect bullet, ref RaycastHit[] result)
-        {
-            Vector3 velocity = bullet.Body.Velocity;
-            Vector3 dir = velocity.normalized;
-            float speed = velocity.magnitude * Time.deltaTime;
-
-            int hitsCount = Physics.SphereCastNonAlloc(bullet.Body.Position, bullet.Data.Radius, dir, result, speed, bullet.Data.HitMask);
-            return hitsCount;
-        }
     }
 }

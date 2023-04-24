@@ -18,6 +18,8 @@ namespace Yogurt.Arena
             {
                 bullet.Remove<Kinematic>();
                 bullet.Body.Velocity = velocity;
+                
+                bullet.View.transform.rotation = Quaternion.LookRotation(velocity);
             }
             
             bullet.View.Trail.Clear();

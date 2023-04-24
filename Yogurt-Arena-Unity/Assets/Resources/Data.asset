@@ -52,8 +52,8 @@ MonoBehaviour:
   Overmind:
     WaveAgentsCount:
       Min: 1
-      Max: 1
-    MinimumAgents: 0
+      Max: 3
+    MinimumAgents: 10
     WavesDelay:
       Min: 0.1
       Max: 2
@@ -68,7 +68,7 @@ MonoBehaviour:
       Radius: 0.2
       Damage: 1
       LifeTime: 0.5
-      Speed: 100
+      Speed: 70
     Cooldown: 0.1
     Range: 12
     AngleToAttack: 360
@@ -83,7 +83,7 @@ MonoBehaviour:
       Radius: 0.3
       Damage: 1
       LifeTime: 0.3
-      Speed: 180
+      Speed: 100
     Cooldown: 1
     Range: 10
     AngleToAttack: 15
