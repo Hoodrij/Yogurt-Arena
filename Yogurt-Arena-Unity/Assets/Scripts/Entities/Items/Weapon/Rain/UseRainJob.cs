@@ -3,22 +3,26 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class UseRifleJob : IItemUseJob
+    public struct UseRainJob : IItemUseJob
     {
         public async UniTask Run(ItemAspect item)
         {
-            WeaponData data = item.Get<WeaponData>();
             AgentAspect owner = item.Item.Owner;
+            WeaponData weaponData = item.Get<WeaponData>();
 
             while (item.Exist())
             {
                 await new WaitForWeaponReadyJob().Run(item);
                 
-                BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
+                BulletAspect bullet = await new BulletFactoryJob().Run(weaponData.Bullet, owner);
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
                 new RifleBulletBehaviorJob().Run(bullet);
-
-                await UniTask.Delay(data.Cooldown.ToSeconds());
+                
+                bool hasAmmoInClip = await new SpendAmmoJob().Run(item.As<WeaponWithClipAspect>());
+                if (hasAmmoInClip)
+                {
+                    await UniTask.Delay(weaponData.Cooldown.ToSeconds());
+                }
             }
             
             

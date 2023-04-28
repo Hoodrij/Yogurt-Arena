@@ -11,11 +11,12 @@ namespace Yogurt.Arena
             WeaponData data = item.Get<WeaponData>();
 
             await UniTask.WaitUntil(() => !owner.Has<Kinematic>());
-            await UniTask.WaitUntil(() => 
+            await UniTask.WaitUntil(() =>
                 HasOwner() && 
                 HasTarget() && 
                 IsInRange() && 
-                IsLookingAtTarget());
+                IsLookingAtTarget()
+                );
             
             
             bool HasOwner()

@@ -53,7 +53,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1388b065362268e43b56a4cc55ebb658, type: 2}
+  - {fileID: 2100000, guid: d46766fc490bc3e42b7f452b8cd8f685, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,7 +74,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -84,9 +84,18 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.12972003
+        value: 0.05159504
         inSlope: 0
         outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.77195215
+        value: 0.024806082
+        inSlope: -0.084436096
+        outSlope: -0.084436096
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
@@ -156,7 +165,7 @@ GameObject:
   - component: {fileID: 1938733321980805271}
   - component: {fileID: 1014813079041708076}
   m_Layer: 7
-  m_Name: ChargeBullet
+  m_Name: RainBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5525874117097605052
 Transform:
   m_ObjectHideFlags: 0

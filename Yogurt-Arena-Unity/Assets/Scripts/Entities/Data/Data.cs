@@ -17,5 +17,6 @@ namespace Yogurt.Arena
         public OvermindData Overmind;
         public WeaponData Rifle;
         public WeaponData Charge;
+        public RainData Rain;
     }
 }

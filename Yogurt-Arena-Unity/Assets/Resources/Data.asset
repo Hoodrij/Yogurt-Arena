@@ -46,7 +46,7 @@ MonoBehaviour:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
     MoveSpeed: 10
     MoveSmoothValue: 0.1
-    FindTargetDistance: 15
+    FindTargetDistance: 0
     LookSmoothValue: 0.3
     Health: 3
   Overmind:
@@ -70,7 +70,7 @@ MonoBehaviour:
       LifeTime: 0.4
       Speed: 100
     Cooldown: 0.1
-    Range: 12
+    Range: 10
     AngleToAttack: 360
   Charge:
     Bullet:
@@ -85,5 +85,24 @@ MonoBehaviour:
       LifeTime: 0.3
       Speed: 100
     Cooldown: 1
-    Range: 10
-    AngleToAttack: 15
+    Range: 12
+    AngleToAttack: 20
+  Rain:
+    CommonData:
+      Bullet:
+        Asset:
+          asset:
+            Prefab: {fileID: 7036511241227750618, guid: da46b3360c09a1f4b84586adcf3bc579, type: 3}
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 1
+        Radius: 0.5
+        Damage: 5
+        LifeTime: 1
+        Speed: 50
+      Cooldown: 0.05
+      Range: 10
+      AngleToAttack: 360
+    ClipData:
+      BulletsInClip: 5
+      ClipCooldown: 2
