@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public struct SpendAmmoJob
     {
-        /// <returns>True if has available ammo and do NOT requires clip reload</returns>
+        /// <returns>True if has available ammo and do NOT require clip reload</returns>
         public async UniTask<bool> Run(WeaponWithClipAspect weapon)
         {
             weapon.State.CurrentAmmo--;

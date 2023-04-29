@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yogurt.Arena
@@ -9,14 +8,12 @@ namespace Yogurt.Arena
         public async UniTask Run(BulletAspect bullet)
         {
             int damage = bullet.Data.Damage;
-            CollisionInfo collisionInfo = default;
-            DetectHit();
+            UniTask<CollisionInfo> collisionTask = DetectHit();
             MoveBullet();
 
-            UniTask collisionTask = UniTask.WaitWhile(() => !collisionInfo.IsValid);
             await UniTask.WhenAny(collisionTask, WaitForLifeTime());
-            
-            if (collisionInfo.IsValid)
+
+            if (collisionTask.TryGetResult(out var collisionInfo))
             {
                 new DealDamageJob().Run(collisionInfo.Entity, damage);
                 bullet.Body.Position = bullet.View.transform.position = collisionInfo.Position;
@@ -43,9 +40,9 @@ namespace Yogurt.Arena
                     await UniTask.Yield();
                 }
             }
-            async void DetectHit()
+            async UniTask<CollisionInfo> DetectHit()
             {
-                collisionInfo = await new WaitForBulletHitJob().Run(bullet);
+                return await new WaitForBulletHitJob().Run(bullet);
             }
             async UniTask WaitForLifeTime()
             {
