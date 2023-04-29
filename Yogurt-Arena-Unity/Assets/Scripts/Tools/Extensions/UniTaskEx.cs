@@ -16,5 +16,17 @@ namespace Yogurt.Arena
             (int winArgumentIndex, T result1, T result2) = await UniTask.WhenAny(task1(), task2());
             return winArgumentIndex == 0 ? result1 : result2;
         }
+
+        public static bool TryGetResult<T>(this UniTask<T> task, out T result)
+        {
+            if (task.Status == UniTaskStatus.Succeeded)
+            {
+                result = task.GetAwaiter().GetResult();
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
     }
 }
