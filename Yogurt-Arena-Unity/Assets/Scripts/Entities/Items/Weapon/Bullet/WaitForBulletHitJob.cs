@@ -23,6 +23,7 @@ namespace Yogurt.Arena
 
                     return new CollisionInfo
                     {
+                        IsValid = true,
                         Position = hit.point == Vector3.zero ? bullet.Body.Position : hit.point,
                         Entity = link ? link.Entity : default
                     };

@@ -70,7 +70,7 @@ MonoBehaviour:
       LifeTime: 0.4
       Speed: 100
     Cooldown: 0.1
-    Range: 10
+    Range: 12
     AngleToAttack: 360
   Charge:
     Bullet:
@@ -82,9 +82,9 @@ MonoBehaviour:
         m_Bits: 256
       Radius: 0.3
       Damage: 1
-      LifeTime: 0.3
+      LifeTime: 0.25
       Speed: 100
-    Cooldown: 1
+    Cooldown: 0
     Range: 12
     AngleToAttack: 20
   Rain:
@@ -98,11 +98,11 @@ MonoBehaviour:
           m_Bits: 1
         Radius: 0.5
         Damage: 5
-        LifeTime: 1
-        Speed: 50
+        LifeTime: 0.3
+        Speed: 70
       Cooldown: 0.05
-      Range: 10
+      Range: 12
       AngleToAttack: 360
     ClipData:
       BulletsInClip: 5
-      ClipCooldown: 2
+      ClipCooldown: 1

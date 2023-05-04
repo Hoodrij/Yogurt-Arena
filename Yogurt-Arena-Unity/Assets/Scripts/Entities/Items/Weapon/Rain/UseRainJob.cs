@@ -16,7 +16,7 @@ namespace Yogurt.Arena
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(weaponData.Bullet, owner);
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
-                new RifleBulletBehaviorJob().Run(bullet);
+                new RainBulletBehaviorJob().Run(bullet);
                 
                 bool hasAmmoInClip = await new SpendAmmoJob().Run(item.As<WeaponWithClipAspect>());
                 if (hasAmmoInClip)
@@ -28,11 +28,7 @@ namespace Yogurt.Arena
             
             Vector3 GetVelocity(BulletAspect bullet)
             {
-                BodyState targetBody = owner.BattleState.Target.Body;
-                Vector3 dir = (targetBody.Position.WithY(0) - owner.Body.Position.WithY(0))
-                    .WithY(0).normalized;
-
-                return dir * bullet.Data.Speed;
+                return Vector3.up * bullet.Data.Speed;
             }
         }
     }
