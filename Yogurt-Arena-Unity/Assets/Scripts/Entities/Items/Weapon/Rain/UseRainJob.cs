@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(ItemAspect item)
         {
-            AgentAspect owner = item.Item.Owner;
+            AgentAspect owner = item.Owner.Owner.As<AgentAspect>();
             WeaponData weaponData = item.Get<WeaponData>();
 
             while (item.Exist())
@@ -15,8 +15,17 @@ namespace Yogurt.Arena
                 await new WaitForWeaponReadyJob().Run(item);
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(weaponData.Bullet, owner);
+                bullet.Add(new BattleState
+                {
+                    Target = owner.BattleState.Target
+                });
+                bullet.Add(new OwnerState
+                {
+                    Owner = owner.Entity
+                });
+                
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
-                new RainBulletBehaviorJob().Run(bullet);
+                new RainBulletBehaviorJob().Run(bullet, item.Get<RainData>());
                 
                 bool hasAmmoInClip = await new SpendAmmoJob().Run(item.As<WeaponWithClipAspect>());
                 if (hasAmmoInClip)

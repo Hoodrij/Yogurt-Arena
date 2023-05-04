@@ -7,7 +7,6 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
-            int damage = bullet.Data.Damage;
             CollisionInfo collision = default;
             UniTask collisionTask = DetectHit();
             MoveBullet();
@@ -16,7 +15,7 @@ namespace Yogurt.Arena
 
             if (collision.IsValid)
             {
-                new DealDamageJob().Run(collision.Entity, damage);
+                new DealDamageJob().Run(collision.Entity, bullet.Data.Damage);
                 bullet.Body.Position = bullet.View.transform.position = collision.Position;
             }
 

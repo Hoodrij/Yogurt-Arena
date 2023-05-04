@@ -10,8 +10,11 @@ namespace Yogurt.Arena
                 .Add(data)
                 .Add(new Item
                 {
-                    Job = job,
-                    Owner = owner
+                    Job = job
+                })
+                .Add(new OwnerState
+                {
+                    Owner = owner.Entity
                 })
                 .As<ItemAspect>();
             

@@ -13,7 +13,7 @@ namespace Yogurt.Arena
                 .Add(data)
                 .Add(agentView)
                 .Add<BodyState>()
-                .Add<AgentBattleState>()
+                .Add<BattleState>()
                 .Add<ItemsCollection>()
                 .Add(new AgentId
                 {

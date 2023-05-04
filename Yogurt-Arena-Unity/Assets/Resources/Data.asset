@@ -106,3 +106,5 @@ MonoBehaviour:
     ClipData:
       BulletsInClip: 5
       ClipCooldown: 1
+    Gravity: {x: 0, y: -10, z: 0}
+    ChaseSpeed: 10

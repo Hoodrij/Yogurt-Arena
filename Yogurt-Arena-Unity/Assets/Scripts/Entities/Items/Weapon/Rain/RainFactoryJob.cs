@@ -10,6 +10,7 @@ namespace Yogurt.Arena
             WeaponData commonData = rainData.CommonData;
 
             ItemAspect item = await new ItemFactoryJob().Run(owner, new UseRainJob(), commonData);
+            item.Add(rainData);
             item.Add(rainData.ClipData);
             item.Add(new WeaponClipState
             {

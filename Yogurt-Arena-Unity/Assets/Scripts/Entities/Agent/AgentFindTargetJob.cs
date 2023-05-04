@@ -2,7 +2,7 @@
 
 namespace Yogurt.Arena
 {
-    public class AgentFindTargetJob : IUpdateJob
+    public struct AgentFindTargetJob : IUpdateJob
     {
         public void Update()
         {
@@ -10,31 +10,30 @@ namespace Yogurt.Arena
             {
                 agentAspect.BattleState.Target = GetTarget(agentAspect);
             }
+            
+            
+            AgentAspect GetTarget(AgentAspect agent)
+            {
+                AgentAspect target = Query.Of<AgentAspect>()
+                    .Where(other => IsHostile(agent, other))
+                    .Where(other => IsInRange(agent, other))
+                    .OrderBy(other => GetDistance(agent, other))
+                    .FirstOrDefault();
+                return target;
+            }
+            float GetDistance(AgentAspect agent, AgentAspect other)
+            {
+                return (agent.Body.Position - other.Body.Position).magnitude.Abs();
+            }
+            bool IsHostile(AgentAspect agent, AgentAspect other)
+            {
+                return !other.Id.Team.HasFlag(agent.Id.Team);
+            }
+            bool IsInRange(AgentAspect agent, AgentAspect other)
+            {
+                return GetDistance(agent, other) < agent.Data.FindTargetDistance;
+            }
         }
 
-        private AgentAspect GetTarget(AgentAspect agent)
-        {
-            AgentAspect target = Query.Of<AgentAspect>()
-                .Where(other => IsHostile(agent, other))
-                .Where(other => IsInRange(agent, other))
-                .OrderBy(other => GetDistance(agent, other))
-                .FirstOrDefault();
-            return target;
-        }
-
-        private float GetDistance(AgentAspect agent, AgentAspect other)
-        {
-            return (agent.Body.Position - other.Body.Position).magnitude.Abs();
-        }
-
-        private bool IsHostile(AgentAspect agent, AgentAspect other)
-        {
-            return !other.Id.Team.HasFlag(agent.Id.Team);
-        }
-        
-        private bool IsInRange(AgentAspect agent, AgentAspect other)
-        {
-            return GetDistance(agent, other) < agent.Data.FindTargetDistance;
-        }
     }
 }
