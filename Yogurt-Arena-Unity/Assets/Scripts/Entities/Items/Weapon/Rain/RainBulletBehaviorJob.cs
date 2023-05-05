@@ -5,12 +5,13 @@ namespace Yogurt.Arena
 {
     public struct RainBulletBehaviorJob
     {
-        public async UniTask Run(BulletAspect bullet)
+        public async UniTask Run(RainBulletAspect rainBullet)
         {
-            RainData rainData = bullet.Get<RainData>();
+            BulletAspect bullet = rainBullet.BulletAspect;
+            RainBulletData rainData = rainBullet.Data;
             CollisionInfo collision = default;
             UniTask collisionTask = DetectHit();
-            new UpdateRainTargetJob().Run(bullet);
+            new UpdateRainTargetJob().Run(rainBullet);
             MoveBullet();
 
             await UniTask.WhenAny(collisionTask, WaitForLifeTime());

@@ -8,9 +8,6 @@ namespace Yogurt.Arena
     {
         public WeaponData CommonData;
         public WeaponClipData ClipData;
-        public Vector3 Gravity;
-        public float FindTargetDistance;
-        public float BulletRotationSpeed;
-        public float BulletSpeedChangeCoef;
+        public RainBulletData BulletData;
     }
 }

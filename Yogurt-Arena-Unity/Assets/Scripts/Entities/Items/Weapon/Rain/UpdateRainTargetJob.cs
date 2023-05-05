@@ -5,15 +5,14 @@ namespace Yogurt.Arena
 {
     public struct UpdateRainTargetJob
     {
-        public async void Run(BulletAspect bullet)
+        public async void Run(RainBulletAspect bullet)
         {
-            RainData rainData = bullet.Get<RainData>();
-            AgentAspect owner = bullet.Get<OwnerState>().Owner;
-            BattleState battleState = bullet.Get<BattleState>();
+            RainBulletData rainData = bullet.Data;
+            AgentAspect owner = bullet.Owner;
 
             while (bullet.Exist())
             {
-                battleState.Target = GetTarget();
+                bullet.BattleState.Target = GetTarget();
                 await UniTask.Yield();
             }
                 
@@ -37,7 +36,7 @@ namespace Yogurt.Arena
             }
             float GetDistance(AgentAspect other)
             {
-                return (bullet.Body.Position - other.Body.Position).magnitude.Abs();
+                return (bullet.BulletAspect.Body.Position - other.Body.Position).magnitude.Abs();
             }
         }
     }
