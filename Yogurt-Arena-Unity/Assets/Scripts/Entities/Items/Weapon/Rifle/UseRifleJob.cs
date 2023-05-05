@@ -8,7 +8,7 @@ namespace Yogurt.Arena
         public async UniTask Run(ItemAspect item)
         {
             WeaponData data = item.Get<WeaponData>();
-            AgentAspect owner = item.Owner.Owner.As<AgentAspect>();
+            AgentAspect owner = item.Owner;
 
             while (item.Exist())
             {

@@ -2,8 +2,8 @@
 {
     public class OwnerState : IComponent
     {
-        public Entity Owner;
+        public AgentAspect Owner;
         
-        public static implicit operator Entity(OwnerState ownerState) => ownerState.Owner;
+        public static implicit operator AgentAspect(OwnerState ownerState) => ownerState.Owner;
     }
 }

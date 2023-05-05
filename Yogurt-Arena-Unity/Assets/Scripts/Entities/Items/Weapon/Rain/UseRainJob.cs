@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(ItemAspect item)
         {
-            AgentAspect owner = item.Owner.Owner.As<AgentAspect>();
+            AgentAspect owner = item.Owner;
             WeaponData weaponData = item.Get<WeaponData>();
 
             while (item.Exist())
@@ -21,11 +21,12 @@ namespace Yogurt.Arena
                 });
                 bullet.Add(new OwnerState
                 {
-                    Owner = owner.Entity
+                    Owner = owner
                 });
+                bullet.Add(item.Get<RainData>());
                 
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
-                new RainBulletBehaviorJob().Run(bullet, item.Get<RainData>());
+                new RainBulletBehaviorJob().Run(bullet);
                 
                 bool hasAmmoInClip = await new SpendAmmoJob().Run(item.As<WeaponWithClipAspect>());
                 if (hasAmmoInClip)

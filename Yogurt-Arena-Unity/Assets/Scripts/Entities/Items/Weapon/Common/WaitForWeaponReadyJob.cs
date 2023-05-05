@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(ItemAspect item)
         {
-            AgentAspect owner = item.Owner.Owner.As<AgentAspect>();
+            AgentAspect owner = item.Owner;
             WeaponData data = item.Get<WeaponData>();
 
             await UniTask.WaitUntil(() => !owner.Has<Kinematic>());

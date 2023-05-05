@@ -14,7 +14,7 @@ namespace Yogurt.Arena
                 })
                 .Add(new OwnerState
                 {
-                    Owner = owner.Entity
+                    Owner = owner
                 })
                 .As<ItemAspect>();
             
