@@ -10,7 +10,7 @@ namespace Yogurt.Arena
         public WeaponClipData ClipData;
         public Vector3 Gravity;
         public float FindTargetDistance;
-        public float ChaseValue1;
-        public float ChaseValue2;
+        public float BulletRotationSpeed;
+        public float BulletSpeedChangeCoef;
     }
 }

@@ -95,16 +95,18 @@ MonoBehaviour:
             Prefab: {fileID: 7036511241227750618, guid: da46b3360c09a1f4b84586adcf3bc579, type: 3}
         HitMask:
           serializedVersion: 2
-          m_Bits: 1
+          m_Bits: 257
         Radius: 0.5
         Damage: 5
-        LifeTime: 0.3
-        Speed: 70
+        LifeTime: 2
+        Speed: 87.1
       Cooldown: 0.05
       Range: 12
       AngleToAttack: 360
     ClipData:
-      BulletsInClip: 5
-      ClipCooldown: 1
-    Gravity: {x: 0, y: -10, z: 0}
-    ChaseSpeed: 10
+      BulletsInClip: 3
+      ClipCooldown: 0.5
+    Gravity: {x: 0, y: -300, z: 0}
+    FindTargetDistance: 12
+    BulletRotationSpeed: 60
+    BulletSpeedChangeCoef: 12

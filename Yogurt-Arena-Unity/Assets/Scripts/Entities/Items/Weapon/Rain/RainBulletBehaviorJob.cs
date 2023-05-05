@@ -5,8 +5,9 @@ namespace Yogurt.Arena
 {
     public struct RainBulletBehaviorJob
     {
-        public async UniTask Run(BulletAspect bullet, RainData rainData)
+        public async UniTask Run(BulletAspect bullet)
         {
+            RainData rainData = bullet.Get<RainData>();
             CollisionInfo collision = default;
             UniTask collisionTask = DetectHit();
             new UpdateRainTargetJob().Run(bullet);
@@ -32,17 +33,18 @@ namespace Yogurt.Arena
 
                 while (bullet.Exist() && !bullet.Has<Kinematic>())
                 {
-                    AgentAspect target = battleState.Target;
                     Vector3 newPos = body.Position + body.Velocity * Time.deltaTime;
                     body.Position = transform.position = newPos;
-                    
-                    Vector3 dirToTarget = (target.Body.Position - body.Position).normalized;
-                    Vector3 neededVelocity = dirToTarget * body.Velocity.magnitude;
-
-                    neededVelocity = Vector3.RotateTowards(body.Velocity, neededVelocity, rainData.ChaseValue1 * Time.deltaTime, 0);
-                    body.Velocity = Vector3.Lerp(body.Velocity, neededVelocity, rainData.ChaseValue2 * Time.deltaTime);
-
                     body.Velocity += rainData.Gravity * Time.deltaTime;
+                    
+                    AgentAspect target = battleState.Target;
+                    if (target.Exist())
+                    {
+                        Vector3 dirToTarget = (target.Body.Position - body.Position).normalized;
+                        Vector3 neededVelocity = dirToTarget * body.Velocity.magnitude;
+                        neededVelocity = Vector3.RotateTowards(body.Velocity, neededVelocity, rainData.BulletRotationSpeed * Time.deltaTime, 0);
+                        body.Velocity = Vector3.Lerp(body.Velocity, neededVelocity, rainData.BulletSpeedChangeCoef * Time.deltaTime);
+                    }
                     
                     await UniTask.Yield();
                 }
