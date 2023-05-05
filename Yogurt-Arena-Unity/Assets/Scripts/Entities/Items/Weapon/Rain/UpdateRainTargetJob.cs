@@ -7,7 +7,8 @@ namespace Yogurt.Arena
     {
         public async void Run(BulletAspect bullet)
         {
-            AgentAspect owner = bullet.Get<OwnerState>().Owner.As<AgentAspect>();
+            RainData rainData = bullet.Get<RainData>();
+            AgentAspect owner = bullet.Get<OwnerState>().Owner;
             BattleState battleState = bullet.Get<BattleState>();
 
             while (bullet.Exist())
@@ -26,17 +27,17 @@ namespace Yogurt.Arena
                     .FirstOrDefault();
                 return target;
             }
-            float GetDistance(AgentAspect other)
-            {
-                return (owner.Body.Position - other.Body.Position).magnitude.Abs();
-            }
             bool IsHostile(AgentAspect other)
             {
                 return !other.Id.Team.HasFlag(owner.Id.Team);
             }
             bool IsInRange(AgentAspect other)
             {
-                return GetDistance(other) < owner.Data.FindTargetDistance;
+                return GetDistance(other) < rainData.FindTargetDistance;
+            }
+            float GetDistance(AgentAspect other)
+            {
+                return (bullet.Body.Position - other.Body.Position).magnitude.Abs();
             }
         }
     }
