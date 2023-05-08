@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Yogurt.Roguelike.Tools;
 
 namespace Yogurt.Arena
 {
@@ -10,5 +11,6 @@ namespace Yogurt.Arena
         public float FindTargetDistance;
         public float BulletRotationSpeed;
         public float BulletSpeedChangeCoef;
+        public PooledAsset<ExplosionView> ExplosionAsset;
     }
 }
