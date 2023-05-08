@@ -33,9 +33,8 @@ namespace Yogurt.Arena
                 Vector3 dir = (targetBody.Position.WithY(20) - owner.Body.Position.WithY(0))
                     .normalized;
 
-                // dir = Quaternion.AngleAxis(90, Vector3.forward) * dir;
                 dir = new ApplyScatteringJob().Run(item, dir);
-                    
+                
                 return dir * bullet.Data.Speed;
             }
         }

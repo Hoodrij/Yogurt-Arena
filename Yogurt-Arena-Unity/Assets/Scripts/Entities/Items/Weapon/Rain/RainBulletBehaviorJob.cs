@@ -41,7 +41,7 @@ namespace Yogurt.Arena
                     body.Velocity += rainData.Gravity * Time.deltaTime;
                     
                     AgentAspect target = battleState.Target;
-                    if (target.Exist())
+                    if (target.Exist() && body.Velocity.y < 0)
                     {
                         Vector3 dirToTarget = (target.Body.Position - body.Position).normalized;
                         Vector3 neededVelocity = dirToTarget * body.Velocity.magnitude;
