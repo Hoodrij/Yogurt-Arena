@@ -15,7 +15,7 @@ namespace Yogurt.Arena
             
             vfx.transform.position = position;
             view.localScale = Vector3.zero;
-            view.DOScale(radius, duration);
+            view.DOScale(radius * 2, duration);
             await UniTask.Delay(duration.ToSeconds());
             
             view.DOScale(0, duration).SetEase(Ease.InSine);

@@ -26,9 +26,17 @@ namespace Yogurt.Arena
                 }
             }
             
+            
             Vector3 GetVelocity(BulletAspect bullet)
             {
-                return Vector3.up * bullet.Data.Speed;
+                BodyState targetBody = owner.BattleState.Target.Body;
+                Vector3 dir = (targetBody.Position.WithY(20) - owner.Body.Position.WithY(0))
+                    .normalized;
+
+                // dir = Quaternion.AngleAxis(90, Vector3.forward) * dir;
+                dir = new ApplyScatteringJob().Run(item, dir);
+                    
+                return dir * bullet.Data.Speed;
             }
         }
     }

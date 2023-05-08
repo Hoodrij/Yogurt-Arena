@@ -7,10 +7,11 @@ namespace Yogurt.Arena
         public async UniTask<ItemAspect> Run(AgentAspect owner)
         {
             RainData rainData = Query.Single<Data>().Rain;
-            WeaponData commonData = rainData.CommonData;
 
-            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseRainJob(), commonData);
+            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseRainJob());
             item.Add(rainData);
+            item.Add(rainData.CommonData);
+            item.Add(rainData.ScatteringData);
             item.Add(rainData.ClipData);
             item.Add(new WeaponClipState
             {

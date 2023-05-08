@@ -7,6 +7,7 @@ namespace Yogurt.Arena
     {
         public WeaponData CommonData;
         public WeaponClipData ClipData;
+        public WeaponScatteringData ScatteringData;
         public RainBulletData BulletData;
     }
 }

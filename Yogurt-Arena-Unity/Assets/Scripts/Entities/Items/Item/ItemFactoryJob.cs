@@ -4,10 +4,9 @@ namespace Yogurt.Arena
 {
     public struct ItemFactoryJob
     {
-        public async UniTask<ItemAspect> Run<T>(AgentAspect owner, IItemUseJob job, T data) where T : IComponent
+        public async UniTask<ItemAspect> Run(AgentAspect owner, IItemUseJob job)
         {
             ItemAspect itemAspect = World.Create()
-                .Add(data)
                 .Add(new Item
                 {
                     Job = job

@@ -15,6 +15,7 @@ namespace Yogurt.Arena
                 await new WaitForWeaponReadyJob().Run(item);
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
+                
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
                 new RifleBulletBehaviorJob().Run(bullet);
 
@@ -27,6 +28,8 @@ namespace Yogurt.Arena
                 BodyState targetBody = owner.BattleState.Target.Body;
                 Vector3 dir = (targetBody.Position.WithY(0) - owner.Body.Position.WithY(0))
                     .WithY(0).normalized;
+
+                dir = new ApplyScatteringJob().Run(item, dir);
 
                 return dir * bullet.Data.Speed;
             }

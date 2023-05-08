@@ -46,9 +46,9 @@ MonoBehaviour:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
     MoveSpeed: 10
     MoveSmoothValue: 0.1
-    FindTargetDistance: 10
+    FindTargetDistance: 0
     LookSmoothValue: 0.3
-    Health: 3
+    Health: 10
   Overmind:
     WaveAgentsCount:
       Min: 1
@@ -58,20 +58,23 @@ MonoBehaviour:
       Min: 0.1
       Max: 2
   Rifle:
-    Bullet:
-      Asset:
-        asset:
-          Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
-      HitMask:
-        serializedVersion: 2
-        m_Bits: 257
-      Radius: 0.2
-      Damage: 1
-      LifeTime: 0.4
-      Speed: 100
-    Cooldown: 0.1
-    Range: 12
-    AngleToAttack: 360
+    CommonData:
+      Bullet:
+        Asset:
+          asset:
+            Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 257
+        Radius: 0.2
+        Damage: 4
+        LifeTime: 0.4
+        Speed: 100
+      Cooldown: 0.1
+      Range: 12
+      AngleToAttack: 360
+    ScatteringData:
+      angle: 20
   Charge:
     Bullet:
       Asset:
@@ -84,7 +87,7 @@ MonoBehaviour:
       Damage: 1
       LifeTime: 0.25
       Speed: 100
-    Cooldown: 0
+    Cooldown: 1
     Range: 12
     AngleToAttack: 20
   Rain:
@@ -99,24 +102,26 @@ MonoBehaviour:
         Radius: 0.5
         Damage: 0
         LifeTime: 2
-        Speed: 87.1
-      Cooldown: 0.05
+        Speed: 70
+      Cooldown: 0.02
       Range: 12
       AngleToAttack: 360
     ClipData:
-      BulletsInClip: 3
-      ClipCooldown: 0.5
+      BulletsInClip: 7
+      ClipCooldown: 1
+    ScatteringData:
+      angle: 180
     BulletData:
-      Damage:
-        Damage: 2
-        Radius: 5
-        HitMask:
-          serializedVersion: 2
-          m_Bits: 256
-      Gravity: {x: 0, y: -300, z: 0}
-      FindTargetDistance: 12
-      BulletRotationSpeed: 60
-      BulletSpeedChangeCoef: 12
       ExplosionAsset:
         asset:
           Prefab: {fileID: 2634516681230702857, guid: daa5658829c979d479e7ac4148ccc388, type: 3}
+      Damage:
+        Damage: 5
+        Radius: 2
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 256
+      Gravity: {x: 0, y: -100, z: 0}
+      FindTargetDistance: 12
+      BulletRotationSpeed: 60
+      BulletSpeedChangeCoef: 12

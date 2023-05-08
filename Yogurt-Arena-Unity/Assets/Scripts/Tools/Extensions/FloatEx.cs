@@ -25,5 +25,10 @@ namespace Yogurt.Arena
         {
             return Mathf.Acos(dot) *  Mathf.Rad2Deg;
         }
+        
+        public static float WithRandomSign(this float f)
+        {
+            return f * (true.RandomBool() ? 1 : -1);
+        }
     }
 }
