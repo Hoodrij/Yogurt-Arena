@@ -7,14 +7,14 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(ItemAspect item)
         {
-            AgentAspect owner = item.Owner;
             WeaponData weaponData = item.Get<WeaponData>();
+            AgentAspect owner = item.Owner;
 
             while (item.Exist())
             {
                 await new WaitForWeaponReadyJob().Run(item);
 
-                BulletAspect bullet = await Factory();
+                BulletAspect bullet = await new RainBulletFactoryJob().Run(weaponData.Bullet, item.Get<RainData>(), owner);
 
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
                 new RainBulletBehaviorJob().Run(bullet.As<RainBulletAspect>());
@@ -25,23 +25,7 @@ namespace Yogurt.Arena
                     await UniTask.Delay(weaponData.Cooldown.ToSeconds());
                 }
             }
-
-
-            async UniTask<BulletAspect> Factory()
-            {
-                BulletAspect bullet = await new BulletFactoryJob().Run(weaponData.Bullet, owner);
-                bullet.Add(new BattleState
-                {
-                    Target = owner.BattleState.Target
-                });
-                bullet.Add(new OwnerState
-                {
-                    Owner = owner
-                });
-                bullet.Add(item.Get<RainData>().BulletData);
-
-                return bullet;
-            }
+            
             Vector3 GetVelocity(BulletAspect bullet)
             {
                 return Vector3.up * bullet.Data.Speed;
