@@ -5,33 +5,24 @@ namespace Yogurt.Arena
 {
     public class EthernalLifetime : IComponent
     {
-        public CancellationTokenSource Cts;
+        private CancellationTokenSource cts;
 
         public EthernalLifetime()
         {
-            Cts = new();
-            GameObject gameObject = new()
-            {
-                hideFlags = HideFlags.HideAndDontSave
-            };
-            LifetimeBehavior behavior = gameObject.AddComponent<LifetimeBehavior>();
-            behavior.Lifetime = this;
+            cts = new();
+            Application.quitting += Kill;
+        }
+
+        public void Kill()
+        {
+            cts.Cancel();
+            Application.quitting -= Kill;
         }
         
         public static implicit operator CancellationToken(EthernalLifetime lifetime)
         {
-            return lifetime.Cts.Token;
+            return lifetime.cts.Token;
         }
         
-    }
-
-    class LifetimeBehavior : MonoBehaviour
-    {
-        public EthernalLifetime Lifetime;
-
-        private void OnApplicationQuit()
-        {
-            Lifetime.Cts.Cancel();
-        }
     }
 }
