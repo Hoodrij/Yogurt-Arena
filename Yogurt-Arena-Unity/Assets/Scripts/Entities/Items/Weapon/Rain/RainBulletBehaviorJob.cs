@@ -15,14 +15,15 @@ namespace Yogurt.Arena
             new UpdateRainTargetJob().Run(rainBullet);
             MoveBullet();
 
-            await UniTask.WhenAny(collisionTask, WaitForLifeTime());
+            await UniTask.WhenAny(collisionTask, WaitForLifeTime())
+                .AttachLifetime();
 
             if (collision.IsValid)
             {
                 bullet.Body.Position = bullet.View.transform.position = collision.Position;
                 new DealAoeDamageJob().Run(rainBullet.Owner, collision.Position, rainData.Damage);
             }
-
+            
             new SpawnExplosionJob().Run(rainData.ExplosionAsset, bullet.Body.Position, rainData.Damage.Radius);
             await new KillBulletJob().Run(bullet);
 

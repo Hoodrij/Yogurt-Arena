@@ -44,16 +44,16 @@ MonoBehaviour:
     Asset:
       asset:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-    MoveSpeed: 0
+    MoveSpeed: 10
     MoveSmoothValue: 0.1
-    FindTargetDistance: 0
+    FindTargetDistance: 10
     LookSmoothValue: 0.3
     Health: 10
   Overmind:
     WaveAgentsCount:
-      Min: 1
-      Max: 3
-    MinimumAgents: 10
+      Min: 3
+      Max: 5
+    MinimumAgents: 20
     WavesDelay:
       Min: 0.1
       Max: 2
@@ -85,7 +85,7 @@ MonoBehaviour:
         m_Bits: 256
       Radius: 0.3
       Damage: 1
-      LifeTime: 0.25
+      LifeTime: 0.3
       Speed: 100
     Cooldown: 1
     Range: 12
@@ -110,14 +110,14 @@ MonoBehaviour:
       BulletsInClip: 5
       ClipCooldown: 1
     ScatteringData:
-      angle: 90
+      angle: 45
     BulletData:
       ExplosionAsset:
         asset:
           Prefab: {fileID: 2634516681230702857, guid: daa5658829c979d479e7ac4148ccc388, type: 3}
       Damage:
-        Damage: 5
-        Radius: 3
+        Damage: 10
+        Radius: 2
         HitMask:
           serializedVersion: 2
           m_Bits: 256

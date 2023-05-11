@@ -14,7 +14,8 @@ namespace Yogurt.Arena
             new ChargeUpdateBulletPositionJob().Run(bullet);
             TryDealDamage();
             MoveOwner();
-            await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime());
+            await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime())
+                .AttachLifetime();
             
             if (owner.Exist())
             {

@@ -16,5 +16,15 @@ namespace Yogurt.Arena
             (int winArgumentIndex, T result1, T result2) = await UniTask.WhenAny(task1(), task2());
             return winArgumentIndex == 0 ? result1 : result2;
         }
+
+        public static UniTask AttachLifetime(this UniTask task)
+        {
+            return task.AttachExternalCancellation(Query.Single<EthernalLifetime>());
+        }
+        
+        public static UniTask<T> AttachLifetime<T>(this UniTask<T> task)
+        {
+            return task.AttachExternalCancellation(Query.Single<EthernalLifetime>());
+        }
     }
 }
