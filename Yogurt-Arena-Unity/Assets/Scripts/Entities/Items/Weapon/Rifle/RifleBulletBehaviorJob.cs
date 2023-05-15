@@ -7,6 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
+            Time time = Query.Single<Time>();
             CollisionInfo collision = default;
             UniTask collisionTask = DetectHit();
             MoveBullet();
@@ -30,10 +31,10 @@ namespace Yogurt.Arena
 
                 while (bullet.Exist() && !bullet.Has<Kinematic>())
                 {
-                    Vector3 newPos = body.Position + body.Velocity * Time.deltaTime;
+                    Vector3 newPos = body.Position + body.Velocity * time;
                     body.Position = transform.position = newPos;
                     
-                    timePassed += Time.deltaTime / bullet.Data.LifeTime;
+                    timePassed += time.Delta / bullet.Data.LifeTime;
                     float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
                     

@@ -8,18 +8,16 @@ namespace Yogurt.Arena
     {
 	    public void Update()
         {
-	        float dt = Time.deltaTime;
-            
             foreach (AgentAspect agent in Query.Of<AgentAspect>()
 	                     .Without<Kinematic>())
             {
-		        UpdateState(agent, dt);
+		        UpdateState(agent, Query.Single<Time>());
 
 		        agent.View.transform.position = agent.Body.Position;
             }
         }
 
-        private void UpdateState(AgentAspect agent, float dt)
+        private void UpdateState(AgentAspect agent, Time time)
         {
 	        BodyState body = agent.Body;
 
@@ -28,9 +26,9 @@ namespace Yogurt.Arena
 			Vector3 currentPos = body.Position;
 
 			NavMeshPath path = CalculatePath(currentPos, requiredPos);
-			Vector3 requiredVelocity = GetNextVelocityByPath(agent.Data.MoveSpeed * dt, path);
+			Vector3 requiredVelocity = GetNextVelocityByPath(agent.Data.MoveSpeed * time, path);
 			float distanceToTarget = (currentPos - requiredPos).magnitude;
-			requiredVelocity = GetSmoothedVelocity(agent, distanceToTarget, requiredVelocity, dt);
+			requiredVelocity = GetSmoothedVelocity(agent, distanceToTarget, requiredVelocity, time);
 
 			Vector3 newPos = currentPos + requiredVelocity;
 			NavMesh.SamplePosition(newPos, out var hit, 100, NavMesh.AllAreas);
@@ -70,13 +68,13 @@ namespace Yogurt.Arena
 	        return finalPoint - path.corners.First();
 	    }
 		
-		private Vector3 GetSmoothedVelocity(AgentAspect agent, float distanceToTarget, Vector3 requiredVelocity, float dt)
+		private Vector3 GetSmoothedVelocity(AgentAspect agent, float distanceToTarget, Vector3 requiredVelocity, Time time)
 		{
 			AgentData data = agent.Data;
 			Vector3 prevVelocity = agent.Body.Velocity;
 
 			Vector3 velocity;
-			if (distanceToTarget < prevVelocity.magnitude * data.MoveSpeed * 0.5f)
+			if (distanceToTarget < prevVelocity.magnitude * data.SlowDistance)
 			{
 				velocity = requiredVelocity * (distanceToTarget * data.MoveSmoothValue * 2);
 			}
@@ -85,7 +83,7 @@ namespace Yogurt.Arena
 				velocity = Vector3.Lerp(prevVelocity, requiredVelocity, data.MoveSmoothValue);
 			}
 
-			velocity = velocity.ClampMagnitude(data.MoveSpeed * dt);
+			velocity = velocity.ClampMagnitude(data.MoveSpeed * time);
 			
 			return velocity;
 		}

@@ -7,6 +7,7 @@ namespace Yogurt.Arena
     {
         public async UniTask<CollisionInfo> Run(BulletAspect bullet)
         {
+            Time time = Query.Single<Time>();
             RaycastHit[] hits = new RaycastHit[3];
             
             while (bullet.Exist())
@@ -39,7 +40,7 @@ namespace Yogurt.Arena
             {
                 Vector3 velocity = bullet.Body.Velocity;
                 Vector3 dir = velocity.normalized;
-                float speed = velocity.magnitude * Time.deltaTime;
+                float speed = velocity.magnitude * time;
 
                 int hitsCount = Physics.SphereCastNonAlloc(bullet.Body.Position, bullet.Data.Radius, dir, hits, speed, bullet.Data.HitMask);
                 // int hitsCount = Physics.RaycastNonAlloc(bullet.Body.Position, dir, hits, speed, bullet.Data.HitMask);

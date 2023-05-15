@@ -6,7 +6,8 @@ namespace Yogurt.Arena
     public struct RainBulletBehaviorJob
     {
         public async UniTask Run(RainBulletAspect rainBullet)
-        {
+        { 
+            Time time = Query.Single<Time>();
             BulletAspect bullet = rainBullet.BulletAspect;
             RainBulletData rainData = rainBullet.Data;
             CollisionInfo collision = default;
@@ -37,17 +38,17 @@ namespace Yogurt.Arena
 
                 while (bullet.Exist() && !bullet.Has<Kinematic>())
                 {
-                    Vector3 newPos = body.Position + body.Velocity * Time.deltaTime;
+                    Vector3 newPos = body.Position + body.Velocity * time;
                     body.Position = transform.position = newPos;
-                    body.Velocity += rainData.Gravity * Time.deltaTime;
+                    body.Velocity += rainData.Gravity * time;
                     
                     AgentAspect target = battleState.Target;
                     if (target.Exist() && body.Velocity.y < 0)
                     {
                         Vector3 dirToTarget = (target.Body.Position - body.Position).normalized;
                         Vector3 neededVelocity = dirToTarget * body.Velocity.magnitude;
-                        neededVelocity = Vector3.RotateTowards(body.Velocity, neededVelocity, rainData.BulletRotationSpeed * Time.deltaTime, 0);
-                        body.Velocity = Vector3.Lerp(body.Velocity, neededVelocity, rainData.BulletSpeedChangeCoef * Time.deltaTime);
+                        neededVelocity = Vector3.RotateTowards(body.Velocity, neededVelocity, rainData.BulletRotationSpeed * time, 0);
+                        body.Velocity = Vector3.Lerp(body.Velocity, neededVelocity, rainData.BulletSpeedChangeCoef * time);
                     }
                     
                     await UniTask.Yield();

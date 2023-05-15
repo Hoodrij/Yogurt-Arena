@@ -35,8 +35,9 @@ MonoBehaviour:
     Asset:
       asset:
         Prefab: {fileID: 39607511721595333, guid: 9845d6291ccbb5942b5c33655dc76d82, type: 3}
-    MoveSpeed: 20
-    MoveSmoothValue: 0.1
+    MoveSpeed: 0.3
+    SlowDistance: 5
+    MoveSmoothValue: 0.2
     FindTargetDistance: 12
     LookSmoothValue: 0.2
     Health: 5
@@ -44,7 +45,8 @@ MonoBehaviour:
     Asset:
       asset:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-    MoveSpeed: 10
+    MoveSpeed: 0.2
+    SlowDistance: 5
     MoveSmoothValue: 0.1
     FindTargetDistance: 10
     LookSmoothValue: 0.3
@@ -69,7 +71,7 @@ MonoBehaviour:
         Radius: 0.2
         Damage: 4
         LifeTime: 0.4
-        Speed: 100
+        Speed: 1
       Cooldown: 0.1
       Range: 12
       AngleToAttack: 360
@@ -86,10 +88,10 @@ MonoBehaviour:
       Radius: 0.3
       Damage: 1
       LifeTime: 0.3
-      Speed: 100
+      Speed: 1
     Cooldown: 1
     Range: 12
-    AngleToAttack: 20
+    AngleToAttack: 15
   Rain:
     CommonData:
       Bullet:
@@ -102,7 +104,7 @@ MonoBehaviour:
         Radius: 0.5
         Damage: 0
         LifeTime: 2
-        Speed: 70
+        Speed: 1
       Cooldown: 0.05
       Range: 12
       AngleToAttack: 360
@@ -117,11 +119,11 @@ MonoBehaviour:
           Prefab: {fileID: 2634516681230702857, guid: daa5658829c979d479e7ac4148ccc388, type: 3}
       Damage:
         Damage: 10
-        Radius: 2
+        Radius: 3
         HitMask:
           serializedVersion: 2
           m_Bits: 256
-      Gravity: {x: 0, y: -200, z: 0}
-      FindTargetDistance: 12
-      BulletRotationSpeed: 60
-      BulletSpeedChangeCoef: 12
+      Gravity: {x: 0, y: -0.03, z: 0}
+      FindTargetDistance: 20
+      BulletRotationSpeed: 1
+      BulletSpeedChangeCoef: 0.3

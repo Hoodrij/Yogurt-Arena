@@ -8,6 +8,7 @@ namespace Yogurt.Arena
     {
         public PooledAsset<AgentView> Asset;
         public float MoveSpeed;
+        public float SlowDistance;
         public float MoveSmoothValue;
         public float FindTargetDistance;
         public float LookSmoothValue;

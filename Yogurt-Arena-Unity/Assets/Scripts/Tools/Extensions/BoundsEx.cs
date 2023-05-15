@@ -8,7 +8,7 @@ namespace Yogurt.Arena
         public static Vector3 GetRandomPoint(this Bounds bounds, string seed = "random")
         {
             if (seed == "random")
-                seed = Time.realtimeSinceStartup.ToString();
+                seed = UnityEngine.Time.realtimeSinceStartup.ToString();
 
             Random pseudoRandom = new Random(seed.GetHashCode());
 

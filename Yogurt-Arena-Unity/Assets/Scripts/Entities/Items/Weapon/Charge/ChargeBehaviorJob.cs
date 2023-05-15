@@ -8,6 +8,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
+            Time time = Query.Single<Time>();
             AgentAspect owner = bullet.State.Owner;
             owner.Add<Kinematic>();
             
@@ -33,11 +34,12 @@ namespace Yogurt.Arena
                 
                 while (owner.Exist() && owner.Has<Kinematic>())
                 {
-                    Vector3 newPos = body.Position + body.Velocity * Time.deltaTime;
+                    float deltaTime = time.Delta;
+                    Vector3 newPos = body.Position + body.Velocity * time.Scale;
                     NavMesh.SamplePosition(newPos, out var hit, 10, NavMesh.AllAreas);
                     body.Position = transform.position = body.Destination = hit.position;
                     
-                    timePassed += Time.deltaTime / bullet.Data.LifeTime;
+                    timePassed += deltaTime / bullet.Data.LifeTime;
                     float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
                     // required for collision detection

@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public void Update()
         {
-            float dt = Time.deltaTime * 100;
+            Time time = Query.Single<Time>();
             
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
             InputData data = inputField.Data;
@@ -18,12 +18,12 @@ namespace Yogurt.Arena
             {
                 delta = -reader.Delta;
                 delta *= data.Sensitivity;
-                inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, delta, data.AccumulativeValue * dt);
+                inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, delta, data.AccumulativeValue * time);
             }
             else
             {
                 delta = inputState.CumulativeVelocity;
-                inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, Vector2.zero, data.DeAccumulativeValue * dt);
+                inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, Vector2.zero, data.DeAccumulativeValue * time);
             }
 
             inputState.MoveDelta = AddCameraRotation(delta);
