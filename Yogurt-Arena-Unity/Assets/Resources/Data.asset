@@ -123,7 +123,7 @@ MonoBehaviour:
         HitMask:
           serializedVersion: 2
           m_Bits: 256
-      Gravity: {x: 0, y: -0.03, z: 0}
+      Gravity: {x: 0, y: -0.04, z: 0}
       FindTargetDistance: 20
       BulletRotationSpeed: 1
       BulletSpeedChangeCoef: 0.3
