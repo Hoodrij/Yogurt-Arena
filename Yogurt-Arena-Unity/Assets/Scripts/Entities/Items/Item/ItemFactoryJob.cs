@@ -2,6 +2,11 @@
 
 namespace Yogurt.Arena
 {
+    public interface IItemFactoryJob
+    {
+        UniTask<ItemAspect> Run(AgentAspect owner);
+    }
+    
     public struct ItemFactoryJob
     {
         public async UniTask<ItemAspect> Run(AgentAspect owner, IItemUseJob job)

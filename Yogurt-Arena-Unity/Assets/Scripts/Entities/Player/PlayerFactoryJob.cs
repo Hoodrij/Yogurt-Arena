@@ -13,7 +13,7 @@ namespace Yogurt.Arena
             player.Add<PlayerTag>();
 
             // await new RifleFactoryJob().Run(player);
-            await new RainFactoryJob().Run(player);
+            // await new RainFactoryJob().Run(player);
 
             return player.Entity;
         }

@@ -2,7 +2,7 @@
 
 namespace Yogurt.Arena
 {
-    public struct ChargeFactoryJob
+    public struct ChargeFactoryJob : IItemFactoryJob
     {
         public async UniTask<ItemAspect> Run(AgentAspect owner)
         {

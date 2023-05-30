@@ -3,7 +3,7 @@ using Yogurt.Arena.Components;
 
 namespace Yogurt.Arena
 {
-    public class RifleFactoryJob
+    public class RifleFactoryJob : IItemFactoryJob
     {
         public async UniTask<ItemAspect> Run(AgentAspect owner)
         {

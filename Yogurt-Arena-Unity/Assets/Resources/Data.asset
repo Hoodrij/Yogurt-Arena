@@ -40,22 +40,22 @@ MonoBehaviour:
     MoveSmoothValue: 0.2
     FindTargetDistance: 12
     LookSmoothValue: 0.2
-    Health: 5
+    Health: 10
   ChargeEnemy:
     Asset:
       asset:
         Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-    MoveSpeed: 0.2
+    MoveSpeed: 0
     SlowDistance: 5
     MoveSmoothValue: 0.1
     FindTargetDistance: 10
     LookSmoothValue: 0.3
-    Health: 10
+    Health: 100
   Overmind:
     WaveAgentsCount:
       Min: 3
       Max: 5
-    MinimumAgents: 20
+    MinimumAgents: 5
     WavesDelay:
       Min: 0.1
       Max: 2
@@ -123,7 +123,7 @@ MonoBehaviour:
         HitMask:
           serializedVersion: 2
           m_Bits: 256
-      Gravity: {x: 0, y: -0.04, z: 0}
+      Gravity: {x: 0, y: -0.05, z: 0}
       FindTargetDistance: 20
-      BulletRotationSpeed: 1
+      BulletRotationSpeed: 0.5
       BulletSpeedChangeCoef: 0.3
