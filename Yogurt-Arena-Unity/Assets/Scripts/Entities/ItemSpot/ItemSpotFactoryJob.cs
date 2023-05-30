@@ -6,8 +6,6 @@ namespace Yogurt.Arena
     {
         public async UniTask<ItemSpotAspect> Run(ItemSpotAuthoring authoring)
         {
-            Data data = Query.Single<Data>();
-
             Entity entity = World.Create();
             entity.Add(new BodyState
                 {

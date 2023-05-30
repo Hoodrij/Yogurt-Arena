@@ -12,6 +12,7 @@ namespace Yogurt.Arena
             while (item.Exist())
             {
                 await new WaitForWeaponReadyJob().Run(item);
+                if (!item.Exist()) return;
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
                 new FireBulletJob().Run(bullet, default);

@@ -13,6 +13,7 @@ namespace Yogurt.Arena
             while (item.Exist())
             {
                 await new WaitForWeaponReadyJob().Run(item);
+                if (!item.Exist()) return;
 
                 BulletAspect bullet = await new RainBulletFactoryJob().Run(weaponData.Bullet, item.Get<RainData>(), owner);
 

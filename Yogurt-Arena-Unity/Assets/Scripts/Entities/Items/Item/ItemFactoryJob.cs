@@ -9,12 +9,13 @@ namespace Yogurt.Arena
     
     public struct ItemFactoryJob
     {
-        public async UniTask<ItemAspect> Run(AgentAspect owner, IItemUseJob job)
+        public async UniTask<ItemAspect> Run(AgentAspect owner, IItemUseJob job, EItemType type)
         {
             ItemAspect itemAspect = World.Create()
                 .Add(new Item
                 {
-                    Job = job
+                    Job = job,
+                    Type = type
                 })
                 .Add(new OwnerState
                 {

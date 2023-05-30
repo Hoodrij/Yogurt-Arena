@@ -9,7 +9,7 @@ namespace Yogurt.Arena
         {
             RifleData data = Query.Single<Data>().Rifle;
 
-            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseRifleJob());
+            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseRifleJob(), EItemType.Rifle);
             item.Add(data);
             item.Add(data.CommonData);
             item.Add(data.ScatteringData);

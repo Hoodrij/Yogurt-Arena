@@ -8,7 +8,7 @@ namespace Yogurt.Arena
         {
             RainData rainData = Query.Single<Data>().Rain;
 
-            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseRainJob());
+            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseRainJob(), EItemType.Rain);
             item.Add(rainData);
             item.Add(rainData.CommonData);
             item.Add(rainData.ScatteringData);
