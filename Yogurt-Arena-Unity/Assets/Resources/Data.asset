@@ -50,7 +50,7 @@ MonoBehaviour:
     MoveSmoothValue: 0.1
     FindTargetDistance: 10
     LookSmoothValue: 0.3
-    Health: 100
+    Health: 10
   Overmind:
     WaveAgentsCount:
       Min: 3
@@ -118,7 +118,7 @@ MonoBehaviour:
         asset:
           Prefab: {fileID: 2634516681230702857, guid: daa5658829c979d479e7ac4148ccc388, type: 3}
       Damage:
-        Damage: 10
+        Damage: 5
         Radius: 3
         HitMask:
           serializedVersion: 2

@@ -16,7 +16,7 @@ namespace Yogurt.Arena
             IEnumerable<IQuest> Quests()
             {
                 yield return new PickupWeaponQuest();
-                yield return new PickupWeaponQuest();
+                yield return new KillEnemiesQuest(3);
                 yield return new PickupWeaponQuest();
             }
         }
