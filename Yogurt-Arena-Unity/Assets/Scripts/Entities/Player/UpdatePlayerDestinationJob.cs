@@ -5,9 +5,9 @@
         public void Update()
         {
             BeaconAspect beaconAspect = Query.Single<BeaconAspect>();
-            AgentAspect agentAspect = Query.Of<AgentAspect>().With<PlayerTag>().Single();
+            PlayerAspect playerAspect = Query.Single<PlayerAspect>();
 
-            agentAspect.Body.Destination = beaconAspect.Body.Destination;
+            playerAspect.Agent.Body.Destination = beaconAspect.Body.Destination;
         }
     }
 }

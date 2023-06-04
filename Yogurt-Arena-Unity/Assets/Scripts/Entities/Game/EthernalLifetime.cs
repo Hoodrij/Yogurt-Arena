@@ -13,7 +13,7 @@ namespace Yogurt.Arena
             Application.quitting += Kill;
         }
 
-        public void Kill()
+        private void Kill()
         {
             cts.Cancel();
             Application.quitting -= Kill;
