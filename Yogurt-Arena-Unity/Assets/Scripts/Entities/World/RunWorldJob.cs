@@ -16,6 +16,8 @@ namespace Yogurt.Arena
             world.Run(new AgentFindTargetJob());
             world.Run(new AgentMoveJob());
             world.Run(new AgentLookJob());
+            
+            new StartScenarioJob().Run();
         }
     }
 }
