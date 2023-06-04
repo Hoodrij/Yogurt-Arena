@@ -11,8 +11,7 @@ namespace Yogurt.Arena
 
             ItemAspect item = await new ItemFactoryJob().Run(owner, 
                 new UseRifleJob(), 
-                EItemType.Rifle,
-                EItemTags.Weapon);
+                EItemType.Rifle);
             item.Add(data);
             item.Add(data.CommonData);
             item.Add(data.ScatteringData);

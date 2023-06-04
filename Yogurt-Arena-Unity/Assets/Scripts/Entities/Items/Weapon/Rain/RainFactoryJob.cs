@@ -10,8 +10,7 @@ namespace Yogurt.Arena
 
             ItemAspect item = await new ItemFactoryJob().Run(owner, 
                 new UseRainJob(), 
-                EItemType.Rain, 
-                EItemTags.Weapon);
+                EItemType.Rain);
             item.Add(rainData);
             item.Add(rainData.CommonData);
             item.Add(rainData.ScatteringData);

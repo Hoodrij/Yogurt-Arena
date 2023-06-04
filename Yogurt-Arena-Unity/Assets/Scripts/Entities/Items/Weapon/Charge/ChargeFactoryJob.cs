@@ -10,8 +10,7 @@ namespace Yogurt.Arena
             
             ItemAspect item = await new ItemFactoryJob().Run(owner, 
                 new UseChargeJob(), 
-                EItemType.Charge, 
-                EItemTags.Weapon);
+                EItemType.Charge);
             item.Add(data);
 
             new SetWeaponJob().Run(owner, item);
