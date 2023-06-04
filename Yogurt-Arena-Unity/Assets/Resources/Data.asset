@@ -76,7 +76,7 @@ MonoBehaviour:
       Range: 12
       AngleToAttack: 360
     ScatteringData:
-      angle: 20
+      angle: 10
   Charge:
     Bullet:
       Asset:
@@ -125,5 +125,5 @@ MonoBehaviour:
           m_Bits: 256
       Gravity: {x: 0, y: -0.05, z: 0}
       FindTargetDistance: 20
-      BulletRotationSpeed: 0.5
-      BulletSpeedChangeCoef: 0.3
+      BulletRotationSpeed: 0.05
+      BulletSpeedChangeCoef: 0.05

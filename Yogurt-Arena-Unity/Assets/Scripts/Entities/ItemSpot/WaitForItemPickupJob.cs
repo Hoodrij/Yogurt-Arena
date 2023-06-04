@@ -22,6 +22,8 @@ namespace Yogurt.Arena
                     
                     if (!hit.transform.TryGetComponent(out EntityLink link))
                         continue;
+                    if (!link.Entity.Has<PlayerTag>())
+                        continue;
 
                     return link.Entity.As<AgentAspect>();
                 }
