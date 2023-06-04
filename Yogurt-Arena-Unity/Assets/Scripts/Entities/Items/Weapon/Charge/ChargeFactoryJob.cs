@@ -8,11 +8,14 @@ namespace Yogurt.Arena
         {
             WeaponData data = Query.Single<Data>().Charge;
             
-            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseChargeJob(), EItemType.Charge);
+            ItemAspect item = await new ItemFactoryJob().Run(owner, 
+                new UseChargeJob(), 
+                EItemType.Charge, 
+                EItemTags.Weapon);
             item.Add(data);
-            
-            item.Item.Job.Run(item);
-            
+
+            new SetWeaponJob().Run(owner, item);
+
             return item;
         }
     }

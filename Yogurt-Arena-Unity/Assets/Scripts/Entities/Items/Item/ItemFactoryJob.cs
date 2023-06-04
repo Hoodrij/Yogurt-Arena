@@ -14,8 +14,8 @@ namespace Yogurt.Arena
             ItemAspect itemAspect = World.Create()
                 .Add(new Item
                 {
+                    Type = type,
                     Job = job,
-                    Type = type
                 })
                 .Add(new OwnerState
                 {
@@ -24,7 +24,6 @@ namespace Yogurt.Arena
                 .As<ItemAspect>();
             
             itemAspect.Entity.SetParent(owner.Entity);
-            owner.Items.Add(itemAspect);
 
             return itemAspect;
         }

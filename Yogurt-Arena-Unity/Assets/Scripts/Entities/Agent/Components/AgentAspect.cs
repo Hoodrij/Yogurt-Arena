@@ -11,6 +11,6 @@
         public Health Health => this.Get<Health>();
         public AgentView View => this.Get<AgentView>();
         public BattleState BattleState => this.Get<BattleState>();
-        public ItemsCollection Items => this.Get<ItemsCollection>();
+        public Inventory Inventory => this.Get<Inventory>();
     }
 }

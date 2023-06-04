@@ -8,7 +8,10 @@ namespace Yogurt.Arena
         {
             RainData rainData = Query.Single<Data>().Rain;
 
-            ItemAspect item = await new ItemFactoryJob().Run(owner, new UseRainJob(), EItemType.Rain);
+            ItemAspect item = await new ItemFactoryJob().Run(owner, 
+                new UseRainJob(), 
+                EItemType.Rain, 
+                EItemTags.Weapon);
             item.Add(rainData);
             item.Add(rainData.CommonData);
             item.Add(rainData.ScatteringData);
@@ -17,7 +20,8 @@ namespace Yogurt.Arena
             {
                 CurrentAmmo = rainData.ClipData.BulletsInClip
             });
-            item.Item.Job.Run(item);
+            
+            new SetWeaponJob().Run(owner, item);
             
             return item;
         }
