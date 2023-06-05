@@ -23,7 +23,7 @@ namespace Yogurt.Arena
             UpdateScale();
         }
 
-        private async void UpdateScale()
+        private async UniTask UpdateScale()
         {
             while (Application.isPlaying)
             {

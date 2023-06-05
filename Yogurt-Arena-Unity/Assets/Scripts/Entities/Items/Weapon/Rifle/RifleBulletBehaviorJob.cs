@@ -38,7 +38,7 @@ namespace Yogurt.Arena
                     float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
                     
-                    await UniTask.Yield();
+                    await UniTaskEx.Yield();
                 }
             }
             async UniTask DetectHit()

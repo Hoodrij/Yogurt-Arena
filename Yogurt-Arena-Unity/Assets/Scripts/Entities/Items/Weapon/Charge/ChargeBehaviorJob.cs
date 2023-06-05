@@ -25,7 +25,7 @@ namespace Yogurt.Arena
             await new KillBulletJob().Run(bullet);
 
 
-            async void MoveOwner()
+            async UniTask MoveOwner()
             {
                 Transform transform = owner.View.transform;
                 BodyState body = owner.Body;
@@ -45,10 +45,10 @@ namespace Yogurt.Arena
                     // required for collision detection
                     bullet.Body.Velocity = body.Velocity;
                     
-                    await UniTask.Yield();
+                    await UniTaskEx.Yield();
                 }
             }
-            async void TryDealDamage()
+            async UniTask TryDealDamage()
             {
                 int damage = bullet.Data.Damage;
                 CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);

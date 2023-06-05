@@ -1,8 +1,10 @@
-﻿namespace Yogurt.Arena
+﻿using Cysharp.Threading.Tasks;
+
+namespace Yogurt.Arena
 {
     public struct ItemSpotBehaviorJob
     {
-        public async void Run(ItemSpotAspect itemSpot)
+        public async UniTask Run(ItemSpotAspect itemSpot)
         {
             EItemType itemType = itemSpot.State.Type;
 

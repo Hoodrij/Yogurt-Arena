@@ -51,7 +51,7 @@ namespace Yogurt.Arena
                         body.Velocity = Vector3.Lerp(body.Velocity, neededVelocity, rainData.BulletSpeedChangeCoef * time);
                     }
                     
-                    await UniTask.Yield();
+                    await UniTaskEx.Yield();
                 }
             }
             async UniTask DetectHit()
