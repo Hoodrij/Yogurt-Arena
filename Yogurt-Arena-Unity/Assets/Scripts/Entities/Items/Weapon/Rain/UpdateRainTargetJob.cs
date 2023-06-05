@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
