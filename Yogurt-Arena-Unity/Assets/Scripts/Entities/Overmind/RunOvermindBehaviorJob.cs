@@ -4,8 +4,9 @@ namespace Yogurt.Arena
 {
     public struct RunOvermindBehaviorJob
     {
-        public async void Run(OvermindAspect overmind)
+        public async void Run()
         {
+            OvermindAspect overmind = Query.Single<OvermindAspect>();
             overmind.Run(Update);
 
             

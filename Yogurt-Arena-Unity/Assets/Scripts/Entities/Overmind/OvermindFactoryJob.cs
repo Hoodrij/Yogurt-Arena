@@ -11,8 +11,6 @@ namespace Yogurt.Arena
                 .Add<OvermindState>()
                 .As<OvermindAspect>();
 
-            new RunOvermindBehaviorJob().Run(overmind);
-
             return overmind;
         }
     }
