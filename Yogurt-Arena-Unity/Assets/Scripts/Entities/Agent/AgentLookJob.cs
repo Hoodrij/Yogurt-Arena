@@ -9,6 +9,8 @@ namespace Yogurt.Arena
         
         public void Update()
         {
+            int frameRate = Query.Single<Time>().TARGET_FRAME_RATE;
+
             foreach (AgentAspect agent in Query.Of<AgentAspect>()
                          .Without<Kinematic>())
             {
@@ -21,7 +23,7 @@ namespace Yogurt.Arena
                 }
                 else
                 {
-                    body.LookPoint = body.Position + body.Velocity.WithY(0);
+                    body.LookPoint = body.Position + body.Velocity.WithY(0) * frameRate;
                 }
 
                 Vector3 lookVector = body.LookPoint - body.Position;

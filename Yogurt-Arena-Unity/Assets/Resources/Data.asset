@@ -87,7 +87,7 @@ MonoBehaviour:
         m_Bits: 256
       Radius: 0.3
       Damage: 1
-      LifeTime: 0.2
+      LifeTime: 0.3
       Speed: 1
     Cooldown: 1
     Range: 12
@@ -125,5 +125,5 @@ MonoBehaviour:
           m_Bits: 256
       Gravity: {x: 0, y: -0.05, z: 0}
       FindTargetDistance: 20
-      BulletRotationSpeed: 0.3
-      BulletSpeedChangeCoef: 0.1
+      BulletRotationSpeed: 0.5
+      BulletSpeedChangeCoef: 0.3

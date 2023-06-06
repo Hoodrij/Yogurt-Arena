@@ -5,7 +5,7 @@ namespace Yogurt.Arena
 {
     public class Time : IComponent
     {
-        private const int TARGET_FRAME_RATE = 90;
+        public readonly int TARGET_FRAME_RATE = 90;
         
         public float ExpectedDelta;
         public float Delta;
