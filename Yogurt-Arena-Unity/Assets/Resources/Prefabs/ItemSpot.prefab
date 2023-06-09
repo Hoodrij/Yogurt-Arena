@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d46766fc490bc3e42b7f452b8cd8f685, type: 2}
+  - {fileID: 2100000, guid: 31f43089c45fd504bb253badd80f031e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,7 +114,7 @@ Transform:
   m_Children:
   - {fileID: 5113206177287833577}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4703443424360742144
 MonoBehaviour:
@@ -128,8 +128,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68395aca8a874bc7acf5cc4aa9282a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemType: 0
-  Radius: 1
-  Mask:
-    serializedVersion: 2
-    m_Bits: 256

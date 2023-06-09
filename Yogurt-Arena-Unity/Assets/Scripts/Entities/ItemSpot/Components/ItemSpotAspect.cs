@@ -6,5 +6,6 @@
 
         public ItemSpotState State => this.Get<ItemSpotState>();
         public BodyState Body => this.Get<BodyState>();
+        public ItemSpotView View => this.Get<ItemSpotView>();
     }
 }

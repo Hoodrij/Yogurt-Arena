@@ -18,6 +18,7 @@ namespace Yogurt.Arena
             await new BeaconFactoryJob().Run();
             await new PlayerFactoryJob().Run();
             await new OvermindFactoryJob().Run();
+            await new ItemsSpawnerFactory().Run();
 
             return entity;
         }

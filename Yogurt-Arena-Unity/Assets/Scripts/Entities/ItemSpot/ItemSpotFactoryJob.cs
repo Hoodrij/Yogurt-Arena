@@ -1,22 +1,26 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct ItemSpotFactoryJob
     {
-        public async UniTask<ItemSpotAspect> Run(ItemSpotAuthoring authoring)
+        public async UniTask<ItemSpotAspect> Run(ItemSpotView view)
         {
+            ItemSpotData data = Query.Single<Data>().ItemSpot;
+            
             Entity entity = World.Create();
             entity.Add(new BodyState
                 {
-                    Position = authoring.transform.position
+                    Position = view.transform.position
                 })
                 .Add(new ItemSpotState
                 {
-                    Type = authoring.ItemType,
-                    Radius = authoring.Radius,
-                    Mask = authoring.Mask
-                });
+                    Type = EItemType.Empty,
+                    Radius = data.Radius,
+                    Mask = data.Mask
+                })
+                .Add(view);
 
             return entity.As<ItemSpotAspect>();
         }

@@ -5,7 +5,7 @@ namespace Yogurt.Arena
 {
     public struct UpdateRainTargetJob
     {
-        public async UniTask Run(RainBulletAspect bullet)
+        public async UniTaskVoid Run(RainBulletAspect bullet)
         {
             RainBulletData rainData = bullet.Data;
             AgentAspect owner = bullet.Owner;

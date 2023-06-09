@@ -1,4 +1,7 @@
-﻿namespace Yogurt.Arena
+﻿using System;
+using System.Linq;
+
+namespace Yogurt.Arena
 {
     public class Item : IComponent
     {
@@ -17,14 +20,23 @@
 
         public static EItemTags GetTags(this EItemType type) => type switch
         {
-            EItemType.Rifle => EItemTags.Weapon,
-            EItemType.Charge => EItemTags.Weapon,
-            EItemType.Rain => EItemTags.Weapon
+            EItemType.Rifle => EItemTags.Weapon | EItemTags.PlayerUsed,
+            EItemType.Rain => EItemTags.Weapon | EItemTags.PlayerUsed,
+            EItemType.Charge => EItemTags.Weapon | EItemTags.EnemyUsed,
+            _ => EItemTags.None
         };
-        
-        public static bool HasTags(this Item item, EItemTags others)
+
+        public static EItemType GetRandom(this EItemType _, EItemTags tags = EItemTags.Any)
         {
-            EItemTags tags = item.Type.GetTags();
+            return Enum.GetValues(typeof(EItemType))
+                .Cast<EItemType>()
+                .Where(type => type.HasTags(tags))
+                .GetRandom();
+        }
+        
+        public static bool HasTags(this EItemType type, EItemTags others)
+        {
+            EItemTags tags = type.GetTags();
             return tags.HasFlag(others);
         }
     }

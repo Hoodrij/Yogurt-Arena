@@ -23,7 +23,7 @@ namespace Yogurt.Arena
             await new KillBulletJob().Run(bullet);
 
 
-            async void MoveBullet()
+            async UniTaskVoid MoveBullet()
             {
                 Transform transform = bullet.View.transform;
                 BodyState body = bullet.Body;
