@@ -73,7 +73,7 @@ MonoBehaviour:
         LifeTime: 0.4
         Speed: 1
       Cooldown: 0.1
-      Range: 20
+      Range: 15
       AngleToAttack: 360
     ScatteringData:
       angle: 10
@@ -91,7 +91,7 @@ MonoBehaviour:
         LifeTime: 2
         Speed: 1
       Cooldown: 0.05
-      Range: 20
+      Range: 15
       AngleToAttack: 360
     ClipData:
       BulletsInClip: 5

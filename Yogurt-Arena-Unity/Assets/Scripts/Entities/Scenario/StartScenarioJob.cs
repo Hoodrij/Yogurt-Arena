@@ -7,6 +7,7 @@ namespace Yogurt.Arena
         public async UniTask Run()
         {
             await new PickupWeaponQuest().Run();
+            await UniTask.Delay(1.ToSeconds());
             new RunOvermindBehaviorJob().Run();
             await new KillEnemiesQuest(3).Run();
             await new PickupWeaponQuest().Run();
