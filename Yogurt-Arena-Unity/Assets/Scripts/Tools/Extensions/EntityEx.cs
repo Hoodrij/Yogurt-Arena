@@ -43,6 +43,24 @@ namespace Yogurt.Arena
                 await UniTaskEx.Yield();
             }
         }
+        
+        public static async UniTask Run(this Entity entity, Action action)
+        {
+            while (entity.Exist)
+            {
+                action();
+                await UniTaskEx.Yield();
+            }
+        }
+        
+        public static async UniTask Run(this Entity entity, Func<UniTask> action)
+        {
+            while (entity.Exist)
+            {
+                await action();
+                await UniTaskEx.Yield();
+            }
+        }
 
         public static async UniTask Run(this IAspect aspect, Action action)
         {

@@ -24,16 +24,12 @@ namespace Yogurt.Arena
 
         public static UniTask AttachLifetime(this UniTask task)
         {
-            UniTask task2 = task.AttachExternalCancellation(Query.Single<EthernalLifetime>());
-            task2.SuppressCancellationThrow();
-            return task2;
+            return task.AttachExternalCancellation(Query.Single<EthernalLifetime>());
         }
         
         public static UniTask<T> AttachLifetime<T>(this UniTask<T> task)
         {
-            UniTask<T> task2 = task.AttachExternalCancellation(Query.Single<EthernalLifetime>());
-            task2.SuppressCancellationThrow();
-            return task2;
+            return task.AttachExternalCancellation(Query.Single<EthernalLifetime>());
         }
     }
 }

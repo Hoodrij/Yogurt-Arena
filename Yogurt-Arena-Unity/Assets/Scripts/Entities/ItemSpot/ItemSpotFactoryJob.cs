@@ -10,7 +10,10 @@ namespace Yogurt.Arena
             ItemSpotData data = Query.Single<Data>().ItemSpot;
             
             Entity entity = World.Create();
-            entity.Add(new BodyState
+            entity
+                .AddLink(view.gameObject)
+                .Add(view)
+                .Add(new BodyState
                 {
                     Position = view.transform.position
                 })
@@ -19,8 +22,7 @@ namespace Yogurt.Arena
                     Type = EItemType.Empty,
                     Radius = data.Radius,
                     Mask = data.Mask
-                })
-                .Add(view);
+                });
 
             return entity.As<ItemSpotAspect>();
         }

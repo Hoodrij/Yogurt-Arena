@@ -8,7 +8,11 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(Entity itemSpawner)
         {
-            while (itemSpawner.Exist)
+            var allSpots = Query.Of<ItemSpotAspect>();
+            itemSpawner.Run(Update);
+
+            
+            async UniTask Update()
             {
                 await WaitForSpawnAvailable();
                 ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
@@ -16,20 +20,16 @@ namespace Yogurt.Arena
 
                 await UniTaskEx.Yield();
             }
-
-
             async UniTask WaitForSpawnAvailable()
             {
-                await UniTask.WaitWhile(() =>
-                {
-                    var allSpots = Query.Of<ItemSpotAspect>();
-                    return allSpots
-                        .Count(itemSpot => itemSpot.State.Type != EItemType.Empty) >= 2;
-                }).AttachLifetime();
+                await UniTask.WaitWhile(() => 
+                        Query.Of<ItemSpotAspect>()
+                        .Count(itemSpot => itemSpot.State.Type != EItemType.Empty) >= 2)
+                    .AttachLifetime();
             }
             IEnumerable<ItemSpotAspect> GetFreeSpots()
             {
-                return Query.Of<ItemSpotAspect>()
+                return allSpots
                     .Where(itemSpot => itemSpot.State.Type == EItemType.Empty);
             }
         }
