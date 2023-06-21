@@ -20,5 +20,6 @@ namespace Yogurt.Arena
         public RainData Rain;
         public WeaponData Charge;
         public ItemSpotData ItemSpot;
+        public HealingPotionData HealingPotion;
     }
 }

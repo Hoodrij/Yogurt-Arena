@@ -16,6 +16,7 @@ namespace Yogurt.Arena
             EItemType.Rifle => new RifleFactoryJob(),
             EItemType.Charge => new ChargeFactoryJob(),
             EItemType.Rain => new RainFactoryJob(),
+            EItemType.HealingPotion => new HealingPotionFactoryJob()
         };
 
         public static EItemTags GetTags(this EItemType type) => type switch
@@ -23,6 +24,7 @@ namespace Yogurt.Arena
             EItemType.Rifle => EItemTags.Weapon | EItemTags.PlayerUsed,
             EItemType.Rain => EItemTags.Weapon | EItemTags.PlayerUsed,
             EItemType.Charge => EItemTags.Weapon | EItemTags.EnemyUsed,
+            EItemType.HealingPotion => EItemTags.PlayerUsed | EItemTags.Weapon,
             _ => EItemTags.None
         };
 
