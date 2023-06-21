@@ -128,7 +128,7 @@ MonoBehaviour:
     Range: 12
     AngleToAttack: 15
   ItemSpot:
-    Radius: 2
+    Radius: 3
     Mask:
       serializedVersion: 2
       m_Bits: 256

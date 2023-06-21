@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             {
                 EItemType itemType = await WaitForActivation();
 
-                itemSpot.View.Show();
+                itemSpot.View.Show(itemType);
                 AgentAspect agent = await new WaitForItemPickupJob().Run(itemSpot);
                 itemType.GetFactoryJob().Run(agent);
 

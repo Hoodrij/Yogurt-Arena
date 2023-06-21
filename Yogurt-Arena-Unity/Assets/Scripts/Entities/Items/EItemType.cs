@@ -7,5 +7,7 @@
         Rifle = 100,
         Rain = 101,
         Charge = 102,
+        
+        HealingPotion = 200,
     }
 }
