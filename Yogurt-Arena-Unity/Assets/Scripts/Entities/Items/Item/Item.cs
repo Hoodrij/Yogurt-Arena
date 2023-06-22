@@ -21,14 +21,14 @@ namespace Yogurt.Arena
 
         public static EItemTags GetTags(this EItemType type) => type switch
         {
-            EItemType.Rifle => EItemTags.Weapon | EItemTags.PlayerUsed,
-            EItemType.Rain => EItemTags.Weapon | EItemTags.PlayerUsed,
-            EItemType.Charge => EItemTags.Weapon | EItemTags.EnemyUsed,
-            EItemType.HealingPotion => EItemTags.PlayerUsed | EItemTags.Weapon,
+            EItemType.Rifle => EItemTags.Weapon | EItemTags.AvailableToPlayer,
+            EItemType.Rain => EItemTags.Weapon | EItemTags.AvailableToPlayer,
+            EItemType.Charge => EItemTags.Weapon | EItemTags.AvailableToEnemy,
+            EItemType.HealingPotion => EItemTags.AvailableToPlayer | EItemTags.Weapon,
             _ => EItemTags.None
         };
 
-        public static EItemType GetRandom(this EItemType _, EItemTags tags = EItemTags.Any)
+        public static EItemType GetRandomItem(this EItemTags tags)
         {
             return Enum.GetValues(typeof(EItemType))
                 .Cast<EItemType>()

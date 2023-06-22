@@ -132,3 +132,5 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 256
+  HealingPotion:
+    Amount: 5

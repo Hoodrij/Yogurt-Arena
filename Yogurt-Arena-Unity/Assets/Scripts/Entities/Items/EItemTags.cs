@@ -7,8 +7,8 @@ namespace Yogurt.Arena
     {
         None = 0,
         Weapon = 1 << 0,
-        PlayerUsed = 1 << 1,
-        EnemyUsed = 1 << 2,
+        AvailableToPlayer = 1 << 1,
+        AvailableToEnemy = 1 << 2,
         
         Any = byte.MaxValue
     }
