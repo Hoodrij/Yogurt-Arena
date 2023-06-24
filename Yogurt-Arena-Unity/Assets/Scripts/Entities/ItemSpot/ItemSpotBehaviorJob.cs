@@ -21,7 +21,7 @@ namespace Yogurt.Arena
 
             async UniTask<EItemType> WaitForActivation()
             {
-                await UniTask.WaitUntil(() => itemSpot.State.Type != EItemType.Empty);
+                await Wait.Until(() => itemSpot.State.Type != EItemType.Empty);
                 return itemSpot.State.Type;
             }
         }

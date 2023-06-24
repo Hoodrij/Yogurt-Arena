@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(Entity entity)
         {
-            await UniTask.WaitWhile(() => entity.Exist);
+            await Wait.While(() => entity.Exist);
         }
     }
 }

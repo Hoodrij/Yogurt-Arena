@@ -9,7 +9,7 @@ namespace Yogurt.Arena
         {
             Entity initialEntity = entityGetter.Invoke();
 
-            await UniTask.WaitWhile(() => initialEntity == entityGetter.Invoke());
+            await Wait.While(() => initialEntity == entityGetter.Invoke());
         }
     }
 }

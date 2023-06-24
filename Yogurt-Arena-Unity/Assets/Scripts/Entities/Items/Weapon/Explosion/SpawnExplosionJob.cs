@@ -16,10 +16,10 @@ namespace Yogurt.Arena
             vfx.transform.position = position;
             view.localScale = Vector3.zero;
             view.DOScale(radius * 2, duration);
-            await UniTask.Delay(duration.ToSeconds());
+            await Wait.Seconds(duration);
             
             view.DOScale(0, duration).SetEase(Ease.InSine);
-            await UniTask.Delay(duration.ToSeconds());
+            await Wait.Seconds(duration);
 
             view.DOKill();
             vfx.GetComponent<PoolLink>().Release();

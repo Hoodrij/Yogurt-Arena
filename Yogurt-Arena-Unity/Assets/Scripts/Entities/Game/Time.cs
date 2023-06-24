@@ -29,7 +29,7 @@ namespace Yogurt.Arena
             {
                 Delta = UnityEngine.Time.deltaTime;
                 Scale = Delta / ExpectedDelta;
-                await UniTask.Yield();
+                await Wait.Update();
             }
         }
         

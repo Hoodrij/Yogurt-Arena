@@ -23,7 +23,7 @@ namespace Yogurt.Arena
                 bool hasAmmoInClip = await new SpendAmmoJob().Run(item.As<WeaponWithClipAspect>());
                 if (hasAmmoInClip)
                 {
-                    await UniTask.Delay(weaponData.Cooldown.ToSeconds());
+                    await Wait.Seconds(weaponData.Cooldown);
                 }
             }
             

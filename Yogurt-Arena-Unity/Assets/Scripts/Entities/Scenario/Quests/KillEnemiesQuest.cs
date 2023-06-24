@@ -31,9 +31,9 @@ namespace Yogurt.Arena
             } while (killedEnemies < amountToKill);
             
             
-            async void ListenForDeath(Entity enemy)
+            async UniTaskVoid ListenForDeath(Entity enemy)
             {
-                await new WaitForEntityDead().Run(enemy);
+                await enemy.WaitForDead();
                 killedEnemies++;
             }   
         }

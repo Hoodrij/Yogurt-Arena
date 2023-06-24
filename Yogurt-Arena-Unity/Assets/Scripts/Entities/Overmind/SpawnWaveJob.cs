@@ -20,7 +20,7 @@ namespace Yogurt.Arena
                 await new ChargeFactoryJob().Run(agent);
 
                 overmind.State.AddAgent(agent);
-                await UniTask.Delay(0.5f.ToSeconds());
+                await Wait.Seconds(0.5f);
             }
             
             

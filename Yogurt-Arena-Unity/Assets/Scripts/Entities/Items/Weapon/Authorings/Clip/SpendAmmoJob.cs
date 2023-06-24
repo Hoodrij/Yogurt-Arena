@@ -14,7 +14,7 @@ namespace Yogurt.Arena
                 return true;
             }
 
-            await UniTask.Delay(weapon.Data.ClipCooldown.ToSeconds());
+            await Wait.Seconds(weapon.Data.ClipCooldown);
             weapon.State.CurrentAmmo = weapon.Data.BulletsInClip;
             return false;
         }

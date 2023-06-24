@@ -14,9 +14,9 @@ namespace Yogurt.Arena
             float t = 0.1f;
 
             bullet.View.transform.DOScale(2, t);
-            await UniTask.Delay(t.ToSeconds());
+            await Wait.Seconds(t);
             bullet.View.transform.DOScale(0, t);
-            await UniTask.Delay(t.ToSeconds());
+            await Wait.Seconds(t);
 
             bullet.Kill();
         }

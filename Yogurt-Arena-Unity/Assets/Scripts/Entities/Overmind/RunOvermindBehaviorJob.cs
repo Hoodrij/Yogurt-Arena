@@ -13,8 +13,8 @@ namespace Yogurt.Arena
             async UniTask Update()
             {
                 await new SpawnWaveJob().Run(overmind);
-                await UniTask.Delay(overmind.Data.WavesDelay.GetRandom().ToSeconds());
-                await UniTask.WaitWhile(HasEnoughAgents);
+                await Wait.Seconds(overmind.Data.WavesDelay.GetRandom());
+                await Wait.While(HasEnoughAgents);
             }
             bool HasEnoughAgents()
             {

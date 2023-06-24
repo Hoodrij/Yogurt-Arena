@@ -20,7 +20,7 @@ namespace Yogurt.Arena
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
                 new RifleBulletBehaviorJob().Run(bullet);
 
-                await UniTask.Delay(data.Cooldown.ToSeconds());
+                await Wait.Seconds(data.Cooldown);
             }
             
             

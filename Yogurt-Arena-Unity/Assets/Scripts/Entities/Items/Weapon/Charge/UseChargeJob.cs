@@ -18,7 +18,7 @@ namespace Yogurt.Arena
                 new FireBulletJob().Run(bullet, default);
                 await new ChargeBehaviorJob().Run(bullet);
 
-                await UniTask.Delay(data.Cooldown.ToSeconds());
+                await Wait.Seconds(data.Cooldown);
             }
         }
     }

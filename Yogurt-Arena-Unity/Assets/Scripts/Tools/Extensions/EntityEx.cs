@@ -22,10 +22,10 @@ namespace Yogurt.Arena
 
         public static async UniTask WaitForDead(this Entity entity)
         {
-            await UniTask.WaitWhile(() => entity.Exist);
+            await Wait.While(() => entity.Exist);
         }
         
-        private static async void WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
+        private static async UniTask WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
         {
             await entity.WaitForDead();
 

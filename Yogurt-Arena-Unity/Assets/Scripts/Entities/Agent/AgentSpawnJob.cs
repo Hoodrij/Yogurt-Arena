@@ -22,7 +22,7 @@ namespace Yogurt.Arena
             return agent;
 
 
-            async void ActivateAgent()
+            async UniTaskVoid ActivateAgent()
             {
                 await RunAnimation();
                 agent.Remove<Kinematic>();
@@ -40,7 +40,7 @@ namespace Yogurt.Arena
                     .Append(agent.View.transform.DOScale(Vector3.one, animationTime * 4).SetEase(Ease.OutElastic))
                     ;
 
-                await UniTask.Delay(activationTime.ToSeconds());
+                await Wait.Seconds(activationTime);
             }
         }
     }
