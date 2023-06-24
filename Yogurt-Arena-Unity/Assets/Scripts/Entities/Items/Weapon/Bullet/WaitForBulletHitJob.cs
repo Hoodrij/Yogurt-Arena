@@ -29,8 +29,8 @@ namespace Yogurt.Arena
                         Entity = link ? link.Entity : default
                     };
                 }
-                
-                await UniTaskEx.Yield();
+
+                await Wait.Update();
             };
 
             return default;

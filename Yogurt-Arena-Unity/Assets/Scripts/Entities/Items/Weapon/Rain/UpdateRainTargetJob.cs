@@ -13,7 +13,7 @@ namespace Yogurt.Arena
             while (bullet.Exist())
             {
                 bullet.BattleState.Target = GetTarget();
-                await UniTaskEx.Yield();
+                await Wait.Update();
             }
                 
                 

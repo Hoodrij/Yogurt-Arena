@@ -27,7 +27,7 @@ namespace Yogurt.Arena
                     }
                 }
 
-                await UniTaskEx.Yield();
+                await Wait.Update();
             } while (killedEnemies < amountToKill);
             
             

@@ -28,7 +28,7 @@ namespace Yogurt.Arena
                     return link.Entity.As<AgentAspect>();
                 }
 
-                await UniTaskEx.Yield();
+                await Wait.Update();
             }
 
             return default;

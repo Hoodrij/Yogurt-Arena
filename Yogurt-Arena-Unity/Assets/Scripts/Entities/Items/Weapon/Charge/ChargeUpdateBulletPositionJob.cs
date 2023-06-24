@@ -13,8 +13,8 @@ namespace Yogurt.Arena
                 Transform transform = bullet.View.transform;
                 Vector3 position = owner.View.transform.position.AddY(0.5f);
                 bullet.Body.Position = transform.position = position;
-                
-                await UniTaskEx.Yield();
+
+                await Wait.Update();
             }
         }
     }

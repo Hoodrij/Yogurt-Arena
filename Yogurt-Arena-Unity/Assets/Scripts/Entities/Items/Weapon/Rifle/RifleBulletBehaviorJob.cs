@@ -12,7 +12,7 @@ namespace Yogurt.Arena
             UniTask collisionTask = DetectHit();
             MoveBullet();
 
-            await UniTask.WhenAny(collisionTask, WaitForLifeTime());
+            await Wait.Any(collisionTask, WaitForLifeTime());
 
             if (collision.IsValid)
             {
@@ -37,8 +37,8 @@ namespace Yogurt.Arena
                     timePassed += time.Delta / bullet.Data.LifeTime;
                     float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
-                    
-                    await UniTaskEx.Yield();
+
+                    await Wait.Update();
                 }
             }
             async UniTask DetectHit()

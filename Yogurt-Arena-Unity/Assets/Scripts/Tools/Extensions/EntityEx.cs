@@ -40,7 +40,7 @@ namespace Yogurt.Arena
             while (entity.Exist)
             {
                 job.Update();
-                await UniTaskEx.Yield();
+                await Wait.Update();
             }
         }
         
@@ -49,7 +49,7 @@ namespace Yogurt.Arena
             while (entity.Exist)
             {
                 action();
-                await UniTaskEx.Yield();
+                await Wait.Update();
             }
         }
         
@@ -58,7 +58,7 @@ namespace Yogurt.Arena
             while (entity.Exist)
             {
                 await action();
-                await UniTaskEx.Yield();
+                await Wait.Update();
             }
         }
 
@@ -67,7 +67,7 @@ namespace Yogurt.Arena
             while (aspect.Exist())
             {
                 action();
-                await UniTaskEx.Yield();
+                await Wait.Update();
             }
         }
         
@@ -76,7 +76,7 @@ namespace Yogurt.Arena
             while (aspect.Exist())
             {
                 await action();
-                await UniTaskEx.Yield();
+                await Wait.Update();
             }
         }
     }

@@ -17,19 +17,20 @@ namespace Yogurt.Arena
                 ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
                 randomSpot.State.Type = (EItemTags.Weapon | EItemTags.AvailableToPlayer).GetRandomItem();
 
-                await UniTaskEx.Yield();
+                await Wait.Update();
             }
             async UniTask WaitForSpawnAvailable()
             {
-                await UniTask.WaitWhile(() => 
-                        Query.Of<ItemSpotAspect>()
-                        .Count(itemSpot => itemSpot.State.Type != EItemType.Empty) >= 2)
-                    .AttachLifetime();
+                await Wait.While(() =>
+                {
+                    return Query.Of<ItemSpotAspect>()
+                        .Count(itemSpot => itemSpot.Get<ItemSpotState>().Type != EItemType.Empty) >= 2;
+                });
             }
             IEnumerable<ItemSpotAspect> GetFreeSpots()
             {
                 return Query.Of<ItemSpotAspect>()
-                    .Where(itemSpot => itemSpot.State.Type == EItemType.Empty);
+                    .Where(itemSpot => itemSpot.Get<ItemSpotState>().Type == EItemType.Empty);
             }
         }
     }

@@ -16,8 +16,7 @@ namespace Yogurt.Arena
             new UpdateRainTargetJob().Run(rainBullet);
             MoveBullet();
 
-            await UniTask.WhenAny(collisionTask, WaitForLifeTime())
-                .AttachLifetime();
+            await Wait.Any(collisionTask, WaitForLifeTime());
 
             if (collision.IsValid)
             {
@@ -50,8 +49,8 @@ namespace Yogurt.Arena
                         neededVelocity = Vector3.RotateTowards(body.Velocity, neededVelocity, rainData.BulletRotationSpeed * time, 0);
                         body.Velocity = Vector3.Lerp(body.Velocity, neededVelocity, rainData.BulletSpeedChangeCoef * time);
                     }
-                    
-                    await UniTaskEx.Yield();
+
+                    await Wait.Update();
                 }
             }
             async UniTask DetectHit()

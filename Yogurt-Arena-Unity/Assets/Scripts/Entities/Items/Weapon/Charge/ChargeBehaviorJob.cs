@@ -15,8 +15,7 @@ namespace Yogurt.Arena
             new ChargeUpdateBulletPositionJob().Run(bullet);
             TryDealDamage();
             MoveOwner();
-            await UniTask.WhenAny(WaitForOwnerDeath(), WaitForLifeTime())
-                .AttachLifetime();
+            await Wait.Any(WaitForOwnerDeath(), WaitForLifeTime());
             
             if (owner.Exist())
             {
@@ -44,8 +43,8 @@ namespace Yogurt.Arena
                     body.Velocity = body.Velocity.normalized * speed;
                     // required for collision detection
                     bullet.Body.Velocity = body.Velocity;
-                    
-                    await UniTaskEx.Yield();
+
+                    await Wait.Update();
                 }
             }
             async UniTask TryDealDamage()
