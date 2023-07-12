@@ -1,10 +1,10 @@
-using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct InputFieldFactoryJob
     {
-        public async UniTask Run()
+        public async Awaitable Run()
         {
             InputData inputData = Query.Single<Data>().Input;
             InputFieldView inputFieldView = await inputData.Asset.Spawn();

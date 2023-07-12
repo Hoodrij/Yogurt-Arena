@@ -1,10 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct StartScenarioJob
     {
-        public async UniTask Run()
+        public async Awaitable Run()
         {
             await new PickupWeaponQuest().Run();
             await Wait.Seconds(1);

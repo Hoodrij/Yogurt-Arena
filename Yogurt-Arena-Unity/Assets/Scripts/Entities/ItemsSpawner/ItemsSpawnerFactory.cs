@@ -1,10 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct ItemsSpawnerFactory
     {
-        public async UniTask Run()
+        public async Awaitable Run()
         {
             Entity entity = World.Create()
                 .Add<ItemsSpawnerState>();

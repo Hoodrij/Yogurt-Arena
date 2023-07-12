@@ -1,11 +1,11 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct WaitForEntityChanged
     {
-        public async UniTask Run(Func<Entity> entityGetter)
+        public async Awaitable Run(Func<Entity> entityGetter)
         {
             Entity initialEntity = entityGetter.Invoke();
 

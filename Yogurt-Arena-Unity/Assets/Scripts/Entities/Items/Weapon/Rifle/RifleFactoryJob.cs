@@ -1,11 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 using Yogurt.Arena.Components;
 
 namespace Yogurt.Arena
 {
     public class RifleFactoryJob : IItemFactoryJob
     {
-        public async UniTask<ItemAspect> Run(AgentAspect owner)
+        public async Awaitable<ItemAspect> Run(AgentAspect owner)
         {
             RifleData data = Query.Single<Data>().Rifle;
 

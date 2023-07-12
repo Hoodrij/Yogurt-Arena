@@ -1,10 +1,9 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Roguelike.Tools
 {
     public interface IAsset<TComponent> where TComponent : Component
     {
-        public UniTask<TComponent> Spawn();
+        public Awaitable<TComponent> Spawn();
     }
 }

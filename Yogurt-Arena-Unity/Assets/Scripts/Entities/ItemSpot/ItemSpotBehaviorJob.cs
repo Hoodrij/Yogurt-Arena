@@ -1,10 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct ItemSpotBehaviorJob
     {
-        public async UniTask Run(ItemSpotAspect itemSpot)
+        public async Awaitable Run(ItemSpotAspect itemSpot)
         {
             while (itemSpot.Exist())
             {
@@ -19,7 +19,7 @@ namespace Yogurt.Arena
             }
 
 
-            async UniTask<EItemType> WaitForActivation()
+            async Awaitable<EItemType> WaitForActivation()
             {
                 await Wait.Until(() => itemSpot.State.Type != EItemType.Empty);
                 return itemSpot.State.Type;

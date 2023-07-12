@@ -1,11 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct SpendAmmoJob
     {
         /// <returns>True if has available ammo and do NOT require clip reload</returns>
-        public async UniTask<bool> Run(WeaponWithClipAspect weapon)
+        public async Awaitable<bool> Run(WeaponWithClipAspect weapon)
         {
             weapon.State.CurrentAmmo--;
             

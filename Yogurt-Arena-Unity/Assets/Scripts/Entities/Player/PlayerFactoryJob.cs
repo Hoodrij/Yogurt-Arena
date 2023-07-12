@@ -1,11 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct PlayerFactoryJob
     {
-        public async UniTask<Entity> Run()
+        public async Awaitable<Entity> Run()
         {
             AgentData data = Query.Single<Data>().Player;
             

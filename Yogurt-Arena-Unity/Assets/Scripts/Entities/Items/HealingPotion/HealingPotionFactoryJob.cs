@@ -1,10 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct HealingPotionFactoryJob : IItemFactoryJob
     {
-        public async UniTask<ItemAspect> Run(AgentAspect owner)
+        public async Awaitable<ItemAspect> Run(AgentAspect owner)
         {
             HealingPotionData data = Query.Single<Data>().HealingPotion;
 

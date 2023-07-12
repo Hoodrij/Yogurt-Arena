@@ -1,10 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct LevelFactoryJob
     {
-        public async UniTask Run()
+        public async Awaitable Run()
         {
             Level view = await Query.Single<Data>().Level.Spawn();
 

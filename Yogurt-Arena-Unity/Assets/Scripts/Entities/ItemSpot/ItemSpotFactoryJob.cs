@@ -1,11 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct ItemSpotFactoryJob
     {
-        public async UniTask<ItemSpotAspect> Run(ItemSpotView view)
+        public async Awaitable<ItemSpotAspect> Run(ItemSpotView view)
         {
             ItemSpotData data = Query.Single<Data>().ItemSpot;
             

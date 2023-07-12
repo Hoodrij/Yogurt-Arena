@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using Yogurt.Roguelike.Tools;
 
@@ -7,7 +6,7 @@ namespace Yogurt.Arena
 {
     public struct SpawnExplosionJob
     {
-        public async UniTask Run(PooledAsset<ExplosionView> asset, Vector3 position, float radius)
+        public async Awaitable Run(PooledAsset<ExplosionView> asset, Vector3 position, float radius)
         {
             ExplosionView vfx = await asset.Spawn();
             Transform view = vfx.View;

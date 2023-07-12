@@ -1,10 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct WaitForEntityDead
     {
-        public async UniTask Run(Entity entity)
+        public async Awaitable Run(Entity entity)
         {
             await Wait.While(() => entity.Exist);
         }

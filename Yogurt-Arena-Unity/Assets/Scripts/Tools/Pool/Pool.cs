@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yogurt.Roguelike.Tools
@@ -8,14 +7,14 @@ namespace Yogurt.Roguelike.Tools
     public class Pool
     {
         private Stack<GameObject> pool = new();
-        private Func<UniTask<GameObject>> factory;
+        private Func<Awaitable<GameObject>> factory;
 
-        public Pool(Func<UniTask<GameObject>> factory)
+        public Pool(Func<Awaitable<GameObject>> factory)
         {
             this.factory = factory;
         }
         
-        public async UniTask<GameObject> Pop()
+        public async Awaitable<GameObject> Pop()
         {
             GameObject go;
             if (pool.Count <= 0)

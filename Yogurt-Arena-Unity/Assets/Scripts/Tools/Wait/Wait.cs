@@ -1,43 +1,74 @@
 ﻿using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public static class Wait
     {
-        private static CancellationToken Lifetime => Query.Single<EthernalLifetime>();
-        
-        public static UniTask Until(Func<bool> predicate)
+        public static async Awaitable While(Func<bool> predicate)
         {
-            return UniTask.WaitUntil(predicate, cancellationToken: Lifetime);
-        }
-
-        public static UniTask While(Func<bool> predicate)
-        {
-            return UniTask.WaitWhile(predicate, cancellationToken: Lifetime);
-        }
-
-        public static UniTask Update()
-        {
-            return UniTask.NextFrame(cancellationToken: Lifetime);
-        }
-
-        public static UniTask Seconds(float seconds)
-        {
-            return UniTask.Delay(seconds.ToSeconds(), cancellationToken: Lifetime);
-        }
-
-        public static UniTask Any(params UniTask[] array)
-        {
-            return UniTask.WhenAny(array)
-                .AttachExternalCancellation(Lifetime);
+            while (predicate())
+            {
+                await Awaitable.NextFrameAsync();
+            }
         }
         
-        public static UniTask All(params UniTask[] array)
+        public static async Awaitable Until(Func<bool> predicate)
         {
-            return UniTask.WhenAll(array)
-                .AttachExternalCancellation(Lifetime);
+            while (!predicate())
+            {
+                await Awaitable.NextFrameAsync();
+            }
+        }
+
+        public static Awaitable Update()
+        {
+            return Awaitable.NextFrameAsync();
+        }
+
+        public static Awaitable Seconds(float seconds)
+        {
+            return Awaitable.WaitForSecondsAsync(seconds);
+        }
+
+        public static async Awaitable Any(params Awaitable[] tasks)
+        {
+            bool haveCompletedTask = false;
+
+            while (!haveCompletedTask)
+            {
+                foreach (Awaitable awaitable in tasks)
+                {
+                    if (awaitable.IsCompleted)
+                    {
+                        haveCompletedTask = true;
+                        break;
+                    }
+                }
+
+                await Awaitable.NextFrameAsync();
+            }
+            
+            foreach (Awaitable awaitable in tasks)
+            {
+                awaitable.Cancel();
+            }
+        }
+        
+        public static async Awaitable All(params Awaitable[] tasks)
+        {
+            bool allTasksCompleted = false;
+
+            while (!allTasksCompleted)
+            {
+                allTasksCompleted = true;
+                foreach (Awaitable awaitable in tasks)
+                {
+                    allTasksCompleted &= awaitable.IsCompleted;
+                }
+
+                await Awaitable.NextFrameAsync();
+            }
         }
     }
 }

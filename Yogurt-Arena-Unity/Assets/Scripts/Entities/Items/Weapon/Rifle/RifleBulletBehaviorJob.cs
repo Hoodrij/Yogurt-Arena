@@ -1,15 +1,14 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct RifleBulletBehaviorJob
     {
-        public async UniTask Run(BulletAspect bullet)
+        public async Awaitable Run(BulletAspect bullet)
         {
             Time time = Query.Single<Time>();
             CollisionInfo collision = default;
-            UniTask collisionTask = DetectHit();
+            Awaitable collisionTask = DetectHit();
             MoveBullet();
 
             await Wait.Any(collisionTask, WaitForLifeTime());
@@ -23,7 +22,7 @@ namespace Yogurt.Arena
             await new KillBulletJob().Run(bullet);
 
 
-            async UniTaskVoid MoveBullet()
+            async void MoveBullet()
             {
                 Transform transform = bullet.View.transform;
                 BodyState body = bullet.Body;
@@ -41,11 +40,11 @@ namespace Yogurt.Arena
                     await Wait.Update();
                 }
             }
-            async UniTask DetectHit()
+            async Awaitable DetectHit()
             {
                 collision = await new WaitForBulletHitJob().Run(bullet);
             }
-            async UniTask WaitForLifeTime()
+            async Awaitable WaitForLifeTime()
             {
                 await new WaitForBulletLiteTimeJob().Run(bullet);
             }

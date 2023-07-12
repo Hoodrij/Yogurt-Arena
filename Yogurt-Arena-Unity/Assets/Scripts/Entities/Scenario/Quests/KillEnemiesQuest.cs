@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             this.amountToKill = amountToKill;
         }
 
-        public async UniTask Run()
+        public async Awaitable Run()
         {
             int killedEnemies = 0;
 
@@ -31,7 +31,7 @@ namespace Yogurt.Arena
             } while (killedEnemies < amountToKill);
             
             
-            async UniTaskVoid ListenForDeath(Entity enemy)
+            async void ListenForDeath(Entity enemy)
             {
                 await enemy.WaitForDead();
                 killedEnemies++;

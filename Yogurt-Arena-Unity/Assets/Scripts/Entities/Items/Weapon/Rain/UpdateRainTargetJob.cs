@@ -1,11 +1,10 @@
 ﻿using System.Linq;
-using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct UpdateRainTargetJob
     {
-        public async UniTaskVoid Run(RainBulletAspect bullet)
+        public async void Run(RainBulletAspect bullet)
         {
             RainBulletData rainData = bullet.Data;
             AgentAspect owner = bullet.Owner;

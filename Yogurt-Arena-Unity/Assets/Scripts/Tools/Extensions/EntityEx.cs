@@ -1,5 +1,4 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yogurt.Arena
@@ -20,12 +19,12 @@ namespace Yogurt.Arena
             return entity;
         }
 
-        public static async UniTask WaitForDead(this Entity entity)
+        public static async Awaitable WaitForDead(this Entity entity)
         {
             await Wait.While(() => entity.Exist);
         }
         
-        private static async UniTask WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
+        private static async Awaitable WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
         {
             await entity.WaitForDead();
 
@@ -35,7 +34,7 @@ namespace Yogurt.Arena
             }
         }
 
-        public static async UniTask Run(this Entity entity, IUpdateJob job)
+        public static async Awaitable Run(this Entity entity, IUpdateJob job)
         {
             while (entity.Exist)
             {
@@ -44,7 +43,7 @@ namespace Yogurt.Arena
             }
         }
         
-        public static async UniTask Run(this Entity entity, Action action)
+        public static async Awaitable Run(this Entity entity, Action action)
         {
             while (entity.Exist)
             {
@@ -53,7 +52,7 @@ namespace Yogurt.Arena
             }
         }
         
-        public static async UniTask Run(this Entity entity, Func<UniTask> action)
+        public static async Awaitable Run(this Entity entity, Func<Awaitable> action)
         {
             while (entity.Exist)
             {
@@ -62,7 +61,7 @@ namespace Yogurt.Arena
             }
         }
 
-        public static async UniTask Run(this IAspect aspect, Action action)
+        public static async Awaitable Run(this IAspect aspect, Action action)
         {
             while (aspect.Exist())
             {
@@ -71,7 +70,7 @@ namespace Yogurt.Arena
             }
         }
         
-        public static async UniTask Run(this IAspect aspect, Func<UniTask> action)
+        public static async Awaitable Run(this IAspect aspect, Func<Awaitable> action)
         {
             while (aspect.Exist())
             {

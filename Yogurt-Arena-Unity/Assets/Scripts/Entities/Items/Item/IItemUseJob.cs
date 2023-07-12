@@ -1,9 +1,9 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public interface IItemUseJob
     {
-        public UniTask Run(ItemAspect item);
+        public Awaitable Run(ItemAspect item);
     }
 }

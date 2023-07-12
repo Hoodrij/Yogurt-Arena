@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -22,7 +20,7 @@ namespace Yogurt.Arena
             new ItemSpotBehaviorJob().Run(itemSpot);
         }
 
-        public async UniTask Show(EItemType type)
+        public async Awaitable Show(EItemType type)
         {
             foreach (var pair in map)
             {
@@ -33,7 +31,7 @@ namespace Yogurt.Arena
             transform.DOScale(1, 0.2f).SetEase(Ease.OutBack, 6);
         }
         
-        public async UniTask Hide()
+        public async Awaitable Hide()
         {
             transform.DOScale(0, 0.2f).SetEase(Ease.InBack, 6);
         }

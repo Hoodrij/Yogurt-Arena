@@ -1,15 +1,15 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public interface IItemFactoryJob
     {
-        UniTask<ItemAspect> Run(AgentAspect owner);
+        Awaitable<ItemAspect> Run(AgentAspect owner);
     }
     
     public struct ItemFactoryJob
     {
-        public async UniTask<ItemAspect> Run(AgentAspect owner, IItemUseJob job, EItemType type)
+        public async Awaitable<ItemAspect> Run(AgentAspect owner, IItemUseJob job, EItemType type)
         {
             ItemAspect itemAspect = World.Create()
                 .Add(new Item
