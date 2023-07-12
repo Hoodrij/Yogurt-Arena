@@ -4,16 +4,7 @@
     {
         public void Run(Entity target, int damage)
         {
-            if (!target.Exist) return;
-            
-            if (target.TryGet(out Health health))
-            {
-                health.Value -= damage;
-                if (health.Value <= 0)
-                {
-                    target.Kill();
-                }
-            }
+            new ChangeHealthJob().Run(target, -damage);
         }
     }
 }

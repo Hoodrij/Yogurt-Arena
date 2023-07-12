@@ -2,7 +2,7 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Yogurt.Roguelike.Tools
+namespace Yogurt.Arena.Tools
 {
     [Serializable]
     public class Asset<TComponent> : IAsset<TComponent> where TComponent : Component

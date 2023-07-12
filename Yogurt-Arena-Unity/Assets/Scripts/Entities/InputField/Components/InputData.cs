@@ -1,5 +1,5 @@
 ﻿using System;
-using Yogurt.Roguelike.Tools;
+using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {

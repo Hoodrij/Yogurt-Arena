@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Yogurt.Roguelike.Tools
+namespace Yogurt.Arena.Tools
 {
     [Serializable]
     public class PooledAsset<TComponent> : IAsset<TComponent> where TComponent : Component

@@ -9,7 +9,7 @@ namespace Yogurt.Arena
             HealingPotionData data = item.Get<HealingPotionData>();
             AgentAspect agentAspect = item.Owner.Owner;
             
-            new HealJob().Run(agentAspect.Entity, data.Amount);
+            new ChangeHealthJob().Run(agentAspect.Entity, data.Amount);
         }
     }
 }

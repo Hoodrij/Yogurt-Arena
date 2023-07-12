@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Yogurt.Roguelike.Tools
+namespace Yogurt.Arena.Tools
 {
     public interface IAsset<TComponent> where TComponent : Component
     {

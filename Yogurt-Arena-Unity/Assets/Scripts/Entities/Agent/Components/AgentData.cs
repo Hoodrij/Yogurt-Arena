@@ -1,5 +1,5 @@
 ﻿using System;
-using Yogurt.Roguelike.Tools;
+using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
@@ -12,6 +12,7 @@ namespace Yogurt.Arena
         public float MoveSmoothValue;
         public float FindTargetDistance;
         public float LookSmoothValue;
+        public int MaxHealth;
         public int Health;
     }
 }

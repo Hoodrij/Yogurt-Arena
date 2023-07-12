@@ -21,6 +21,7 @@ namespace Yogurt.Arena
                 })
                 .Add(new Health
                 {
+                    MaxHealth = data.MaxHealth,
                     Value = data.Health
                 });
             

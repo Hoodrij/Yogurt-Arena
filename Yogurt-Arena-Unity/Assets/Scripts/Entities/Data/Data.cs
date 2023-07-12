@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Yogurt.Arena.Components;
-using Yogurt.Roguelike.Tools;
+using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
@@ -10,6 +10,7 @@ namespace Yogurt.Arena
         public Asset<World> World;
         public Asset<Level> Level;
 
+        public UIData UIData;
         public InputData Input;
         public CameraData Camera;
         public BeaconData Beacon;

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Yogurt.Roguelike.Tools
+namespace Yogurt.Arena.Tools
 {
     public class PoolLink : MonoBehaviour, IDisposable
     {

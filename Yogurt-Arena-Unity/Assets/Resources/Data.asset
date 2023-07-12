@@ -16,6 +16,9 @@ MonoBehaviour:
     Prefab: {fileID: 6010830135608539927, guid: 5fb0efdc5d163c447b432e799b8e22b8, type: 3}
   Level:
     Prefab: {fileID: 238997165645100861, guid: 358c1dc01a765b746b3cd6c70421ff5d, type: 3}
+  UIData:
+    Asset:
+      Prefab: {fileID: 5392028458040852505, guid: 88b5ac235e9eb23409633ef0f7b9b14e, type: 3}
   Input:
     Asset:
       Prefab: {fileID: 2346468616466672681, guid: 67cb5b8d2da54ff4d815852dde211387, type: 3}
@@ -40,6 +43,7 @@ MonoBehaviour:
     MoveSmoothValue: 0.1
     FindTargetDistance: 20
     LookSmoothValue: 0.2
+    MaxHealth: 10
     Health: 10
   ChargeEnemy:
     Asset:
@@ -50,6 +54,7 @@ MonoBehaviour:
     MoveSmoothValue: 0.1
     FindTargetDistance: 15
     LookSmoothValue: 0.2
+    MaxHealth: 10
     Health: 10
   Overmind:
     WaveAgentsCount:

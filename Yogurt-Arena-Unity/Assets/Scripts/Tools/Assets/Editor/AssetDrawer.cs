@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using Yogurt.Arena.Tools;
 
 namespace Yogurt.Roguelike.Tools
 {
