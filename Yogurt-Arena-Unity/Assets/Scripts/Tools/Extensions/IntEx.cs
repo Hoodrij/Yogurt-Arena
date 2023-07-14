@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -12,6 +13,11 @@ namespace Yogurt.Arena
         public static int RandomTo(this int i)
         {
             return UnityEngine.Random.Range(0, i);
+        }
+        
+        public static void Clamp(ref this int i, int min, int max)
+        {
+            i = Mathf.Clamp(i, min, max);
         }
     }
 }

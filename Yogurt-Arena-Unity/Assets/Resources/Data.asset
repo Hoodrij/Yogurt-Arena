@@ -125,7 +125,7 @@ MonoBehaviour:
       HitMask:
         serializedVersion: 2
         m_Bits: 256
-      Radius: 0.3
+      Radius: 1
       Damage: 1
       LifeTime: 0.3
       Speed: 1

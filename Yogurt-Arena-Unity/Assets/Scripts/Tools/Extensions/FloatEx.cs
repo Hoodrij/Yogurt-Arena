@@ -30,5 +30,10 @@ namespace Yogurt.Arena
         {
             return f * (true.RandomBool() ? 1 : -1);
         }
+
+        public static void Clamp(ref this float f, float min, float max)
+        {
+            f = Mathf.Clamp(f, min, max);
+        }
     }
 }

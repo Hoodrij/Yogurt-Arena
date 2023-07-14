@@ -4,6 +4,6 @@
     {
         public int MaxHealth;
         public int Value;
-        public ChangeHealthJob.IHealthChangedJob Job;
+        public HealthWidget HealthWidget;
     }
 }
