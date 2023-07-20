@@ -15,7 +15,7 @@ namespace Yogurt.Arena
             {
                 Owner = owner
             });
-            bullet.Add(rainData.BulletData);
+            bullet.Add(rainData.Bullet);
 
             return bullet;
         }

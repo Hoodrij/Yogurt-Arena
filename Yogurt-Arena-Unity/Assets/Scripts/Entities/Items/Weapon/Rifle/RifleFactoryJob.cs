@@ -13,8 +13,9 @@ namespace Yogurt.Arena
                 new UseRifleJob(), 
                 EItemType.Rifle);
             item.Add(data);
-            item.Add(data.CommonData);
-            item.Add(data.ScatteringData);
+            item.Add(data.Common);
+            item.Add(data.Scattering);
+            item.Add(data.Lifetime);
             
             new SetWeaponJob().Run(owner, item);
             

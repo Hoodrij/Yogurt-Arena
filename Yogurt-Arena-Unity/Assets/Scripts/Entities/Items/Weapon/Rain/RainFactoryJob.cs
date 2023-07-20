@@ -12,12 +12,13 @@ namespace Yogurt.Arena
                 new UseRainJob(), 
                 EItemType.Rain);
             item.Add(rainData);
-            item.Add(rainData.CommonData);
-            item.Add(rainData.ScatteringData);
-            item.Add(rainData.ClipData);
+            item.Add(rainData.Common);
+            item.Add(rainData.Scattering);
+            item.Add(rainData.Clip);
+            item.Add(rainData.Lifetime);
             item.Add(new WeaponClipState
             {
-                CurrentAmmo = rainData.ClipData.BulletsInClip
+                CurrentAmmo = rainData.Clip.BulletsInClip
             });
             
             new SetWeaponJob().Run(owner, item);

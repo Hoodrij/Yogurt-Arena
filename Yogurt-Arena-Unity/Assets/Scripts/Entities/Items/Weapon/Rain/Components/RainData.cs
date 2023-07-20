@@ -5,9 +5,10 @@ namespace Yogurt.Arena
     [Serializable]
     public class RainData : IComponent
     {
-        public WeaponData CommonData;
-        public WeaponClipData ClipData;
-        public WeaponScatteringData ScatteringData;
-        public RainBulletData BulletData;
+        public WeaponData Common;
+        public ItemLifetimeData Lifetime;
+        public WeaponClipData Clip;
+        public WeaponScatteringData Scattering;
+        public RainBulletData Bullet;
     }
 }

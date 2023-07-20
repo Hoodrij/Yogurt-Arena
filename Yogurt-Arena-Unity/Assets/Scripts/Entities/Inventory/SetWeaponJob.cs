@@ -12,7 +12,7 @@
             owner.Inventory.Weapon = weapon;
             weapon.Item.Job.Run(weapon);
 
-            new WeaponLifetimeJob().Run(owner);
+            new WeaponLifetimeJob().Run(weapon);
         }
     }
 }

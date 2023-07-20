@@ -65,7 +65,7 @@ MonoBehaviour:
       Min: 0.1
       Max: 2
   Rifle:
-    CommonData:
+    Common:
       Bullet:
         Asset:
           asset:
@@ -80,10 +80,12 @@ MonoBehaviour:
       Cooldown: 0.1
       Range: 15
       AngleToAttack: 360
-    ScatteringData:
+    Lifetime:
+      LifeTime: 5
+    Scattering:
       angle: 10
   Rain:
-    CommonData:
+    Common:
       Bullet:
         Asset:
           asset:
@@ -98,12 +100,14 @@ MonoBehaviour:
       Cooldown: 0.05
       Range: 15
       AngleToAttack: 360
-    ClipData:
+    Lifetime:
+      LifeTime: 5
+    Clip:
       BulletsInClip: 5
       ClipCooldown: 1
-    ScatteringData:
+    Scattering:
       angle: 90
-    BulletData:
+    Bullet:
       ExplosionAsset:
         asset:
           Prefab: {fileID: 2634516681230702857, guid: daa5658829c979d479e7ac4148ccc388, type: 3}
@@ -118,20 +122,23 @@ MonoBehaviour:
       BulletRotationSpeed: 0.5
       BulletSpeedChangeCoef: 0.3
   Charge:
-    Bullet:
-      Asset:
-        asset:
-          Prefab: {fileID: 7036511241227750618, guid: d96c9344640c7e74181b3d6e8dab810b, type: 3}
-      HitMask:
-        serializedVersion: 2
-        m_Bits: 256
-      Radius: 1
-      Damage: 1
-      LifeTime: 0.3
-      Speed: 1
-    Cooldown: 1
-    Range: 12
-    AngleToAttack: 15
+    Common:
+      Bullet:
+        Asset:
+          asset:
+            Prefab: {fileID: 7036511241227750618, guid: d96c9344640c7e74181b3d6e8dab810b, type: 3}
+        HitMask:
+          serializedVersion: 2
+          m_Bits: 256
+        Radius: 1
+        Damage: 1
+        LifeTime: 0.3
+        Speed: 1
+      Cooldown: 1
+      Range: 12
+      AngleToAttack: 15
+    Lifetime:
+      LifeTime: 5
   ItemSpot:
     Radius: 3
     Mask:
