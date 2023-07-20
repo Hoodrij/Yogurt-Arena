@@ -9,6 +9,7 @@ namespace Yogurt.Arena
         public ItemLifetimeData Lifetime;
         public WeaponClipData Clip;
         public WeaponScatteringData Scattering;
+        public TargetDetectionData TargetDetection;
         public RainBulletData Bullet;
     }
 }

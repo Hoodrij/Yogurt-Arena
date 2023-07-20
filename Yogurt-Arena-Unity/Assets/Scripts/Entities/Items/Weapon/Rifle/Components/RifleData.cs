@@ -8,5 +8,6 @@ namespace Yogurt.Arena.Components
         public WeaponData Common;
         public ItemLifetimeData Lifetime;
         public WeaponScatteringData Scattering;
+        public TargetDetectionData TargetDetection;
     }
 }

@@ -8,16 +8,19 @@ namespace Yogurt.Arena
         {
             ChargeData data = Query.Single<Data>().Charge;
             
-            ItemAspect item = await new ItemFactoryJob().Run(owner, 
+            ItemAspect weapon = await new ItemFactoryJob().Run(owner, 
                 new UseChargeJob(), 
                 EItemType.Charge);
-            item.Add(data);
-            item.Add(data.Common);
-            item.Add(data.Lifetime);
+            weapon.Add(data);
+            weapon.Add(data.Common);
+            weapon.Add(data.Lifetime);
+            weapon.Add(data.TargetDetection);
+            weapon.Add(owner.BattleState);
 
-            new SetWeaponJob().Run(owner, item);
+            new SetWeaponJob().Run(owner, weapon);
+            new CommonTargetDetectionJob().Run(weapon);
 
-            return item;
+            return weapon;
         }
     }
 }

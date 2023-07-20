@@ -5,5 +5,6 @@
     {
         public WeaponData Common;
         public ItemLifetimeData Lifetime;
+        public TargetDetectionData TargetDetection;
     }
 }

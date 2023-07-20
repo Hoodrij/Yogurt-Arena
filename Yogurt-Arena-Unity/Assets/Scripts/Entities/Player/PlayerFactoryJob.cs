@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             AgentAspect player = await new AgentSpawnJob().Run(data, Team.Green, Vector3.zero);
             player.Add<PlayerTag>();
 
-            player.Health.HealthWidget = Query.Single<UIView>().healthWidget;
+            player.Health.HealthWidget = Query.Single<UIView>().HealthWidget;
 
             return player.Entity;
         }

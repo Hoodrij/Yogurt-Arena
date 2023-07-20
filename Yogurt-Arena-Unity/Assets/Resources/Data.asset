@@ -41,7 +41,6 @@ MonoBehaviour:
     MoveSpeed: 0.2
     SlowDistance: 5
     MoveSmoothValue: 0.1
-    FindTargetDistance: 20
     LookSmoothValue: 0.2
     MaxHealth: 10
     Health: 10
@@ -52,7 +51,6 @@ MonoBehaviour:
     MoveSpeed: 0.1
     SlowDistance: 5
     MoveSmoothValue: 0.1
-    FindTargetDistance: 15
     LookSmoothValue: 0.2
     MaxHealth: 10
     Health: 10
@@ -84,6 +82,8 @@ MonoBehaviour:
       LifeTime: 5
     Scattering:
       angle: 10
+    TargetDetection:
+      Distance: 15
   Rain:
     Common:
       Bullet:
@@ -107,6 +107,8 @@ MonoBehaviour:
       ClipCooldown: 1
     Scattering:
       angle: 90
+    TargetDetection:
+      Distance: 15
     Bullet:
       ExplosionAsset:
         asset:
@@ -139,6 +141,8 @@ MonoBehaviour:
       AngleToAttack: 15
     Lifetime:
       LifeTime: 5
+    TargetDetection:
+      Distance: 15
   ItemSpot:
     Radius: 3
     Mask:

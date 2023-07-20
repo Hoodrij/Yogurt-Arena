@@ -2,14 +2,13 @@
 
 namespace Yogurt.Arena
 {
-    public struct AgentFindTargetJob : IUpdateJob
+    public struct CommonTargetDetectionJob
     {
-        public void Update()
+        public void Run(ItemAspect weapon)
         {
-            foreach (AgentAspect agentAspect in Query.Of<AgentAspect>())
-            {
-                agentAspect.BattleState.Target = GetTarget(agentAspect);
-            }
+            TargetDetectionData data = weapon.Get<TargetDetectionData>();
+            BattleState battleState = weapon.Get<BattleState>();
+            battleState.Target = GetTarget(weapon.Owner);
             
             
             AgentAspect GetTarget(AgentAspect agent)
@@ -31,9 +30,8 @@ namespace Yogurt.Arena
             }
             bool IsInRange(AgentAspect agent, AgentAspect other)
             {
-                return GetDistance(agent, other) < agent.Data.FindTargetDistance;
+                return GetDistance(agent, other) < data.Distance;
             }
         }
-
     }
 }

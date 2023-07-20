@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923afb06a0e9473b82f7fa393436a390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthWidget: {fileID: 5312657621217520675}
+  HealthWidget: {fileID: 5312657621217520675}
 --- !u!1 &9182564096308173762
 GameObject:
   m_ObjectHideFlags: 0

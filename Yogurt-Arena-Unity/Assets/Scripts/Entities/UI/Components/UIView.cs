@@ -4,6 +4,6 @@ namespace Yogurt.Arena
 {
     public class UIView : MonoBehaviour, IComponent
     {
-        public HealthWidget healthWidget;
+        public HealthWidget HealthWidget;
     }
 }

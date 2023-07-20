@@ -8,22 +8,25 @@ namespace Yogurt.Arena
         {
             RainData rainData = Query.Single<Data>().Rain;
 
-            ItemAspect item = await new ItemFactoryJob().Run(owner, 
+            ItemAspect weapon = await new ItemFactoryJob().Run(owner, 
                 new UseRainJob(), 
                 EItemType.Rain);
-            item.Add(rainData);
-            item.Add(rainData.Common);
-            item.Add(rainData.Scattering);
-            item.Add(rainData.Clip);
-            item.Add(rainData.Lifetime);
-            item.Add(new WeaponClipState
+            weapon.Add(rainData);
+            weapon.Add(rainData.Common);
+            weapon.Add(rainData.Scattering);
+            weapon.Add(rainData.Clip);
+            weapon.Add(rainData.Lifetime);
+            weapon.Add(rainData.TargetDetection);
+            weapon.Add(new WeaponClipState
             {
                 CurrentAmmo = rainData.Clip.BulletsInClip
             });
+            weapon.Add(owner.BattleState);
             
-            new SetWeaponJob().Run(owner, item);
+            new SetWeaponJob().Run(owner, weapon);
+            new CommonTargetDetectionJob().Run(weapon);
             
-            return item;
+            return weapon;
         }
     }
 }
