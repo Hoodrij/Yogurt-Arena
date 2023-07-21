@@ -8,9 +8,14 @@ namespace Yogurt.Arena
         {
             TargetDetectionData data = weapon.Get<TargetDetectionData>();
             BattleState battleState = weapon.Get<BattleState>();
-            battleState.Target = GetTarget(weapon.Owner);
+            
+            weapon.Run(Update);
             
             
+            void Update()
+            {
+                battleState.Target = GetTarget(weapon.Owner);
+            }
             AgentAspect GetTarget(AgentAspect agent)
             {
                 AgentAspect target = Query.Of<AgentAspect>()
@@ -20,10 +25,6 @@ namespace Yogurt.Arena
                     .FirstOrDefault();
                 return target;
             }
-            float GetDistance(AgentAspect agent, AgentAspect other)
-            {
-                return (agent.Body.Position - other.Body.Position).magnitude.Abs();
-            }
             bool IsHostile(AgentAspect agent, AgentAspect other)
             {
                 return !other.Id.Team.HasFlag(agent.Id.Team);
@@ -31,6 +32,11 @@ namespace Yogurt.Arena
             bool IsInRange(AgentAspect agent, AgentAspect other)
             {
                 return GetDistance(agent, other) < data.Distance;
+                return true;
+            }
+            float GetDistance(AgentAspect agent, AgentAspect other)
+            {
+                return (agent.Body.Position - other.Body.Position).magnitude.Abs();
             }
         }
     }
