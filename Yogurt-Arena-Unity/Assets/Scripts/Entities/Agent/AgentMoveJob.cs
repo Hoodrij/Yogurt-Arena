@@ -21,7 +21,8 @@ namespace Yogurt.Arena
         {
 	        BodyState body = agent.Body;
 
-	        NavMesh.SamplePosition(body.Destination, out var destinationHit, 100, NavMesh.AllAreas);
+	        if (!NavMesh.SamplePosition(body.Destination, out var destinationHit, 1, NavMesh.AllAreas))
+		        return;
 			Vector3 requiredPos = destinationHit.position;
 			Vector3 currentPos = body.Position;
 
@@ -31,7 +32,7 @@ namespace Yogurt.Arena
 			requiredVelocity = GetSmoothedVelocity(agent, distanceToTarget, requiredVelocity, time);
 
 			Vector3 newPos = currentPos + requiredVelocity;
-			NavMesh.SamplePosition(newPos, out var hit, 100, NavMesh.AllAreas);
+			NavMesh.SamplePosition(newPos, out var hit, 1, NavMesh.AllAreas);
 			
 			body.Position = hit.position;
 			body.Velocity = requiredVelocity;

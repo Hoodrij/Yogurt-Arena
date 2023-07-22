@@ -2,9 +2,10 @@
 {
     public static class ObjectEx
     {
-        public static void log(this object o)
+        public static T log<T>(this T t)
         {
-            UnityEngine.Debug.Log(o);
+            UnityEngine.Debug.Log(t);
+            return t;
         }
     }
 }
