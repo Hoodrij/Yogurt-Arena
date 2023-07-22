@@ -58,7 +58,7 @@ MonoBehaviour:
     WaveAgentsCount:
       Min: 3
       Max: 5
-    MinimumAgents: 5
+    MinimumAgents: 6
     WavesDelay:
       Min: 0.1
       Max: 2
@@ -68,7 +68,7 @@ MonoBehaviour:
         Asset:
           asset:
             Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
-        HitMask:
+        CollisionMask:
           serializedVersion: 2
           m_Bits: 257
         Radius: 0.2
@@ -81,16 +81,20 @@ MonoBehaviour:
     Lifetime:
       LifeTime: 5
     Scattering:
-      angle: 10
+      angle: 5
     TargetDetection:
       Distance: 15
+      CollisionMask:
+        serializedVersion: 2
+        m_Bits: 1
+      YTolerance: 2
   Rain:
     Common:
       Bullet:
         Asset:
           asset:
             Prefab: {fileID: 7036511241227750618, guid: da46b3360c09a1f4b84586adcf3bc579, type: 3}
-        HitMask:
+        CollisionMask:
           serializedVersion: 2
           m_Bits: 1
         Radius: 0.5
@@ -109,6 +113,10 @@ MonoBehaviour:
       angle: 90
     TargetDetection:
       Distance: 15
+      CollisionMask:
+        serializedVersion: 2
+        m_Bits: 0
+      YTolerance: 10
     Bullet:
       ExplosionAsset:
         asset:
@@ -129,9 +137,9 @@ MonoBehaviour:
         Asset:
           asset:
             Prefab: {fileID: 7036511241227750618, guid: d96c9344640c7e74181b3d6e8dab810b, type: 3}
-        HitMask:
+        CollisionMask:
           serializedVersion: 2
-          m_Bits: 256
+          m_Bits: 0
         Radius: 1
         Damage: 1
         LifeTime: 0.3
@@ -142,7 +150,11 @@ MonoBehaviour:
     Lifetime:
       LifeTime: 5
     TargetDetection:
-      Distance: 15
+      Distance: 20
+      CollisionMask:
+        serializedVersion: 2
+        m_Bits: 1
+      YTolerance: 3
   ItemSpot:
     Radius: 3
     Mask:

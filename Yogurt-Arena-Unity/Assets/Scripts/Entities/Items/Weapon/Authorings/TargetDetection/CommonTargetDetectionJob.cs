@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -8,35 +9,59 @@ namespace Yogurt.Arena
         {
             TargetDetectionData data = weapon.Get<TargetDetectionData>();
             BattleState battleState = weapon.Get<BattleState>();
+            AgentAspect agent = weapon.Owner.Owner;
             
             weapon.Run(Update);
             
             
             void Update()
             {
-                battleState.Target = GetTarget(weapon.Owner);
+                battleState.Target = GetTarget();
             }
-            AgentAspect GetTarget(AgentAspect agent)
+            AgentAspect GetTarget()
             {
                 AgentAspect target = Query.Of<AgentAspect>()
-                    .Where(other => IsHostile(agent, other))
-                    .Where(other => IsInRange(agent, other))
-                    .OrderBy(other => GetDistance(agent, other))
+                    .Where(IsHostile)
+                    .Where(IsInRange)
+                    .Where(IsNotBlockedByEnv)
+                    .Where(IsReachableByY)
+                    .OrderBy(GetDistance)
                     .FirstOrDefault();
                 return target;
             }
-            bool IsHostile(AgentAspect agent, AgentAspect other)
+            
+            bool IsHostile(AgentAspect target)
             {
-                return !other.Id.Team.HasFlag(agent.Id.Team);
+                return !target.Id.Team.HasFlag(agent.Id.Team);
             }
-            bool IsInRange(AgentAspect agent, AgentAspect other)
+            bool IsInRange(AgentAspect target)
             {
-                return GetDistance(agent, other) < data.Distance;
-                return true;
+                return GetDistance(target) < data.Distance;
             }
-            float GetDistance(AgentAspect agent, AgentAspect other)
+            bool IsNotBlockedByEnv(AgentAspect target)
             {
-                return (agent.Body.Position - other.Body.Position).magnitude.Abs();
+                Vector3 firePoint = agent.Body.Position.AddY(0.5f);
+                Vector3 targetBodyCenter = target.Body.Position.AddY(0.5f);
+                Vector3 vectorToTarget = targetBodyCenter - firePoint;
+                Ray ray = new Ray
+                {
+                    origin = firePoint,
+                    direction = vectorToTarget
+                };
+
+                bool hasEnvHit = Physics.Raycast(ray, vectorToTarget.magnitude, data.CollisionMask);
+                return !hasEnvHit;
+            }
+            bool IsReachableByY(AgentAspect target)
+            {
+                float firePointY = agent.Body.Position.y;
+                float targetY = target.Body.Position.y;
+                return (firePointY - targetY).Abs() <= data.YTolerance;
+            }
+            
+            float GetDistance(AgentAspect target)
+            {
+                return (agent.Body.Position - target.Body.Position).magnitude.Abs();
             }
         }
     }

@@ -8,7 +8,7 @@ namespace Yogurt.Arena
     public class BulletData : IComponent
     {
         public PooledAsset<BulletView> Asset;
-        public LayerMask HitMask;
+        public LayerMask CollisionMask;
         public float Radius;
         public int Damage;
         public float LifeTime;
