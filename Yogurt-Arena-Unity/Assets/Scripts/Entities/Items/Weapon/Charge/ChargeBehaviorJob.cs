@@ -34,14 +34,17 @@ namespace Yogurt.Arena
                 {
                     float deltaTime = time.Delta;
                     Vector3 newPos = body.Position + body.Velocity * time.Scale;
-                    NavMesh.SamplePosition(newPos, out var hit, 10, NavMesh.AllAreas);
-                    body.Position = transform.position = body.Destination = hit.position;
                     
                     timePassed += deltaTime / bullet.Data.LifeTime;
                     float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
                     // required for collision detection
                     bullet.Body.Velocity = body.Velocity;
+                    
+                    if (NavMesh.SamplePosition(newPos, out var hit, 1, NavMesh.AllAreas))
+                    {
+                        body.Position = transform.position = body.Destination = hit.position;
+                    }
 
                     await Wait.Update();
                 }
