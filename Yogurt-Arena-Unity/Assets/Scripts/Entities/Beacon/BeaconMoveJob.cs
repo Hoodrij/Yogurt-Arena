@@ -10,13 +10,13 @@ namespace Yogurt.Arena
         {
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
             BeaconAspect beacon = Query.Single<BeaconAspect>();
-            BeaconData data = beacon.Data;
+            BeaconConfig config = beacon.Config;
             BeaconBodyState body = beacon.Body;
 
             AddDelta(inputField.Input.MoveDelta.ToV3XZ());
 
             Transform transform;
-            (transform = beacon.View.transform).position = Vector3.Lerp(beacon.View.transform.position, body.Destination, data.SmoothValue);
+            (transform = beacon.View.transform).position = Vector3.Lerp(beacon.View.transform.position, body.Destination, config.SmoothValue);
             SpecifyTransformY(transform, body);
             
             
@@ -27,7 +27,7 @@ namespace Yogurt.Arena
                 body.RawDestination += delta;
                 body.Destination = CalcDestination(body.Destination, body.RawDestination);
                 body.RawDestination = body.RawDestination.WithY(body.Destination.y);
-                body.RawDestination = ClampRawDestination(body.RawDestination, body.Destination, data.Elasticity);
+                body.RawDestination = ClampRawDestination(body.RawDestination, body.Destination, config.Elasticity);
             }
 
             Vector3 CalcDestination(Vector3 prevDest, Vector3 newDest)

@@ -13,9 +13,9 @@ namespace Yogurt.Arena
             Vector3 followPoint = GetFollowPoint();
 		
             Vector3 lerpPoint = new Vector3(
-                Mathf.Lerp(currentPos.x, followPoint.x, camera.Data.SmoothValue * time), 
-                Mathf.Lerp(currentPos.y, followPoint.y, camera.Data.SmoothValue / 5 * time), 
-                Mathf.Lerp(currentPos.z, followPoint.z, camera.Data.SmoothValue * time));
+                Mathf.Lerp(currentPos.x, followPoint.x, camera.Config.SmoothValue * time), 
+                Mathf.Lerp(currentPos.y, followPoint.y, camera.Config.SmoothValue / 5 * time), 
+                Mathf.Lerp(currentPos.z, followPoint.z, camera.Config.SmoothValue * time));
 		
             camera.View.transform.position = lerpPoint;
         }

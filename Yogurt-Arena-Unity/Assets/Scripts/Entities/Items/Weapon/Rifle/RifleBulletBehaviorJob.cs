@@ -15,7 +15,7 @@ namespace Yogurt.Arena
 
             if (collision.IsValid)
             {
-                new DealDamageJob().Run(collision.Entity, bullet.Data.Damage);
+                new DealDamageJob().Run(collision.Entity, bullet.Config.Damage);
                 bullet.Body.Position = bullet.View.transform.position = collision.Position;
             }
 
@@ -33,8 +33,8 @@ namespace Yogurt.Arena
                     Vector3 newPos = body.Position + body.Velocity * time;
                     body.Position = transform.position = newPos;
                     
-                    timePassed += time.Delta / bullet.Data.LifeTime;
-                    float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
+                    timePassed += time.Delta / bullet.Config.LifeTime;
+                    float speed = Mathf.Lerp(bullet.Config.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
 
                     await Wait.Update();

@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public Entity Entity { get; set; }
 
-        public CameraData Data => this.Get<CameraData>();
+        public CameraConfig Config => this.Get<CameraConfig>();
 
         public CameraView View => this.Get<CameraView>();
         

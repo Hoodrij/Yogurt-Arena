@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async Awaitable Run(BulletAspect bullet)
         {
-            await Wait.Seconds(bullet.Data.LifeTime);
+            await Wait.Seconds(bullet.Config.LifeTime);
         }   
     }
 }

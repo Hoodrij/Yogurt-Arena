@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async Awaitable<ItemSpotAspect> Run(ItemSpotView view)
         {
-            ItemSpotData data = Query.Single<Data>().ItemSpot;
+            ItemSpotConfig config = Query.Single<Config>().ItemSpot;
             
             Entity entity = World.Create();
             entity
@@ -19,8 +19,8 @@ namespace Yogurt.Arena
                 .Add(new ItemSpotState
                 {
                     Type = EItemType.Empty,
-                    Radius = data.Radius,
-                    Mask = data.Mask
+                    Radius = config.Radius,
+                    Mask = config.Mask
                 });
 
             return entity.As<ItemSpotAspect>();

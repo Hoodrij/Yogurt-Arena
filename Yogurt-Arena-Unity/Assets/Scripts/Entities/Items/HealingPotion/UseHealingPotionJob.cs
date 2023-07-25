@@ -6,10 +6,10 @@ namespace Yogurt.Arena
     {
         public async Awaitable Run(ItemAspect item)
         {
-            HealingPotionData data = item.Get<HealingPotionData>();
+            HealingPotionConfig config = item.Get<HealingPotionConfig>();
             AgentAspect agentAspect = item.Owner.Owner;
             
-            new ChangeHealthJob().Run(agentAspect.Entity, data.Amount);
+            new ChangeHealthJob().Run(agentAspect.Entity, config.Amount);
         }
     }
 }

@@ -4,7 +4,7 @@ using Yogurt.Arena.Tools;
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class InputData : IComponent
+    public class InputConfig : IComponent
     {
         public Asset<InputFieldView> Asset;
         public float AccumulativeValue;

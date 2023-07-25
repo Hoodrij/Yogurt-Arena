@@ -6,9 +6,9 @@ namespace Yogurt.Arena
     {
         public async Awaitable<Entity> Run()
         {
-            AgentData data = Query.Single<Data>().Player;
+            AgentConfig config = Query.Single<Config>().Player;
             
-            AgentAspect player = await new AgentSpawnJob().Run(data, Team.Green, Vector3.zero);
+            AgentAspect player = await new AgentSpawnJob().Run(config, Team.Green, Vector3.zero);
             player.Add<PlayerTag>();
 
             player.Health.HealthWidget = Query.Single<UIView>().HealthWidget;

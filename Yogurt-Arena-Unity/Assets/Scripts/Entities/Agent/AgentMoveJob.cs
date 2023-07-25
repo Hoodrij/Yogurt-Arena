@@ -27,7 +27,7 @@ namespace Yogurt.Arena
 			Vector3 currentPos = body.Position;
 
 			NavMeshPath path = CalculatePath(currentPos, requiredPos);
-			Vector3 requiredVelocity = GetNextVelocityByPath(agent.Data.MoveSpeed * time, path);
+			Vector3 requiredVelocity = GetNextVelocityByPath(agent.Config.MoveSpeed * time, path);
 			float distanceToTarget = (currentPos - requiredPos).magnitude;
 			requiredVelocity = GetSmoothedVelocity(agent, distanceToTarget, requiredVelocity, time);
 
@@ -71,20 +71,20 @@ namespace Yogurt.Arena
 		
 		private Vector3 GetSmoothedVelocity(AgentAspect agent, float distanceToTarget, Vector3 requiredVelocity, Time time)
 		{
-			AgentData data = agent.Data;
+			AgentConfig config = agent.Config;
 			Vector3 prevVelocity = agent.Body.Velocity;
 
 			Vector3 velocity;
-			if (distanceToTarget < prevVelocity.magnitude * data.SlowDistance)
+			if (distanceToTarget < prevVelocity.magnitude * config.SlowDistance)
 			{
-				velocity = requiredVelocity * (distanceToTarget * data.MoveSmoothValue * 2);
+				velocity = requiredVelocity * (distanceToTarget * config.MoveSmoothValue * 2);
 			}
 			else
 			{
-				velocity = Vector3.Lerp(prevVelocity, requiredVelocity, data.MoveSmoothValue);
+				velocity = Vector3.Lerp(prevVelocity, requiredVelocity, config.MoveSmoothValue);
 			}
 
-			velocity = velocity.ClampMagnitude(data.MoveSpeed * time);
+			velocity = velocity.ClampMagnitude(config.MoveSpeed * time);
 			
 			return velocity;
 		}

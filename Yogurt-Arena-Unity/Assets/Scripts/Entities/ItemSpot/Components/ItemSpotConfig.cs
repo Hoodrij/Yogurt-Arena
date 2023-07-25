@@ -3,7 +3,7 @@
 namespace Yogurt.Arena
 {
     [System.Serializable]
-    public class ItemSpotData
+    public class ItemSpotConfig
     {
         public int Radius;
         public LayerMask Mask;

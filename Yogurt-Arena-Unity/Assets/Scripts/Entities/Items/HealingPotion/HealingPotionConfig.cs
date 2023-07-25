@@ -3,7 +3,7 @@
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class HealingPotionData : IComponent
+    public class HealingPotionConfig : IComponent
     {
         public int Amount;
     }

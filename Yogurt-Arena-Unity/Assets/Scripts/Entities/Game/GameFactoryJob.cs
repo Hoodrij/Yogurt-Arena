@@ -6,11 +6,11 @@ namespace Yogurt.Arena
     {
         public async Awaitable Run()
         {
-            Data data = Resources.Load<Data>("Data");
+            Config config = Resources.Load<Config>("Config");
 
             Entity.Create()
                 .Add<Game>()
-                .Add(data)
+                .Add(config)
                 .Add<Time>();
         }
     }

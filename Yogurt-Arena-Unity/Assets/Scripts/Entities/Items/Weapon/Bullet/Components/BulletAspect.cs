@@ -4,7 +4,7 @@
     {
         public Entity Entity { get; set; }
         
-        public BulletData Data => this.Get<BulletData>();
+        public BulletConfig Config => this.Get<BulletConfig>();
 
         public BodyState Body => this.Get<BodyState>();
         public BulletState State => this.Get<BulletState>();

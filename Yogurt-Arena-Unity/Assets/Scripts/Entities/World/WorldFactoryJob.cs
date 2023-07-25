@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async Awaitable<Entity> Run()
         {
-            World world = await Query.Single<Data>().World.Spawn();
+            World world = await Query.Single<Config>().World.Spawn();
             
             Entity entity = Entity.Create()
                 .AddLink(world.gameObject)

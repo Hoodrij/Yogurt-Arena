@@ -4,13 +4,13 @@ namespace Yogurt.Arena
 {
     public struct BulletFactoryJob
     {
-        public async Awaitable<BulletAspect> Run(BulletData data, AgentAspect owner)
+        public async Awaitable<BulletAspect> Run(BulletConfig config, AgentAspect owner)
         {
-            BulletView view = await data.Asset.Spawn();
+            BulletView view = await config.Asset.Spawn();
 
             BulletAspect bullet = World.Create()
                 .AddLink(view.gameObject)
-                .Add(data)
+                .Add(config)
                 .Add(view)
                 .Add(new BulletState
                 {

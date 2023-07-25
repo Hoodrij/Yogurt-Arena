@@ -3,7 +3,7 @@
 namespace Yogurt.Arena
 {
     [System.Serializable]
-    public class TargetDetectionData : IComponent
+    public class TargetDetectionConfig : IComponent
     {
         public float Distance;
         public LayerMask CollisionMask;

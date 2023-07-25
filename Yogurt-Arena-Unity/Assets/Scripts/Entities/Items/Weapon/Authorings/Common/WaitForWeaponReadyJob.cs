@@ -7,7 +7,7 @@ namespace Yogurt.Arena
         public async Awaitable Run(ItemAspect item)
         {
             AgentAspect owner = item.Owner;
-            WeaponData data = item.Get<WeaponData>();
+            WeaponConfig config = item.Get<WeaponConfig>();
 
             await Wait.Until(() => !owner.Has<Kinematic>());
             await Wait.Until(() =>
@@ -35,7 +35,7 @@ namespace Yogurt.Arena
                 
                 float dot = Vector3.Dot(lookDir, dirToTarget);
                 float lookAngle = dot.DotToAngle();
-                bool isLookingAt = lookAngle < data.AngleToAttack;
+                bool isLookingAt = lookAngle < config.AngleToAttack;
 
                 return isLookingAt;
             }
@@ -43,7 +43,7 @@ namespace Yogurt.Arena
             {
                 AgentAspect target = owner.BattleState.Target;
                 float distanceToTarget = Mathf.Abs((target.View.transform.position - owner.View.transform.position).magnitude);
-                bool isInRange = distanceToTarget < data.Range;
+                bool isInRange = distanceToTarget < config.Range;
 
                 return isInRange;
             }

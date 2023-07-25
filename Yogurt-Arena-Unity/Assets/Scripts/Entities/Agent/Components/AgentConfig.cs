@@ -4,7 +4,7 @@ using Yogurt.Arena.Tools;
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class AgentData : IComponent
+    public class AgentConfig : IComponent
     {
         public PooledAsset<AgentView> Asset;
         public float MoveSpeed;

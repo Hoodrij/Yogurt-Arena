@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public void Run(ItemAspect weapon)
         {
-            TargetDetectionData data = weapon.Get<TargetDetectionData>();
+            TargetDetectionConfig config = weapon.Get<TargetDetectionConfig>();
             BattleState battleState = weapon.Get<BattleState>();
             AgentAspect agent = weapon.Owner.Owner;
             
@@ -36,7 +36,7 @@ namespace Yogurt.Arena
             }
             bool IsInRange(AgentAspect target)
             {
-                return GetDistance(target) < data.Distance;
+                return GetDistance(target) < config.Distance;
             }
             bool IsNotBlockedByEnv(AgentAspect target)
             {
@@ -49,14 +49,14 @@ namespace Yogurt.Arena
                     direction = vectorToTarget
                 };
 
-                bool hasEnvHit = Physics.Raycast(ray, vectorToTarget.magnitude, data.CollisionMask);
+                bool hasEnvHit = Physics.Raycast(ray, vectorToTarget.magnitude, config.CollisionMask);
                 return !hasEnvHit;
             }
             bool IsReachableByY(AgentAspect target)
             {
                 float firePointY = agent.Body.Position.y;
                 float targetY = target.Body.Position.y;
-                return (firePointY - targetY).Abs() <= data.YTolerance;
+                return (firePointY - targetY).Abs() <= config.YTolerance;
             }
             
             float GetDistance(AgentAspect target)

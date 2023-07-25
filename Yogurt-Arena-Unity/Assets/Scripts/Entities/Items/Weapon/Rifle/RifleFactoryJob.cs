@@ -7,16 +7,16 @@ namespace Yogurt.Arena
     {
         public async Awaitable<ItemAspect> Run(AgentAspect owner)
         {
-            RifleData data = Query.Single<Data>().Rifle;
+            RifleConfig config = Query.Single<Config>().Rifle;
 
             ItemAspect weapon = await new ItemFactoryJob().Run(owner, 
                 new UseRifleJob(), 
                 EItemType.Rifle);
-            weapon.Add(data);
-            weapon.Add(data.Common);
-            weapon.Add(data.Scattering);
-            weapon.Add(data.Lifetime);
-            weapon.Add(data.TargetDetection);
+            weapon.Add(config);
+            weapon.Add(config.Common);
+            weapon.Add(config.Scattering);
+            weapon.Add(config.Lifetime);
+            weapon.Add(config.TargetDetection);
             weapon.Add(owner.BattleState);
             
             new SetWeaponJob().Run(owner, weapon);

@@ -5,7 +5,7 @@ using Yogurt.Arena.Tools;
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class BulletData : IComponent
+    public class BulletConfig : IComponent
     {
         public PooledAsset<BulletView> Asset;
         public LayerMask CollisionMask;

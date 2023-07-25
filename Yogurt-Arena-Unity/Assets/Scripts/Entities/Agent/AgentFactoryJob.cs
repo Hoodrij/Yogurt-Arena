@@ -4,13 +4,13 @@ namespace Yogurt.Arena
 {
     public struct AgentFactoryJob
     {
-        public async Awaitable<AgentAspect> Run(AgentData data, Team team)
+        public async Awaitable<AgentAspect> Run(AgentConfig config, Team team)
         {
-            AgentView agentView = await data.Asset.Spawn();
+            AgentView agentView = await config.Asset.Spawn();
             
             Entity entity = World.Create()
                 .AddLink(agentView.gameObject)
-                .Add(data)
+                .Add(config)
                 .Add(agentView)
                 .Add<BodyState>()
                 .Add<BattleState>()
@@ -21,8 +21,8 @@ namespace Yogurt.Arena
                 })
                 .Add(new Health
                 {
-                    MaxHealth = data.MaxHealth,
-                    Value = data.Health
+                    MaxHealth = config.MaxHealth,
+                    Value = config.Health
                 });
             
             return entity.As<AgentAspect>();

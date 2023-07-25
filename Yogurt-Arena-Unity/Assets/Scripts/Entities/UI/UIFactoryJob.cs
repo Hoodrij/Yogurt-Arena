@@ -7,13 +7,13 @@ namespace Yogurt.Arena
     {
         public async Awaitable<Entity> Run()
         {
-            UIData data = Query.Single<Data>().UIData;
-            UIView uiView = await data.Asset.Spawn();
+            UIConfig config = Query.Single<Config>().UI;
+            UIView uiView = await config.Asset.Spawn();
 
             Entity entity = World.Create()
                 .AddLink(uiView.gameObject)
                 .Add(uiView)
-                .Add(data);
+                .Add(config);
 
             return entity;
         }

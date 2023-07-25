@@ -6,15 +6,18 @@ namespace Yogurt.Arena
     {
         public async Awaitable Run()
         {
-            InputData inputData = Query.Single<Data>().Input;
-            InputFieldView inputFieldView = await inputData.Asset.Spawn();
+            InputConfig inputConfig = Query.Single<Config>().Input;
+            InputFieldView inputFieldView = await inputConfig.Asset.Spawn();
 
-            Entity entity = World.Create()
+            InputFieldAspect inputField = World.Create()
                 .AddLink(inputFieldView.gameObject)
-                .Add(inputData)
+                .Add(inputConfig)
                 .Add(inputFieldView)
                 .Add(inputFieldView.MoveInputReader)
-                .Add<InputState>();
+                .Add<InputState>()
+                .As<InputFieldAspect>();
+
+            new UpdateMoveInputJob().Run(inputField);
         }
     }
 }

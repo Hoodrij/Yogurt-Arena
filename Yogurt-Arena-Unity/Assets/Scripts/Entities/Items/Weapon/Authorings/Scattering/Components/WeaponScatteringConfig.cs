@@ -3,7 +3,7 @@
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class WeaponScatteringData : IComponent
+    public class WeaponScatteringConfig : IComponent
     {
         public float angle;
     }

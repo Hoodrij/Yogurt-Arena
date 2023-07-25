@@ -6,12 +6,12 @@ namespace Yogurt.Arena
     {
         public async Awaitable Run()
         {
-            CameraData cameraData = Query.Single<Data>().Camera;
-            CameraView view = await cameraData.Asset.Spawn();
+            CameraConfig cameraConfig = Query.Single<Config>().Camera;
+            CameraView view = await cameraConfig.Asset.Spawn();
 
             Entity entity = World.Create()
                 .AddLink(view.gameObject)
-                .Add(cameraData)
+                .Add(cameraConfig)
                 .Add(view);
         }
     }

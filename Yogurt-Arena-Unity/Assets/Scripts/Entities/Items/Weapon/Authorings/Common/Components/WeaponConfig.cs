@@ -3,9 +3,9 @@
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class WeaponData : IComponent
+    public class WeaponConfig : IComponent
     {
-        public BulletData Bullet;
+        public BulletConfig Bullet;
         public float Cooldown;
         public float Range;
         public float AngleToAttack;

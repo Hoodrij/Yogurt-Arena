@@ -6,11 +6,11 @@ namespace Yogurt.Arena
     {
         public async Awaitable<Entity> Run()
         {
-            BeaconData beaconData = Query.Single<Data>().Beacon;
-            BeaconView view = await beaconData.Asset.Spawn();
+            BeaconConfig beaconConfig = Query.Single<Config>().Beacon;
+            BeaconView view = await beaconConfig.Asset.Spawn();
 
             Entity entity = World.Create()
-                .Add(beaconData)
+                .Add(beaconConfig)
                 .Add(view)
                 .Add<BeaconBodyState>();
 

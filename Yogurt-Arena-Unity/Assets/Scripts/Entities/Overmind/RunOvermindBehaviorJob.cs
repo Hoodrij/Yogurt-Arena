@@ -13,12 +13,12 @@ namespace Yogurt.Arena
             async Awaitable Update()
             {
                 await new SpawnWaveJob().Run(overmind);
-                await Wait.Seconds(overmind.Data.WavesDelay.GetRandom());
+                await Wait.Seconds(overmind.Config.WavesDelay.GetRandom());
                 await Wait.While(HasEnoughAgents);
             }
             bool HasEnoughAgents()
             {
-                int minimumAgents = overmind.Data.MinimumAgents;
+                int minimumAgents = overmind.Config.MinimumAgents;
                 return overmind.State.Agents.Count > minimumAgents;
             }
         }

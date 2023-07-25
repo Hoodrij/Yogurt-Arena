@@ -4,7 +4,7 @@
     {
         public Entity Entity { get; set; }
 
-        public OvermindData Data => this.Get<OvermindData>();
+        public OvermindConfig Config => this.Get<OvermindConfig>();
 
         public OvermindState State => this.Get<OvermindState>();
     }

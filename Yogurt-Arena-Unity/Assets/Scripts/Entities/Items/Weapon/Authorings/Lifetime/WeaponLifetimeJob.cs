@@ -9,8 +9,8 @@
             if (!owner.Has<PlayerTag>())
                 return;
 
-            ItemLifetimeData lifetimeData = item.Get<ItemLifetimeData>();
-            await Wait.Seconds(lifetimeData.LifeTime);
+            ItemLifetimeConfig lifetimeConfig = item.Get<ItemLifetimeConfig>();
+            await Wait.Seconds(lifetimeConfig.LifeTime);
             
             if (owner.Exist())
             {

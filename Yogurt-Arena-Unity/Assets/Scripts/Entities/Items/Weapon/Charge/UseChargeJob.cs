@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async Awaitable Run(ItemAspect item)
         {
-            WeaponData data = item.Get<WeaponData>();
+            WeaponConfig config = item.Get<WeaponConfig>();
             AgentAspect owner = item.Owner;
 
             while (item.Exist())
@@ -14,11 +14,11 @@ namespace Yogurt.Arena
                 await new WaitForWeaponReadyJob().Run(item);
                 if (!item.Exist()) return;
                 
-                BulletAspect bullet = await new BulletFactoryJob().Run(data.Bullet, owner);
+                BulletAspect bullet = await new BulletFactoryJob().Run(config.Bullet, owner);
                 new FireBulletJob().Run(bullet, default);
                 await new ChargeBehaviorJob().Run(bullet);
 
-                await Wait.Seconds(data.Cooldown);
+                await Wait.Seconds(config.Cooldown);
             }
         }
     }

@@ -7,7 +7,7 @@ namespace Yogurt.Arena
         public async Awaitable<OvermindAspect> Run()
         {
             OvermindAspect overmind = World.Create()
-                .Add(Query.Single<Data>().Overmind)
+                .Add(Query.Single<Config>().Overmind)
                 .Add<OvermindState>()
                 .As<OvermindAspect>();
 

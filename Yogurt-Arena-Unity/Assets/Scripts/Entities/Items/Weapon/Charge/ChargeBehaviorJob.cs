@@ -28,15 +28,15 @@ namespace Yogurt.Arena
                 Transform transform = owner.View.transform;
                 BodyState body = owner.Body;
                 float timePassed = 0;
-                body.Velocity = transform.forward * bullet.Data.Speed;
+                body.Velocity = transform.forward * bullet.Config.Speed;
                 
                 while (owner.Exist() && owner.Has<Kinematic>())
                 {
                     float deltaTime = time.Delta;
                     Vector3 newPos = body.Position + body.Velocity * time.Scale;
                     
-                    timePassed += deltaTime / bullet.Data.LifeTime;
-                    float speed = Mathf.Lerp(bullet.Data.Speed, 0, timePassed);
+                    timePassed += deltaTime / bullet.Config.LifeTime;
+                    float speed = Mathf.Lerp(bullet.Config.Speed, 0, timePassed);
                     body.Velocity = body.Velocity.normalized * speed;
                     // required for collision detection
                     bullet.Body.Velocity = body.Velocity;
@@ -51,7 +51,7 @@ namespace Yogurt.Arena
             }
             async Awaitable TryDealDamage()
             {
-                int damage = bullet.Data.Damage;
+                int damage = bullet.Config.Damage;
                 CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
                 new DealDamageJob().Run(collisionInfo.Entity, damage);
             }

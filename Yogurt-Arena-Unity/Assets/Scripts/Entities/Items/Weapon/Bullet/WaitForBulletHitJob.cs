@@ -41,7 +41,7 @@ namespace Yogurt.Arena
                 Vector3 dir = velocity.normalized;
                 float speed = velocity.magnitude * time;
 
-                int hitsCount = Physics.SphereCastNonAlloc(bullet.Body.Position, bullet.Data.Radius, dir, hits, speed, bullet.Data.CollisionMask);
+                int hitsCount = Physics.SphereCastNonAlloc(bullet.Body.Position, bullet.Config.Radius, dir, hits, speed, bullet.Config.CollisionMask);
                 // int hitsCount = Physics.RaycastNonAlloc(bullet.Body.Position, dir, hits, speed, bullet.Data.HitMask);
                 return hitsCount;
             }

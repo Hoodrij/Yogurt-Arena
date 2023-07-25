@@ -4,9 +4,10 @@ using Yogurt.Arena.Tools;
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class CameraData : IComponent
+    public class BeaconConfig : IComponent
     {
-        public Asset<CameraView> Asset;
+        public Asset<BeaconView> Asset;
         public float SmoothValue;
+        public float Elasticity;
     }
 }

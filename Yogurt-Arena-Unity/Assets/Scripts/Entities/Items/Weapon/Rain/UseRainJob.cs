@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async Awaitable Run(ItemAspect item)
         {
-            WeaponData weaponData = item.Get<WeaponData>();
+            WeaponConfig weaponConfig = item.Get<WeaponConfig>();
             AgentAspect owner = item.Owner;
 
             while (item.Exist())
@@ -14,7 +14,7 @@ namespace Yogurt.Arena
                 await new WaitForWeaponReadyJob().Run(item);
                 if (!item.Exist()) return;
 
-                BulletAspect bullet = await new RainBulletFactoryJob().Run(weaponData.Bullet, item.Get<RainData>(), owner);
+                BulletAspect bullet = await new RainBulletFactoryJob().Run(weaponConfig.Bullet, item.Get<RainConfig>(), owner);
 
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
                 new RainBulletBehaviorJob().Run(bullet.As<RainBulletAspect>());
@@ -22,7 +22,7 @@ namespace Yogurt.Arena
                 bool hasAmmoInClip = await new SpendAmmoJob().Run(item.As<WeaponWithClipAspect>());
                 if (hasAmmoInClip)
                 {
-                    await Wait.Seconds(weaponData.Cooldown);
+                    await Wait.Seconds(weaponConfig.Cooldown);
                 }
             }
             
@@ -37,7 +37,7 @@ namespace Yogurt.Arena
 
                 dir = new ApplyScatteringJob().Run(item, dir);
                 
-                return dir * bullet.Data.Speed;
+                return dir * bullet.Config.Speed;
             }
         }
     }

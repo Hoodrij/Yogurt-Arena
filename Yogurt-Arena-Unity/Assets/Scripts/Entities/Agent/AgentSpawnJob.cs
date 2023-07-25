@@ -6,12 +6,12 @@ namespace Yogurt.Arena
 {
     public struct AgentSpawnJob
     {
-        public async Awaitable<AgentAspect> Run(AgentData data, Team team, Vector3 position)
+        public async Awaitable<AgentAspect> Run(AgentConfig config, Team team, Vector3 position)
         {
             NavMesh.SamplePosition(position, out var hit, 100, NavMesh.AllAreas);
             position = hit.position;
             
-            AgentAspect agent = await new AgentFactoryJob().Run(data, team);
+            AgentAspect agent = await new AgentFactoryJob().Run(config, team);
             agent.Add<Kinematic>();
             agent.Body.Position = position;
             agent.Body.Destination = position;
