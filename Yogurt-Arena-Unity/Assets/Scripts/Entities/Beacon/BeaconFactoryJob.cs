@@ -4,17 +4,20 @@ namespace Yogurt.Arena
 {
     public struct BeaconFactoryJob
     {
-        public async Awaitable<Entity> Run()
+        public async Awaitable<BeaconAspect> Run()
         {
             BeaconConfig beaconConfig = Query.Single<Config>().Beacon;
             BeaconView view = await beaconConfig.Asset.Spawn();
 
-            Entity entity = World.Create()
+            BeaconAspect beacon = World.Create()
                 .Add(beaconConfig)
                 .Add(view)
-                .Add<BeaconBodyState>();
+                .Add<BeaconBodyState>()
+                .As<BeaconAspect>();
+            
+            new BeaconMoveJob().Run(beacon);
 
-            return entity;
+            return beacon;
         }
     }
 }

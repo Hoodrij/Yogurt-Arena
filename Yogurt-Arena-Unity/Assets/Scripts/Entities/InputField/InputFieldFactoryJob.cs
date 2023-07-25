@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public struct InputFieldFactoryJob
     {
-        public async Awaitable Run()
+        public async Awaitable<InputFieldAspect> Run()
         {
             InputConfig inputConfig = Query.Single<Config>().Input;
             InputFieldView inputFieldView = await inputConfig.Asset.Spawn();
@@ -18,6 +18,8 @@ namespace Yogurt.Arena
                 .As<InputFieldAspect>();
 
             new UpdateMoveInputJob().Run(inputField);
+
+            return inputField;
         }
     }
 }

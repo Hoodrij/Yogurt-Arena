@@ -12,11 +12,11 @@ namespace Yogurt.Arena
                 .AddLink(world.gameObject)
                 .Add(world);
 
-            await new UIFactoryJob().Run();
-            await new CameraFactoryJob().Run();
-            await new InputFieldFactoryJob().Run();
             await new LevelFactoryJob().Run();
+            await new UIFactoryJob().Run();
+            await new InputFieldFactoryJob().Run();
             await new BeaconFactoryJob().Run();
+            await new CameraFactoryJob().Run();
             await new PlayerFactoryJob().Run();
             await new OvermindFactoryJob().Run();
             await new ItemsSpawnerFactory().Run();

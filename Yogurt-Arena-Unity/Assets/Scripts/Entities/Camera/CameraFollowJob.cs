@@ -2,28 +2,33 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public struct CameraFollowJob : IUpdateJob
+    public struct CameraFollowJob
     {
-        public void Update()
+        public void Run(CameraAspect camera)
         {
-            Time time = Query.Single<Time>();
-            CameraAspect camera = Query.Single<CameraAspect>();
-            
-            Vector3 currentPos = camera.View.transform.position;
-            Vector3 followPoint = GetFollowPoint();
-		
-            Vector3 lerpPoint = new Vector3(
-                Mathf.Lerp(currentPos.x, followPoint.x, camera.Config.SmoothValue * time), 
-                Mathf.Lerp(currentPos.y, followPoint.y, camera.Config.SmoothValue / 5 * time), 
-                Mathf.Lerp(currentPos.z, followPoint.z, camera.Config.SmoothValue * time));
-		
-            camera.View.transform.position = lerpPoint;
-        }
+            camera.Run(Update);
 
-        private static Vector3 GetFollowPoint()
-        {
-            BeaconAspect beacon = Query.Single<BeaconAspect>();
-            return beacon.Body.Destination;
+
+            void Update()
+            {
+                Time time = Query.Single<Time>();
+                
+                Vector3 currentPos = camera.View.transform.position;
+                Vector3 followPoint = GetFollowPoint();
+		    
+                Vector3 lerpPoint = new Vector3(
+                    Mathf.Lerp(currentPos.x, followPoint.x, camera.Config.SmoothValue * time), 
+                    Mathf.Lerp(currentPos.y, followPoint.y, camera.Config.SmoothValue / 5 * time), 
+                    Mathf.Lerp(currentPos.z, followPoint.z, camera.Config.SmoothValue * time));
+		    
+                camera.View.transform.position = lerpPoint;
+            }
+
+            Vector3 GetFollowPoint()
+            {
+                BeaconAspect beacon = Query.Single<BeaconAspect>();
+                return beacon.Body.Destination;
+            }
         }
     }
 }
