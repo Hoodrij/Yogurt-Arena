@@ -8,7 +8,7 @@ namespace Yogurt.Arena
         {
             AgentView agentView = await config.Asset.Spawn();
             
-            Entity entity = World.Create()
+            AgentAspect agent = World.Create()
                 .AddLink(agentView.gameObject)
                 .Add(config)
                 .Add(agentView)
@@ -23,9 +23,13 @@ namespace Yogurt.Arena
                 {
                     MaxHealth = config.MaxHealth,
                     Value = config.Health
-                });
+                })
+                .As<AgentAspect>();
+
+            new AgentMoveJob().Run(agent);
+            new AgentLookJob().Run(agent);
             
-            return entity.As<AgentAspect>();
+            return agent;
         }
     }
 }

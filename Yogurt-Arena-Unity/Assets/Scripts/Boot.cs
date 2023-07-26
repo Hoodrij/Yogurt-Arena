@@ -8,7 +8,8 @@ namespace Yogurt.Arena
         {
             Destroy(gameObject);
             await new GameFactoryJob().Run();
-            await new RunWorldJob().Run();
+            await new WorldFactoryJob().Run();
+            new RunScenarioJob().Run();
         }
     }
 }

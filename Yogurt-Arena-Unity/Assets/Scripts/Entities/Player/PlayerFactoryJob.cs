@@ -4,16 +4,17 @@ namespace Yogurt.Arena
 {
     public struct PlayerFactoryJob
     {
-        public async Awaitable<Entity> Run()
+        public async Awaitable<PlayerAspect> Run()
         {
             AgentConfig config = Query.Single<Config>().Player;
-            
-            AgentAspect player = await new AgentSpawnJob().Run(config, Team.Green, Vector3.zero);
-            player.Add<PlayerTag>();
 
-            player.Health.HealthWidget = Query.Single<UIView>().HealthWidget;
+            AgentAspect agent = await new AgentSpawnJob().Run(config, Team.Green, Vector3.zero);
+            agent.Add<PlayerTag>();
+            agent.Health.HealthWidget = Query.Single<UIView>().HealthWidget;
 
-            return player.Entity;
+            new UpdatePlayerDestinationJob().Run(agent.As<PlayerAspect>());
+
+            return agent.As<PlayerAspect>();
         }
     }
 }

@@ -1,13 +1,18 @@
 ﻿namespace Yogurt.Arena
 {
-    public struct UpdatePlayerDestinationJob : IUpdateJob
+    public struct UpdatePlayerDestinationJob
     {
-        public void Update()
+        public void Run(PlayerAspect player)
         {
-            BeaconAspect beaconAspect = Query.Single<BeaconAspect>();
-            PlayerAspect playerAspect = Query.Single<PlayerAspect>();
+            player.Run(Update);
+            
+            
+            void Update()
+            {
+                BeaconAspect beaconAspect = Query.Single<BeaconAspect>();
 
-            playerAspect.Agent.Body.Destination = beaconAspect.Body.Destination;
+                player.Agent.Body.Destination = beaconAspect.Body.Destination;
+            }
         }
     }
 }
