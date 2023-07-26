@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Yogurt.Arena
+namespace Yogurt.Arena.Quest
 {
     public interface IQuest
     {

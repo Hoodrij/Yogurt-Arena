@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Yogurt.Arena
+namespace Yogurt.Arena.Quest
 {
     public struct KillEnemiesQuest : IQuest
     {
