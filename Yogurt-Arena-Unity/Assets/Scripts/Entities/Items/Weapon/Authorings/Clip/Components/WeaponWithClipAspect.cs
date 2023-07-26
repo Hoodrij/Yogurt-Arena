@@ -4,7 +4,7 @@
     {
         public Entity Entity { get; set; }
 
-        public WeaponClipData Data => this.Get<WeaponClipData>();
+        public WeaponClipConfig Config => this.Get<WeaponClipConfig>();
         public WeaponClipState State => this.Get<WeaponClipState>();
     }
 }

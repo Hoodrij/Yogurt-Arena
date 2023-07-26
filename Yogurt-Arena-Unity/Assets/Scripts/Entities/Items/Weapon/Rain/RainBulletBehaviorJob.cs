@@ -7,7 +7,7 @@ namespace Yogurt.Arena
         public async Awaitable Run(RainBulletAspect rainBullet)
         { 
             BulletAspect bullet = rainBullet.BulletAspect;
-            RainBulletData rainData = rainBullet.Data;
+            RainBulletConfig rainConfig = rainBullet.Config;
             CollisionInfo collision = default;
             
             Awaitable collisionTask = DetectHit();
@@ -19,10 +19,10 @@ namespace Yogurt.Arena
             if (collision.IsValid)
             {
                 bullet.Body.Position = bullet.View.transform.position = collision.Position;
-                new DealAoeDamageJob().Run(rainBullet.Owner, collision.Position, rainData.Damage);
+                new DealAoeDamageJob().Run(rainBullet.Owner, collision.Position, rainConfig.Damage);
             }
             
-            new SpawnExplosionJob().Run(rainData.ExplosionAsset, bullet.Body.Position, rainData.Damage.Radius);
+            new SpawnExplosionJob().Run(rainConfig.ExplosionAsset, bullet.Body.Position, rainConfig.Damage.Radius);
             await new KillBulletJob().Run(bullet);
 
             

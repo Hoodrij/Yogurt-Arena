@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async void Run(RainBulletAspect bullet)
         {
-            RainBulletData rainData = bullet.Data;
+            RainBulletConfig rainConfig = bullet.Config;
             AgentAspect owner = bullet.Owner;
 
             bullet.Run(Update);
@@ -31,7 +31,7 @@ namespace Yogurt.Arena
             }
             bool IsInRange(AgentAspect other)
             {
-                return GetDistance(other) < rainData.FindTargetDistance;
+                return GetDistance(other) < rainConfig.FindTargetDistance;
             }
             float GetDistance(AgentAspect other)
             {

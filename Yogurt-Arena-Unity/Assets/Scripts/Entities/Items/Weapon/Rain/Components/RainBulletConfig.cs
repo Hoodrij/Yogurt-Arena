@@ -4,7 +4,7 @@ using Yogurt.Arena.Tools;
 namespace Yogurt.Arena
 {
     [System.Serializable]
-    public class RainBulletData : IComponent
+    public class RainBulletConfig : IComponent
     {
         public PooledAsset<ExplosionView> ExplosionAsset;
         public AoeDamage Damage;

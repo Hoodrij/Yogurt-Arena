@@ -7,9 +7,9 @@ namespace Yogurt.Arena
     {
         public WeaponConfig Common;
         public ItemLifetimeConfig Lifetime;
-        public WeaponClipData Clip;
+        public WeaponClipConfig Clip;
         public WeaponScatteringConfig Scattering;
         public TargetDetectionConfig TargetDetection;
-        public RainBulletData Bullet;
+        public RainBulletConfig Bullet;
     }
 }
