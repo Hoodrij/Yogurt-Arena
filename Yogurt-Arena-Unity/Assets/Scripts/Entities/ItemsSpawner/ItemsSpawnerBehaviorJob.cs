@@ -16,8 +16,6 @@ namespace Yogurt.Arena
                 await WaitForSpawnAvailable();
                 ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
                 randomSpot.State.Type = (EItemTags.Weapon | EItemTags.AvailableToPlayer).GetRandomItem();
-
-                await Wait.Update();
             }
             async Awaitable WaitForSpawnAvailable()
             {

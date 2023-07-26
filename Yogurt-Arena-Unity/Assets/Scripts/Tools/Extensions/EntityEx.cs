@@ -34,15 +34,6 @@ namespace Yogurt.Arena
             }
         }
 
-        public static async Awaitable Run(this Entity entity, IUpdateJob job)
-        {
-            while (entity.Exist)
-            {
-                job.Update();
-                await Wait.Update();
-            }
-        }
-        
         public static async Awaitable Run(this Entity entity, Action action)
         {
             while (entity.Exist)

@@ -7,13 +7,17 @@ namespace Yogurt.Arena
         public async void Run(BulletAspect bullet)
         {
             AgentAspect owner = bullet.State.Owner;
-            while (bullet.Exist() && owner.Exist())
+            bullet.Run(Update);
+
+
+            async Awaitable Update()
             {
+                if (!owner.Exist())
+                    return;
+                
                 Transform transform = bullet.View.transform;
                 Vector3 position = owner.View.transform.position.AddY(0.5f);
                 bullet.Body.Position = transform.position = position;
-
-                await Wait.Update();
             }
         }
     }
