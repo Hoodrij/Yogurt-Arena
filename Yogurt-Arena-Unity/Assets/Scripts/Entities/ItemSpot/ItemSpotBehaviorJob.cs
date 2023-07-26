@@ -6,7 +6,10 @@ namespace Yogurt.Arena
     {
         public async Awaitable Run(ItemSpotAspect itemSpot)
         {
-            while (itemSpot.Exist())
+            itemSpot.Run(Update);
+
+
+            async Awaitable Update()
             {
                 EItemType itemType = await WaitForActivation();
 
@@ -17,8 +20,6 @@ namespace Yogurt.Arena
                 itemSpot.View.Hide();
                 itemSpot.State.Type = EItemType.Empty;
             }
-
-
             async Awaitable<EItemType> WaitForActivation()
             {
                 await Wait.Until(() => itemSpot.State.Type != EItemType.Empty);

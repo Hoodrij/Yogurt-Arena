@@ -145,12 +145,12 @@ MonoBehaviour:
         LifeTime: 0.3
         Speed: 1
       Cooldown: 1
-      Range: 12
+      Range: 8
       AngleToAttack: 15
     Lifetime:
       LifeTime: 5
     TargetDetection:
-      Distance: 20
+      Distance: 10
       CollisionMask:
         serializedVersion: 2
         m_Bits: 1

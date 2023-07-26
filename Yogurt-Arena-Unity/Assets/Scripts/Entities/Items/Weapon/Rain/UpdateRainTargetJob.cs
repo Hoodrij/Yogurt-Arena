@@ -9,13 +9,13 @@ namespace Yogurt.Arena
             RainBulletData rainData = bullet.Data;
             AgentAspect owner = bullet.Owner;
 
-            while (bullet.Exist())
+            bullet.Run(Update);
+
+
+            void Update()
             {
                 bullet.BattleState.Target = GetTarget();
-                await Wait.Update();
             }
-                
-                
             AgentAspect GetTarget()
             {
                 AgentAspect target = Query.Of<AgentAspect>()
