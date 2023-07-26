@@ -42,8 +42,8 @@ MonoBehaviour:
     SlowDistance: 5
     MoveSmoothValue: 0.1
     LookSmoothValue: 0.2
-    MaxHealth: 10
-    Health: 10
+    MaxHealth: 20
+    Health: 20
   ChargeEnemy:
     Asset:
       asset:
@@ -101,7 +101,7 @@ MonoBehaviour:
         Damage: 0
         LifeTime: 2
         Speed: 1
-      Cooldown: 0.05
+      Cooldown: 0.15
       Range: 15
       AngleToAttack: 360
     Lifetime:
@@ -150,7 +150,7 @@ MonoBehaviour:
     Lifetime:
       LifeTime: 5
     TargetDetection:
-      Distance: 10
+      Distance: 15
       CollisionMask:
         serializedVersion: 2
         m_Bits: 1
