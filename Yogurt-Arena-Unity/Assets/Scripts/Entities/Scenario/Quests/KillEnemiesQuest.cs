@@ -14,10 +14,9 @@ namespace Yogurt.Arena.Quest
         public async Awaitable Run()
         {
             int killedEnemies = 0;
-
             HashSet<Entity> enemies = new();
 
-            do
+            while (killedEnemies < amountToKill)
             {
                 foreach (AgentAspect enemy in Query.Of<AgentAspect>().Without<PlayerTag>())
                 {
@@ -28,7 +27,7 @@ namespace Yogurt.Arena.Quest
                 }
 
                 await Wait.Update();
-            } while (killedEnemies < amountToKill);
+            }
             
             
             async void ListenForDeath(Entity enemy)
