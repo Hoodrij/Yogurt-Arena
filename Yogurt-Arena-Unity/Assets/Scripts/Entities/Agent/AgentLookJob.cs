@@ -9,6 +9,9 @@ namespace Yogurt.Arena
 
         public void Run(AgentAspect agent)
         {
+            Time time = Query.Single<Time>();
+            int frameRate = time.TARGET_FRAME_RATE;
+            
             agent.Run(Update);
             
             
@@ -16,8 +19,7 @@ namespace Yogurt.Arena
             {
                 if (agent.Has<Kinematic>())
                     return;
-                
-                int frameRate = Query.Single<Time>().TARGET_FRAME_RATE;
+
 
                 BodyState body = agent.Body;
                 

@@ -8,6 +8,8 @@ namespace Yogurt.Arena
     {
 	    public void Run(AgentAspect agent)
 	    {
+		    Time time = Query.Single<Time>();
+		    
 		    agent.Run(Update);
 		    
 		    
@@ -15,12 +17,12 @@ namespace Yogurt.Arena
 		    {
 			    if (agent.Has<Kinematic>())
 				    return;
-			    
-			    UpdateState(Query.Single<Time>());
+
+			    UpdateState();
 			    agent.View.transform.position = agent.Body.Position;
 	        }
-
-	        void UpdateState(Time time)
+		    
+		    void UpdateState()
 	        {
 		        BodyState body = agent.Body;
 
@@ -47,8 +49,8 @@ namespace Yogurt.Arena
 				NavMesh.CalculatePath(startPos, endPos, NavMesh.AllAreas, path);
 				return path;
 			}
-
-			static Vector3 GetNextVelocityByPath(float speed, NavMeshPath path)
+	        
+	        static Vector3 GetNextVelocityByPath(float speed, NavMeshPath path)
 			{
 				if (path.status != NavMeshPathStatus.PathComplete) 
 					return Vector3.zero;
@@ -71,8 +73,8 @@ namespace Yogurt.Arena
 		        }
 		        return finalPoint - path.corners.First();
 		    }
-			
-			Vector3 GetSmoothedVelocity(float distanceToTarget, Vector3 requiredVelocity, Time time)
+	        
+	        Vector3 GetSmoothedVelocity(float distanceToTarget, Vector3 requiredVelocity, Time time)
 			{
 				AgentConfig config = agent.Config;
 				Vector3 prevVelocity = agent.Body.Velocity;
