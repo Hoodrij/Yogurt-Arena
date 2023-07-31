@@ -12,7 +12,6 @@ namespace Yogurt.Arena
                 link = go.AddComponent<EntityLink>();
             }
             
-            entity.Add(link);
             link.Set(entity);
             entity.WaitForDeadAndDispose(link);
 

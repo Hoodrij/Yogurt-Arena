@@ -14,7 +14,7 @@ namespace Yogurt.Arena.Quest
         public async Awaitable Run()
         {
             int killedEnemies = 0;
-            HashSet<Entity> enemies = new();
+            HashSet<Entity> enemies = new();  
 
             while (killedEnemies < amountToKill)
             {

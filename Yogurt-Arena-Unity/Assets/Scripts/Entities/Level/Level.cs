@@ -6,5 +6,6 @@ namespace Yogurt.Arena
     public class Level : MonoBehaviour, IComponent
     {
         public NavMeshSurface NavSurface;
+        public int CurrentPart;
     }
 }

@@ -280,6 +280,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &6068578737952641192
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -362,10 +363,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3220479304904157275}
-  - component: {fileID: 3590033261201646973}
-  - component: {fileID: 2624004827524423679}
+  - component: {fileID: 3809344763726194964}
   m_Layer: 0
-  m_Name: Level
+  m_Name: Level 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,7 +389,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3590033261201646973
+--- !u!114 &3809344763726194964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,41 +398,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 238997165645100861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a994fc9cbba14c14bccc62383a463b82, type: 3}
+  m_Script: {fileID: 11500000, guid: 15984e29d5d64d98a202ec74227fe597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NavSurface: {fileID: 2624004827524423679}
---- !u!114 &2624004827524423679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238997165645100861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 34d1cc780d1131548bf65f9a8a583310, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!1 &1079404482595273157
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +682,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &5699056599963900360
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1083,6 +1052,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &3294780002052011875
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1436,6 +1406,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &3077140874591998601
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1790,6 +1761,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &9186456633489829865
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2200,6 +2172,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &2387297452852122724
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2573,6 +2546,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &2888102108048330548
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2943,6 +2917,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &1907189862791052469
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3312,6 +3287,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &7200114555535742770
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3724,6 +3700,7 @@ MonoBehaviour:
     RefIds:
     - rid: 8486082665407315971
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!23 &4998101430944011278
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4680,7 +4657,7 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedFaces.Array.data[0]
+      propertyPath: 'm_SelectedFaces.Array.data[0]'
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
@@ -4720,19 +4697,19 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[0]
+      propertyPath: 'm_SelectedVertices.Array.data[0]'
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[1]
+      propertyPath: 'm_SelectedVertices.Array.data[1]'
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[2]
+      propertyPath: 'm_SelectedVertices.Array.data[2]'
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[3]
+      propertyPath: 'm_SelectedVertices.Array.data[3]'
       value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6631937139865169655, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
@@ -5232,7 +5209,7 @@ PrefabInstance:
       value: 6.0000005
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedFaces.Array.data[0]
+      propertyPath: 'm_SelectedFaces.Array.data[0]'
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
@@ -5272,19 +5249,19 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[0]
+      propertyPath: 'm_SelectedVertices.Array.data[0]'
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[1]
+      propertyPath: 'm_SelectedVertices.Array.data[1]'
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[2]
+      propertyPath: 'm_SelectedVertices.Array.data[2]'
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[3]
+      propertyPath: 'm_SelectedVertices.Array.data[3]'
       value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6631937139865169655, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
@@ -5772,7 +5749,7 @@ PrefabInstance:
       value: 2.0000088
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedFaces.Array.data[0]
+      propertyPath: 'm_SelectedFaces.Array.data[0]'
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
@@ -5812,19 +5789,19 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[0]
+      propertyPath: 'm_SelectedVertices.Array.data[0]'
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[1]
+      propertyPath: 'm_SelectedVertices.Array.data[1]'
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[2]
+      propertyPath: 'm_SelectedVertices.Array.data[2]'
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4125614968793356094, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}
-      propertyPath: m_SelectedVertices.Array.data[3]
+      propertyPath: 'm_SelectedVertices.Array.data[3]'
       value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6631937139865169655, guid: ba4a126a75fa80643a27f8afa3071880, type: 3}

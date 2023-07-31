@@ -8,7 +8,7 @@ namespace Yogurt.Arena
     public class Config : ScriptableObject, IComponent
     {
         public Asset<World> World;
-        public Asset<Level> Level;
+        public Asset<LevelPartTag>[] Levels;
 
         public UIConfig UI;
         public InputConfig Input;
