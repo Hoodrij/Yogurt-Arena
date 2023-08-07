@@ -17,7 +17,7 @@ namespace Yogurt.Arena
 
                 itemSpot.View.Show(itemType);
                 AgentAspect agent = await new WaitForItemPickupJob().Run(itemSpot);
-                itemType.GetFactoryJob().Run(agent);
+                GetFactory(itemType).Run(agent);
 
                 itemSpot.View.Hide();
                 itemSpot.State.Type = EItemType.Empty;
@@ -26,6 +26,13 @@ namespace Yogurt.Arena
             {
                 await Wait.Until(() => itemSpot.State.Type != EItemType.Empty);
                 return itemSpot.State.Type;
+            }
+            IItemFactoryJob GetFactory(EItemType type)
+            {
+                ItemConfigAspect config = Query.Of<ItemConfigAspect>()
+                    .FirstOrDefault(item => item.Config.Type == type);
+                
+                return config.Config.FactoryJob;
             }
         }
     }

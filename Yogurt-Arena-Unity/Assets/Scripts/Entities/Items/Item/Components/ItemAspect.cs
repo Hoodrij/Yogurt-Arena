@@ -7,4 +7,11 @@
         public ItemConfig Config => this.Get<ItemConfig>();
         public OwnerState Owner => this.Get<OwnerState>();
     }
+    
+    public struct ItemConfigAspect : IAspect 
+    {
+        public Entity Entity { get; set; }
+        
+        public ItemConfig Config => this.Get<ItemConfig>();
+    }
 }

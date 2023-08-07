@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Yogurt.Arena
 {
@@ -7,17 +6,10 @@ namespace Yogurt.Arena
     {
         public EItemType Run(EItemTags requiredTags)
         {
-            return Enum.GetValues(typeof(EItemType))
-                .Cast<EItemType>()
-                .Where(HasTags)
-                .GetRandom();
-            
-            
-            bool HasTags(EItemType type)
-            {
-                EItemTags tags = type.GetTags();
-                return tags.HasFlag(requiredTags);
-            }
+            return Query.Of<ItemConfigAspect>()
+                .Where(config => config.Config.Tags.HasFlag(requiredTags))
+                .GetRandom()
+                .Config.Type;
         }
         
     }
