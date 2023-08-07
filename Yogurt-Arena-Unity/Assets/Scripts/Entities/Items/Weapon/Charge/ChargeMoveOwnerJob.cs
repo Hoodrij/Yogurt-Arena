@@ -16,8 +16,9 @@ namespace Yogurt.Arena
             body.Velocity = transform.forward * bullet.Config.Speed;
             
             bullet.Run(MoveOwner);
-            
-            
+            return;
+
+
             async void MoveOwner()
             {
                 if (!owner.Has<Kinematic>())

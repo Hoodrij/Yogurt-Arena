@@ -6,14 +6,11 @@ namespace Yogurt.Arena
     {
         public async Awaitable<ItemAspect> Run(AgentAspect owner)
         {
-            HealingPotionConfig config = Query.Single<Config>().HealingPotion;
+            HealingPotionConfig config = Query.Single<HealingPotionConfig>();
 
-            ItemAspect item = await new ItemFactoryJob().Run(owner, 
-                new UseHealingPotionJob(), 
-                EItemType.HealingPotion);
-            item.Add(config);
+            ItemAspect item = await new ItemFactoryJob().Run(config, owner); 
 
-            await item.Item.Job.Run(item);
+            item.Config.UseJob.Run(item);
             
             return item;
         }

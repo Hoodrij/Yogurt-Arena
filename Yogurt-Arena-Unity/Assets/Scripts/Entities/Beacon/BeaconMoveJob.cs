@@ -9,8 +9,9 @@ namespace Yogurt.Arena
         public void Run(BeaconAspect beacon)
         {
             beacon.Run(Update);
-            
-            
+            return;
+
+
             void Update()
             {
                 InputFieldAspect inputField = Query.Single<InputFieldAspect>();
@@ -22,8 +23,9 @@ namespace Yogurt.Arena
                 Transform transform;
                 (transform = beacon.View.transform).position = Vector3.Lerp(beacon.View.transform.position, body.Destination, config.SmoothValue);
                 SpecifyTransformY(transform, body);
-                
-                
+                return;
+
+
                 void AddDelta(Vector3 delta)
                 {
                     if (delta == Vector3.zero) return;

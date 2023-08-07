@@ -8,6 +8,7 @@ namespace Yogurt.Arena
         {
             AgentAspect owner = bullet.State.Owner;
             bullet.Run(Update);
+            return;
 
 
             async Awaitable Update()

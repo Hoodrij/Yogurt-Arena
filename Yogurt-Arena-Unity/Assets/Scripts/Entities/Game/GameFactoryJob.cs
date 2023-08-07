@@ -8,10 +8,17 @@ namespace Yogurt.Arena
         {
             Config config = Resources.Load<Config>("Config");
 
-            Entity.Create()
+            Entity game = Entity.Create()
                 .Add<Game>()
                 .Add(config)
                 .Add<Time>();
+
+            foreach (IConfig iconfig in config.All)
+            {
+                Entity entity = Entity.Create()
+                    .SetParent(game);
+                iconfig.AppendTo(entity);
+            }
         }
     }
 }

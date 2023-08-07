@@ -1,13 +1,29 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-namespace Yogurt.Arena.Components
+namespace Yogurt.Arena
 {
-    [Serializable]
-    public class RifleConfig : IComponent
+    [CreateAssetMenu]
+    public class RifleConfig : ScriptableObject, IComponent, IConfig
     {
-        public WeaponConfig Common;
+        public ItemConfig Item = new()
+        {
+            FactoryJob = new RifleFactoryJob(),
+            UseJob = new UseRifleJob()
+        };
+        public WeaponConfig Weapon;
         public ItemLifetimeConfig Lifetime;
         public WeaponScatteringConfig Scattering;
         public TargetDetectionConfig TargetDetection;
+        
+        public void AppendTo(Entity entity)
+        {
+            entity.Add(this)
+                .Add(Item)
+                .Add(Weapon)
+                .Add(Lifetime)
+                .Add(Scattering)
+                .Add(TargetDetection);
+        }
     }
 }

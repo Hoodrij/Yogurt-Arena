@@ -21,8 +21,10 @@ namespace Yogurt.Arena
 
                 await Wait.Seconds(config.Cooldown);
             }
-            
-            
+
+            return;
+
+
             Vector3 GetVelocity(BulletAspect bullet)
             {
                 BodyState targetBody = owner.BattleState.Target.Body;

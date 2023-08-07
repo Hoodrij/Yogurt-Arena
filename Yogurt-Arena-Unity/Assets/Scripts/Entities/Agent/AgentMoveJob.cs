@@ -11,8 +11,9 @@ namespace Yogurt.Arena
 		    Time time = Query.Single<Time>();
 		    
 		    agent.Run(Update);
-		    
-		    
+		    return;
+
+
 		    void Update()
 		    {
 			    if (agent.Has<Kinematic>())

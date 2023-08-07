@@ -7,6 +7,7 @@
         Rifle = 100,
         Rain = 101,
         Charge = 102,
+        SelfExplosion = 103,
         
         HealingPotion = 200,
     }

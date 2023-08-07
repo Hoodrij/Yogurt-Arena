@@ -12,8 +12,9 @@ namespace Yogurt.Arena
             AgentAspect agent = weapon.Owner.Owner;
             
             weapon.Run(Update);
-            
-            
+            return;
+
+
             void Update()
             {
                 battleState.Target = GetTarget();

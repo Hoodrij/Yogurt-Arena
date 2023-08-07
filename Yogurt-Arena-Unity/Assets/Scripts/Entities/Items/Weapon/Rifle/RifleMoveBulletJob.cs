@@ -12,8 +12,9 @@ namespace Yogurt.Arena
             float timePassed = 0;
             
             bullet.Run(MoveBullet);
-            
-            
+            return;
+
+
             void MoveBullet()
             {
                 if (bullet.Has<Kinematic>())

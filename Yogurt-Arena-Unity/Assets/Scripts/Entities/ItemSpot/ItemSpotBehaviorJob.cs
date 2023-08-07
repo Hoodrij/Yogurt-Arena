@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -7,6 +8,7 @@ namespace Yogurt.Arena
         public async Awaitable Run(ItemSpotAspect itemSpot)
         {
             itemSpot.Run(Update);
+            return;
 
 
             async Awaitable Update()

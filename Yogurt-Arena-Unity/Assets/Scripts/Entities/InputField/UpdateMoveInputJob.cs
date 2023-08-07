@@ -7,8 +7,9 @@ namespace Yogurt.Arena
         public void Run(InputFieldAspect inputField)
         {
             inputField.Run(Update);
-            
-            
+            return;
+
+
             void Update()
             {
                 Time time = Query.Single<Time>();

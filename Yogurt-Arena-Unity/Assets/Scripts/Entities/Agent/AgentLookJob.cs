@@ -13,8 +13,9 @@ namespace Yogurt.Arena
             int frameRate = time.TARGET_FRAME_RATE;
             
             agent.Run(Update);
-            
-            
+            return;
+
+
             void Update()
             {
                 if (agent.Has<Kinematic>())

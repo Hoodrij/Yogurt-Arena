@@ -4,7 +4,7 @@
     {
         public Entity Entity { get; set; }
         
-        public Item Item => this.Get<Item>();
+        public ItemConfig Config => this.Get<ItemConfig>();
         public OwnerState Owner => this.Get<OwnerState>();
     }
 }

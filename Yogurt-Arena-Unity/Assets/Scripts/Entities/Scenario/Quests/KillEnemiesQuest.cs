@@ -28,8 +28,10 @@ namespace Yogurt.Arena.Quest
 
                 await Wait.Update();
             }
-            
-            
+
+            return;
+
+
             async void ListenForDeath(Entity enemy)
             {
                 await enemy.WaitForDead();

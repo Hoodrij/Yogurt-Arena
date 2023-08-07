@@ -24,8 +24,9 @@ namespace Yogurt.Arena
             
             new SpawnExplosionJob().Run(rainConfig.ExplosionAsset, bullet.Body.Position, rainConfig.Damage.Radius);
             await new KillBulletJob().Run(bullet);
+            return;
 
-            
+
             async Awaitable DetectHit()
             {
                 collision = await new WaitForBulletHitJob().Run(bullet);

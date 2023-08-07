@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
@@ -20,8 +19,9 @@ namespace Yogurt.Arena
                 owner.Remove<Kinematic>();
             }
             await new KillBulletJob().Run(bullet);
+            return;
 
-            
+
             async Awaitable TryDealDamage()
             {
                 int damage = bullet.Config.Damage;

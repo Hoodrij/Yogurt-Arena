@@ -16,8 +16,9 @@ namespace Yogurt.Arena
                 IsInRange() && 
                 IsLookingAtTarget()
                 );
-            
-            
+            return;
+
+
             bool HasOwner()
             {
                 return owner.Exist();

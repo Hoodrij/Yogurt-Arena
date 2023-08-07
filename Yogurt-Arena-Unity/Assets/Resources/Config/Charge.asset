@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa1e200fc8a142cc8e0008f946daec6c, type: 3}
+  m_Name: Charge
+  m_EditorClassIdentifier: 
+  Item:
+    Type: 102
+    Tags: 5
+  Weapon:
+    Bullet:
+      Asset:
+        asset:
+          Prefab: {fileID: 7036511241227750618, guid: d96c9344640c7e74181b3d6e8dab810b, type: 3}
+      CollisionMask:
+        serializedVersion: 2
+        m_Bits: 256
+      Radius: 1
+      Damage: 1
+      LifeTime: 0.3
+      Speed: 1
+    Cooldown: 1
+    Range: 8
+    AngleToAttack: 15
+  Lifetime:
+    LifeTime: 5
+  TargetDetection:
+    Distance: 15
+    CollisionMask:
+      serializedVersion: 2
+      m_Bits: 1
+    YTolerance: 3

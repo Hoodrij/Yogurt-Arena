@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Yogurt.Arena.Components;
 
 namespace Yogurt.Arena
 {
@@ -7,16 +6,9 @@ namespace Yogurt.Arena
     {
         public async Awaitable<ItemAspect> Run(AgentAspect owner)
         {
-            RifleConfig config = Query.Single<Config>().Rifle;
+            RifleConfig config = Query.Single<RifleConfig>();
 
-            ItemAspect weapon = await new ItemFactoryJob().Run(owner, 
-                new UseRifleJob(), 
-                EItemType.Rifle);
-            weapon.Add(config);
-            weapon.Add(config.Common);
-            weapon.Add(config.Scattering);
-            weapon.Add(config.Lifetime);
-            weapon.Add(config.TargetDetection);
+            ItemAspect weapon = await new ItemFactoryJob().Run(config, owner);
             weapon.Add(owner.BattleState);
             
             new SetWeaponJob().Run(owner, weapon);

@@ -6,20 +6,12 @@ namespace Yogurt.Arena
     {
         public async Awaitable<ItemAspect> Run(AgentAspect owner)
         {
-            RainConfig rainConfig = Query.Single<Config>().Rain;
+            RainConfig config = Query.Single<RainConfig>();
 
-            ItemAspect weapon = await new ItemFactoryJob().Run(owner, 
-                new UseRainJob(), 
-                EItemType.Rain);
-            weapon.Add(rainConfig);
-            weapon.Add(rainConfig.Common);
-            weapon.Add(rainConfig.Scattering);
-            weapon.Add(rainConfig.Clip);
-            weapon.Add(rainConfig.Lifetime);
-            weapon.Add(rainConfig.TargetDetection);
+            ItemAspect weapon = await new ItemFactoryJob().Run(config, owner); 
             weapon.Add(new WeaponClipState
             {
-                CurrentAmmo = rainConfig.Clip.BulletsInClip
+                CurrentAmmo = config.Clip.BulletsInClip
             });
             weapon.Add(owner.BattleState);
             

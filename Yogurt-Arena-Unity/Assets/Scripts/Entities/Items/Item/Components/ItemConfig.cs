@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Linq;
 
 namespace Yogurt.Arena
 {
-    public class Item : IComponent
+    [Serializable]
+    public class ItemConfig : IComponent
     {
         public EItemType Type;
-        public IItemUseJob Job;
+        public EItemTags Tags;
+        public IItemFactoryJob FactoryJob;
+        public IItemUseJob UseJob;
     }
     
     public static class ItemEx
@@ -23,23 +25,12 @@ namespace Yogurt.Arena
         {
             EItemType.Rifle => EItemTags.Weapon | EItemTags.AvailableToPlayer,
             EItemType.Rain => EItemTags.Weapon | EItemTags.AvailableToPlayer,
+            
             EItemType.Charge => EItemTags.Weapon | EItemTags.AvailableToEnemy,
-            EItemType.HealingPotion => EItemTags.AvailableToPlayer | EItemTags.Weapon,
+            EItemType.SelfExplosion => EItemTags.Weapon | EItemTags.AvailableToEnemy,
+            
+            EItemType.HealingPotion => EItemTags.AvailableToPlayer,
             _ => EItemTags.None
         };
-
-        public static EItemType GetRandomItem(this EItemTags tags)
-        {
-            return Enum.GetValues(typeof(EItemType))
-                .Cast<EItemType>()
-                .Where(type => type.HasTags(tags))
-                .GetRandom();
-        }
-        
-        public static bool HasTags(this EItemType type, EItemTags others)
-        {
-            EItemTags tags = type.GetTags();
-            return tags.HasFlag(others);
-        }
     }
 }

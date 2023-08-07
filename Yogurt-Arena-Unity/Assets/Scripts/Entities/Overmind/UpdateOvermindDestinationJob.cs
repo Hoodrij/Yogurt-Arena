@@ -7,8 +7,9 @@ namespace Yogurt.Arena
         public void Run(OvermindAspect overmind)
         {
             overmind.Run(Update);
-            
-            
+            return;
+
+
             void Update()
             {
                 int agentIndex = 0;

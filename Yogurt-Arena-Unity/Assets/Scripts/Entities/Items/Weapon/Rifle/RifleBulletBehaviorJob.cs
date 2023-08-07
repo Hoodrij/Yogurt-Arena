@@ -19,8 +19,9 @@ namespace Yogurt.Arena
             }
 
             await new KillBulletJob().Run(bullet);
+            return;
 
-            
+
             async Awaitable DetectHit()
             {
                 collision = await new WaitForBulletHitJob().Run(bullet);

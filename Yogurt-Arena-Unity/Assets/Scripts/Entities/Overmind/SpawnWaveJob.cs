@@ -21,8 +21,10 @@ namespace Yogurt.Arena
                 overmind.State.AddAgent(agent);
                 await Wait.Seconds(0.5f);
             }
-            
-            
+
+            return;
+
+
             Vector3 GetFreeSpawnPoint()
             {
                 NavMeshSurface level = Query.Single<Level>().NavSurface;

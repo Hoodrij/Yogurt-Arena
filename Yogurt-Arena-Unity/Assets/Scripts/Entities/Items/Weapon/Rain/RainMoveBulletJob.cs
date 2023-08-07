@@ -10,8 +10,9 @@ namespace Yogurt.Arena
             RainBulletConfig rainConfig = bullet.Config;
             
             bullet.Run(MoveBullet);
-            
-            
+            return;
+
+
             void MoveBullet()
             {
                 if (bullet.Has<Kinematic>())

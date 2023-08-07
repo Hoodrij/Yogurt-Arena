@@ -8,8 +8,9 @@ namespace Yogurt.Arena
         {
             OvermindAspect overmind = Query.Single<OvermindAspect>();
             overmind.Run(Update);
+            return;
 
-            
+
             async Awaitable Update()
             {
                 await new SpawnWaveJob().Run(overmind);

@@ -7,6 +7,7 @@ namespace Yogurt.Arena
         public void Run(CameraAspect camera)
         {
             camera.Run(Update);
+            return;
 
 
             void Update()

@@ -10,6 +10,7 @@ namespace Yogurt.Arena
             AgentAspect owner = bullet.Owner;
 
             bullet.Run(Update);
+            return;
 
 
             void Update()

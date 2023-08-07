@@ -9,13 +9,14 @@ namespace Yogurt.Arena
         public async Awaitable Run(Entity itemSpawner)
         {
             itemSpawner.Run(Update);
+            return;
 
-            
+
             async Awaitable Update()
             {
                 await WaitForSpawnAvailable();
                 ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
-                randomSpot.State.Type = (EItemTags.Weapon | EItemTags.AvailableToPlayer).GetRandomItem();
+                randomSpot.State.Type = new GetRandomItemJob().Run(EItemTags.AvailableToPlayer);
             }
             async Awaitable WaitForSpawnAvailable()
             {

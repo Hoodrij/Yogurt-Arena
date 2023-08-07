@@ -9,23 +9,19 @@ namespace Yogurt.Arena
     
     public struct ItemFactoryJob
     {
-        public async Awaitable<ItemAspect> Run(AgentAspect owner, IItemUseJob job, EItemType type)
+        public async Awaitable<ItemAspect> Run(IConfig config, AgentAspect owner)
         {
-            ItemAspect itemAspect = World.Create()
-                .Add(new Item
-                {
-                    Type = type,
-                    Job = job,
-                })
+            Entity entity = World.Create()
                 .Add(new OwnerState
                 {
                     Owner = owner
-                })
-                .As<ItemAspect>();
+                });
             
-            itemAspect.Entity.SetParent(owner.Entity);
+            config.AppendTo(entity);
+            
+            entity.SetParent(owner.Entity);
 
-            return itemAspect;
+            return entity.As<ItemAspect>();
         }
     }
 }
