@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena.Quest
 {
     public struct PickupWeaponQuest : IQuest
     {
-        public async Awaitable Run()
+        public async UniTask Run()
         {
             PlayerAspect player = Query.Single<PlayerAspect>();
             await new WaitForEntityChanged().Run(() => player.Agent.Inventory.Weapon.Entity);

@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct RifleBulletBehaviorJob
     {
-        public async Awaitable Run(BulletAspect bullet)
+        public async UniTask Run(BulletAspect bullet)
         {
             CollisionInfo collision = default;
 
-            Awaitable collisionTask = DetectHit();
+            UniTask collisionTask = DetectHit();
             new RifleMoveBulletJob().Run(bullet);
             await Wait.Any(collisionTask, WaitForLifeTime());
 
@@ -22,11 +22,11 @@ namespace Yogurt.Arena
             return;
 
 
-            async Awaitable DetectHit()
+            async UniTask DetectHit()
             {
                 collision = await new WaitForBulletHitJob().Run(bullet);
             }
-            async Awaitable WaitForLifeTime()
+            async UniTask WaitForLifeTime()
             {
                 await new WaitForBulletLiteTimeJob().Run(bullet);
             }

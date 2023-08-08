@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena.Tools
 {
     public interface IAsset<TComponent> where TComponent : Component
     {
-        public Awaitable<TComponent> Spawn();
+        public UniTask<TComponent> Spawn();
     }
 }

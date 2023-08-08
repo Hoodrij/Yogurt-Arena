@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct WaitForBulletHitJob
     {
-        public async Awaitable<CollisionInfo> Run(BulletAspect bullet)
+        public async UniTask<CollisionInfo> Run(BulletAspect bullet)
         {
             Time time = Query.Single<Time>();
             RaycastHit[] hits = new RaycastHit[3];

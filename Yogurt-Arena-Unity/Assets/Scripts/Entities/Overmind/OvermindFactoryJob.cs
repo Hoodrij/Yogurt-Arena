@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct OvermindFactoryJob
     {
-        public async Awaitable<OvermindAspect> Run()
+        public async UniTask<OvermindAspect> Run()
         {
             OvermindAspect overmind = World.Create()
                 .Add(Query.Single<Config>().Overmind)

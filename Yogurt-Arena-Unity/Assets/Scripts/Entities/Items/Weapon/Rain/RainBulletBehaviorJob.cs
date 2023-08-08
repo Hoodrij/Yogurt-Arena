@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct RainBulletBehaviorJob
     {
-        public async Awaitable Run(RainBulletAspect rainBullet)
+        public async UniTask Run(RainBulletAspect rainBullet)
         { 
             BulletAspect bullet = rainBullet.BulletAspect;
             RainBulletConfig rainConfig = rainBullet.Config;
             CollisionInfo collision = default;
             
-            Awaitable collisionTask = DetectHit();
+            UniTask collisionTask = DetectHit();
             new UpdateRainTargetJob().Run(rainBullet);
             new RainMoveBulletJob().Run(rainBullet);
 
@@ -27,11 +27,11 @@ namespace Yogurt.Arena
             return;
 
 
-            async Awaitable DetectHit()
+            async UniTask DetectHit()
             {
                 collision = await new WaitForBulletHitJob().Run(bullet);
             }
-            async Awaitable WaitForLifeTime()
+            async UniTask WaitForLifeTime()
             {
                 await new WaitForBulletLiteTimeJob().Run(bullet);
             }

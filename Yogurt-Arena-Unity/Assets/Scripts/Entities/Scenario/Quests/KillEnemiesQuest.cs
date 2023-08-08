@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena.Quest
 {
@@ -11,7 +11,7 @@ namespace Yogurt.Arena.Quest
             this.amountToKill = amountToKill;
         }
 
-        public async Awaitable Run()
+        public async UniTask Run()
         {
             int killedEnemies = 0;
             HashSet<Entity> enemies = new();  

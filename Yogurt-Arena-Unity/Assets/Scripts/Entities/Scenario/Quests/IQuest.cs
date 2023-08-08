@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena.Quest
 {
     public interface IQuest
     {
-        Awaitable Run();
+        UniTask Run();
     }
 }

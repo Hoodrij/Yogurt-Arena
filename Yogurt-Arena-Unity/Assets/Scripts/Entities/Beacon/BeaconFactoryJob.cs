@@ -1,10 +1,10 @@
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct BeaconFactoryJob
     {
-        public async Awaitable<BeaconAspect> Run()
+        public async UniTask<BeaconAspect> Run()
         {
             BeaconConfig beaconConfig = Query.Single<Config>().Beacon;
             BeaconView view = await beaconConfig.Asset.Spawn();

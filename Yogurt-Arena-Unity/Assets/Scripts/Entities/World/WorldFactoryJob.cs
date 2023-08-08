@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct WorldFactoryJob
     {
-        public async Awaitable<Entity> Run()
+        public async UniTask<Entity> Run()
         {
             World world = await Query.Single<Config>().World.Spawn();
             

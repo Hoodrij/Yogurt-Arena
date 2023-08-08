@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             return;
 
 
-            async Awaitable Update()
+            async UniTask Update()
             {
                 await new SpawnWaveJob().Run(overmind);
                 await Wait.Seconds(overmind.Config.WavesDelay.GetRandom());

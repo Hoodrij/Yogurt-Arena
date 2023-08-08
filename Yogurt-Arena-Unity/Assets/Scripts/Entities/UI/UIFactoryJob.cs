@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 using Yogurt.Arena.Components;
 
 namespace Yogurt.Arena
 {
     public struct UIFactoryJob
     {
-        public async Awaitable<Entity> Run()
+        public async UniTask<Entity> Run()
         {
             UIConfig config = Query.Single<Config>().UI;
             UIView uiView = await config.Asset.Spawn();

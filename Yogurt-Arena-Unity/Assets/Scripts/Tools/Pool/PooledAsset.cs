@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yogurt.Arena.Tools
@@ -9,7 +10,7 @@ namespace Yogurt.Arena.Tools
         public Asset<TComponent> asset;
         private Pool pool;
 
-        public async Awaitable<TComponent> Spawn()
+        public async UniTask<TComponent> Spawn()
         {
             pool ??= new(async () => (await asset.Spawn()).gameObject);
             return (await pool.Pop()).GetComponent<TComponent>();

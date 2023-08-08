@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct CameraFactoryJob
     {
-        public async Awaitable<CameraAspect> Run()
+        public async UniTask<CameraAspect> Run()
         {
             CameraConfig cameraConfig = Query.Single<Config>().Camera;
             CameraView view = await cameraConfig.Asset.Spawn();

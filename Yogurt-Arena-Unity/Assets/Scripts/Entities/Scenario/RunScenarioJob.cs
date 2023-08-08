@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct RunScenarioJob
     {
-        public async Awaitable Run()
+        public async UniTask Run()
         {
             new RunOvermindBehaviorJob().Run();
             await new Quest.PickupWeaponQuest().Run();

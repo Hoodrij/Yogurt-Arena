@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,7 +7,7 @@ namespace Yogurt.Arena
 {
     public struct AgentSpawnJob
     {
-        public async Awaitable<AgentAspect> Run(AgentConfig config, Team team, Vector3 position)
+        public async UniTask<AgentAspect> Run(AgentConfig config, Team team, Vector3 position)
         {
             NavMesh.SamplePosition(position, out var hit, 100, NavMesh.AllAreas);
             position = hit.position;
@@ -27,7 +28,7 @@ namespace Yogurt.Arena
                 agent.Remove<Kinematic>();
             }
 
-            async Awaitable RunAnimation()
+            async UniTask RunAnimation()
             {
                 float animationTime = 0.2f;
                 float activationTime = animationTime * 0.9f;

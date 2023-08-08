@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct SpawnNextLevelPartJob
     {
-        public async Awaitable Run()
+        public async UniTask Run()
         {
             Config config = Query.Single<Config>();
             LevelAspect level = Query.Single<LevelAspect>();

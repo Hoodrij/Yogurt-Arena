@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct RainFactoryJob : IItemFactoryJob
     {
-        public async Awaitable<ItemAspect> Run(AgentAspect owner)
+        public async UniTask<ItemAspect> Run(AgentAspect owner)
         {
             RainConfig config = Query.Single<RainConfig>();
 

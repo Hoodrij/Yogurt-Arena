@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -11,7 +12,7 @@ namespace Yogurt.Arena
             return;
 
 
-            async Awaitable Update()
+            async UniTask Update()
             {
                 if (!owner.Exist())
                     return;

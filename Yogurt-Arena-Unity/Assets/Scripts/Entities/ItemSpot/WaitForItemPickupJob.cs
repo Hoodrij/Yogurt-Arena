@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct WaitForItemPickupJob
     {
-        public async Awaitable<AgentAspect> Run(ItemSpotAspect itemSpot)
+        public async UniTask<AgentAspect> Run(ItemSpotAspect itemSpot)
         {
             RaycastHit[] hits = new RaycastHit[3];
             

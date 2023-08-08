@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct GameFactoryJob
     {
-        public async Awaitable Run()
+        public async UniTask Run()
         {
             Config config = Resources.Load<Config>("Config");
 

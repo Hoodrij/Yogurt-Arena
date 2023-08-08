@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct UseChargeJob : IItemUseJob
     {
-        public async Awaitable Run(ItemAspect item)
+        public async UniTask Run(ItemAspect item)
         {
             WeaponConfig config = item.Get<WeaponConfig>();
             AgentAspect owner = item.Owner;

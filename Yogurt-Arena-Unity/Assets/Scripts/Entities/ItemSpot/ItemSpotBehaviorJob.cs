@@ -1,17 +1,18 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using System;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct ItemSpotBehaviorJob
     {
-        public async Awaitable Run(ItemSpotAspect itemSpot)
+        public async UniTask Run(ItemSpotAspect itemSpot)
         {
             itemSpot.Run(Update);
             return;
 
 
-            async Awaitable Update()
+            async UniTask Update()
             {
                 EItemType itemType = await WaitForActivation();
 
@@ -22,7 +23,7 @@ namespace Yogurt.Arena
                 itemSpot.View.Hide();
                 itemSpot.State.Type = EItemType.Empty;
             }
-            async Awaitable<EItemType> WaitForActivation()
+            async UniTask<EItemType> WaitForActivation()
             {
                 await Wait.Until(() => itemSpot.State.Type != EItemType.Empty);
                 return itemSpot.State.Type;

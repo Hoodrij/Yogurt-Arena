@@ -1,74 +1,38 @@
 ﻿using System;
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public static class Wait
     {
-        public static async Awaitable While(Func<bool> predicate)
+        public static UniTask While(Func<bool> predicate)
         {
-            while (predicate())
-            {
-                await Awaitable.NextFrameAsync();
-            }
+            return UniTask.WaitWhile(predicate);
         }
         
-        public static async Awaitable Until(Func<bool> predicate)
+        public static UniTask Until(Func<bool> predicate)
         {
-            while (!predicate())
-            {
-                await Awaitable.NextFrameAsync();
-            }
+            return UniTask.WaitUntil(predicate);
         }
 
-        public static Awaitable Update()
+        public static UniTask Update()
         {
-            return Awaitable.NextFrameAsync();
+            return UniTask.NextFrame();
         }
 
-        public static Awaitable Seconds(float seconds)
+        public static UniTask Seconds(float seconds)
         {
-            return Awaitable.WaitForSecondsAsync(seconds);
+            return UniTask.WaitForSeconds(seconds);
         }
 
-        public static async Awaitable Any(params Awaitable[] tasks)
+        public static UniTask Any(params UniTask[] tasks)
         {
-            bool haveCompletedTask = false;
-
-            while (!haveCompletedTask)
-            {
-                foreach (Awaitable awaitable in tasks)
-                {
-                    if (awaitable.IsCompleted)
-                    {
-                        haveCompletedTask = true;
-                        break;
-                    }
-                }
-
-                await Awaitable.NextFrameAsync();
-            }
-            
-            foreach (Awaitable awaitable in tasks)
-            {
-                awaitable.Cancel();
-            }
+            return UniTask.WhenAny(tasks);
         }
         
-        public static async Awaitable All(params Awaitable[] tasks)
+        public static UniTask All(params UniTask[] tasks)
         {
-            bool allTasksCompleted = false;
-
-            while (!allTasksCompleted)
-            {
-                allTasksCompleted = true;
-                foreach (Awaitable awaitable in tasks)
-                {
-                    allTasksCompleted &= awaitable.IsCompleted;
-                }
-
-                await Awaitable.NextFrameAsync();
-            }
+            return UniTask.WhenAll(tasks);
         }
     }
 }

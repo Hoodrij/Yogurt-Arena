@@ -1,10 +1,10 @@
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct AgentFactoryJob
     {
-        public async Awaitable<AgentAspect> Run(AgentConfig config, Team team)
+        public async UniTask<AgentAspect> Run(AgentConfig config, Team team)
         {
             AgentView agentView = await config.Asset.Spawn();
             

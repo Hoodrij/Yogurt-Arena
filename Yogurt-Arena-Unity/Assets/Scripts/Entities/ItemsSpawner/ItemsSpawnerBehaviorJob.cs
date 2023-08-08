@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct ItemsSpawnerBehaviorJob
     {
-        public async Awaitable Run(Entity itemSpawner)
+        public async UniTask Run(Entity itemSpawner)
         {
             itemSpawner.Run(Update);
             return;
 
 
-            async Awaitable Update()
+            async UniTask Update()
             {
                 await WaitForSpawnAvailable();
                 ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
                 randomSpot.State.Type = new GetRandomItemJob().Run(EItemTags.AvailableToPlayer);
             }
-            async Awaitable WaitForSpawnAvailable()
+            async UniTask WaitForSpawnAvailable()
             {
                 await Wait.While(() =>
                 {

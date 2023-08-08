@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct ChargeBehaviorJob
     {
-        public async Awaitable Run(BulletAspect bullet)
+        public async UniTask Run(BulletAspect bullet)
         {
             AgentAspect owner = bullet.State.Owner;
             
@@ -22,14 +22,14 @@ namespace Yogurt.Arena
             return;
 
 
-            async Awaitable TryDealDamage()
+            async UniTask TryDealDamage()
             {
                 int damage = bullet.Config.Damage;
                 CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
                 new DealDamageJob().Run(collisionInfo.Entity, damage);
             }
-            async Awaitable WaitForOwnerDeath() => await Wait.While(() => owner.Exist());
-            async Awaitable WaitForLifeTime() => await new WaitForBulletLiteTimeJob().Run(bullet);
+            async UniTask WaitForOwnerDeath() => await Wait.While(() => owner.Exist());
+            async UniTask WaitForLifeTime() => await new WaitForBulletLiteTimeJob().Run(bullet);
         }
     }
 }

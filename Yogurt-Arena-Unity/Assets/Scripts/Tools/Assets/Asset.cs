@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -9,7 +10,7 @@ namespace Yogurt.Arena.Tools
     {
         public GameObject Prefab;
 
-        public async Awaitable<TComponent> Spawn()
+        public async UniTask<TComponent> Spawn()
         {
             TComponent result = Object.Instantiate(Prefab).GetComponent<TComponent>();
             return result;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -22,7 +23,7 @@ namespace Yogurt.Arena
             UpdateScale();
         }
 
-        private async Awaitable UpdateScale()
+        private async UniTask UpdateScale()
         {
             while (Application.isPlaying)
             {

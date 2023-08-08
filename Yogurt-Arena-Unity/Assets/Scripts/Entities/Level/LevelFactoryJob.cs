@@ -1,4 +1,5 @@
-﻿using Unity.AI.Navigation;
+﻿using Cysharp.Threading.Tasks;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,7 +7,7 @@ namespace Yogurt.Arena
 {
     public struct LevelFactoryJob
     {
-        public async Awaitable Run()
+        public async UniTask Run()
         {
             GameObject levelGO = new GameObject("Level");
             Level levelComp = levelGO.AddComponent<Level>();

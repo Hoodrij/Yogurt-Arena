@@ -1,11 +1,12 @@
-﻿using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct KillBulletJob
     {
-        public async Awaitable Run(BulletAspect bullet)
+        public async UniTask Run(BulletAspect bullet)
         {
             bullet.Add<Kinematic>();
             bullet.Body.Velocity = Vector3.zero;

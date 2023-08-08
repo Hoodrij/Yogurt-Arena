@@ -1,4 +1,5 @@
-﻿using Unity.AI.Navigation;
+﻿using Cysharp.Threading.Tasks;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,7 +7,7 @@ namespace Yogurt.Arena
 {
     public struct SpawnWaveJob
     {
-        public async Awaitable Run(OvermindAspect overmind)
+        public async UniTask Run(OvermindAspect overmind)
         {
             AgentConfig config = Query.Single<Config>().ChargeEnemy;
             

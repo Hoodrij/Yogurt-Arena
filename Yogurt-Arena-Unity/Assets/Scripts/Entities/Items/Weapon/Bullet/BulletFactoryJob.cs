@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
     public struct BulletFactoryJob
     {
-        public async Awaitable<BulletAspect> Run(BulletConfig config, AgentAspect owner)
+        public async UniTask<BulletAspect> Run(BulletConfig config, AgentAspect owner)
         {
             BulletView view = await config.Asset.Spawn();
 
