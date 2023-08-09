@@ -8,7 +8,7 @@ namespace Yogurt.Arena
     public class ItemSpotView : MonoBehaviour, IComponent
     {
         [Serializable]
-        private class EItemTypeToViewDict : SerializableDictionary<EItemType, Transform> { }
+        private class EItemTypeToViewDict : SerializableDictionary<ItemType, Transform> { }
 
         [SerializeField] private EItemTypeToViewDict map;
         
@@ -21,7 +21,7 @@ namespace Yogurt.Arena
             new ItemSpotBehaviorJob().Run(itemSpot);
         }
 
-        public async UniTask Show(EItemType type)
+        public async UniTask Show(ItemType type)
         {
             foreach (var pair in map)
             {

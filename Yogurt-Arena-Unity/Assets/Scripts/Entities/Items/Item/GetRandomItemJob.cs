@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public struct GetRandomItemJob
     {
-        public EItemType Run(EItemTags requiredTags)
+        public ItemType Run(ItemTags requiredTags)
         {
             return Query.Of<ItemConfigAspect>()
                 .Where(config => config.Config.Tags.HasFlag(requiredTags))

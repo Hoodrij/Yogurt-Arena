@@ -3,7 +3,7 @@
 namespace Yogurt.Arena
 {
     [Flags]
-    public enum EItemTags : byte
+    public enum ItemTags : byte
     {
         None = 0,
         Weapon = 1 << 0,

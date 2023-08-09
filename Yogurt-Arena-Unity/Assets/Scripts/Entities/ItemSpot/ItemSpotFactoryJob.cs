@@ -18,7 +18,7 @@ namespace Yogurt.Arena
                 })
                 .Add(new ItemSpotState
                 {
-                    Type = EItemType.Empty,
+                    Type = ItemType.Empty,
                     Radius = config.Radius,
                     Mask = config.Mask
                 });

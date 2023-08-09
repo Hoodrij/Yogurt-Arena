@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena
 {
-    public enum EItemType
+    public enum ItemType
     {
         Empty = 1,
         

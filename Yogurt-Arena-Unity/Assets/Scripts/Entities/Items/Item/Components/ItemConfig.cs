@@ -5,8 +5,8 @@ namespace Yogurt.Arena
     [Serializable]
     public class ItemConfig : IComponent
     {
-        public EItemType Type;
-        public EItemTags Tags;
+        public ItemType Type;
+        public ItemTags Tags;
         public IItemFactoryJob FactoryJob;
         public IItemUseJob UseJob;
     }

@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public class ItemSpotState : IComponent
     {
-        public EItemType Type;
+        public ItemType Type;
         public float Radius;
         public LayerMask Mask;
     }

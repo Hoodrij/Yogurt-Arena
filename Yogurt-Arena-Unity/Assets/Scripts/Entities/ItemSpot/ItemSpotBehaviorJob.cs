@@ -14,21 +14,21 @@ namespace Yogurt.Arena
 
             async UniTask Update()
             {
-                EItemType itemType = await WaitForActivation();
+                ItemType itemType = await WaitForActivation();
 
                 itemSpot.View.Show(itemType);
                 AgentAspect agent = await new WaitForItemPickupJob().Run(itemSpot);
                 GetFactory(itemType).Run(agent);
 
                 itemSpot.View.Hide();
-                itemSpot.State.Type = EItemType.Empty;
+                itemSpot.State.Type = ItemType.Empty;
             }
-            async UniTask<EItemType> WaitForActivation()
+            async UniTask<ItemType> WaitForActivation()
             {
-                await Wait.Until(() => itemSpot.State.Type != EItemType.Empty);
+                await Wait.Until(() => itemSpot.State.Type != ItemType.Empty);
                 return itemSpot.State.Type;
             }
-            IItemFactoryJob GetFactory(EItemType type)
+            IItemFactoryJob GetFactory(ItemType type)
             {
                 ItemConfigAspect config = Query.Of<ItemConfigAspect>()
                     .FirstOrDefault(item => item.Config.Type == type);
