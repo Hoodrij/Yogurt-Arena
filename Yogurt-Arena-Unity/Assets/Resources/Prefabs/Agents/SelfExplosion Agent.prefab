@@ -9,12 +9,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 666334404614221817, guid: e018f47050a825e479f88ca38c422afe, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 666334404614221817, guid: e018f47050a825e479f88ca38c422afe, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 666334404614221817, guid: e018f47050a825e479f88ca38c422afe, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 666334404614221817, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 666334404614221817, guid: e018f47050a825e479f88ca38c422afe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 666334404614221817, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.559
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 795582520846403176, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: m_Height
@@ -33,12 +49,16 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2249543153974135508, guid: e018f47050a825e479f88ca38c422afe, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2249543153974135508, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3475722181034799830, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: m_Name
-      value: BombEnemy
+      value: SelfExplosion Agent
       objectReference: {fileID: 0}
     - target: {fileID: 3603753428975625230, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: m_RootOrder
@@ -84,25 +104,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3664057212876283301, guid: e018f47050a825e479f88ca38c422afe, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 8179018631521180257, guid: e018f47050a825e479f88ca38c422afe, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 8716602094909805056, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f7f8e1bbc271c2e4eaa9f50bf5f83e10, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 795582520846403176, guid: e018f47050a825e479f88ca38c422afe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3475722181034799830, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1521191153552433021}
+      addedObject: {fileID: 6531682093172793801}
   m_SourcePrefab: {fileID: 100100000, guid: e018f47050a825e479f88ca38c422afe, type: 3}
 --- !u!1 &4054261582044863672 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3475722181034799830, guid: e018f47050a825e479f88ca38c422afe, type: 3}
   m_PrefabInstance: {fileID: 612383468508835438}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &1521191153552433021
-CapsuleCollider:
+--- !u!65 &6531682093172793801
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,11 +145,9 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.5
-  m_Direction: 2
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0.5, z: 0}
