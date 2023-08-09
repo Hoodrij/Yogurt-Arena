@@ -5,13 +5,17 @@ namespace Yogurt.Arena
 {
     public struct CommonTargetDetectionJob
     {
-        public void Run(ItemAspect weapon)
+        public async void Run(ItemAspect weapon)
         {
             TargetDetectionConfig config = weapon.Get<TargetDetectionConfig>();
             BattleState battleState = weapon.Get<BattleState>();
             AgentAspect agent = weapon.Owner.Owner;
             
             weapon.Run(Update);
+
+            new WaitForEntityDead().Run(weapon.Entity);
+            battleState.Target = default;
+
             return;
 
 
@@ -33,7 +37,7 @@ namespace Yogurt.Arena
             
             bool IsHostile(AgentAspect target)
             {
-                return !target.Id.Team.HasFlag(agent.Id.Team);
+                return !target.Id.teamType.HasFlag(agent.Id.teamType);
             }
             bool IsInRange(AgentAspect target)
             {
