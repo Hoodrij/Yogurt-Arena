@@ -9,34 +9,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2f7688208d4fc0b2505ed4615005be, type: 3}
-  m_Name: Rifle
+  m_Script: {fileID: 11500000, guid: fa1e200fc8a142cc8e0008f946daec6c, type: 3}
+  m_Name: Charge Weapon
   m_EditorClassIdentifier: 
   Item:
-    Type: 100
-    Tags: 3
+    Type: 102
+    Tags: 5
   Weapon:
     Bullet:
       Asset:
         asset:
-          Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
+          Prefab: {fileID: 7036511241227750618, guid: d96c9344640c7e74181b3d6e8dab810b, type: 3}
       CollisionMask:
         serializedVersion: 2
-        m_Bits: 257
-      Radius: 0.2
-      Damage: 4
-      LifeTime: 0.4
+        m_Bits: 256
+      Radius: 1
+      Damage: 1
+      LifeTime: 0.3
       Speed: 1
-    Cooldown: 0.07
-    Range: 15
-    AngleToAttack: 360
+    Cooldown: 1
+    Range: 8
+    AngleToAttack: 15
   Lifetime:
     LifeTime: 5
-  Scattering:
-    angle: 10
   TargetDetection:
     Distance: 15
     CollisionMask:
       serializedVersion: 2
       m_Bits: 1
-    YTolerance: 2
+    YTolerance: 3

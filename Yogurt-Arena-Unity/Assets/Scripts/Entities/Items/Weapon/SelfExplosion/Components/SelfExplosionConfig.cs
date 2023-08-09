@@ -3,26 +3,27 @@
 namespace Yogurt.Arena
 {
     [CreateAssetMenu]
-    public class RifleConfig : ScriptableObject, IComponent, IConfig
+    public class SelfExplosionConfig : ScriptableObject, IComponent, IConfig
     {
         public ItemConfig Item = new()
         {
-            FactoryJob = new RifleFactoryJob(),
-            UseJob = new UseRifleJob()
+            FactoryJob = new SelfExplosionFactory(),
+            UseJob = new UseSelfExplosionJob(),
         };
         public WeaponConfig Weapon;
         public ItemLifetimeConfig Lifetime;
-        public WeaponScatteringConfig Scattering;
         public TargetDetectionConfig TargetDetection;
-
+        public ExplosionConfig Explosion;
+        
         public void AppendTo(Entity entity)
         {
             entity.Add(this)
                 .Add(Item)
                 .Add(Weapon)
                 .Add(Lifetime)
-                .Add(Scattering)
-                .Add(TargetDetection);
+                .Add(TargetDetection)
+                .Add(Explosion)
+                ;
         }
     }
 }

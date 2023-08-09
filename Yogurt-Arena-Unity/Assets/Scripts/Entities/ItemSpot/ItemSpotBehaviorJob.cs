@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Yogurt.Arena
 {
@@ -18,7 +16,8 @@ namespace Yogurt.Arena
 
                 itemSpot.View.Show(itemType);
                 AgentAspect agent = await new WaitForItemPickupJob().Run(itemSpot);
-                GetFactory(itemType).Run(agent);
+                IItemFactoryJob itemFactory = new GetItemFactoryJob().Run(itemType);
+                itemFactory.Run(agent);
 
                 itemSpot.View.Hide();
                 itemSpot.State.Type = ItemType.Empty;
@@ -28,13 +27,7 @@ namespace Yogurt.Arena
                 await Wait.Until(() => itemSpot.State.Type != ItemType.Empty);
                 return itemSpot.State.Type;
             }
-            IItemFactoryJob GetFactory(ItemType type)
-            {
-                ItemConfigAspect config = Query.Of<ItemConfigAspect>()
-                    .FirstOrDefault(item => item.Config.Type == type);
-                
-                return config.Config.FactoryJob;
-            }
+            
         }
     }
 }

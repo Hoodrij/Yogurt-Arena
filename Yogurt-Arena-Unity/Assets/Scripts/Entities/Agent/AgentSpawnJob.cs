@@ -7,12 +7,12 @@ namespace Yogurt.Arena
 {
     public struct AgentSpawnJob
     {
-        public async UniTask<AgentAspect> Run(AgentConfig config, Team team, Vector3 position)
+        public async UniTask<AgentAspect> Run(AgentConfig config, Vector3 position)
         {
             NavMesh.SamplePosition(position, out var hit, 100, NavMesh.AllAreas);
             position = hit.position;
             
-            AgentAspect agent = await new AgentFactoryJob().Run(config, team);
+            AgentAspect agent = await new AgentFactoryJob().Run(config, config.Team);
             agent.Add<Kinematic>();
             agent.Body.Position = position;
             agent.Body.Destination = position;

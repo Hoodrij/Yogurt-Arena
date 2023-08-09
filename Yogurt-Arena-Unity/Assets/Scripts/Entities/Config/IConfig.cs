@@ -2,6 +2,6 @@
 {
     public interface IConfig
     {
-        public void AppendTo(Entity entity);
+        void AppendTo(Entity entity);
     }
 }

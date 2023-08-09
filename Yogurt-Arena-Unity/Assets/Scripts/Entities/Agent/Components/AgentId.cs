@@ -3,7 +3,7 @@
 namespace Yogurt.Arena
 {
     [Flags]
-    public enum Team
+    public enum TeamType
     {
         None = 0,
         Green = 1,
@@ -12,6 +12,6 @@ namespace Yogurt.Arena
     
     public class AgentId : IComponent
     {
-        public Team Team;
+        public TeamType teamType;
     }
 }

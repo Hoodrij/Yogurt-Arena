@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             UseJob = new UseHealingPotionJob()
         };
         public int Amount;
-        
+
         public void AppendTo(Entity entity)
         {
             entity.Add(this)

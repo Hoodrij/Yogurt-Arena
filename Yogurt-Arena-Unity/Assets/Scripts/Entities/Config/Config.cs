@@ -19,11 +19,6 @@ namespace Yogurt.Arena
         public CameraConfig Camera;
         public BeaconConfig Beacon;
         public OvermindConfig Overmind;
-        
-        [Header("Agents")]
-        public AgentConfig Player;
-        public AgentConfig ChargeEnemy;
-        public AgentConfig BombEnemy;
 
         [Header("Items")]
         public ItemSpotConfig ItemSpot;

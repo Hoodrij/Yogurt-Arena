@@ -9,15 +9,16 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(OvermindAspect overmind)
         {
-            AgentConfig config = Query.Single<Config>().ChargeEnemy;
-            
             int agentsCount = overmind.Config.WaveAgentsCount.GetRandom();
 
             for (int i = 0; i < agentsCount; i++)
             {
                 Vector3 spawnPoint = GetFreeSpawnPoint();
-                AgentAspect agent = await new AgentSpawnJob().Run(config, Team.Red, spawnPoint);
-                await new ChargeFactoryJob().Run(agent);
+                AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red);
+                
+                AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint);
+                IItemFactoryJob weaponFactory = new GetItemFactoryJob().Run(config.Weapon);
+                weaponFactory.Run(agent);
 
                 overmind.State.AddAgent(agent);
                 await Wait.Seconds(0.5f);

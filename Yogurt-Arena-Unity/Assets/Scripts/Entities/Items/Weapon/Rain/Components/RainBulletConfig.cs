@@ -6,8 +6,7 @@ namespace Yogurt.Arena
     [System.Serializable]
     public class RainBulletConfig : IComponent
     {
-        public PooledAsset<ExplosionView> ExplosionAsset;
-        public AoeDamage Damage;
+        public ExplosionConfig Explosion;
         public Vector3 Gravity;
         public float FindTargetDistance;
         public float BulletRotationSpeed;

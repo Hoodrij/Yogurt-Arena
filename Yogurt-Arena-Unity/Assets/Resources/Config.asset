@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   All:
+  - {fileID: 11400000, guid: 8dc862f5b8805c24fbcc5dad7f292221, type: 2}
+  - {fileID: 11400000, guid: be2cfb7b183a7ba4a8e20e762f36be81, type: 2}
+  - {fileID: 11400000, guid: 014a9a72c3be8744d9b1cffdb84083ce, type: 2}
+  - {fileID: 11400000, guid: eeabf1f877ead0b418d5f87b124017b9, type: 2}
   - {fileID: 11400000, guid: 1c6ee0d6126969c4db3a72418008caec, type: 2}
   - {fileID: 11400000, guid: 133a816b6c5192a4fbe362049552fbc8, type: 2}
   - {fileID: 11400000, guid: 265319e7fced22048ab01862d7f0aba6, type: 2}
-  - {fileID: 11400000, guid: eeabf1f877ead0b418d5f87b124017b9, type: 2}
+  - {fileID: 11400000, guid: 9d23c9a8602e0864fa0578e484a19838, type: 2}
   World:
     Prefab: {fileID: 6010830135608539927, guid: 5fb0efdc5d163c447b432e799b8e22b8, type: 3}
   Levels:
@@ -48,36 +52,6 @@ MonoBehaviour:
     WavesDelay:
       Min: 0.1
       Max: 2
-  Player:
-    Asset:
-      asset:
-        Prefab: {fileID: 39607511721595333, guid: 9845d6291ccbb5942b5c33655dc76d82, type: 3}
-    MoveSpeed: 0.2
-    SlowDistance: 5
-    MoveSmoothValue: 0.1
-    LookSmoothValue: 0.2
-    MaxHealth: 20
-    Health: 20
-  ChargeEnemy:
-    Asset:
-      asset:
-        Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-    MoveSpeed: 0.1
-    SlowDistance: 5
-    MoveSmoothValue: 0.1
-    LookSmoothValue: 0.2
-    MaxHealth: 10
-    Health: 10
-  BombEnemy:
-    Asset:
-      asset:
-        Prefab: {fileID: 0}
-    MoveSpeed: 0
-    SlowDistance: 0
-    MoveSmoothValue: 0
-    LookSmoothValue: 0
-    MaxHealth: 0
-    Health: 0
   ItemSpot:
     Radius: 3
     Mask:

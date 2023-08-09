@@ -7,9 +7,9 @@ namespace Yogurt.Arena
     {
         public async UniTask<PlayerAspect> Run()
         {
-            AgentConfig config = Query.Single<Config>().Player;
+            AgentConfig config = new GetAgentConfigJob().Run(TeamType.Green);
 
-            AgentAspect agent = await new AgentSpawnJob().Run(config, Team.Green, Vector3.zero);
+            AgentAspect agent = await new AgentSpawnJob().Run(config, Vector3.zero);
             agent.Add<PlayerTag>();
             agent.Health.HealthWidget = Query.Single<UIView>().HealthWidget;
 

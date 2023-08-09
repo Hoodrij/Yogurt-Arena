@@ -9,51 +9,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b436e657c9ae4592bb9b4aebdf13222f, type: 3}
-  m_Name: Rain
+  m_Script: {fileID: 11500000, guid: 7cc934897d144dd8ae95c83d549d6703, type: 3}
+  m_Name: SelfExplosion Config
   m_EditorClassIdentifier: 
   Item:
-    Type: 101
-    Tags: 3
+    Type: 103
+    Tags: 5
   Weapon:
     Bullet:
       Asset:
         asset:
-          Prefab: {fileID: 7036511241227750618, guid: da46b3360c09a1f4b84586adcf3bc579, type: 3}
+          Prefab: {fileID: 0}
       CollisionMask:
         serializedVersion: 2
-        m_Bits: 1
-      Radius: 0.5
+        m_Bits: 0
+      Radius: 0
       Damage: 0
-      LifeTime: 2
-      Speed: 1
-    Cooldown: 0.07
-    Range: 15
+      LifeTime: 0
+      Speed: 0
+    Cooldown: 2
+    Range: 6
     AngleToAttack: 360
   Lifetime:
-    LifeTime: 5
-  Clip:
-    BulletsInClip: 5
-    ClipCooldown: 1
-  Scattering:
-    angle: 90
+    LifeTime: 7
   TargetDetection:
     Distance: 15
     CollisionMask:
       serializedVersion: 2
-      m_Bits: 0
-    YTolerance: 10
-  Bullet:
-    ExplosionAsset:
+      m_Bits: 1
+    YTolerance: 2
+  Explosion:
+    Asset:
       asset:
         Prefab: {fileID: 2634516681230702857, guid: daa5658829c979d479e7ac4148ccc388, type: 3}
     Damage:
-      Damage: 5
-      Radius: 3
+      Damage: 3
+      Radius: 6
       HitMask:
         serializedVersion: 2
         m_Bits: 256
-    Gravity: {x: 0, y: -0.05, z: 0}
-    FindTargetDistance: 20
-    BulletRotationSpeed: 0.5
-    BulletSpeedChangeCoef: 0.3

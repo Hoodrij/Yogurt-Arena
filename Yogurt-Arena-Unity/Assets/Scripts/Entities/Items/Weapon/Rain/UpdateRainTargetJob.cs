@@ -28,7 +28,7 @@ namespace Yogurt.Arena
             }
             bool IsHostile(AgentAspect other)
             {
-                return !other.Id.Team.HasFlag(owner.Id.Team);
+                return !other.Id.teamType.HasFlag(owner.Id.teamType);
             }
             bool IsInRange(AgentAspect other)
             {

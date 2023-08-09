@@ -13,7 +13,7 @@ namespace Yogurt.Arena
         public WeaponConfig Weapon;
         public ItemLifetimeConfig Lifetime;
         public TargetDetectionConfig TargetDetection;
-        
+
         public void AppendTo(Entity entity)
         {
             entity.Add(this)

@@ -4,7 +4,7 @@ namespace Yogurt.Arena
 {
     public struct AgentFactoryJob
     {
-        public async UniTask<AgentAspect> Run(AgentConfig config, Team team)
+        public async UniTask<AgentAspect> Run(AgentConfig config, TeamType teamType)
         {
             AgentView agentView = await config.Asset.Spawn();
             
@@ -17,7 +17,7 @@ namespace Yogurt.Arena
                 .Add<Inventory>()
                 .Add(new AgentId
                 {
-                    Team = team
+                    teamType = teamType
                 })
                 .Add(new Health
                 {
