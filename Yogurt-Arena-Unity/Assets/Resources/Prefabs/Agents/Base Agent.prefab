@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5265003945063087719}
   - component: {fileID: 795582520846403176}
   m_Layer: 8
-  m_Name: Base_Agent
+  m_Name: Base Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
