@@ -16,17 +16,16 @@ namespace Yogurt.Arena
                 for (var i = 0; i < hitsCount; i++)
                 {
                     RaycastHit hit = hits[i];
-                    if (hit.transform.TryGetComponent(out EntityLink link))
-                    {
-                        if (link.Entity == bullet.State.Owner.Entity)
-                            continue;
-                    }
+                    Entity entityHit = hit.GetEntity();
+
+                    if (entityHit == bullet.State.Owner.Entity)
+                        continue;
 
                     return new CollisionInfo
                     {
                         IsValid = true,
                         Position = hit.point == Vector3.zero ? bullet.Body.Position : hit.point,
-                        Entity = link ? link.Entity : default
+                        Entity = entityHit
                     };
                 }
 

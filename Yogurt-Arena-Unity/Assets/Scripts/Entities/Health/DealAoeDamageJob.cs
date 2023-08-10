@@ -10,13 +10,11 @@ namespace Yogurt.Arena
             
             foreach (RaycastHit hit in hits)
             {
-                if (hit.transform.TryGetComponent(out EntityLink link))
-                {
-                    if (link.Entity == owner.Entity)
-                        continue;
-                    
-                    new DealDamageJob().Run(link.Entity, damage.Damage);
-                }
+                Entity entityHit = hit.GetEntity();
+                if (entityHit == owner.Entity)
+                    continue;
+                
+                new DealDamageJob().Run(entityHit, damage.Damage);
             }
         }
     }

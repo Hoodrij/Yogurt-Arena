@@ -19,13 +19,12 @@ namespace Yogurt.Arena
                 for (int i = 0; i < hitsCount; i++)
                 {
                     RaycastHit hit = hits[i];
-                    
-                    if (!hit.transform.TryGetComponent(out EntityLink link))
-                        continue;
-                    if (!link.Entity.Has<PlayerTag>())
+                    Entity entity = hit.GetEntity();
+
+                    if (!entity.Has<PlayerTag>())
                         continue;
 
-                    return link.Entity.As<AgentAspect>();
+                    return entity.As<AgentAspect>();
                 }
 
                 await Wait.Update();
