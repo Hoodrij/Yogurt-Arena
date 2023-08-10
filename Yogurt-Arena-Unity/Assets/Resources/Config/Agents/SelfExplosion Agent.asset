@@ -21,6 +21,6 @@ MonoBehaviour:
   MoveSpeed: 0.05
   SlowDistance: 5
   MoveSmoothValue: 0.1
-  LookSmoothValue: 0.2
+  LookSmoothValue: 2
   MaxHealth: 20
   Health: 20
