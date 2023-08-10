@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Yogurt.Arena.Components;
 using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena

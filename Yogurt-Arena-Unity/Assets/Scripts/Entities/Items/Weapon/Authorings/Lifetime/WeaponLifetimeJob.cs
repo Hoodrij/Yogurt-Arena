@@ -1,20 +1,36 @@
-﻿namespace Yogurt.Arena
+﻿using System;
+using Cysharp.Threading.Tasks;
+
+namespace Yogurt.Arena
 {
     public struct WeaponLifetimeJob
     {
         public async void Run(ItemAspect item)
         {
+            Time time = Query.Single<Time>();
+            WeaponLifetimeWidget widget = Query.Single<UIView>().WeaponLifetimeWidget;
+            
             AgentAspect owner = item.Owner.Owner;
+            ItemLifetimeConfig lifetimeConfig = item.Get<ItemLifetimeConfig>();
 
             if (!owner.Has<PlayerTag>())
                 return;
 
-            ItemLifetimeConfig lifetimeConfig = item.Get<ItemLifetimeConfig>();
-            await Wait.Seconds(lifetimeConfig.LifeTime);
+            float timeRemains = lifetimeConfig.LifeTime;
             
-            if (owner.Exist())
+            item.Run(Update);
+            // await Wait.Seconds(lifetimeConfig.LifeTime);
+            
+            return;
+
+
+            void Update()
             {
-                if (item.Exist())
+                timeRemains -= time.Delta;
+                float progress = timeRemains / lifetimeConfig.LifeTime;
+                widget.SetProgress(progress);
+                
+                if (timeRemains <= 0)
                 {
                     item.Kill();
                 }

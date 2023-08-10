@@ -1,6 +1,6 @@
 ﻿using Yogurt.Arena.Tools;
 
-namespace Yogurt.Arena.Components
+namespace Yogurt.Arena
 {
     [System.Serializable]
     public class UIConfig : IComponent

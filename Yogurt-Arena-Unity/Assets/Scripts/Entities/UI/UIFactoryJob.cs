@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using Yogurt.Arena.Components;
 
 namespace Yogurt.Arena
 {
