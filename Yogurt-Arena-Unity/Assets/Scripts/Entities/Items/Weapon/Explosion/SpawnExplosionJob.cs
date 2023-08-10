@@ -11,14 +11,15 @@ namespace Yogurt.Arena
         {
             ExplosionView vfx = await config.Asset.Spawn();
             Transform view = vfx.View;
-            float duration = 0.1f;
+            float duration = 0.15f;
+            float halfDuration = 0.15f;
             
             vfx.transform.position = position;
             view.localScale = Vector3.zero;
-            view.DOScale(config.Damage.Radius * 2, duration);
-            await Wait.Seconds(duration);
+            view.DOScale(config.Damage.Radius * 2, halfDuration);
+            await Wait.Seconds(halfDuration);
             
-            view.DOScale(0, duration).SetEase(Ease.InSine);
+            view.DOScale(0, duration).SetEase(Ease.OutSine);
             await Wait.Seconds(duration);
 
             view.DOKill();
