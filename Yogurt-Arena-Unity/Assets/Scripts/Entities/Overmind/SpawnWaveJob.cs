@@ -22,7 +22,7 @@ namespace Yogurt.Arena
 
                 new SpawnWorldHealthWidget().Run(agent);
 
-                overmind.State.AddAgent(agent);
+                overmind.State.KeepAgent(agent);
                 await Wait.Seconds(0.5f);
             }
 

@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace Yogurt.Arena
     {
         [SerializeField] Image image;
             
-        public async void SetHealth(float percentage)
+        public async UniTaskVoid SetHealth(float percentage)
         {
             float duration = 0.1f;
             Color color = new Color(1f, 0.25f, 0.28f);

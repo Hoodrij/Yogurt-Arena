@@ -32,7 +32,7 @@ namespace Yogurt.Arena.Quest
             return;
 
 
-            async void ListenForDeath(Entity enemy)
+            async UniTaskVoid ListenForDeath(Entity enemy)
             {
                 await enemy.WaitForDead();
                 killedEnemies++;

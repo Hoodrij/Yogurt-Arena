@@ -22,7 +22,7 @@ namespace Yogurt.Arena
             return agent;
 
 
-            async void ActivateAgent()
+            async UniTaskVoid ActivateAgent()
             {
                 await RunAnimation();
                 agent.Remove<Kinematic>();
