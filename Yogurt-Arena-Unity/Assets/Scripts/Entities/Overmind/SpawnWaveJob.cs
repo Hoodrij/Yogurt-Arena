@@ -20,6 +20,8 @@ namespace Yogurt.Arena
                 IItemFactoryJob weaponFactory = new GetItemFactoryJob().Run(config.Weapon);
                 weaponFactory.Run(agent);
 
+                new SpawnWorldHealthWidget().Run(agent);
+
                 overmind.State.AddAgent(agent);
                 await Wait.Seconds(0.5f);
             }

@@ -1,17 +1,19 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
+using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    public struct UIFactoryJob
+    public struct WorldUIFactoryJob
     {
         public async UniTask<Entity> Run()
         {
             UIConfig config = Query.Single<Config>().UI;
-            UIView uiView = await config.Asset.Spawn();
+            WorldUIView worldUI = await config.WorldUI.Spawn();
 
             Entity entity = World.Create()
-                .AddLink(uiView.gameObject)
-                .Add(uiView)
+                .AddLink(worldUI.gameObject)
+                .Add(worldUI)
                 .Add(config);
 
             return entity;

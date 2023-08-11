@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Yogurt.Arena
 {
-    public class HealthWidget : MonoBehaviour
+    public class HealthWidget : MonoBehaviour, IComponent
     {
         [SerializeField] Image image;
             

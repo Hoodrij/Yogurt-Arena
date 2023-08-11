@@ -19,8 +19,6 @@ namespace Yogurt.Arena
             float timeRemains = lifetimeConfig.LifeTime;
             
             item.Run(Update);
-            // await Wait.Seconds(lifetimeConfig.LifeTime);
-            
             return;
 
 
