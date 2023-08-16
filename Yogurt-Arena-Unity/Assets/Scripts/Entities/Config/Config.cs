@@ -11,7 +11,6 @@ namespace Yogurt.Arena
         public List<ScriptableObject> All;
         
         public Asset<World> World;
-        public Asset<LocationPartTag>[] Locations;
 
         public UIConfig UI;
         public InputConfig Input;

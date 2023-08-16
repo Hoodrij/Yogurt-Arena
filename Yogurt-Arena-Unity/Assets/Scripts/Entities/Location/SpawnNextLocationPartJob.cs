@@ -6,12 +6,11 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            Config config = Query.Single<Config>();
             LocationAspect location = Query.Single<LocationAspect>();
-            
-            LocationPartTag locationPart = await config.Locations[location.Location.CurrentPart].Spawn();
-            location.Location.CurrentPart += 1;
+            LocationConfig config = new GetConfigJob().Run<LocationConfig>();
 
+            LocationPartTag locationPart = await config.Asset.Spawn();
+            
             locationPart.transform.SetParent(location.NavSurface.transform);
             location.Entity.AddLink(locationPart.gameObject);
             

@@ -6,12 +6,12 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            new RunOvermindBehaviorJob().Run();
+            // new RunOvermindBehaviorJob().Run();
             await new Quest.PickupWeaponQuest().Run();
             await Wait.Seconds(1);
             
-            await new Quest.KillEnemiesQuest(3).Run();
-            await new SpawnNextLocationPartJob().Run();
+            // await new Quest.KillEnemiesQuest(3).Run();
+            await new LevelUpJob().Run();
         }
     }
 }

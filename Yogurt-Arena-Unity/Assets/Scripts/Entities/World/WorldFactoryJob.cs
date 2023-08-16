@@ -10,7 +10,8 @@ namespace Yogurt.Arena
             
             Entity entity = Entity.Create()
                 .AddLink(world.gameObject)
-                .Add(world);
+                .Add(world)
+                .Add(new Level());
 
             await new LocationFactoryJob().Run();
             await new UIFactoryJob().Run();
