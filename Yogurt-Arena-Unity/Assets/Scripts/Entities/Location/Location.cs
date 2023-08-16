@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class Level : MonoBehaviour, IComponent
+    public class Location : MonoBehaviour, IComponent
     {
         public NavMeshSurface NavSurface;
         public int CurrentPart;

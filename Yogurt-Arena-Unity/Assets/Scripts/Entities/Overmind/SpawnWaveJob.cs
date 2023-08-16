@@ -31,7 +31,7 @@ namespace Yogurt.Arena
 
             Vector3 GetFreeSpawnPoint()
             {
-                NavMeshSurface level = Query.Single<Level>().NavSurface;
+                NavMeshSurface level = Query.Single<Location>().NavSurface;
                 Vector3 randomPoint = level.navMeshData.sourceBounds.GetRandomPoint().WithY(0);
 
                 NavMesh.SamplePosition(randomPoint, out var hit, 100, NavMesh.AllAreas);

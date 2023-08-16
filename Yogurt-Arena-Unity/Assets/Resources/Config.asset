@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9d23c9a8602e0864fa0578e484a19838, type: 2}
   World:
     Prefab: {fileID: 6010830135608539927, guid: 5fb0efdc5d163c447b432e799b8e22b8, type: 3}
-  Levels:
+  Locations:
   - Prefab: {fileID: 238997165645100861, guid: 358c1dc01a765b746b3cd6c70421ff5d, type: 3}
   - Prefab: {fileID: 5150251151801687015, guid: 08722033d17973d418392678e2243cc4, type: 3}
   UI:

@@ -2,7 +2,7 @@
 
 namespace Yogurt.Arena
 {
-    public class LevelPartTag : MonoBehaviour, IComponent
+    public class LocationPartTag : MonoBehaviour, IComponent
     {
         
     }

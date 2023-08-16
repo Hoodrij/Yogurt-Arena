@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             await Wait.Seconds(1);
             
             await new Quest.KillEnemiesQuest(3).Run();
-            await new SpawnNextLevelPartJob().Run();
+            await new SpawnNextLocationPartJob().Run();
         }
     }
 }
