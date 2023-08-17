@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 
 namespace Yogurt.Arena
 {
@@ -13,6 +14,8 @@ namespace Yogurt.Arena
             
             locationPart.transform.SetParent(location.NavSurface.transform);
             location.Entity.AddLink(locationPart.gameObject);
+
+            await new AnimateLocationAppearanceJob().Run(locationPart);
             
             location.NavSurface.BuildNavMesh();
         }
