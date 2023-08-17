@@ -2725,7 +2725,7 @@ GameObject:
   - component: {fileID: 7475761998389187615}
   - component: {fileID: 2221900585708608717}
   m_Layer: 0
-  m_Name: Location 2
+  m_Name: Location_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

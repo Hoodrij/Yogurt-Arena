@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cc934897d144dd8ae95c83d549d6703, type: 3}
-  m_Name: SelfExplosion Config
+  m_Name: SelfExplosion Weapon
   m_EditorClassIdentifier: 
   Item:
     Type: 103
