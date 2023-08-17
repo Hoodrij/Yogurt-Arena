@@ -24,6 +24,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: af35f25a8f7f95849ad704cee23ba03c, type: 2}
   - {fileID: 11400000, guid: 4974bb51a94d8e84e8dd8b17b34ee4d5, type: 2}
   - {fileID: 11400000, guid: 6fac69f7ccd12e24787186f4e3044a2a, type: 2}
+  - {fileID: 11400000, guid: 5630f9d318e4cbf49863cefe1588b2ac, type: 2}
+  - {fileID: 11400000, guid: 71f981becbfd6e946a11a321ee2118fd, type: 2}
+  - {fileID: 11400000, guid: e8e5e269fc6251e42bf5438d0a15048b, type: 2}
   World:
     Prefab: {fileID: 6010830135608539927, guid: 5fb0efdc5d163c447b432e799b8e22b8, type: 3}
   UI:

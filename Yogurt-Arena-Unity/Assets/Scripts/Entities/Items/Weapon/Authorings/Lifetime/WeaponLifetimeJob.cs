@@ -1,7 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct WeaponLifetimeJob
     {

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using Yogurt.Arena.Tools;
+﻿using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {

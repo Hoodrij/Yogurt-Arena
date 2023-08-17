@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
 
 namespace Yogurt.Arena
 {

@@ -6,7 +6,7 @@ namespace Yogurt.Arena
 {
     public struct ItemsSpawnerBehaviorJob
     {
-        public async UniTask Run(Entity itemSpawner)
+        public async UniTask Run(ItemSpawnerAspect itemSpawner)
         {
             itemSpawner.Run(Update);
             return;
@@ -16,14 +16,14 @@ namespace Yogurt.Arena
             {
                 await WaitForSpawnAvailable();
                 ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
-                randomSpot.State.Type = new GetRandomItemJob().Run(ItemTags.AvailableToPlayer);
+                randomSpot.State.Type = new GetRandomItemJob().Run(itemSpawner.Config.ForceTags, itemSpawner.Config.ForceItem);
             }
             async UniTask WaitForSpawnAvailable()
             {
                 await Wait.While(() =>
                 {
                     return Query.Of<ItemSpotAspect>()
-                        .Count(itemSpot => itemSpot.Get<ItemSpotState>().Type != ItemType.Empty) >= 2;
+                        .Count(itemSpot => itemSpot.Get<ItemSpotState>().Type != ItemType.Empty) >= itemSpawner.Config.ItemsCount;
                 });
             }
             IEnumerable<ItemSpotAspect> GetFreeSpots()

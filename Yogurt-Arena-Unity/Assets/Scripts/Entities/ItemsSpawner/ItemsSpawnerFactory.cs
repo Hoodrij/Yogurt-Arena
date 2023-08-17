@@ -6,10 +6,12 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            Entity entity = World.Create()
-                .Add<ItemsSpawnerState>();
+            ItemSpawnerAspect itemSpawner = World.Create()
+                .Add<ItemSpawnerConfig>()
+                .Add<ItemsSpawnerState>()
+                .As<ItemSpawnerAspect>();
 
-            new ItemsSpawnerBehaviorJob().Run(entity);
+            new ItemsSpawnerBehaviorJob().Run(itemSpawner);
         }
     }
 }

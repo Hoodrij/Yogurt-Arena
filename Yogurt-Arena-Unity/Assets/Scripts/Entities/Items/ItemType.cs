@@ -3,6 +3,7 @@
     public enum ItemType
     {
         Empty = 1,
+        Any = 2,
         
         Rifle = 100,
         Rain = 101,
