@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -32,6 +33,16 @@ namespace Yogurt.Arena
             {
                 component.Dispose();
             }
+        }
+
+        public static Entity Add(this Entity entity, IEnumerable<IComponent> components)
+        {
+            foreach (IComponent component in components)
+            {
+                entity.Add(component);
+            }
+
+            return entity;
         }
 
         public static async UniTask Run(this Entity entity, Action action)

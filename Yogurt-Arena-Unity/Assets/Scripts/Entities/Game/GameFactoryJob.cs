@@ -23,8 +23,8 @@ namespace Yogurt.Arena
                 
                 Entity entity = Entity.Create()
                     .Add(entityConfig)
+                    .Add(entityConfig.Components)
                     .SetParent(game);
-                entityConfig.AppendTo(entity);
             }
         }
     }

@@ -15,11 +15,12 @@ namespace Yogurt.Arena
             EntityConfig entityConfig = config.EntityConfig;
 
             Entity entity = World.Create()
+                .Add(entityConfig.Components)
                 .Add(new OwnerState
                 {
                     Owner = owner
                 });
-            entityConfig.AppendTo(entity);
+            
             entity.SetParent(owner.Entity);
             
             ItemAspect item = entity.As<ItemAspect>();
