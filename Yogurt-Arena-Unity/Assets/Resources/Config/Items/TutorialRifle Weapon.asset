@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutorialRifle Weapon
   m_EditorClassIdentifier: 
   Item:
-    Type: 199
+    Type: 1048576
     Tags: 3
   Weapon:
     Bullet:

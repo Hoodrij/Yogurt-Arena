@@ -16,7 +16,7 @@ namespace Yogurt.Arena
             {
                 await WaitForSpawnAvailable();
                 ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
-                randomSpot.State.Type = new GetRandomItemJob().Run(itemSpawner.Config.ForceTags, itemSpawner.Config.ForceItem);
+                randomSpot.State.Type = new GetRandomItemJob().Run(itemSpawner.Config.AvailableTags, itemSpawner.Config.AvailableItems);
             }
             async UniTask WaitForSpawnAvailable()
             {

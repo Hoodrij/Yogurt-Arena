@@ -4,27 +4,22 @@ namespace Yogurt.Arena
 {
     public struct GetRandomItemJob
     {
-        public ItemType Run(ItemTags requiredTags, ItemType specificType = ItemType.Any)
+        public ItemType Run(ItemTags availableTags, ItemType availableTypes = ItemType.Any)
         {
             return Query.Of<ItemConfigAspect>()
                 .Where(FitsTags)
                 .Where(FitsType)
                 .GetRandom()
-                .Config.Type;
+                .Item.Type;
 
 
             bool FitsTags(ItemConfigAspect config)
             {
-                return config.Config.Tags.HasFlag(requiredTags);
+                return availableTags.HasFlag(config.Item.Tags);
             }
             bool FitsType(ItemConfigAspect config)
             {
-                if (specificType == ItemType.Any)
-                {
-                    return true;
-                }
-
-                return config.Config.Type == specificType;
+                return availableTypes.HasFlag(config.Item.Type);
             }
         }
         

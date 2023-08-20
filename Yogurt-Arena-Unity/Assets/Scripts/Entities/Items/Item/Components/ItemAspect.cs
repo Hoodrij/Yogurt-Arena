@@ -12,7 +12,7 @@
     {
         public Entity Entity { get; set; }
         
-        public ItemConfig Config => this.Get<ItemConfig>();
+        public ItemConfig Item => this.Get<ItemConfig>();
         public EntityConfig EntityConfig => this.Get<EntityConfig>();
     }
 }

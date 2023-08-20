@@ -1,17 +1,21 @@
-﻿namespace Yogurt.Arena
+﻿using System;
+
+namespace Yogurt.Arena
 {
+    [Flags]
     public enum ItemType
     {
-        Empty = 1,
-        Any = 2,
+        Empty = 0,
         
-        Rifle = 100,
-        Rain = 101,
-        Charge = 102,
-        SelfExplosion = 103,
+        Rifle = 1 << 1,
+        Rain = 1 << 2,
+        Charge = 1 << 3,
+        SelfExplosion = 1 << 4,
         
-        TutorialRifle = 199,
+        TutorialRifle = 1 << 20,
         
-        HealingPotion = 200,
+        HealingPotion = 1 << 30,
+        
+        Any = int.MaxValue,
     }
 }

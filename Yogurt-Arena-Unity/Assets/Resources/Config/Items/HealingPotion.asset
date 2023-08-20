@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HealingPotion
   m_EditorClassIdentifier: 
   Item:
-    Type: 200
+    Type: 1073741824
     Tags: 2
   Amount: 5

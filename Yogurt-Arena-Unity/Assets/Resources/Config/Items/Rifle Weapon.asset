@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rifle Weapon
   m_EditorClassIdentifier: 
   Item:
-    Type: 100
+    Type: 2
     Tags: 3
   Weapon:
     Bullet:

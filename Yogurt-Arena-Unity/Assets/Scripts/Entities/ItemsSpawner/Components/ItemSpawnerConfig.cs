@@ -9,8 +9,8 @@ namespace Yogurt.Arena
         [field: SerializeField]
         public int Level { get; set; }
 
-        public ItemType ForceItem;
-        public ItemTags ForceTags;
+        public ItemType AvailableItems;
+        public ItemTags AvailableTags;
         public int ItemsCount;
         
         public IEnumerable<IComponent> GetComponents()

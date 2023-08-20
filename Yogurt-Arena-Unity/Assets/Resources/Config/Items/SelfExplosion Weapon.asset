@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SelfExplosion Weapon
   m_EditorClassIdentifier: 
   Item:
-    Type: 103
+    Type: 16
     Tags: 5
   Weapon:
     Bullet:

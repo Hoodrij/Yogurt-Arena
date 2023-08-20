@@ -17,7 +17,7 @@ MonoBehaviour:
       Prefab: {fileID: 4054261582044863672, guid: 04268dfbc7b65584395003f920cde068, type: 3}
   Type: 11
   Team: 0
-  Weapon: 103
+  Weapon: 16
   MoveSpeed: 0.05
   SlowDistance: 5
   MoveSmoothValue: 0.1

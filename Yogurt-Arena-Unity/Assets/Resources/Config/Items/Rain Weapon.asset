@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rain Weapon
   m_EditorClassIdentifier: 
   Item:
-    Type: 101
+    Type: 4
     Tags: 3
   Weapon:
     Bullet:

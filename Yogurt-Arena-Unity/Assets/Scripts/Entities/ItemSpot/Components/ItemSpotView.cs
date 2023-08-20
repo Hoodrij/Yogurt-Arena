@@ -8,9 +8,9 @@ namespace Yogurt.Arena
     public class ItemSpotView : MonoBehaviour, IComponent
     {
         [Serializable]
-        private class EItemTypeToViewDict : SerializableDictionary<ItemType, Transform> { }
+        private class ItemTypeToViewDict : SerializableDictionary<ItemType, Transform> { }
 
-        [SerializeField] private EItemTypeToViewDict map;
+        [SerializeField] private ItemTypeToViewDict map;
         
         
         private async void Awake()
@@ -23,11 +23,15 @@ namespace Yogurt.Arena
 
         public async UniTask Show(ItemType type)
         {
+            foreach (Transform otherIcon in map.Values)
+            {
+                otherIcon.gameObject.SetActive(false);
+            }
+            
             if (!map.TryGetValue(type, out Transform icon))
             {
-                icon = map[ItemType.Any];
+                icon = map[ItemType.Empty];
             }
-
             icon.gameObject.SetActive(true);
             transform.DOScale(1, 0.2f).SetEase(Ease.OutBack, 6);
         }

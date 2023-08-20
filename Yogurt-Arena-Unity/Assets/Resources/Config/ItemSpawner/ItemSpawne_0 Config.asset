@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ItemSpawne_0 Config
   m_EditorClassIdentifier: 
   <Level>k__BackingField: 0
-  ForceItem: 101
-  ForceTags: 0
+  AvailableItems: 1048576
+  AvailableTags: -1
   ItemsCount: 1

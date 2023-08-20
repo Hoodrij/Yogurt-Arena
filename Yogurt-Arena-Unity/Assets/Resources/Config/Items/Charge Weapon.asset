@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charge Weapon
   m_EditorClassIdentifier: 
   Item:
-    Type: 102
+    Type: 8
     Tags: 5
   Weapon:
     Bullet:
