@@ -8,6 +8,14 @@ namespace Yogurt.Arena
         {
             BattleState ownerBattleState = item.Owner.Owner.BattleState;
             item.Add(ownerBattleState);
+
+            if (item.TryGet(out WeaponClipConfig clipConfig))
+            {
+                item.Add(new WeaponClipState
+                {
+                    CurrentAmmo = clipConfig.BulletsInClip
+                });
+            }
             
             new CommonTargetDetectionJob().Run(item);
         }

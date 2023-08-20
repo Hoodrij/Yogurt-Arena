@@ -18,6 +18,7 @@ namespace Yogurt.Arena
 
         public IEnumerable<IComponent> GetComponents()
         {
+            yield return this;
             yield return Item;
             yield return Weapon;
             yield return Lifetime;

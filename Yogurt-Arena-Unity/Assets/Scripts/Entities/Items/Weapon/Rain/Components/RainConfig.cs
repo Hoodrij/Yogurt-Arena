@@ -8,7 +8,7 @@ namespace Yogurt.Arena
     {
         public ItemConfig Item = new()
         {
-            FactoryJob = new RainFactoryJob(),
+            FactoryJob = new CommonWeaponFactoryJob(),
             UseJob = new UseRainJob(),
         };
         public WeaponConfig Weapon;
@@ -20,6 +20,7 @@ namespace Yogurt.Arena
         
         public IEnumerable<IComponent> GetComponents()
         {
+            yield return this;
             yield return Item;
             yield return Weapon;
             yield return Lifetime;
