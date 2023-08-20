@@ -20,7 +20,7 @@ namespace Yogurt.Arena
             {
                 if (!item.Config.Tags.HasFlag(ItemTags.Weapon)) 
                     return;
-                
+
                 owner.Inventory.Weapon.Kill();
                 owner.Inventory.Weapon = item;
             }

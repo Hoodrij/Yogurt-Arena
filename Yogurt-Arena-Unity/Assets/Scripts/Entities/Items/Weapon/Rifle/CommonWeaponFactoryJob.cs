@@ -16,8 +16,16 @@ namespace Yogurt.Arena
                     CurrentAmmo = clipConfig.BulletsInClip
                 });
             }
+
+            if (item.TryGet(out ItemLifetimeConfig lifetimeConfig))
+            {
+                new WeaponLifetimeJob().Run(item);
+            }
             
-            new CommonTargetDetectionJob().Run(item);
+            if (item.TryGet(out TargetDetectionConfig targetDetectionConfig))
+            {
+                new CommonTargetDetectionJob().Run(item);
+            }
         }
     }
 }
