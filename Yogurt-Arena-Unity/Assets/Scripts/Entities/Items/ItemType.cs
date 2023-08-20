@@ -10,6 +10,8 @@
         Charge = 102,
         SelfExplosion = 103,
         
+        TutorialRifle = 199,
+        
         HealingPotion = 200,
     }
 }

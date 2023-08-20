@@ -1,8 +1,11 @@
-﻿namespace Yogurt.Arena
+﻿using System.Linq;
+
+namespace Yogurt.Arena
 {
     public struct GetConfigJob
     {
-        public TConfig Run<TConfig>() where TConfig : IConfig, IComponent
+        // of a Leveled Config
+        public TConfig Run<TConfig>() where TConfig : IEntityConfig, IComponent
         {
             Level currentLevel = Query.Single<Level>();
 
@@ -30,6 +33,14 @@
                 // .FirstOrDefault(leveledConfig => leveledConfig.Level == currentLevel);
 
             return config;
+        }
+
+        // of an Item
+        public ItemConfigAspect Run(ItemType itemType)
+        {
+            ItemConfigAspect itemConfigAspect = Query.Of<ItemConfigAspect>()
+                .FirstOrDefault(aspect => aspect.Config.Type == itemType);
+            return itemConfigAspect;
         }
     }
 }

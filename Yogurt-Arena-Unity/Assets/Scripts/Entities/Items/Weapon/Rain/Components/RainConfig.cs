@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     [CreateAssetMenu]
-    public class RainConfig : ScriptableObject, IComponent, IConfig
+    public class RainConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public ItemConfig Item = new()
         {
@@ -17,16 +18,15 @@ namespace Yogurt.Arena
         public TargetDetectionConfig TargetDetection;
         public RainBulletConfig Bullet;
         
-        public void AppendTo(Entity entity)
+        public IEnumerable<IComponent> GetComponents()
         {
-            entity.Add(this)
-                .Add(Item)
-                .Add(Weapon)
-                .Add(Lifetime)
-                .Add(Clip)
-                .Add(Scattering)
-                .Add(TargetDetection)
-                .Add(Bullet);
+            yield return Item;
+            yield return Weapon;
+            yield return Lifetime;
+            yield return Clip;
+            yield return Scattering;
+            yield return TargetDetection;
+            yield return Bullet;
         }
     }
 }

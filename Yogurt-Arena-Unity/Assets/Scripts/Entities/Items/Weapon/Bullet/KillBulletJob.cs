@@ -8,7 +8,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
-            bullet.Add<Kinematic>();
+            bullet.Add(new Kinematic());
             bullet.Body.Velocity = Vector3.zero;
 
             float t = 0.1f;

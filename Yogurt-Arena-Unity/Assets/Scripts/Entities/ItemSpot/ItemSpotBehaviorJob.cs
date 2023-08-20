@@ -16,8 +16,7 @@ namespace Yogurt.Arena
 
                 itemSpot.View.Show(itemType);
                 AgentAspect agent = await new WaitForItemPickupJob().Run(itemSpot);
-                IItemFactoryJob itemFactory = new GetItemFactoryJob().Run(itemType);
-                itemFactory.Run(agent);
+                await new GiveItemJob().Run(itemType, agent);
 
                 itemSpot.View.Hide();
                 itemSpot.State.Type = ItemType.Empty;

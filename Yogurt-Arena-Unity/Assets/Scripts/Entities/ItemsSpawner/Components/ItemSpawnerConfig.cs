@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     [CreateAssetMenu]
-    public class ItemSpawnerConfig : ScriptableObject, IConfig, ILeveledConfig, IComponent
+    public class ItemSpawnerConfig : ScriptableObject, IEntityConfig, ILeveledConfig, IComponent
     {
         [field: SerializeField]
         public int Level { get; set; }
@@ -12,9 +13,9 @@ namespace Yogurt.Arena
         public ItemTags ForceTags;
         public int ItemsCount;
         
-        public void AppendTo(Entity entity)
+        public IEnumerable<IComponent> GetComponents()
         {
-            entity.Add(this);
+            yield return this;
         }
     }
 }

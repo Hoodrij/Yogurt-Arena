@@ -12,7 +12,7 @@ namespace Yogurt.Arena
             BeaconAspect beacon = World.Create()
                 .Add(beaconConfig)
                 .Add(view)
-                .Add<BeaconBodyState>()
+                .Add(new BeaconBodyState())
                 .As<BeaconAspect>();
             
             new BeaconMoveJob().Run(beacon);

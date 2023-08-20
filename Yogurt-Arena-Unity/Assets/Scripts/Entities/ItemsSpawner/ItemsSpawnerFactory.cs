@@ -7,8 +7,7 @@ namespace Yogurt.Arena
         public async UniTask Run()
         {
             ItemSpawnerAspect itemSpawner = World.Create()
-                .Add<ItemSpawnerConfig>()
-                .Add<ItemsSpawnerState>()
+                .Add(new ItemsSpawnerState())
                 .As<ItemSpawnerAspect>();
 
             new ItemsSpawnerBehaviorJob().Run(itemSpawner);

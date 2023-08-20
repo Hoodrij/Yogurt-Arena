@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             AgentConfig config = new GetAgentConfigJob().Run(TeamType.Green);
 
             AgentAspect agent = await new AgentSpawnJob().Run(config, Vector3.zero);
-            agent.Add<PlayerTag>();
+            agent.Add(new PlayerTag());
             agent.Health.HealthWidget = Query.Single<UIView>().HealthWidget;
 
             new UpdatePlayerDestinationJob().Run(agent.As<PlayerAspect>());

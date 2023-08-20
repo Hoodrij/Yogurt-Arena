@@ -17,8 +17,6 @@ namespace Yogurt.Arena
                 AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red);
                 
                 AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint);
-                IItemFactoryJob weaponFactory = new GetItemFactoryJob().Run(config.Weapon);
-                weaponFactory.Run(agent);
 
                 new SpawnWorldHealthWidget().Run(agent);
 

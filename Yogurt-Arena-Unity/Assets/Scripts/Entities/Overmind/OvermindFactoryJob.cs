@@ -8,7 +8,7 @@ namespace Yogurt.Arena
         {
             OvermindAspect overmind = World.Create()
                 .Add(Query.Single<Config>().Overmind)
-                .Add<OvermindState>()
+                .Add(new OvermindState())
                 .As<OvermindAspect>();
 
             new UpdateOvermindDestinationJob().Run(overmind);

@@ -8,7 +8,7 @@ namespace Yogurt.Arena
         {
             AgentAspect owner = bullet.State.Owner;
             
-            owner.Add<Kinematic>();
+            owner.Add(new Kinematic());
             new ChargeMoveOwnerJob().Run(bullet);
             new ChargeUpdateBulletPositionJob().Run(bullet);
             TryDealDamage();

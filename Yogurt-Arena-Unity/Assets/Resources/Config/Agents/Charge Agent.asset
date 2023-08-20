@@ -15,8 +15,8 @@ MonoBehaviour:
   Asset:
     asset:
       Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
-  Type: 4
-  Team: 2
+  Type: 10
+  Team: 0
   Weapon: 102
   MoveSpeed: 0.1
   SlowDistance: 5

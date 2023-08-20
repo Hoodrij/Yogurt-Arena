@@ -14,7 +14,7 @@ namespace Yogurt.Arena
                 
             location.transform.DOMoveY(-100, 0);
 
-            float appearTime = 1.5f;
+            float appearTime = 1f;
             location.transform.DOMoveY(0, appearTime).SetEase(Ease.InOutExpo);
 
             await Wait.Seconds(appearTime);

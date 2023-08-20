@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
-    [Flags]
     public enum AgentType
     {
-        Player = 1 << 1,
+        Player = 1,
+        Dummy = 2,
         
-        Charge = 1 << 2,
-        Bomb = 1 << 3,
+        Charge = 10,
+        SelfExplosion = 11,
     }
 }

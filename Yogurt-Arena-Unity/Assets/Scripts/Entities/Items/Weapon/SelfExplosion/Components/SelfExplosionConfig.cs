@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     [CreateAssetMenu]
-    public class SelfExplosionConfig : ScriptableObject, IComponent, IConfig
+    public class SelfExplosionConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public ItemConfig Item = new()
         {
-            FactoryJob = new SelfExplosionFactory(),
+            FactoryJob = new CommonWeaponFactoryJob(),
             UseJob = new UseSelfExplosionJob(),
         };
         public WeaponConfig Weapon;
@@ -15,15 +16,13 @@ namespace Yogurt.Arena
         public TargetDetectionConfig TargetDetection;
         public ExplosionConfig Explosion;
         
-        public void AppendTo(Entity entity)
+        public IEnumerable<IComponent> GetComponents()
         {
-            entity.Add(this)
-                .Add(Item)
-                .Add(Weapon)
-                .Add(Lifetime)
-                .Add(TargetDetection)
-                .Add(Explosion)
-                ;
+            yield return Item;
+            yield return Weapon;
+            yield return Lifetime;
+            yield return TargetDetection;
+            yield return Explosion;
         }
     }
 }

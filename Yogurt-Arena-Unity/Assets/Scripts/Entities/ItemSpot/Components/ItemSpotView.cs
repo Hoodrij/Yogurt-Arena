@@ -23,12 +23,12 @@ namespace Yogurt.Arena
 
         public async UniTask Show(ItemType type)
         {
-            foreach (var pair in map)
+            if (!map.TryGetValue(type, out Transform icon))
             {
-                bool isActive = pair.Key == type;
-                pair.Value.gameObject.SetActive(isActive);
+                icon = map[ItemType.Any];
             }
 
+            icon.gameObject.SetActive(true);
             transform.DOScale(1, 0.2f).SetEase(Ease.OutBack, 6);
         }
         

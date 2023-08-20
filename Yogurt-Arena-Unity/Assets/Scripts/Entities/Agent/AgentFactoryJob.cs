@@ -12,9 +12,9 @@ namespace Yogurt.Arena
                 .AddLink(agentView.gameObject)
                 .Add(config)
                 .Add(agentView)
-                .Add<BodyState>()
-                .Add<BattleState>()
-                .Add<Inventory>()
+                .Add(new BodyState())
+                .Add(new BattleState())
+                .Add(new Inventory())
                 .Add(new AgentId
                 {
                     teamType = teamType
@@ -28,6 +28,8 @@ namespace Yogurt.Arena
 
             new AgentMoveJob().Run(agent);
             new AgentLookJob().Run(agent);
+
+            await new GiveItemJob().Run(agent.Config.Weapon, agent);
             
             return agent;
         }

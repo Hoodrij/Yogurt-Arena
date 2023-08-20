@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
     [CreateAssetMenu]
-    public class AgentConfig : ScriptableObject, IComponent, IConfig
+    public class AgentConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public PooledAsset<AgentView> Asset;
         public AgentType Type;
@@ -17,9 +18,9 @@ namespace Yogurt.Arena
         public int MaxHealth;
         public int Health;
 
-        public void AppendTo(Entity entity)
+        public IEnumerable<IComponent> GetComponents()
         {
-            entity.Add(this);
+            yield return this;
         }
     }
 }

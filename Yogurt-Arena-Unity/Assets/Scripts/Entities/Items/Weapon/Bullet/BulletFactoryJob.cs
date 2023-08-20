@@ -16,7 +16,7 @@ namespace Yogurt.Arena
                 {
                     Owner = owner
                 })
-                .Add<BodyState>()
+                .Add(new BodyState())
                 .As<BulletAspect>();
 
             return bullet;

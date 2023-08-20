@@ -14,7 +14,7 @@ namespace Yogurt.Arena
                 .Add(inputConfig)
                 .Add(inputFieldView)
                 .Add(inputFieldView.MoveInputReader)
-                .Add<InputState>()
+                .Add(new InputState())
                 .As<InputFieldAspect>();
 
             new UpdateMoveInputJob().Run(inputField);

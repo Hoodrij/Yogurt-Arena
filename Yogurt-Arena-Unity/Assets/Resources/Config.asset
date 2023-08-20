@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf027ffd92c245728acebb1d4006f773, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   All:
   - {fileID: 11400000, guid: 8dc862f5b8805c24fbcc5dad7f292221, type: 2}
+  - {fileID: 11400000, guid: 53429353d32e60246b6eae697add4452, type: 2}
   - {fileID: 11400000, guid: be2cfb7b183a7ba4a8e20e762f36be81, type: 2}
   - {fileID: 11400000, guid: 014a9a72c3be8744d9b1cffdb84083ce, type: 2}
   - {fileID: 11400000, guid: eeabf1f877ead0b418d5f87b124017b9, type: 2}
@@ -21,6 +31,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 133a816b6c5192a4fbe362049552fbc8, type: 2}
   - {fileID: 11400000, guid: 265319e7fced22048ab01862d7f0aba6, type: 2}
   - {fileID: 11400000, guid: 9d23c9a8602e0864fa0578e484a19838, type: 2}
+  - {fileID: 11400000, guid: 0f345f700c867b8458e42b5f0d3c4550, type: 2}
   - {fileID: 11400000, guid: af35f25a8f7f95849ad704cee23ba03c, type: 2}
   - {fileID: 11400000, guid: 4974bb51a94d8e84e8dd8b17b34ee4d5, type: 2}
   - {fileID: 11400000, guid: 6fac69f7ccd12e24787186f4e3044a2a, type: 2}
@@ -54,9 +65,9 @@ MonoBehaviour:
     Elasticity: 10
   Overmind:
     WaveAgentsCount:
-      Min: 3
-      Max: 5
-    MinimumAgents: 6
+      Min: 1
+      Max: 1
+    MinimumAgents: 0
     WavesDelay:
       Min: 0.1
       Max: 2

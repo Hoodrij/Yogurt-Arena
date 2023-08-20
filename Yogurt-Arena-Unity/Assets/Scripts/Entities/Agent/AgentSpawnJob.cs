@@ -13,7 +13,7 @@ namespace Yogurt.Arena
             position = hit.position;
             
             AgentAspect agent = await new AgentFactoryJob().Run(config, config.Team);
-            agent.Add<Kinematic>();
+            agent.Add(new Kinematic());
             agent.Body.Position = position;
             agent.Body.Destination = position;
             agent.View.transform.position = agent.Body.Position;

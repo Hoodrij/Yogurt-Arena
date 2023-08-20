@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     [Serializable]
     public class BulletConfig : IComponent
     {
-        public PooledAsset<BulletView> Asset;
+        public PooledAsset<BulletView> Asset = new();
         public LayerMask CollisionMask;
         public float Radius;
         public int Damage;

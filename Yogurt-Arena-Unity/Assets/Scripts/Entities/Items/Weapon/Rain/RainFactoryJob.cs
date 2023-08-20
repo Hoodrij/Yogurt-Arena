@@ -4,21 +4,15 @@ namespace Yogurt.Arena
 {
     public struct RainFactoryJob : IItemFactoryJob
     {
-        public async UniTask<ItemAspect> Run(AgentAspect owner)
+        public async UniTask Run(ItemAspect item)
         {
-            RainConfig config = Query.Single<RainConfig>();
-
-            ItemAspect weapon = await new ItemFactoryJob().Run(config, owner); 
-            weapon.Add(new WeaponClipState
+            item.Add(new WeaponClipState
             {
-                CurrentAmmo = config.Clip.BulletsInClip
+                CurrentAmmo = item.Get<WeaponClipConfig>().BulletsInClip
             });
-            weapon.Add(owner.BattleState);
+            item.Add(item.Owner.Owner.BattleState);
             
-            new SetWeaponJob().Run(owner, weapon);
-            new CommonTargetDetectionJob().Run(weapon);
-            
-            return weapon;
+            new CommonTargetDetectionJob().Run(item);
         }
     }
 }

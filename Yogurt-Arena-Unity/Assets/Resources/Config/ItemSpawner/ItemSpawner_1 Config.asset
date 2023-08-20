@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Level>k__BackingField: 1
   ForceItem: 2
-  AvailableTags: 2
+  ForceTags: 2
   ItemsCount: 2

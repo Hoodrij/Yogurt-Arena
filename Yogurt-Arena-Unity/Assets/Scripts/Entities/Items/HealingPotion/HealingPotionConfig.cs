@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     [CreateAssetMenu]
-    public class HealingPotionConfig : ScriptableObject, IComponent, IConfig
+    public class HealingPotionConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public ItemConfig Item = new()
         {
@@ -12,10 +13,10 @@ namespace Yogurt.Arena
         };
         public int Amount;
 
-        public void AppendTo(Entity entity)
+        public IEnumerable<IComponent> GetComponents()
         {
-            entity.Add(this)
-                .Add(Item);
+            yield return this;
+            yield return Item;
         }
     }
 }

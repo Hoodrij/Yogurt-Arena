@@ -4,24 +4,28 @@ namespace Yogurt.Arena
 {
     public interface IItemFactoryJob
     {
-        UniTask<ItemAspect> Run(AgentAspect owner);
+        UniTask Run(ItemAspect item);
     }
     
     public struct ItemFactoryJob
     {
-        public async UniTask<ItemAspect> Run(IConfig config, AgentAspect owner)
+        public async UniTask<ItemAspect> Run(ItemType type, AgentAspect owner)
         {
+            ItemConfigAspect config = new GetConfigJob().Run(type);
+            EntityConfig entityConfig = config.EntityConfig;
+
             Entity entity = World.Create()
                 .Add(new OwnerState
                 {
                     Owner = owner
                 });
-            
-            config.AppendTo(entity);
-            
+            entityConfig.AppendTo(entity);
             entity.SetParent(owner.Entity);
+            
+            ItemAspect item = entity.As<ItemAspect>();
+            config.Config.FactoryJob.Run(item);
 
-            return entity.As<ItemAspect>();
+            return item;
         }
     }
 }

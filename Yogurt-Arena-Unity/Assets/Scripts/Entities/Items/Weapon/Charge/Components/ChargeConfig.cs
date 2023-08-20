@@ -1,26 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
     [CreateAssetMenu]
-    public class ChargeConfig : ScriptableObject, IComponent, IConfig
+    public class ChargeConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public ItemConfig Item = new()
         {
-            FactoryJob = new ChargeFactoryJob(),
+            FactoryJob = new CommonWeaponFactoryJob(),
             UseJob = new UseChargeJob(),
         };
         public WeaponConfig Weapon;
         public ItemLifetimeConfig Lifetime;
         public TargetDetectionConfig TargetDetection;
 
-        public void AppendTo(Entity entity)
+        public IEnumerable<IComponent> GetComponents()
         {
-            entity.Add(this)
-                .Add(Item)
-                .Add(Weapon)
-                .Add(Lifetime)
-                .Add(TargetDetection);
+            yield return Item;
+            yield return Weapon;
+            yield return Lifetime;
+            yield return TargetDetection;
         }
     }
 }

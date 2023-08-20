@@ -5,13 +5,13 @@
         public async void Run(ItemAspect item)
         {
             Time time = Query.Single<Time>();
-            WeaponLifetimeWidget widget = Query.Single<UIView>().WeaponLifetimeWidget;
-            
             AgentAspect owner = item.Owner.Owner;
-            ItemLifetimeConfig lifetimeConfig = item.Get<ItemLifetimeConfig>();
-
+            
             if (!owner.Has<PlayerTag>())
                 return;
+            
+            WeaponLifetimeWidget widget = Query.Single<UIView>().WeaponLifetimeWidget;
+            ItemLifetimeConfig lifetimeConfig = item.Get<ItemLifetimeConfig>();
 
             float timeRemains = lifetimeConfig.LifeTime;
             
