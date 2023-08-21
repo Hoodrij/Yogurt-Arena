@@ -14,11 +14,11 @@ namespace Yogurt.Arena
                 .Add(config)
                 .Add(new Time());
 
-            foreach (IEntityConfig iconfig in config.All)
+            foreach (IEntityConfig iConfig in config.All)
             {
                 EntityConfig entityConfig = new EntityConfig
                 {
-                    Components = iconfig.GetComponents()
+                    Components = iConfig.GetComponents()
                 };
                 
                 Entity entity = Entity.Create()

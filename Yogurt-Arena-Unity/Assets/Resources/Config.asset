@@ -12,15 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf027ffd92c245728acebb1d4006f773, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
   All:
   - {fileID: 11400000, guid: 8dc862f5b8805c24fbcc5dad7f292221, type: 2}
   - {fileID: 11400000, guid: 53429353d32e60246b6eae697add4452, type: 2}
@@ -38,6 +29,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5630f9d318e4cbf49863cefe1588b2ac, type: 2}
   - {fileID: 11400000, guid: 71f981becbfd6e946a11a321ee2118fd, type: 2}
   - {fileID: 11400000, guid: e8e5e269fc6251e42bf5438d0a15048b, type: 2}
+  - {fileID: 11400000, guid: ac35aeb3eb876b940b019549676664a6, type: 2}
+  - {fileID: 11400000, guid: 72f220589e7d606489f755eb024dfb7f, type: 2}
+  - {fileID: 11400000, guid: 80fb766e9d39a39489f98fa0cc71ac04, type: 2}
   World:
     Prefab: {fileID: 6010830135608539927, guid: 5fb0efdc5d163c447b432e799b8e22b8, type: 3}
   UI:
@@ -63,14 +57,6 @@ MonoBehaviour:
       Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
     SmoothValue: 0.2
     Elasticity: 10
-  Overmind:
-    WaveAgentsCount:
-      Min: 1
-      Max: 1
-    MinimumAgents: 0
-    WavesDelay:
-      Min: 0.1
-      Max: 2
   ItemSpot:
     Radius: 3
     Mask:

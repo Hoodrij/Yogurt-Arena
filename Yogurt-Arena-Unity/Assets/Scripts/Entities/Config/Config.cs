@@ -16,7 +16,6 @@ namespace Yogurt.Arena
         public InputConfig Input;
         public CameraConfig Camera;
         public BeaconConfig Beacon;
-        public OvermindConfig Overmind;
 
         [Header("Items")]
         public ItemSpotConfig ItemSpot;

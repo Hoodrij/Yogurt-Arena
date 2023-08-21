@@ -1,12 +1,22 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    [Serializable]
-    public class OvermindConfig : IComponent
+    [CreateAssetMenu]    
+    public class OvermindConfig : ScriptableObject, IComponent, ILeveledConfig, IEntityConfig
     {
+        [field: SerializeField]
+        public int Level { get; set; }
+
+        public AgentType AvailableTypes;
         public MinMaxInt WaveAgentsCount;
         public int MinimumAgents;
         public MinMax WavesDelay;
+        
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+        }
     }
 }

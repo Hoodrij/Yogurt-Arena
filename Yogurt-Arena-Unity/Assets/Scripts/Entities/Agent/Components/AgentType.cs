@@ -1,11 +1,18 @@
-﻿namespace Yogurt.Arena
+﻿using System;
+
+namespace Yogurt.Arena
 {
+    [Flags]
     public enum AgentType
     {
-        Player = 1,
-        Dummy = 2,
+        None = 0,
         
-        Charge = 10,
-        SelfExplosion = 11,
+        Player = 1 << 1,
+        Dummy = 1 << 2,
+        
+        Charge = 1 << 5,
+        SelfExplosion = 1 << 6,
+        
+        Any = int.MaxValue,
     }
 }

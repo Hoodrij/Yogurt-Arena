@@ -4,13 +4,26 @@ namespace Yogurt.Arena
 {
     public struct GetAgentConfigJob
     {
-        public AgentConfig Run(TeamType requiredTeam)
+        public AgentConfig Run(TeamType requiredTeam, AgentType availableTypes = AgentType.Any)
         {
-            Entity config = Query.Of<AgentConfig>()
-                .Where(entity => entity.Get<AgentConfig>().Team == requiredTeam)
+            Entity result = Query.Of<AgentConfig>()
+                .Where(FitsTeam)
+                .Where(FitsType)
                 .GetRandom();
 
-            return config.Get<AgentConfig>();
+            return result.Get<AgentConfig>();
+            
+            
+            bool FitsTeam(Entity entity)
+            {
+                AgentConfig config = entity.Get<AgentConfig>();
+                return requiredTeam.HasFlag(config.Team);
+            }
+            bool FitsType(Entity entity)
+            {
+                AgentConfig config = entity.Get<AgentConfig>();
+                return availableTypes.HasFlag(config.Type);
+            }
         }
     }
 }

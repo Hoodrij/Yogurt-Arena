@@ -24,16 +24,16 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 257
       Radius: 0.2
-      Damage: 1
+      Damage: 4
       LifeTime: 0.4
       Speed: 1
     Cooldown: 0.07
     Range: 15
     AngleToAttack: 360
   Lifetime:
-    LifeTime: 2
+    LifeTime: 5
   Scattering:
-    angle: 20
+    angle: 10
   TargetDetection:
     Distance: 15
     CollisionMask:

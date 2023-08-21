@@ -7,7 +7,7 @@ namespace Yogurt.Arena
         public async UniTask<OvermindAspect> Run()
         {
             OvermindAspect overmind = World.Create()
-                .Add(Query.Single<Config>().Overmind)
+                .Add(new GetConfigJob().Run<OvermindConfig>())
                 .Add(new OvermindState())
                 .As<OvermindAspect>();
 

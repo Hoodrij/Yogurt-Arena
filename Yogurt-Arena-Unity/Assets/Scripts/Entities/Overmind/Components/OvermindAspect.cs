@@ -4,7 +4,7 @@
     {
         public Entity Entity { get; set; }
 
-        public OvermindConfig Config => this.Get<OvermindConfig>();
+        public OvermindConfig Config => new GetConfigJob().Run<OvermindConfig>();
 
         public OvermindState State => this.Get<OvermindState>();
     }

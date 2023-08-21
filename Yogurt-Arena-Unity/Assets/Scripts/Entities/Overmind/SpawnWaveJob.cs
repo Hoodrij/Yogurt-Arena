@@ -14,7 +14,7 @@ namespace Yogurt.Arena
             for (int i = 0; i < agentsCount; i++)
             {
                 Vector3 spawnPoint = GetFreeSpawnPoint();
-                AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red);
+                AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red, overmind.Config.AvailableTypes);
                 
                 AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint);
 
