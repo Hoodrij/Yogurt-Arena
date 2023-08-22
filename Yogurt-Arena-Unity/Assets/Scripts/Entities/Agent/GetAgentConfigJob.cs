@@ -11,7 +11,7 @@ namespace Yogurt.Arena
                 .With<EntityConfig>()
                 .Where(FitsTeam)
                 .Where(FitsType)
-                .GetRandom()
+                .GetRandom();
 
             return result.Get<AgentConfig>();
             
