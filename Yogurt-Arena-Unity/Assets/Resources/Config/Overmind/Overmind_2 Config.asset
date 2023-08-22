@@ -15,9 +15,9 @@ MonoBehaviour:
   <Level>k__BackingField: 2
   AvailableTypes: 96
   WaveAgentsCount:
-    Min: 3
-    Max: 5
-  MinimumAgents: 10
+    Min: 5
+    Max: 10
+  MinimumAgents: 30
   WavesDelay:
-    Min: 3
-    Max: 5
+    Min: 1
+    Max: 3

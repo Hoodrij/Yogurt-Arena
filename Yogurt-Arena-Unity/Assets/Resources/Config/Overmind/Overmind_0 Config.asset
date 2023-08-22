@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Overmind_0 Config
   m_EditorClassIdentifier: 
   <Level>k__BackingField: 0
-  AvailableTypes: 32
+  AvailableTypes: 4
   WaveAgentsCount:
     Min: 1
     Max: 1

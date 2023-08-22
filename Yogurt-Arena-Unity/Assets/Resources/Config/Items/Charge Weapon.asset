@@ -37,4 +37,4 @@ MonoBehaviour:
     CollisionMask:
       serializedVersion: 2
       m_Bits: 1
-    YTolerance: 3
+    YTolerance: 4

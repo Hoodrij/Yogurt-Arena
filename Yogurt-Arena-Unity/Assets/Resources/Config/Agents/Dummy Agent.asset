@@ -18,9 +18,9 @@ MonoBehaviour:
   Type: 4
   Team: 2
   Weapon: 0
-  MoveSpeed: 0
-  SlowDistance: 0
-  MoveSmoothValue: 0
+  MoveSpeed: 0.05
+  SlowDistance: 5
+  MoveSmoothValue: 0.1
   LookSmoothValue: 0.2
-  MaxHealth: 50
-  Health: 50
+  MaxHealth: 100
+  Health: 100

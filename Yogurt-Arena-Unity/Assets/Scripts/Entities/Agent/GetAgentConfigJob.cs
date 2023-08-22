@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Yogurt.Arena
 {
@@ -7,9 +8,10 @@ namespace Yogurt.Arena
         public AgentConfig Run(TeamType requiredTeam, AgentType availableTypes = AgentType.Any)
         {
             Entity result = Query.Of<AgentConfig>()
+                .With<EntityConfig>()
                 .Where(FitsTeam)
                 .Where(FitsType)
-                .GetRandom();
+                .GetRandom()
 
             return result.Get<AgentConfig>();
             
