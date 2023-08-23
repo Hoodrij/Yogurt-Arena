@@ -5,13 +5,15 @@ namespace Yogurt.Arena
 {
     public class OvermindState : IComponent
     {
-        public List<AgentAspect> Agents = new List<AgentAspect>();
+        public int TotalSpawned;
+        public List<AgentAspect> CurrentAgents = new List<AgentAspect>();
 
         public async UniTaskVoid KeepAgent(AgentAspect agent)
         {
-            Agents.Add(agent);
+            TotalSpawned += 1;
+            CurrentAgents.Add(agent);
             await agent.Entity.WaitForDead();
-            Agents.Remove(agent);
+            CurrentAgents.Remove(agent);
         } 
     }
 }

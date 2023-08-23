@@ -16,11 +16,16 @@ namespace Yogurt.Arena
                 await new SpawnWaveJob().Run(overmind);
                 await Wait.Seconds(overmind.Config.WavesDelay.GetRandom());
                 await Wait.While(HasEnoughAgents);
+                await Wait.While(MaximumLimitReached);
             }
             bool HasEnoughAgents()
             {
-                int minimumAgents = overmind.Config.MinimumAgents;
-                return overmind.State.Agents.Count > minimumAgents;
+                int minimumAgents = overmind.Config.MinimumAgentsInWorld;
+                return overmind.State.CurrentAgents.Count > minimumAgents;
+            }
+            bool MaximumLimitReached()
+            {
+                return overmind.State.TotalSpawned >= overmind.Config.TotalAgentsToSpawn;
             }
         }
     }

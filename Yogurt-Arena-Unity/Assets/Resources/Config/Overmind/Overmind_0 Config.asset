@@ -17,7 +17,8 @@ MonoBehaviour:
   WaveAgentsCount:
     Min: 1
     Max: 1
-  MinimumAgents: 0
+  MaximumAgentsPerLevel: 1
+  MinimumAgentsInWorld: 0
   WavesDelay:
     Min: 0
     Max: 0
