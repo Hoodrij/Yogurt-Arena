@@ -7,9 +7,10 @@ namespace Yogurt.Arena
         public async UniTask Run()
         {
             Level level = Query.Single<Level>();
-            level.Current += 1;
             
-            await Wait.Seconds(1);
+            await new SpawnLocationPartJob().Run(level + 1);
+            
+            level.Current += 1;
         }
     }
 }
