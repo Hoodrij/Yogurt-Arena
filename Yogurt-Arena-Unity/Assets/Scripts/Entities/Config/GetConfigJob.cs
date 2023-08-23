@@ -5,9 +5,11 @@ namespace Yogurt.Arena
     public struct GetConfigJob
     {
         // of a Leveled Config
-        public TConfig Run<TConfig>() where TConfig : IEntityConfig, IComponent
+        public TConfig Run<TConfig>(int requiredLevel = -1) where TConfig : IEntityConfig, IComponent
         {
-            Level currentLevel = Query.Single<Level>();
+            requiredLevel = requiredLevel == -1 
+                ? Query.Single<Level>() 
+                : requiredLevel;
 
             TConfig config = Query.Single<TConfig>();
             if (config is not ILeveledConfig)
@@ -20,7 +22,7 @@ namespace Yogurt.Arena
                 config = entity.Get<TConfig>();
                 if (config is ILeveledConfig leveledConfig)
                 {
-                    if (leveledConfig.Level == currentLevel)
+                    if (leveledConfig.Level == requiredLevel)
                     {
                         return config;
                     }

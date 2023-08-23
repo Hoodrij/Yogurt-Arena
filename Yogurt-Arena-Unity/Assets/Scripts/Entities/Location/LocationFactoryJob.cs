@@ -21,7 +21,7 @@ namespace Yogurt.Arena
                 .AddLink(levelGO)
                 .Add(locationComp);
             
-            await new SpawnNextLocationPartJob().Run();
+            await new SpawnLocationPartJob().Run(0);
         }
     }
 }

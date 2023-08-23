@@ -7,11 +7,6 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(LocationPartTag location)
         {
-            if (Query.Single<Level>().Current == 0)
-            {
-                return;
-            }
-                
             location.transform.DOMoveY(-100, 0);
 
             float appearTime = 1f;
