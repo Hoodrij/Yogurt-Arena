@@ -11,8 +11,9 @@ namespace Yogurt.Arena
 
             Entity game = Entity.Create()
                 .Add(new Game())
+                .Add(new Time())
                 .Add(config)
-                .Add(new Time());
+                ;
 
             foreach (IEntityConfig iConfig in config.All)
             {

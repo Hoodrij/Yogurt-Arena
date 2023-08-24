@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Asset:
     asset:
-      Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
+      Prefab: {fileID: 4054261582044863672, guid: c2d4f3332707dee4c8c4e2e2e25d7861, type: 3}
   Type: 4
   Team: 2
   Weapon: 0
@@ -22,5 +22,5 @@ MonoBehaviour:
   SlowDistance: 5
   MoveSmoothValue: 0.1
   LookSmoothValue: 0.2
-  MaxHealth: 30
-  Health: 30
+  MaxHealth: 100
+  Health: 100
