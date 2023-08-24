@@ -7,5 +7,6 @@ namespace Yogurt.Arena
         public ItemType Type;
         public float Radius;
         public LayerMask Mask;
+        public bool IsTaken;
     }
 }

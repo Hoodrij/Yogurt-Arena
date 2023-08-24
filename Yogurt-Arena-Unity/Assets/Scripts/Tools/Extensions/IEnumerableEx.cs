@@ -18,5 +18,10 @@ namespace Yogurt.Arena
             int index = enumerable.Count().RandomTo();
             return enumerable.ElementAt(index);
         }
+
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> enumerable, T item)
+        {
+            return enumerable.Where(t => !t.Equals(item));
+        }
     }
 }
