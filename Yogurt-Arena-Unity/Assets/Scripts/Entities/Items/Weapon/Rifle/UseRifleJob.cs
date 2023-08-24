@@ -35,9 +35,10 @@ namespace Yogurt.Arena
                 Vector3 dir = (targetBody.Position.WithY(0) - owner.Body.Position.WithY(0))
                     .WithY(0).normalized;
 
-                dir = new ApplyScatteringJob().Run(item, dir);
+                Vector3 velocity = dir * bullet.Config.Speed;
+                velocity = new ApplyScatteringJob().Run(item, velocity);
 
-                return dir * bullet.Config.Speed;
+                return velocity;
             }
         }
     }

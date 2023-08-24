@@ -33,7 +33,10 @@ MonoBehaviour:
   Lifetime:
     LifeTime: 5
   Scattering:
-    angle: 10
+    VelocityMagnitudeModifier:
+      Min: 0.7
+      Max: 1
+    Angle: 20
   TargetDetection:
     Distance: 15
     CollisionMask:

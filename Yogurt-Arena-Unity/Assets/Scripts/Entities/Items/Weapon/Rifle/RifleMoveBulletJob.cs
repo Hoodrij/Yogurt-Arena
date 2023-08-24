@@ -10,6 +10,7 @@ namespace Yogurt.Arena
             Transform transform = bullet.View.transform;
             BodyState body = bullet.Body;
             float timePassed = 0;
+            float startingSpeed = body.Velocity.magnitude;
             
             bullet.Run(MoveBullet);
             return;
@@ -24,7 +25,7 @@ namespace Yogurt.Arena
                 body.Position = transform.position = newPos;
                 
                 timePassed += time.Delta / bullet.Config.LifeTime;
-                float speed = Mathf.Lerp(bullet.Config.Speed, 0, timePassed);
+                float speed = Mathf.Lerp(startingSpeed, 0, timePassed);
                 body.Velocity = body.Velocity.normalized * speed;
             }
         }

@@ -4,12 +4,14 @@ namespace Yogurt.Arena
 {
     public struct ApplyScatteringJob
     {
-        public Vector3 Run(ItemAspect item, Vector3 initialDir)
+        public Vector3 Run(ItemAspect item, Vector3 initialVelocity)
         {
-            WeaponScatteringConfig scatteringConfig = item.Get<WeaponScatteringConfig>();
+            WeaponScatteringConfig config = item.Get<WeaponScatteringConfig>();
             
-            var scattering = (scatteringConfig.angle / 2).RandomTo().WithRandomSign();
-            return Quaternion.AngleAxis(scattering, Vector3.up) * initialDir;
+            float scatteringAngle = (config.Angle / 2).RandomTo().WithRandomSign();
+            Vector3 scatteredVelocity = Quaternion.AngleAxis(scatteringAngle, Vector3.up) * initialVelocity;
+            scatteredVelocity *= config.VelocityMagnitudeModifier.GetRandom();
+            return scatteredVelocity;
         }
     }
 }

@@ -36,7 +36,10 @@ MonoBehaviour:
     BulletsInClip: 5
     ClipCooldown: 1
   Scattering:
-    angle: 90
+    VelocityMagnitudeModifier:
+      Min: 1
+      Max: 1
+    Angle: 90
   TargetDetection:
     Distance: 15
     CollisionMask:
