@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b2f7688208d4fc0b2505ed4615005be, type: 3}
-  m_Name: Rifle Weapon
+  m_Name: Shotgun Weapon
   m_EditorClassIdentifier: 
   Item:
-    Type: 2
+    Type: 32
     Tags: 3
   Weapon:
     Bullet:
@@ -24,19 +24,19 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 257
       Radius: 0.2
-      Damage: 4
-      LifeTime: 0.4
-      Speed: 1
-    Cooldown: 0.07
+      Damage: 5
+      LifeTime: 0.3
+      Speed: 1.2
+    Cooldown: 0
     Range: 15
     AngleToAttack: 360
   Lifetime:
-    LifeTime: 5
+    LifeTime: 26.07
   Scattering:
     VelocityMagnitudeModifier:
-      Min: 0.9
-      Max: 1.1
-    Angle: 10
+      Min: 0.5
+      Max: 1
+    Angle: 35
   TargetDetection:
     Distance: 15
     CollisionMask:
@@ -44,5 +44,5 @@ MonoBehaviour:
       m_Bits: 1
     YTolerance: 2
   Clip:
-    BulletsInClip: 1
-    ClipCooldown: 0.07
+    BulletsInClip: 10
+    ClipCooldown: 0.7

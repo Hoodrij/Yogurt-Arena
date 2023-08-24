@@ -11,6 +11,7 @@ namespace Yogurt.Arena
         Rain = 1 << 2,
         Charge = 1 << 3,
         SelfExplosion = 1 << 4,
+        Shotgun = 1 << 5,
         
         TutorialRifle = 1 << 20,
         
