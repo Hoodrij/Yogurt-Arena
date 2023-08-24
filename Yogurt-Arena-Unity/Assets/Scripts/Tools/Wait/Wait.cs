@@ -11,12 +11,20 @@ namespace Yogurt.Arena
         
         public static UniTask While(Func<bool> predicate)
         {
-            return UniTask.WaitWhile(predicate, cancellationToken: lifetime);
+            if (predicate.Invoke())
+            {
+                return UniTask.WaitWhile(predicate, cancellationToken: lifetime);
+            }
+            return UniTask.CompletedTask;
         }
         
         public static UniTask Until(Func<bool> predicate)
         {
-            return UniTask.WaitUntil(predicate, cancellationToken: lifetime);
+            if (!predicate.Invoke())
+            {
+                return UniTask.WaitUntil(predicate, cancellationToken: lifetime);
+            }
+            return UniTask.CompletedTask;
         }
 
         public static UniTask Update()
@@ -26,7 +34,11 @@ namespace Yogurt.Arena
 
         public static UniTask Seconds(float seconds)
         {
-            return UniTask.WaitForSeconds(seconds, cancellationToken: lifetime);
+            if (seconds > 0)
+            {
+                return UniTask.WaitForSeconds(seconds, cancellationToken: lifetime);
+            }
+            return UniTask.CompletedTask;
         }
 
         public static UniTask Any(params UniTask[] tasks)
