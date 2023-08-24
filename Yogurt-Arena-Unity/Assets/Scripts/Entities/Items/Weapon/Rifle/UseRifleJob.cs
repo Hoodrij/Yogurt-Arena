@@ -15,17 +15,20 @@ namespace Yogurt.Arena
                 await new WaitForWeaponReadyJob().Run(item);
                 if (!item.Exist()) return;
                 
-                BulletAspect bullet = await new BulletFactoryJob().Run(config.Bullet, owner);
-                
-                new FireBulletJob().Run(bullet, GetVelocity(bullet));
-                new RifleBulletBehaviorJob().Run(bullet);
+                FireBullet();
 
-                await Wait.Seconds(config.Cooldown);
+                await new ReloadJob().Run(item);
             }
 
             return;
 
 
+            async void FireBullet()
+            {
+                BulletAspect bullet = await new BulletFactoryJob().Run(config.Bullet, owner);
+                new FireBulletJob().Run(bullet, GetVelocity(bullet));
+                new RifleBulletBehaviorJob().Run(bullet);
+            }
             Vector3 GetVelocity(BulletAspect bullet)
             {
                 BodyState targetBody = owner.BattleState.Target.Body;

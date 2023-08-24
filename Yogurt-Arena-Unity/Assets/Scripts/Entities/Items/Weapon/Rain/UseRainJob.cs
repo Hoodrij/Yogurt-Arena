@@ -16,15 +16,10 @@ namespace Yogurt.Arena
                 if (!item.Exist()) return;
 
                 BulletAspect bullet = await new RainBulletFactoryJob().Run(weaponConfig.Bullet, item.Get<RainConfig>(), owner);
-
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
                 new RainBulletBehaviorJob().Run(bullet.As<RainBulletAspect>());
                 
-                bool hasAmmoInClip = await new SpendAmmoJob().Run(item.As<WeaponWithClipAspect>());
-                if (hasAmmoInClip)
-                {
-                    await Wait.Seconds(weaponConfig.Cooldown);
-                }
+                await new ReloadJob().Run(item);
             }
 
             return;

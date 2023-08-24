@@ -8,7 +8,7 @@ namespace Yogurt.Arena
         public void Run(BulletAspect bullet)
         {
             Time time = Query.Single<Time>();
-            AgentAspect owner = bullet.State.Owner;
+            AgentAspect owner = bullet.Owner.Value;
             Transform transform = owner.View.transform;
             BodyState body = owner.Body;
             

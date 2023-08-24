@@ -9,7 +9,7 @@ namespace Yogurt.Arena
         {
             TargetDetectionConfig config = weapon.Get<TargetDetectionConfig>();
             BattleState battleState = weapon.Get<BattleState>();
-            AgentAspect agent = weapon.Owner.Owner;
+            AgentAspect agent = weapon.Owner.Value;
             
             weapon.Run(Update);
 

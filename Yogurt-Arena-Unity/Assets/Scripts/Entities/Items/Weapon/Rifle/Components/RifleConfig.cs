@@ -11,10 +11,12 @@ namespace Yogurt.Arena
             FactoryJob = new CommonWeaponFactoryJob(),
             UseJob = new UseRifleJob(),
         };
+
         public WeaponConfig Weapon;
         public ItemLifetimeConfig Lifetime;
         public WeaponScatteringConfig Scattering;
         public TargetDetectionConfig TargetDetection;
+        public WeaponClipConfig Clip;
 
         public IEnumerable<IComponent> GetComponents()
         {
@@ -24,6 +26,7 @@ namespace Yogurt.Arena
             yield return Lifetime;
             yield return Scattering;
             yield return TargetDetection;
+            yield return Clip;
         }
     }
 }

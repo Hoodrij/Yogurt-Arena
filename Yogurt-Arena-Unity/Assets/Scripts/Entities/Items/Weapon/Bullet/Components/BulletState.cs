@@ -2,6 +2,6 @@
 {
     public class BulletState : IComponent
     {
-        public AgentAspect Owner;
+        
     }
 }

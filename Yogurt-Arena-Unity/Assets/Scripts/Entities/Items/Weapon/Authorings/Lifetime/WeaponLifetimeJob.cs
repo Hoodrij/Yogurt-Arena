@@ -5,7 +5,7 @@
         public async void Run(ItemAspect item)
         {
             Time time = Query.Single<Time>();
-            AgentAspect owner = item.Owner.Owner;
+            AgentAspect owner = item.Owner.Value;
             
             if (!owner.Has<PlayerTag>())
                 return;

@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             bullet.Add(owner.BattleState);
             bullet.Add(new OwnerState
             {
-                Owner = owner
+                Value = owner
             });
             bullet.Add(rainConfig.Bullet);
 

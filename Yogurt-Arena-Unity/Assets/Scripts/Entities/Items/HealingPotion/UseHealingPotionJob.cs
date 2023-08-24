@@ -7,7 +7,7 @@ namespace Yogurt.Arena
         public async UniTask Run(ItemAspect item)
         {
             HealingPotionConfig config = item.Get<HealingPotionConfig>();
-            AgentAspect agentAspect = item.Owner.Owner;
+            AgentAspect agentAspect = item.Owner.Value;
             
             new ChangeHealthJob().Run(agentAspect.Entity, config.Amount);
         }

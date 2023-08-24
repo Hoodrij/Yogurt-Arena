@@ -7,7 +7,7 @@ namespace Yogurt.Arena
     {
         public async void Run(BulletAspect bullet)
         {
-            AgentAspect owner = bullet.State.Owner;
+            AgentAspect owner = bullet.Owner.Value;
             bullet.Run(Update);
             return;
 

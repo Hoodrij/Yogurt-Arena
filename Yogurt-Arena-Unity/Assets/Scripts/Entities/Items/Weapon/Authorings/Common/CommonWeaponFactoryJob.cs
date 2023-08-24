@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(ItemAspect item)
         {
-            BattleState ownerBattleState = item.Owner.Owner.BattleState;
+            BattleState ownerBattleState = item.Owner.Value.BattleState;
             item.Add(ownerBattleState);
 
             if (item.TryGet(out WeaponClipConfig clipConfig))

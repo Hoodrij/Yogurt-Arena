@@ -18,7 +18,7 @@ namespace Yogurt.Arena
                 .Add(entityConfig.Components)
                 .Add(new OwnerState
                 {
-                    Owner = owner
+                    Value = owner
                 });
             
             entity.SetParent(owner.Entity);

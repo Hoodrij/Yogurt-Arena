@@ -12,11 +12,12 @@ namespace Yogurt.Arena
                 .AddLink(view.gameObject)
                 .Add(config)
                 .Add(view)
-                .Add(new BulletState
-                {
-                    Owner = owner
-                })
+                .Add(new BulletState())
                 .Add(new BodyState())
+                .Add(new OwnerState
+                {
+                    Value = owner
+                })
                 .As<BulletAspect>();
 
             return bullet;

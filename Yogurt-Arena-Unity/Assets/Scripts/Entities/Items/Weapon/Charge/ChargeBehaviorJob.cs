@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask Run(BulletAspect bullet)
         {
-            AgentAspect owner = bullet.State.Owner;
+            AgentAspect owner = bullet.Owner.Value;
             
             owner.Add(new Kinematic());
             new ChargeMoveOwnerJob().Run(bullet);
