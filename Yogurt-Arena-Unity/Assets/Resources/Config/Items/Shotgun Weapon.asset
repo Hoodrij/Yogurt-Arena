@@ -31,7 +31,7 @@ MonoBehaviour:
     Range: 15
     AngleToAttack: 360
   Lifetime:
-    LifeTime: 5
+    LifeTime: 10
   Scattering:
     VelocityMagnitudeModifier:
       Min: 0.5

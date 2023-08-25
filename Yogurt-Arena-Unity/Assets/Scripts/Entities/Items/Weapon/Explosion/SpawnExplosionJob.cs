@@ -23,6 +23,7 @@ namespace Yogurt.Arena
             await Wait.Seconds(duration);
 
             view.DOKill();
+            await Wait.Seconds(0.5f);
             vfx.GetComponent<PoolLink>().Release();
         }
     }

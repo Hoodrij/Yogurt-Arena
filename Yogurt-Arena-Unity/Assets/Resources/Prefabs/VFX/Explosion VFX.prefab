@@ -169,8 +169,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 40
-      minScalar: 1
+      scalar: 80
+      minScalar: 40
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -287,8 +287,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.7
-      minScalar: 0.2
+      scalar: 3
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2630,11 +2630,11 @@ ParticleSystem:
     inWorldSpace: 0
     multiplyDragByParticleSize: 1
     multiplyDragByParticleVelocity: 1
-    dampen: 0.3
+    dampen: 0
     drag:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 3
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4078,7 +4078,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.5384617
+          value: 0.1692297
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4088,11 +4088,11 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -1.5565834
-          outSlope: -1.5565834
-          tangentMode: 0
+          inSlope: -0.1692297
+          outSlope: -0.1692297
+          tangentMode: 34
           weightedMode: 0
-          inWeight: 0.12848651
+          inWeight: 0.33333334
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
