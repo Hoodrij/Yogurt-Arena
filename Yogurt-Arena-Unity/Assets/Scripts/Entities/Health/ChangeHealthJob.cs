@@ -2,7 +2,7 @@
 {
     public struct ChangeHealthJob
     {
-        public void Run(Entity target, int delta)
+        public async void Run(Entity target, int delta)
         {
             if (!target.Exist) return;
             
@@ -14,6 +14,7 @@
                 
                 if (health.Value <= 0)
                 {
+                    await health.DeathJob.Run(target);
                     target.Kill();
                 }
             }

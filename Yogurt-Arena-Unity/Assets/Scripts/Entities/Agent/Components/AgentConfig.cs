@@ -8,6 +8,7 @@ namespace Yogurt.Arena
     public class AgentConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public PooledAsset<AgentView> Asset;
+        public PooledAsset<AgentDeathVFX> DeathVFX;
         public AgentType Type;
         public TeamType Team;
         public ItemType Weapon;

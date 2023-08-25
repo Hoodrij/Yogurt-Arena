@@ -22,7 +22,8 @@ namespace Yogurt.Arena
                 .Add(new Health
                 {
                     MaxHealth = config.MaxHealth,
-                    Value = config.Health
+                    Value = config.Health,
+                    DeathJob = new AgentDeathJob(),
                 })
                 .As<AgentAspect>();
 

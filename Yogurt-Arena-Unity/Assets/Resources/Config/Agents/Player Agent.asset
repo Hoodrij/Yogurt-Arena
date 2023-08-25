@@ -15,6 +15,9 @@ MonoBehaviour:
   Asset:
     asset:
       Prefab: {fileID: 39607511721595333, guid: 9845d6291ccbb5942b5c33655dc76d82, type: 3}
+  DeathVFX:
+    asset:
+      Prefab: {fileID: 1790015590002962027, guid: 99c5b35320df00e4eb8e13852cf1e71f, type: 3}
   Type: 2
   Team: 1
   Weapon: 0
