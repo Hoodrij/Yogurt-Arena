@@ -28,7 +28,7 @@ MonoBehaviour:
       LifeTime: 0.3
       Speed: 1.2
     Cooldown: 0
-    Range: 15
+    Range: 10
     AngleToAttack: 360
   Lifetime:
     LifeTime: 10
@@ -45,4 +45,4 @@ MonoBehaviour:
     YTolerance: 2
   Clip:
     BulletsInClip: 10
-    ClipCooldown: 0.7
+    ClipCooldown: 0.5

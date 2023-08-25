@@ -36,7 +36,7 @@ Material:
     - _Density: 0.9
     - _FogMaxHeight: 0.99
     - _FogMinHeight: -0.28
-    - _IntersectionThresholdMax: 0.025
+    - _IntersectionThresholdMax: 0.02
     m_Colors:
     - _Color: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
     - _FogColor: {r: 1, g: 0.20971608, b: 0, a: 0.6117647}

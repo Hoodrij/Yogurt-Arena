@@ -13,7 +13,7 @@ namespace Yogurt.Arena
 
             for (int i = 0; i < agentsCount; i++)
             {
-                Vector3 spawnPoint = GetFreeSpawnPoint();
+                Vector3 spawnPoint = await new GetFreeSpawnPointJob().Run(overmind);
                 AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red, overmind.Config.AvailableTypes);
                 
                 AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint);
@@ -21,19 +21,6 @@ namespace Yogurt.Arena
 
                 overmind.State.KeepAgent(agent);
                 await Wait.Seconds(0.5f);
-            }
-
-            return;
-
-
-            Vector3 GetFreeSpawnPoint()
-            {
-                NavMeshSurface level = Query.Single<Location>().NavSurface;
-                Vector3 randomPoint = level.navMeshData.sourceBounds.GetRandomPoint().WithY(0);
-
-                NavMesh.SamplePosition(randomPoint, out var hit, 100, NavMesh.AllAreas);
-
-                return hit.position;
             }
         }
     }

@@ -14,6 +14,7 @@ namespace Yogurt.Arena
         public int TotalAgentsToSpawn;
         public int MinimumAgentsInWorld;
         public MinMax WavesDelay;
+        public float MinRangeToPlayer;
         
         public IEnumerable<IComponent> GetComponents()
         {

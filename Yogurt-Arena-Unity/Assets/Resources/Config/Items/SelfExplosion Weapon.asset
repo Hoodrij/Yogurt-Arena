@@ -33,11 +33,11 @@ MonoBehaviour:
   Lifetime:
     LifeTime: 10
   TargetDetection:
-    Distance: 15
+    Distance: 20
     CollisionMask:
       serializedVersion: 2
       m_Bits: 1
-    YTolerance: 2
+    YTolerance: 5
   Explosion:
     Asset:
       asset:

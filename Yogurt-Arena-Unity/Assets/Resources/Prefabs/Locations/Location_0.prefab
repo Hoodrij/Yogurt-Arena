@@ -211,45 +211,45 @@ MonoBehaviour:
   - m_Vertices: 0b0000000e00000012000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -10, y: -40, z: 10}
-  - {x: 10, y: -40, z: 10}
+  - {x: -10, y: -60, z: 10}
+  - {x: 10, y: -60, z: 10}
   - {x: -10, y: 0, z: 10}
   - {x: 10, y: 0, z: 10}
-  - {x: 10, y: -40, z: 10}
-  - {x: 10, y: -40, z: -10}
+  - {x: 10, y: -60, z: 10}
+  - {x: 10, y: -60, z: -10}
   - {x: 10, y: 0, z: 10}
   - {x: 10, y: 0, z: -10}
-  - {x: 10, y: -40, z: -10}
-  - {x: -10, y: -40, z: -10}
+  - {x: 10, y: -60, z: -10}
+  - {x: -10, y: -60, z: -10}
   - {x: 10, y: 0, z: -10}
   - {x: -10, y: 0, z: -10}
-  - {x: -10, y: -40, z: -10}
-  - {x: -10, y: -40, z: 10}
+  - {x: -10, y: -60, z: -10}
+  - {x: -10, y: -60, z: 10}
   - {x: -10, y: 0, z: -10}
   - {x: -10, y: 0, z: 10}
   - {x: -10, y: 0, z: 10}
   - {x: 10, y: 0, z: 10}
   - {x: -10, y: 0, z: -10}
   - {x: 10, y: 0, z: -10}
-  - {x: -10, y: -40, z: -10}
-  - {x: 10, y: -40, z: -10}
-  - {x: -10, y: -40, z: 10}
-  - {x: 10, y: -40, z: 10}
+  - {x: -10, y: -60, z: -10}
+  - {x: 10, y: -60, z: -10}
+  - {x: -10, y: -60, z: 10}
+  - {x: 10, y: -60, z: 10}
   m_Textures0:
-  - {x: 10, y: -40}
-  - {x: -10, y: -40}
+  - {x: 10, y: -60}
+  - {x: -10, y: -60}
   - {x: 10, y: 0}
   - {x: -10, y: 0}
-  - {x: 10, y: -40}
-  - {x: -10, y: -40}
+  - {x: 10, y: -60}
+  - {x: -10, y: -60}
   - {x: 10, y: 0}
   - {x: -10, y: 0}
-  - {x: 10, y: -40}
-  - {x: -10, y: -40}
+  - {x: 10, y: -60}
+  - {x: -10, y: -60}
   - {x: 10, y: 0}
   - {x: -10, y: 0}
-  - {x: 10, y: -40}
-  - {x: -10, y: -40}
+  - {x: 10, y: -60}
+  - {x: -10, y: -60}
   - {x: 10, y: 0}
   - {x: -10, y: 0}
   - {x: -10, y: 10}
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 945
+  m_VersionIndex: 989
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -315,14 +315,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 8486082665407315971
-  m_Size: {x: 20, y: 40, z: 20}
+  m_Size: {x: 20, y: 60, z: 20}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_PivotLocation: 0
   m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 931
+  m_UnmodifiedMeshVersion: 978
   m_ShapeBox:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 10, y: 20, z: 10}
+    m_Extent: {x: 10, y: 30, z: 10}
   references:
     version: 2
     RefIds:

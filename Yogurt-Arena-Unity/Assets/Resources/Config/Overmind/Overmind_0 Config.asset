@@ -22,3 +22,4 @@ MonoBehaviour:
   WavesDelay:
     Min: 0
     Max: 0
+  MinRangeToPlayer: 10
