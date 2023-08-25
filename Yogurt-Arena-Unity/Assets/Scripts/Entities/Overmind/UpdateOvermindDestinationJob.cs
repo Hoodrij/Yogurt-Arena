@@ -22,7 +22,7 @@ namespace Yogurt.Arena
                     }
                     else
                     {
-                        float moveRadius = 0.1f;
+                        float moveRadius = 1f;
                         float time = UnityEngine.Time.fixedTime + agentIndex;
                         agent.Body.Destination += new Vector3(moveRadius * Mathf.Sin(time), 0, moveRadius * Mathf.Cos(time));
                         agentIndex++;

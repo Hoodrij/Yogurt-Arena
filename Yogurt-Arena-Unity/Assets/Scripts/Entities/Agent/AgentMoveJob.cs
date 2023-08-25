@@ -27,7 +27,7 @@ namespace Yogurt.Arena
 	        {
 		        BodyState body = agent.Body;
 
-		        if (!NavMesh.SamplePosition(body.Destination, out var destinationHit, 1, NavMesh.AllAreas))
+		        if (!NavMesh.SamplePosition(body.Destination, out var destinationHit, 100, NavMesh.AllAreas))
 			        return;
 				Vector3 requiredPos = destinationHit.position;
 				Vector3 currentPos = body.Position;

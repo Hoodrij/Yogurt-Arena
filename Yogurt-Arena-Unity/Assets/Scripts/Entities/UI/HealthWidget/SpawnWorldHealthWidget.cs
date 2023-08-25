@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Yogurt.Arena
@@ -28,7 +29,7 @@ namespace Yogurt.Arena
             void UpdatePosition()
             {
                 Vector3 position = owner.Body.Position;
-                healthWidget.transform.position = position;
+                healthWidget.transform.DOMove(position, 0.1f);
             }
         }
     }
