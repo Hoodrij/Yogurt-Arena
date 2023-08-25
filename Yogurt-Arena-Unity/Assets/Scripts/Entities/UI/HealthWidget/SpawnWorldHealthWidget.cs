@@ -29,7 +29,7 @@ namespace Yogurt.Arena
             void UpdatePosition()
             {
                 Vector3 position = owner.Body.Position;
-                healthWidget.transform.DOMove(position, 0.1f);
+                healthWidget.transform.position = position;
             }
         }
     }
