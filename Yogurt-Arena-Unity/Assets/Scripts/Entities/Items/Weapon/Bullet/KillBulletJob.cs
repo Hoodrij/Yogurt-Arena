@@ -13,10 +13,19 @@ namespace Yogurt.Arena
 
             float t = 0.1f;
 
-            bullet.View.transform.DOScale(2, t);
-            await Wait.Seconds(t);
-            bullet.View.transform.DOScale(0, t);
-            await Wait.Seconds(t);
+            if (bullet.View.Particle != null)
+            {
+                bullet.View.Particle.Play();
+                bullet.View.transform.DOScale(0, t);
+                await Wait.Seconds(0.3f);
+            }
+            else
+            {
+                bullet.View.transform.DOScale(2, t);
+                await Wait.Seconds(t);
+                bullet.View.transform.DOScale(0, t);
+                await Wait.Seconds(t);
+            }
 
             bullet.Kill();
         }
