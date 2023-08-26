@@ -8,7 +8,7 @@ namespace Yogurt.Arena
         public void Run(BulletAspect bullet, Vector3 velocity)
         {
             BodyState ownerBody = bullet.Owner.Value.Body;
-            Vector3 position = ownerBody.Position.AddY(0.5f);
+            Vector3 position = ownerBody.MiddlePoint;
 
             Transform transform = bullet.View.transform;
             transform.DOKill();

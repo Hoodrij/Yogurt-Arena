@@ -42,7 +42,7 @@ MonoBehaviour:
     CollisionMask:
       serializedVersion: 2
       m_Bits: 1
-    YTolerance: 2
+    YTolerance: 3
   Clip:
     BulletsInClip: 10
     ClipCooldown: 0.5

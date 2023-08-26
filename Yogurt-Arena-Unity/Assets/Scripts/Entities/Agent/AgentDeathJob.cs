@@ -8,10 +8,10 @@ namespace Yogurt.Arena
         public async UniTask Run(Entity entity)
         {
             AgentConfig config = entity.Get<AgentConfig>();
-            Vector3 position = entity.Get<BodyState>().Position;
+            BodyState body = entity.Get<BodyState>();
 
             AgentDeathVFX vfx = await config.DeathVFX.Spawn();
-            vfx.transform.position = position.AddY(0.5f);
+            vfx.transform.position = body.MiddlePoint;
         }
     }
 }

@@ -45,8 +45,8 @@ namespace Yogurt.Arena
             }
             bool IsNotBlockedByEnv(AgentAspect target)
             {
-                Vector3 firePoint = agent.Body.Position.AddY(0.5f);
-                Vector3 targetBodyCenter = target.Body.Position.AddY(0.5f);
+                Vector3 firePoint = agent.Body.MiddlePoint;
+                Vector3 targetBodyCenter = target.Body.MiddlePoint;
                 Vector3 vectorToTarget = targetBodyCenter - firePoint;
                 Ray ray = new Ray
                 {

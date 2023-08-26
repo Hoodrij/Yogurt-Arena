@@ -32,8 +32,7 @@ namespace Yogurt.Arena
             Vector3 GetVelocity(BulletAspect bullet)
             {
                 BodyState targetBody = owner.BattleState.Target.Body;
-                Vector3 dir = (targetBody.Position.WithY(0) - owner.Body.Position.WithY(0))
-                    .WithY(0).normalized;
+                Vector3 dir = (targetBody.MiddlePoint - owner.Body.MiddlePoint).normalized;
 
                 Vector3 velocity = dir * bullet.Config.Speed;
                 velocity = new ApplyScatteringJob().Run(item, velocity);
