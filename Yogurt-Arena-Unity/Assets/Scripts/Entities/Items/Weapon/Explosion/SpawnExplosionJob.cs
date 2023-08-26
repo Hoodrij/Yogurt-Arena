@@ -12,7 +12,7 @@ namespace Yogurt.Arena
             ExplosionView vfx = await config.Asset.Spawn();
             Transform view = vfx.View;
             float duration = 0.15f;
-            float halfDuration = 0.15f;
+            float halfDuration = 0.07f;
             
             vfx.transform.position = position;
             view.localScale = Vector3.zero;
