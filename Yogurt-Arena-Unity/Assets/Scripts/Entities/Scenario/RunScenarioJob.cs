@@ -14,7 +14,7 @@ namespace Yogurt.Arena
             await new LevelUpJob().Run();
             
             await new Quest.KillEnemiesQuest(10).Run();
-            await new LevelUpJob().Run(2);
+            await new LevelUpJob().Run();
         }
     }
 }
