@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Level>k__BackingField: 1
   Asset:
-    Prefab: {fileID: 238997165645100861, guid: 358c1dc01a765b746b3cd6c70421ff5d, type: 3}
+    Prefab: {fileID: 238997165645100861, guid: 42f04d195fb2fb44599280f5b8a3496d, type: 3}

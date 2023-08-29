@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552339f39ab84110a2c149750bb4104a, type: 3}
-  m_Name: ItemSpawner_2 Config
+  m_Script: {fileID: 11500000, guid: 3333864ef6264486bc63e6af247c8d9c, type: 3}
+  m_Name: Location_3 Config
   m_EditorClassIdentifier: 
   <Level>k__BackingField: 2
-  AvailableItems: 1073741862
-  AvailableTags: 3
-  ItemsCount: 6
+  Asset:
+    Prefab: {fileID: 238997165645100861, guid: 8e65098a897081348814c97e91789bfd, type: 3}
