@@ -9,7 +9,7 @@ namespace Yogurt.Arena
             Level level = Query.Single<Level>();
             
             await new SpawnLocationPartJob().Run(level + 1);
-            await Wait.Seconds(delay);
+            // await Wait.Seconds(delay);
             
             level.Current += 1;
         }

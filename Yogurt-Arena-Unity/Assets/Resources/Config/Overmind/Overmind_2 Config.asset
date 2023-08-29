@@ -18,7 +18,7 @@ MonoBehaviour:
     Min: 5
     Max: 10
   TotalAgentsToSpawn: 1546
-  MinimumAgentsInWorld: 20
+  MinimumAgentsInWorld: 15
   WavesDelay:
     Min: 1
     Max: 3

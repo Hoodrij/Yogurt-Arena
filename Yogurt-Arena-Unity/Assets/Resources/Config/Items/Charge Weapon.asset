@@ -31,7 +31,7 @@ MonoBehaviour:
     Range: 10
     AngleToAttack: 15
   Lifetime:
-    LifeTime: 10
+    LifeTime: 5
   TargetDetection:
     Distance: 20
     CollisionMask:
