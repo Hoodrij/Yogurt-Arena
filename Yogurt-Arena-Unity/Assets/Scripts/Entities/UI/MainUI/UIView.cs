@@ -6,5 +6,6 @@ namespace Yogurt.Arena
     {
         public HealthWidget HealthWidget;
         public WeaponLifetimeWidget WeaponLifetimeWidget;
+        public GameOverWidget GameOverWidget;
     }
 }

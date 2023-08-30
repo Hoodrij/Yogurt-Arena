@@ -6,15 +6,17 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            await new Quest.PickupWeaponQuest().Run();
-            await Wait.Seconds(1);
+            new HandleGameOverJob().Run();
+            
             new RunOvermindBehaviorJob().Run();
+            // await new Quest.PickupWeaponQuest().Run();
+            // await Wait.Seconds(1);
             
-            await new Quest.KillEnemiesQuest(1).Run();
-            await new LevelUpJob().Run();
+            // await new Quest.KillEnemiesQuest(1).Run();
+            // await new LevelUpJob().Run();
             
-            await new Quest.KillEnemiesQuest(10).Run();
-            await new LevelUpJob().Run();
+            // await new Quest.KillEnemiesQuest(10).Run();
+            // await new LevelUpJob().Run();
         }
     }
 }

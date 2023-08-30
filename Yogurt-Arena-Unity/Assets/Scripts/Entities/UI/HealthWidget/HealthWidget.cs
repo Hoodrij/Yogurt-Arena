@@ -1,4 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,15 +10,13 @@ namespace Yogurt.Arena
         [SerializeField] Image image;
 
         private float currentPercentage;
-        private Color colorRed = new Color(1f, 0.25f, 0.28f);
-        private Color colorGreen = new Color(0.24f, 1f, 0.13f);
+        private Color colorRed = new Color(1f, 0.37f, 0.23f);
+        private Color colorGreen = new Color(0f, 1f, 0.38f);
+        private Color colorWhite = Color.white;
             
         public async UniTaskVoid SetHealth(float percentage)
         {
-            Color animationColor = currentPercentage < percentage
-                ? colorGreen
-                : colorRed;
-            
+            Color animationColor = GetColor();
             currentPercentage = percentage;
             
             float duration = 0.1f;
@@ -31,6 +29,17 @@ namespace Yogurt.Arena
             await Wait.Seconds(duration);
             image.rectTransform.DOScale(1, duration);
             image.DOColor(Color.white, duration);
+
+
+            Color GetColor()
+            {
+                if (currentPercentage == 0)
+                    return colorWhite;
+                if (currentPercentage < percentage)
+                    return colorGreen;
+                else
+                    return colorRed;
+            }
         }
     }
 }

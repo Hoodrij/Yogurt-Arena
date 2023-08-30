@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -34,6 +35,19 @@ namespace Yogurt.Arena
                 component.Dispose();
             }
         }
+        
+        public static CancellationToken Lifetime(this Entity entity)
+        {
+            CancellationTokenSource cts = new CancellationTokenSource();
+            WaitForDeadAndCancelCts();
+            return cts.Token;
+
+            async UniTaskVoid WaitForDeadAndCancelCts()
+            {
+                await entity.WaitForDead();
+                cts.Cancel();
+            }
+        }
 
         public static Entity Add(this Entity entity, IEnumerable<IComponent> components)
         {
@@ -50,7 +64,7 @@ namespace Yogurt.Arena
             while (entity.Exist)
             {
                 action();
-                await Wait.Update();
+                await Wait.Update(entity);
             }
         }
         
@@ -59,7 +73,7 @@ namespace Yogurt.Arena
             while (entity.Exist)
             {
                 await action();
-                await Wait.Update();
+                await Wait.Update(entity);
             }
         }
 
@@ -68,7 +82,7 @@ namespace Yogurt.Arena
             while (aspect.Exist())
             {
                 action();
-                await Wait.Update();
+                await Wait.Update(aspect.Entity);
             }
         }
         
@@ -77,7 +91,7 @@ namespace Yogurt.Arena
             while (aspect.Exist())
             {
                 await action();
-                await Wait.Update();
+                await Wait.Update(aspect.Entity);
             }
         }
     }

@@ -7,36 +7,40 @@ namespace Yogurt.Arena
 {
     public static class Wait
     {
-        static CancellationToken lifetime => Application.exitCancellationToken;
+        private static CancellationToken AppLifetime => Application.exitCancellationToken;
         
-        public static UniTask While(Func<bool> predicate)
+        public static UniTask While(Func<bool> predicate, Entity entity = default)
         {
             if (predicate.Invoke())
             {
-                return UniTask.WaitWhile(predicate, cancellationToken: lifetime);
+                CancellationToken token = entity.Exist ? entity.Lifetime() : AppLifetime;
+                return UniTask.WaitWhile(predicate, cancellationToken: token);
             }
             return UniTask.CompletedTask;
         }
-        
-        public static UniTask Until(Func<bool> predicate)
+
+        public static UniTask Until(Func<bool> predicate, Entity entity = default)
         {
             if (!predicate.Invoke())
             {
-                return UniTask.WaitUntil(predicate, cancellationToken: lifetime);
+                CancellationToken token = entity.Exist ? entity.Lifetime() : AppLifetime;
+                return UniTask.WaitUntil(predicate, cancellationToken: token);
             }
             return UniTask.CompletedTask;
         }
 
-        public static UniTask Update()
+        public static UniTask Update(Entity entity = default)
         {
-            return UniTask.NextFrame(cancellationToken: lifetime);
+            CancellationToken token = entity.Exist ? entity.Lifetime() : AppLifetime;
+            return UniTask.NextFrame(cancellationToken: token);
         }
 
-        public static UniTask Seconds(float seconds)
+        public static UniTask Seconds(float seconds, Entity entity = default)
         {
             if (seconds > 0)
             {
-                return UniTask.WaitForSeconds(seconds, cancellationToken: lifetime);
+                CancellationToken token = entity.Exist ? entity.Lifetime() : AppLifetime;
+                return UniTask.WaitForSeconds(seconds, cancellationToken: token);
             }
             return UniTask.CompletedTask;
         }

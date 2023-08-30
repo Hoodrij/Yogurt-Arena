@@ -25,7 +25,7 @@ namespace Yogurt.Arena
                 {
                     return Query.Of<ItemSpotAspect>()
                         .Count(itemSpot => itemSpot.Get<ItemSpotState>().Type != ItemType.Empty) >= itemSpawner.Config.ItemsCount;
-                });
+                }, itemSpawner.Entity);
             }
             IEnumerable<ItemSpotAspect> GetFreeSpots()
             {

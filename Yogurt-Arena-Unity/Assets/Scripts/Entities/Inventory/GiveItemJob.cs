@@ -18,7 +18,9 @@ namespace Yogurt.Arena
 
             void UpdateWeapon()
             {
-                if (!item.Config.Tags.HasFlag(ItemTags.Weapon)) 
+                if (!item.Config.Tags.HasFlag(ItemTags.Weapon))
+                    return;
+                if (!owner.Exist())
                     return;
 
                 owner.Inventory.Weapon.Kill();
