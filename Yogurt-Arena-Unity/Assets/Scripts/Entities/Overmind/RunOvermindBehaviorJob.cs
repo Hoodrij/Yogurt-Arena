@@ -20,15 +20,11 @@ namespace Yogurt.Arena
             }
             bool HasEnoughAgents()
             {
-                if (!overmind.Exist())
-                    return false;
                 int minimumAgents = overmind.Config.MinimumAgentsInWorld;
                 return overmind.State.CurrentAgents.Count > minimumAgents;
             }
             bool MaximumLimitReached()
             {
-                if (!overmind.Exist())
-                    return false;
                 return overmind.State.TotalSpawned >= overmind.Config.TotalAgentsToSpawn;
             }
         }

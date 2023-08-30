@@ -13,6 +13,7 @@ namespace Yogurt.Arena
         {
             gameObject.SetActive(true);
             canvasGroup.DOFade(1, 0.3f);
+            canvasGroup.blocksRaycasts = true;
         }
 
         public void RestartClick() => OnRestartClick.Fire();
