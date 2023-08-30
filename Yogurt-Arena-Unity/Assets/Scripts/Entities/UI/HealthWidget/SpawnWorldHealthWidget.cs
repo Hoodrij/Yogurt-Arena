@@ -17,11 +17,11 @@ namespace Yogurt.Arena
             Entity entity = World.Create()
                 .AddLink(healthWidget.gameObject)
                 .Add(healthWidget);
-
+            
             entity.SetParent(owner.Entity);
             owner.Health.HealthWidget = healthWidget;
             healthWidget.SetHealth(1);
-
+            
             entity.Run(UpdatePosition);
             return;
             

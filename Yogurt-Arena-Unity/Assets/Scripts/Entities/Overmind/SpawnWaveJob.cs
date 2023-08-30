@@ -17,7 +17,7 @@ namespace Yogurt.Arena
                 AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red, overmind.Config.AvailableTypes);
                 
                 AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint);
-                // new SpawnWorldHealthWidget().Run(agent);
+                new SpawnWorldHealthWidget().Run(agent);
 
                 overmind.State.KeepAgent(agent);
                 await Wait.Seconds(0.5f, overmind.Entity);

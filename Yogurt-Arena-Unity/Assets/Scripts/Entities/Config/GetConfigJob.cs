@@ -7,15 +7,13 @@ namespace Yogurt.Arena
         // of a Leveled Config
         public TConfig Run<TConfig>(int requiredLevel = -1) where TConfig : IEntityConfig, IComponent
         {
-            requiredLevel = requiredLevel == -1 
-                ? Query.Single<Level>() 
-                : requiredLevel;
-
             TConfig config = Query.Single<TConfig>();
             if (config is not ILeveledConfig)
             {
                 return config;
             }
+
+            requiredLevel = GetLevel();
 
             foreach (Entity entity in Query.Of<TConfig>())
             {
@@ -35,6 +33,18 @@ namespace Yogurt.Arena
                 // .FirstOrDefault(leveledConfig => leveledConfig.Level == currentLevel);
 
             return config;
+
+
+            int GetLevel()
+            {
+                Entity levelEntity = Query.Of<Level>().Single();
+                if (!levelEntity.Exist)
+                    return requiredLevel;
+            
+                return requiredLevel == -1 
+                    ? levelEntity.Get<Level>().Current
+                    : requiredLevel;
+            }
         }
 
         // of an Item

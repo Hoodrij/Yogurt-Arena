@@ -21,7 +21,7 @@ namespace Yogurt.Arena
             await new CameraFactoryJob().Run();
             await new PlayerFactoryJob().Run();
             await new OvermindFactoryJob().Run();
-            // await new ItemsSpawnerFactory().Run();
+            await new ItemsSpawnerFactory().Run();
 
             return entity;
         }

@@ -27,7 +27,7 @@ MonoBehaviour:
       Damage: 1
       LifeTime: 0.3
       Speed: 1
-    Cooldown: 1
+    Cooldown: 0.5
     Range: 10
     AngleToAttack: 15
   Lifetime:

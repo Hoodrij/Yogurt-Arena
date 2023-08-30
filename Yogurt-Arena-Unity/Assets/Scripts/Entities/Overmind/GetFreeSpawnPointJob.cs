@@ -23,7 +23,7 @@ namespace Yogurt.Arena
                     return randomPointOnNavMesh;
                 }
                 
-                await Wait.Update();
+                await Wait.Update(overmind.Entity);
             }
 
             return default;
