@@ -13,20 +13,28 @@ namespace Yogurt.Arena
         {
             if (predicate.Invoke())
             {
-                CancellationToken token = entity.Exist ? entity.Lifetime() : AppLifetime;
-                return UniTask.WaitWhile(predicate, cancellationToken: token);
+                if (entity.Exist)
+                {
+                    CancellationToken token = entity.Lifetime();
+                    return UniTask.WaitWhile(() =>
+                    {
+                        if (entity.Exist)
+                            return predicate();
+                        
+                        return true;
+                    }, cancellationToken: token);
+                }
+                else
+                {
+                    return UniTask.WaitWhile(predicate, cancellationToken: AppLifetime);
+                }
             }
             return UniTask.CompletedTask;
         }
 
         public static UniTask Until(Func<bool> predicate, Entity entity = default)
         {
-            if (!predicate.Invoke())
-            {
-                CancellationToken token = entity.Exist ? entity.Lifetime() : AppLifetime;
-                return UniTask.WaitUntil(predicate, cancellationToken: token);
-            }
-            return UniTask.CompletedTask;
+            return While(() => !predicate(), entity);
         }
 
         public static UniTask Update(Entity entity = default)

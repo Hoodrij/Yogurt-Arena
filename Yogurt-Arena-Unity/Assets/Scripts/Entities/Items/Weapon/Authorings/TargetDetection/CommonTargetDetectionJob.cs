@@ -1,11 +1,12 @@
 ﻿using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct CommonTargetDetectionJob
     {
-        public async void Run(ItemAspect weapon)
+        public async UniTaskVoid Run(ItemAspect weapon)
         {
             TargetDetectionConfig config = weapon.Get<TargetDetectionConfig>();
             BattleState battleState = weapon.Get<BattleState>();
@@ -13,7 +14,7 @@ namespace Yogurt.Arena
             
             weapon.Run(Update);
 
-            new WaitForEntityDead().Run(weapon.Entity);
+            await weapon.Entity.WaitForDead();
             battleState.Target = default;
 
             return;

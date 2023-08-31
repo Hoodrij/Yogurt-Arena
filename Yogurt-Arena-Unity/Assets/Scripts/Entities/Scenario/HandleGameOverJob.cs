@@ -15,6 +15,7 @@ namespace Yogurt.Arena
             await gameOverWidget.OnRestartClick;
             
             Query.Of<World>().Single().Kill();
+            await Wait.Seconds(0.1f);
             
             await new WorldFactoryJob().Run();
             new RunScenarioJob().Run();

@@ -28,7 +28,7 @@ namespace Yogurt.Arena
                 CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
                 new DealDamageJob().Run(collisionInfo.Entity, damage);
             }
-            async UniTask WaitForOwnerDeath() => await Wait.While(() => owner.Exist());
+            async UniTask WaitForOwnerDeath() => await Wait.While(() => owner.Exist(), owner.Entity);
             async UniTask WaitForLifeTime() => await new WaitForBulletLiteTimeJob().Run(bullet);
         }
     }
