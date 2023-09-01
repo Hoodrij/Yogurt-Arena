@@ -60,7 +60,7 @@ MonoBehaviour:
     SmoothValue: 0.2
     Elasticity: 10
   ItemSpot:
-    Radius: 3
+    Radius: 2
     Mask:
       serializedVersion: 2
       m_Bits: 256
