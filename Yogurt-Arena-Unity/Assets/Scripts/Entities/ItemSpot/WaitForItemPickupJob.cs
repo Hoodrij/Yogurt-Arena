@@ -11,8 +11,14 @@ namespace Yogurt.Arena
             
             Vector3 position = itemSpot.Body.Position;
             LayerMask mask = itemSpot.State.Mask;
+            AgentAspect result = default;
 
-            while (itemSpot.Exist())
+            await Wait.Until(IsPickedUp, itemSpot.Entity);
+
+            return result;
+
+
+            bool IsPickedUp()
             {
                 int hitsCount = Physics.SphereCastNonAlloc(position, itemSpot.State.Radius, Vector3.up, hits, 0.1f, mask);
 
@@ -24,13 +30,12 @@ namespace Yogurt.Arena
                     if (!entity.Has<PlayerTag>())
                         continue;
 
-                    return entity.As<AgentAspect>();
+                    result = entity.As<AgentAspect>();
+                    return true;
                 }
 
-                await Wait.Update();
+                return false;
             }
-
-            return default;
         }
     }
 }

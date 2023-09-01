@@ -10,13 +10,13 @@ namespace Yogurt.Arena
             AgentAspect owner = item.Owner;
             WeaponConfig config = item.Get<WeaponConfig>();
 
-            await Wait.Until(() => !owner.Has<Kinematic>());
+            await Wait.Until(() => !owner.Has<Kinematic>(), owner.Entity);
             await Wait.Until(() =>
                 HasOwner() && 
                 HasTarget() && 
                 IsInRange() && 
                 IsLookingAtTarget()
-                );
+                , owner.Entity);
             return;
 
 

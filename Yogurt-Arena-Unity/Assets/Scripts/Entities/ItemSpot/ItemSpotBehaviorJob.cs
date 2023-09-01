@@ -17,19 +17,17 @@ namespace Yogurt.Arena
 
                 itemSpot.View.Show(itemType);
                 AgentAspect agent = await new WaitForItemPickupJob().Run(itemSpot);
-                if (!itemSpot.Exist())
-                    return;
                 await new GiveItemJob().Run(itemType, agent);
 
                 itemSpot.View.Hide();
                 itemSpot.State.Type = ItemType.Empty;
 
-                await Wait.Seconds(1);
+                await Wait.Seconds(1, itemSpot.Entity);
                 itemSpot.State.IsTaken = false;
             }
             async UniTask<ItemType> WaitForActivation()
             {
-                await Wait.Until(() => itemSpot.State.Type != ItemType.Empty);
+                await Wait.Until(() => itemSpot.State.Type != ItemType.Empty, itemSpot.Entity);
                 return itemSpot.State.Type;
             }
             

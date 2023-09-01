@@ -20,7 +20,7 @@ namespace Yogurt.Arena
 
             return entity;
         }
-
+        
         public static async UniTask WaitForDead(this Entity entity)
         {
             await Wait.While(() => entity.Exist);
@@ -33,19 +33,6 @@ namespace Yogurt.Arena
             if (Application.isPlaying)
             {
                 component.Dispose();
-            }
-        }
-        
-        public static CancellationToken Lifetime(this Entity entity)
-        {
-            CancellationTokenSource cts = new CancellationTokenSource();
-            WaitForDeadAndCancelCts();
-            return cts.Token;
-
-            async UniTaskVoid WaitForDeadAndCancelCts()
-            {
-                await entity.WaitForDead();
-                cts.Cancel();
             }
         }
 
@@ -64,7 +51,7 @@ namespace Yogurt.Arena
             while (entity.Exist)
             {
                 action();
-                await Wait.Update(entity);
+                await Wait.Update();
             }
         }
         
@@ -73,7 +60,7 @@ namespace Yogurt.Arena
             while (entity.Exist)
             {
                 await action();
-                await Wait.Update(entity);
+                await Wait.Update();
             }
         }
 
@@ -82,7 +69,7 @@ namespace Yogurt.Arena
             while (aspect.Exist())
             {
                 action();
-                await Wait.Update(aspect.Entity);
+                await Wait.Update();
             }
         }
         
@@ -91,7 +78,7 @@ namespace Yogurt.Arena
             while (aspect.Exist())
             {
                 await action();
-                await Wait.Update(aspect.Entity);
+                await Wait.Update();
             }
         }
     }

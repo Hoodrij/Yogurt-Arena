@@ -11,8 +11,14 @@ namespace Yogurt.Arena
         {
             NavMeshSurface level = Query.Single<Location>().NavSurface;
             PlayerAspect player = Query.Single<PlayerAspect>();
+            Vector3 result = Vector3.zero;
 
-            while (overmind.Exist())
+            await Wait.Until(HasFreeSpawnPoint, overmind.Entity);
+
+            return result;
+
+
+            bool HasFreeSpawnPoint()
             {
                 Vector3 randomPoint = level.navMeshData.sourceBounds.GetRandomPoint().WithY(0);
                 NavMesh.SamplePosition(randomPoint, out var hit, 100, NavMesh.AllAreas);
@@ -20,15 +26,12 @@ namespace Yogurt.Arena
 
                 if (IsPlayerFarEnough(randomPointOnNavMesh))
                 {
-                    return randomPointOnNavMesh;
+                    result = randomPointOnNavMesh;
+                    return true;
                 }
-                
-                await Wait.Update(overmind.Entity);
+
+                return false;
             }
-
-            return default;
-
-
             bool IsPlayerFarEnough(Vector3 randomPoint)
             {
                 if (!player.Exist())

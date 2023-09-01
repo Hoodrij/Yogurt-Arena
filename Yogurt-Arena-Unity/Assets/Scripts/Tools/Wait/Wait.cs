@@ -15,12 +15,15 @@ namespace Yogurt.Arena
             {
                 if (entity.Exist)
                 {
-                    CancellationToken token = entity.Lifetime();
+                    CancellationTokenSource cts = new CancellationTokenSource();
+                    CancellationToken token = cts.Token;
+                    
                     return UniTask.WaitWhile(() =>
                     {
                         if (entity.Exist)
                             return predicate();
-                        
+
+                        cts.Cancel();
                         return true;
                     }, cancellationToken: token);
                 }
@@ -37,32 +40,37 @@ namespace Yogurt.Arena
             return While(() => !predicate(), entity);
         }
 
-        public static UniTask Update(Entity entity = default)
+        public static UniTask Update()
         {
-            CancellationToken token = entity.Exist ? entity.Lifetime() : AppLifetime;
-            return UniTask.NextFrame(cancellationToken: token);
+            return UniTask.NextFrame(cancellationToken: AppLifetime);
         }
 
         public static UniTask Seconds(float seconds, Entity entity = default)
         {
             if (seconds > 0)
             {
-                CancellationToken token = entity.Exist ? entity.Lifetime() : AppLifetime;
-                return UniTask.WaitForSeconds(seconds, cancellationToken: token);
+                return Until(TimeIsUp, entity);
             }
             return UniTask.CompletedTask;
+
+
+            bool TimeIsUp()
+            {
+                seconds -= UnityEngine.Time.deltaTime;
+                return seconds <= 0;
+            }
         }
 
         public static UniTask Any(params UniTask[] tasks)
         {
             return UniTask.WhenAny(tasks)
-                .AttachExternalCancellation(Application.exitCancellationToken);
+                .AttachExternalCancellation(AppLifetime);
         }
         
         public static UniTask All(params UniTask[] tasks)
         {
             return UniTask.WhenAll(tasks)
-                .AttachExternalCancellation(Application.exitCancellationToken);
+                .AttachExternalCancellation(AppLifetime);
         }
     }
 }

@@ -9,8 +9,14 @@ namespace Yogurt.Arena
         {
             Time time = Query.Single<Time>();
             RaycastHit[] hits = new RaycastHit[3];
-            
-            while (bullet.Exist())
+            CollisionInfo result = default;
+
+            await Wait.Until(HasHit, bullet.Entity);
+
+            return result;
+
+
+            bool HasHit()
             {
                 int hitsCount = GetHits();
                 for (var i = 0; i < hitsCount; i++)
@@ -21,20 +27,17 @@ namespace Yogurt.Arena
                     if (entityHit == bullet.Owner.Value.Entity)
                         continue;
 
-                    return new CollisionInfo
+                    result = new CollisionInfo
                     {
                         IsValid = true,
                         Position = hit.point == Vector3.zero ? bullet.Body.Position : hit.point,
                         Entity = entityHit
                     };
+                    return true;
                 }
 
-                await Wait.Update();
-            };
-
-            return default;
-            
-            
+                return false;
+            }
             int GetHits()
             {
                 Vector3 velocity = bullet.Body.Velocity;

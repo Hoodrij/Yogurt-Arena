@@ -17,7 +17,7 @@ namespace Yogurt.Arena
                 new DealAoeDamageJob().Run(owner, owner.Body.Position, config.Explosion.Damage);
                 new SpawnExplosionJob().Run(config.Explosion, owner.Body.Position);
                 
-                await Wait.Seconds(config.Weapon.Cooldown);
+                await Wait.Seconds(config.Weapon.Cooldown, item.Entity);
             }
         }
     }
