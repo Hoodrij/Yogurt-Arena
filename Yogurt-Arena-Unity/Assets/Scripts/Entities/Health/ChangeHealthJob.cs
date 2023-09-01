@@ -14,7 +14,7 @@
                 
                 if (health.Value <= 0)
                 {
-                    await health.DeathJob.Run(target);
+                    health.DeathJob.Run(target);
                     target.Kill();
                 }
             }

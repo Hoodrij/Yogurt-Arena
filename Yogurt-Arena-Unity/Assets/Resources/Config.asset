@@ -49,16 +49,16 @@ MonoBehaviour:
       Prefab: {fileID: 2346468616466672681, guid: 67cb5b8d2da54ff4d815852dde211387, type: 3}
     AccumulativeValue: 0.2
     DeAccumulativeValue: 0.05
-    Sensitivity: 8
+    Sensitivity: 10
   Camera:
     Asset:
       Prefab: {fileID: 2842332022607115805, guid: 5c99e910810318f4688e2d64e1d4ae57, type: 3}
-    SmoothValue: 0.3
+    SmoothValue: 0.5
   Beacon:
     Asset:
       Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
-    SmoothValue: 0.2
-    Elasticity: 10
+    SmoothValue: 0.5
+    Elasticity: 6
   ItemSpot:
     Radius: 2
     Mask:

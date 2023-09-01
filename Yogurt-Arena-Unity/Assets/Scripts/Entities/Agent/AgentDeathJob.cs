@@ -1,19 +1,21 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
     public struct AgentDeathJob : IDeathJob
     {
-        public async UniTask Run(Entity entity)
+        public async UniTaskVoid Run(Entity entity)
         {
             AgentConfig config = entity.Get<AgentConfig>();
-            BodyState body = entity.Get<BodyState>();
+            Vector3 position = entity.Get<BodyState>().MiddlePoint;
 
             AgentDeathVFX vfx = await config.DeathVFX.Spawn();
-            vfx.transform.position = body.MiddlePoint;
+            vfx.transform.position = position;
 
-            entity.AddLink(vfx.gameObject);
+            await Wait.Seconds(0.5f);
+            vfx.GetComponent<PoolLink>().Release();
         }
     }
 }

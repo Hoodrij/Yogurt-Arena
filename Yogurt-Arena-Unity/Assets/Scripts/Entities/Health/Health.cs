@@ -12,6 +12,6 @@ namespace Yogurt.Arena
 
     public interface IDeathJob
     {
-        public UniTask Run(Entity entity);
+        public UniTaskVoid Run(Entity entity);
     }
 }
