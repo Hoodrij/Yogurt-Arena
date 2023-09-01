@@ -21,7 +21,7 @@ MonoBehaviour:
   Type: 64
   Team: 2
   Weapon: 16
-  MoveSpeed: 0.1
+  MoveSpeed: 0.05
   SlowDistance: 5
   MoveSmoothValue: 0.1
   LookSmoothValue: 0.2
