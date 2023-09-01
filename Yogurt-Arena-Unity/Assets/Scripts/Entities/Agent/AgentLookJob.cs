@@ -37,6 +37,7 @@ namespace Yogurt.Arena
                 Vector3 lookVector = body.LookPoint - body.Position;
                 if (lookVector.sqrMagnitude > MIN_LOOK_MAGNITUDE)
                 {
+                    agent.View.transform.DOKill();
                     agent.View.transform.DOLookAt(body.LookPoint, agent.Config.LookSmoothValue);
                 }
             }

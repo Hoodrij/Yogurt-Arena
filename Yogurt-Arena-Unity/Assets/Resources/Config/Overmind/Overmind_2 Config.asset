@@ -15,8 +15,8 @@ MonoBehaviour:
   <Level>k__BackingField: 2
   AvailableTypes: 96
   WaveAgentsCount:
-    Min: 5
-    Max: 10
+    Min: 3
+    Max: 7
   TotalAgentsToSpawn: 1546
   MinimumAgentsInWorld: 15
   WavesDelay:

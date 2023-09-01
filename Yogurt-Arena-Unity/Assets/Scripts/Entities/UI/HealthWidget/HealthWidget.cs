@@ -25,7 +25,7 @@ namespace Yogurt.Arena
             
             image.DOFillAmount(percentage, duration);
             image.rectTransform.DOShakeScale(duration, new Vector3(0, 1f, 0));
-            image.DOColor(animationColor, 0.1f);
+            image.DOColor(animationColor, duration);
             await Wait.Seconds(duration);
             if (image == null)
             {

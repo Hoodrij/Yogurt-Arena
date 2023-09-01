@@ -10,6 +10,7 @@ namespace Yogurt.Arena
         
         public void SetProgress(float value)
         {
+            image.DOKill();
             image.DOFillAmount(value, 0.1f);
         }
     }

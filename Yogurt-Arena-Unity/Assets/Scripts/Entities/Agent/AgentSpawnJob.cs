@@ -32,7 +32,7 @@ namespace Yogurt.Arena
             {
                 float animationTime = 0.2f;
                 float activationTime = animationTime * 0.9f;
-                agent.View.DOKill();
+                agent.View.transform.DOKill();
                 agent.View.transform.localScale = new Vector3(0, 2, 0);
                 // agent.View.transform.DOShakeScale(animationTime, 2, 7, 0);
                 DOTween.Sequence()
