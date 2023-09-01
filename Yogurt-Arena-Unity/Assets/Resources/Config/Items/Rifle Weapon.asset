@@ -19,7 +19,7 @@ MonoBehaviour:
     Bullet:
       Asset:
         asset:
-          Prefab: {fileID: 7036511241227750618, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
+          Prefab: {fileID: 983422389548033423, guid: 4eba79f78a7815a43899dad888d91b9c, type: 3}
       CollisionMask:
         serializedVersion: 2
         m_Bits: 257
