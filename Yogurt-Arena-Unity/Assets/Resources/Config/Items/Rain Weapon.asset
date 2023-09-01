@@ -33,7 +33,7 @@ MonoBehaviour:
   Lifetime:
     LifeTime: 5
   Clip:
-    BulletsInClip: 5
+    BulletsInClip: 7
     ClipCooldown: 1
   Scattering:
     VelocityMagnitudeModifier:
@@ -60,4 +60,4 @@ MonoBehaviour:
     Gravity: {x: 0, y: -0.05, z: 0}
     FindTargetDistance: 20
     BulletRotationSpeed: 0.5
-    BulletSpeedChangeCoef: 0.3
+    BulletSpeedChangeCoef: 0.5

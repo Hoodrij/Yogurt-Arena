@@ -27,6 +27,10 @@ namespace Yogurt.Arena
             image.rectTransform.DOShakeScale(duration, new Vector3(0, 1f, 0));
             image.DOColor(animationColor, 0.1f);
             await Wait.Seconds(duration);
+            if (image == null)
+            {
+                return;
+            }
             image.rectTransform.DOScale(1, duration);
             image.DOColor(Color.white, duration);
 

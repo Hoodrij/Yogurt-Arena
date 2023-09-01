@@ -12,6 +12,8 @@ namespace Yogurt.Arena
 
             AgentDeathVFX vfx = await config.DeathVFX.Spawn();
             vfx.transform.position = body.MiddlePoint;
+
+            entity.AddLink(vfx.gameObject);
         }
     }
 }

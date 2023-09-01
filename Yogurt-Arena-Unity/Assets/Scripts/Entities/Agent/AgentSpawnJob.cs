@@ -18,11 +18,11 @@ namespace Yogurt.Arena
             agent.Body.Destination = position;
             agent.View.transform.position = agent.Body.Position;
             
-            ActivateAgent();
+            await ActivateAgent();
             return agent;
 
 
-            async UniTaskVoid ActivateAgent()
+            async UniTask ActivateAgent()
             {
                 await RunAnimation();
                 agent.Remove<Kinematic>();
