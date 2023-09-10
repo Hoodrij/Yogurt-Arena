@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    [CreateAssetMenu]    
     public class OvermindConfig : ScriptableObject, IComponent, ILeveledConfig, IEntityConfig
     {
         [field: SerializeField]

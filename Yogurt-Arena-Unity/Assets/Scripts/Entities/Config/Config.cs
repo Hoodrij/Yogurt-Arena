@@ -4,7 +4,6 @@ using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    [CreateAssetMenu]
     public class Config : ScriptableObject, IComponent
     {
         [SerializeReference]

@@ -4,7 +4,6 @@ using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    [CreateAssetMenu]
     public class LocationConfig : ScriptableObject, IEntityConfig, IComponent, ILeveledConfig
     {
         [field: SerializeField]

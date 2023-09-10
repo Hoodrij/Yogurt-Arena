@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    [CreateAssetMenu]
     public class ChargeConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public ItemConfig Item = new()

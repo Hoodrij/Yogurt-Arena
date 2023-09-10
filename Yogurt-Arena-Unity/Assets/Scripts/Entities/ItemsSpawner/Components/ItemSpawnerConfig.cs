@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    [CreateAssetMenu]
     public class ItemSpawnerConfig : ScriptableObject, IEntityConfig, ILeveledConfig, IComponent
     {
         [field: SerializeField]

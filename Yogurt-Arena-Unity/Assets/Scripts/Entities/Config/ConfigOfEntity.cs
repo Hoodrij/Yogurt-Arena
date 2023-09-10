@@ -2,7 +2,7 @@
 
 namespace Yogurt.Arena
 {
-    public class EntityConfig : IComponent
+    public class ConfigOfEntity : IComponent
     {
         public IEnumerable<IComponent> Components;
     }

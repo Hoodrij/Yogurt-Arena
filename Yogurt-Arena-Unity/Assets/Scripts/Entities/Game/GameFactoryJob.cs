@@ -17,14 +17,14 @@ namespace Yogurt.Arena
 
             foreach (IEntityConfig iConfig in config.All)
             {
-                EntityConfig entityConfig = new EntityConfig
+                ConfigOfEntity configOfEntity = new ConfigOfEntity
                 {
                     Components = iConfig.GetComponents()
                 };
-                
-                Entity entity = Entity.Create()
-                    .Add(entityConfig)
-                    .Add(entityConfig.Components)
+
+                Entity.Create()
+                    .Add(configOfEntity)
+                    .Add(configOfEntity.Components)
                     .SetParent(game);
             }
         }

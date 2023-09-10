@@ -4,7 +4,6 @@ using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    [CreateAssetMenu]
     public class AgentConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public PooledAsset<AgentView> Asset;
