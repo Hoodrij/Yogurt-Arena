@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask<BeaconAspect> Run()
         {
-            BeaconConfig beaconConfig = Query.Single<Config>().Beacon;
+            BeaconConfig beaconConfig = new GetConfigJob().Run<BeaconConfig>();
             BeaconView view = await beaconConfig.Asset.Spawn();
 
             BeaconAspect beacon = World.Create()

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6050d08d2374852a3d85f8c2b695851, type: 3}
+  m_Name: UIConfig
+  m_EditorClassIdentifier: 
+  UI:
+    Prefab: {fileID: 5392028458040852505, guid: 88b5ac235e9eb23409633ef0f7b9b14e, type: 3}
+  WorldUI:
+    Prefab: {fileID: 8982728415267594274, guid: 026fd5c9b9942bf47823d860bd0048a9, type: 3}
+  WorldHealthWidget:
+    asset:
+      Prefab: {fileID: 2123192949625248525, guid: 73c358f5319447c40a677e491d90b93c, type: 3}

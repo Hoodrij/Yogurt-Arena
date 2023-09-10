@@ -33,33 +33,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac35aeb3eb876b940b019549676664a6, type: 2}
   - {fileID: 11400000, guid: 72f220589e7d606489f755eb024dfb7f, type: 2}
   - {fileID: 11400000, guid: 80fb766e9d39a39489f98fa0cc71ac04, type: 2}
-  World:
-    Prefab: {fileID: 6010830135608539927, guid: 5fb0efdc5d163c447b432e799b8e22b8, type: 3}
-  UI:
-    UI:
-      Prefab: {fileID: 5392028458040852505, guid: 88b5ac235e9eb23409633ef0f7b9b14e, type: 3}
-    WorldUI:
-      Prefab: {fileID: 8982728415267594274, guid: 026fd5c9b9942bf47823d860bd0048a9, type: 3}
-    WorldHealthWidget:
-      asset:
-        Prefab: {fileID: 2123192949625248525, guid: 73c358f5319447c40a677e491d90b93c, type: 3}
-  Input:
-    Asset:
-      Prefab: {fileID: 2346468616466672681, guid: 67cb5b8d2da54ff4d815852dde211387, type: 3}
-    AccumulativeValue: 0.2
-    DeAccumulativeValue: 0.05
-    Sensitivity: 10
-  Camera:
-    Asset:
-      Prefab: {fileID: 2842332022607115805, guid: 5c99e910810318f4688e2d64e1d4ae57, type: 3}
-    SmoothValue: 0.5
-  Beacon:
-    Asset:
-      Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
-    SmoothValue: 0.5
-    Elasticity: 25
-  ItemSpot:
-    Radius: 2
-    Mask:
-      serializedVersion: 2
-      m_Bits: 256
+  - {fileID: 11400000, guid: b89d6baf2bb222747b8598f5dea78282, type: 2}
+  - {fileID: 11400000, guid: bb854a6fd96848945a7ab918e7166de0, type: 2}
+  - {fileID: 11400000, guid: 84f397f82c9dde44bac1bac407165447, type: 2}
+  - {fileID: 11400000, guid: 02cc7ed223aa85d4c8141cde51b94b49, type: 2}
+  - {fileID: 11400000, guid: 2ead4ac4b3decac4781f06e71853b8ff, type: 2}
+  - {fileID: 11400000, guid: 217ad3324159d00409f084d8e6faddf7, type: 2}

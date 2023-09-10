@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask<Entity> Run()
         {
-            UIConfig config = Query.Single<Config>().UI;
+            UIConfig config = new GetConfigJob().Run<UIConfig>();
             UIView uiView = await config.UI.Spawn();
 
             Entity entity = World.Create()

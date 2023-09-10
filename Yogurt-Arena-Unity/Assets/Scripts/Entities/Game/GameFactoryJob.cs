@@ -7,14 +7,12 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            Config config = Resources.Load<Config>("Config");
-
             Entity game = Entity.Create()
                 .Add(new Game())
                 .Add(new Time())
-                .Add(config)
                 ;
 
+            Config config = Resources.Load<Config>("Config");
             foreach (IEntityConfig iConfig in config.All)
             {
                 ConfigOfEntity configOfEntity = new ConfigOfEntity

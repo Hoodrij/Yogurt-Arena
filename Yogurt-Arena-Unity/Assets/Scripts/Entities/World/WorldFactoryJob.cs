@@ -6,7 +6,8 @@ namespace Yogurt.Arena
     {
         public async UniTask<Entity> Run()
         {
-            World world = await Query.Single<Config>().World.Spawn();
+            WorldConfig config = new GetConfigJob().Run<WorldConfig>();
+            World world = await config.World.Spawn();
             
             Entity entity = Entity.Create()
                 .AddLink(world.gameObject)

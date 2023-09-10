@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    [Serializable]
-    public class InputConfig : IComponent
+    public class InputConfig : ScriptableObject, IComponent, IEntityConfig
     {
         public Asset<InputFieldView> Asset;
         public float AccumulativeValue;
         public float DeAccumulativeValue;
         public float Sensitivity;
+        
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+        }
     }
 }

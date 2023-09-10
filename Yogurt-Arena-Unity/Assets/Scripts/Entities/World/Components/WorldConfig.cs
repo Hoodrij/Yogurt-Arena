@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    public class ItemSpotConfig : ScriptableObject, IComponent, IEntityConfig
+    public class WorldConfig : ScriptableObject, IComponent, IEntityConfig
     {
-        public int Radius;
-        public LayerMask Mask;
-        
+        public Asset<World> World;
+
         public IEnumerable<IComponent> GetComponents()
         {
             yield return this;

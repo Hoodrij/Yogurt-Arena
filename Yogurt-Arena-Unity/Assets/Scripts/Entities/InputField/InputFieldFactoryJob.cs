@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask<InputFieldAspect> Run()
         {
-            InputConfig inputConfig = Query.Single<Config>().Input;
+            InputConfig inputConfig = new GetConfigJob().Run<InputConfig>();
             InputFieldView inputFieldView = await inputConfig.Asset.Spawn();
 
             InputFieldAspect inputField = World.Create()

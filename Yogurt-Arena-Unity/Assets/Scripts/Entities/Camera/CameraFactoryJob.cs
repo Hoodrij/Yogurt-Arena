@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask<CameraAspect> Run()
         {
-            CameraConfig cameraConfig = Query.Single<Config>().Camera;
+            CameraConfig cameraConfig = new GetConfigJob().Run<CameraConfig>();
             CameraView view = await cameraConfig.Asset.Spawn();
 
             CameraAspect camera = World.Create()

@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public async UniTask<ItemSpotAspect> Run(ItemSpotView view)
         {
-            ItemSpotConfig config = Query.Single<Config>().ItemSpot;
+            ItemSpotConfig config = new GetConfigJob().Run<ItemSpotConfig>();
             
             Entity entity = World.Create();
             entity
