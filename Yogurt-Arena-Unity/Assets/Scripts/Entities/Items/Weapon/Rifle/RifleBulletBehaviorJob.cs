@@ -11,13 +11,13 @@ namespace Yogurt.Arena
             UniTask collisionTask = DetectHit();
             new RifleMoveBulletJob().Run(bullet);
             await Wait.Any(collisionTask, WaitForLifeTime());
-
+            
             if (collision.IsValid)
             {
                 new DealDamageJob().Run(collision.Entity, bullet.Config.Damage);
                 bullet.Body.Position = bullet.View.transform.position = collision.Position;
             }
-
+            
             await new KillBulletJob().Run(bullet);
             return;
 

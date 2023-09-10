@@ -12,6 +12,7 @@ namespace Yogurt.Arena
 
             await Wait.Until(() => !owner.Has<Kinematic>(), owner.Entity);
             await Wait.Until(() =>
+                IsWeaponAlive() &&
                 HasOwner() && 
                 HasTarget() && 
                 IsInRange() && 
@@ -20,6 +21,10 @@ namespace Yogurt.Arena
             return;
 
 
+            bool IsWeaponAlive()
+            {
+                return item.Exist();
+            }
             bool HasOwner()
             {
                 return owner.Exist();

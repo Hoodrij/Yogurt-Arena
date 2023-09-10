@@ -3,26 +3,27 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class UseRifleJob : IItemUseJob
+    public struct UseRifleJob : IItemUseJob
     {
         public async UniTask Run(ItemAspect item)
         {
             WeaponConfig config = item.Get<WeaponConfig>();
+            RifleConfig rifleConfig = item.Get<RifleConfig>();
             AgentAspect owner = item.Owner;
 
-            while (item.Exist())
-            {
-                await new WaitForWeaponReadyJob().Run(item);
-                if (!item.Exist()) return;
-                
-                FireBullet();
-
-                await new ReloadJob().Run(item);
-            }
-
+            item.Run(FireLoop);
             return;
 
 
+            async UniTask FireLoop()
+            {
+                await new WaitForWeaponReadyJob().Run(item);
+                for (int i = 0; i < rifleConfig.BulletsInShot; i++)
+                {
+                    FireBullet();
+                }
+                await new ReloadJob().Run(item);
+            }
             async void FireBullet()
             {
                 BulletAspect bullet = await new BulletFactoryJob().Run(config.Bullet, owner);

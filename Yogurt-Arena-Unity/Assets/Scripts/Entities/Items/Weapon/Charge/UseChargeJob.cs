@@ -9,10 +9,13 @@ namespace Yogurt.Arena
             WeaponConfig config = item.Get<WeaponConfig>();
             AgentAspect owner = item.Owner;
 
-            while (item.Exist())
+            item.Run(FireLoop);
+            return;
+            
+
+            async UniTask FireLoop()
             {
                 await new WaitForWeaponReadyJob().Run(item);
-                if (!item.Exist()) return;
                 
                 BulletAspect bullet = await new BulletFactoryJob().Run(config.Bullet, owner);
                 new FireBulletJob().Run(bullet, default);

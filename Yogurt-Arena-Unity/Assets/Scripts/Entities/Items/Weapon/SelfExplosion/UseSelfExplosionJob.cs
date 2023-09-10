@@ -9,10 +9,13 @@ namespace Yogurt.Arena
             SelfExplosionConfig config = item.Get<SelfExplosionConfig>();
             AgentAspect owner = item.Owner;
 
-            while (item.Exist())
+            item.Run(FireLoop);
+            return;
+            
+
+            async UniTask FireLoop()
             {
                 await new WaitForWeaponReadyJob().Run(item);
-                if (!item.Exist()) return;
 
                 new DealAoeDamageJob().Run(owner, owner.Body.Position, config.Explosion.Damage);
                 new SpawnExplosionJob().Run(config.Explosion, owner.Body.Position);

@@ -9,7 +9,8 @@ namespace Yogurt.Arena
             BattleState ownerBattleState = item.Owner.Value.BattleState;
             item.Add(ownerBattleState);
 
-            if (item.TryGet(out WeaponClipConfig clipConfig))
+            if (item.TryGet(out WeaponClipConfig clipConfig) 
+                && clipConfig.BulletsInClip > 0)
             {
                 item.Add(new WeaponClipState
                 {
