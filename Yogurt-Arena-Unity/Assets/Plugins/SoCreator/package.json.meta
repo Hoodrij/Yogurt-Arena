@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 897256419b3deaf4db685d2480f9ee3c
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 228650
+  packageName: SoCreator
+  packageVersion: 1.3.2
+  assetPath: Assets/SoCreator/package.json
+  uploadId: 608542

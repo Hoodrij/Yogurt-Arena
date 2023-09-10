@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6c1d37e80210e964b9d0274f3e314eea
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 228650
+  packageName: SoCreator
+  packageVersion: 1.3.2
+  assetPath: Assets/SoCreator/README.md
+  uploadId: 608542

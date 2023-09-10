@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: edf8829fe09035f41b4c3dd9af47cadb
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 228650
+  packageName: SoCreator
+  packageVersion: 1.3.2
+  assetPath: Assets/SoCreator/Editor/SoCreator.Editor.asmdef
+  uploadId: 608542
