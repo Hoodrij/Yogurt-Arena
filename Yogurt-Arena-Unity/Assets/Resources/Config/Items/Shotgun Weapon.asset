@@ -44,5 +44,6 @@ MonoBehaviour:
       m_Bits: 1
     YTolerance: 3
   Clip:
-    BulletsInClip: 10
+    BulletsInClip: 1
     ClipCooldown: 0.5
+  BulletsInShot: 10

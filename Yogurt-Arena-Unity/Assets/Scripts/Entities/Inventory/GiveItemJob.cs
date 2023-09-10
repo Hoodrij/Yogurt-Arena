@@ -10,7 +10,7 @@ namespace Yogurt.Arena
                 return;
             
             ItemAspect item = await new ItemFactoryJob().Run(itemType, owner);
-            UpdateWeapon();
+            UpdateWeapon(); 
 
             item.Config.UseJob.Run(item);
             return;

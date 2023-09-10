@@ -17,6 +17,7 @@ namespace Yogurt.Arena
         public WeaponScatteringConfig Scattering;
         public TargetDetectionConfig TargetDetection;
         public WeaponClipConfig Clip;
+        public int BulletsInShot;
 
         public IEnumerable<IComponent> GetComponents()
         {
