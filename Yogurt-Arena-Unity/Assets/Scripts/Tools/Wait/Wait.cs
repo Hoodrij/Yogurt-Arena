@@ -47,17 +47,18 @@ namespace Yogurt.Arena
 
         public static UniTask Seconds(float seconds, Entity entity = default)
         {
+            float startTime = UnityEngine.Time.time;
             if (seconds > 0)
             {
-                return Until(TimeIsUp, entity);
+                return Until(IsCompleted, entity);
             }
             return UniTask.CompletedTask;
 
 
-            bool TimeIsUp()
+            bool IsCompleted()
             {
-                seconds -= UnityEngine.Time.deltaTime;
-                return seconds <= 0;
+                float now = UnityEngine.Time.time;
+                return now - startTime >= seconds;
             }
         }
 
