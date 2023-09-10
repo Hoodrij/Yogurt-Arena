@@ -1,7 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Yogurt.Arena
 {
