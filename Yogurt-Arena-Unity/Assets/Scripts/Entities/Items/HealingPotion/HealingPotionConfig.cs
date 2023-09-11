@@ -7,7 +7,6 @@ namespace Yogurt.Arena
     {
         public ItemConfig Item = new()
         {
-            FactoryJob = new HealingPotionFactoryJob(),
             UseJob = new UseHealingPotionJob()
         };
         public int Amount;

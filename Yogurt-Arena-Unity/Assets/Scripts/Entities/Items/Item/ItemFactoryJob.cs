@@ -24,7 +24,7 @@ namespace Yogurt.Arena
             entity.SetParent(owner.Entity);
             
             ItemAspect item = entity.As<ItemAspect>();
-            config.Item.FactoryJob.Run(item);
+            config.Item.FactoryJob?.Run(item);
 
             return item;
         }
