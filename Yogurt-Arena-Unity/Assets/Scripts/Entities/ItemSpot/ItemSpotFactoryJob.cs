@@ -8,10 +8,10 @@ namespace Yogurt.Arena
         {
             ItemSpotConfig config = new GetConfigJob().Run<ItemSpotConfig>();
             
-            Entity entity = World.Create();
-            entity
+            ItemSpotAspect entity = World.Create()
                 .AddLink(view.gameObject)
                 .Add(view)
+                .Add(config)
                 .Add(new BodyState
                 {
                     Position = view.transform.position
@@ -19,11 +19,12 @@ namespace Yogurt.Arena
                 .Add(new ItemSpotState
                 {
                     Type = ItemType.Empty,
-                    Radius = config.Radius,
-                    Mask = config.Mask
-                });
+                })
+                .As<ItemSpotAspect>();
+            
+            new ItemSpotBehaviorJob().Run(entity);
 
-            return entity.As<ItemSpotAspect>();
+            return entity;
         }
     }
 }

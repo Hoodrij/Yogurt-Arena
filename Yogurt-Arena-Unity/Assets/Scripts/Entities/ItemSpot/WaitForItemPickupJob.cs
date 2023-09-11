@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             RaycastHit[] hits = new RaycastHit[3];
             
             Vector3 position = itemSpot.Body.Position;
-            LayerMask mask = itemSpot.State.Mask;
+            LayerMask mask = itemSpot.Config.Mask;
             AgentAspect result = default;
 
             await Wait.Until(IsPickedUp, itemSpot.Entity);
@@ -20,7 +20,7 @@ namespace Yogurt.Arena
 
             bool IsPickedUp()
             {
-                int hitsCount = Physics.SphereCastNonAlloc(position, itemSpot.State.Radius, Vector3.up, hits, 0.1f, mask);
+                int hitsCount = Physics.SphereCastNonAlloc(position, itemSpot.Config.Radius, Vector3.up, hits, 0.1f, mask);
 
                 for (int i = 0; i < hitsCount; i++)
                 {

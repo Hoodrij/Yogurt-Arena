@@ -12,13 +12,11 @@ namespace Yogurt.Arena
 
         [SerializeField] private ItemTypeToViewDict map;
         
-        
         private async void Awake()
         {
-            transform.DOScale(0, 0);
-            
-            ItemSpotAspect itemSpot = await new ItemSpotFactoryJob().Run(this);
-            new ItemSpotBehaviorJob().Run(itemSpot);
+            Hide(0);
+
+            new ItemSpotFactoryJob().Run(this);
         }
 
         public async UniTask Show(ItemType type)
@@ -33,12 +31,14 @@ namespace Yogurt.Arena
                 icon = map[ItemType.Empty];
             }
             icon.gameObject.SetActive(true);
+            transform.DOKill();
             transform.DOScale(1, 0.2f).SetEase(Ease.OutBack, 6);
         }
         
-        public async UniTask Hide()
+        public async UniTask Hide(float duration = 0.2f)
         {
-            transform.DOScale(0, 0.2f).SetEase(Ease.InBack, 6);
+            transform.DOKill();
+            transform.DOScale(0, duration).SetEase(Ease.InBack, 6);
         }
     }
 }
