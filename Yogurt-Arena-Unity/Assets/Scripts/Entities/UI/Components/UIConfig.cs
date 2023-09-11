@@ -4,7 +4,7 @@ using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    public class UIConfig : ScriptableObject, IComponent, IEntityConfig
+    public class UIConfig : ScriptableObject, IComponent, IConfigSO
     {
         public Asset<UIView> UI;
         public Asset<WorldUIView> WorldUI;

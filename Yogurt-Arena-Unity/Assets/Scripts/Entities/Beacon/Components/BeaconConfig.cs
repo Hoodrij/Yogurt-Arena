@@ -6,7 +6,7 @@ using Yogurt.Arena.Tools;
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class BeaconConfig : ScriptableObject, IComponent, IEntityConfig
+    public class BeaconConfig : ScriptableObject, IComponent, IConfigSO
     {
         public Asset<BeaconView> Asset;
         public float SmoothValue;

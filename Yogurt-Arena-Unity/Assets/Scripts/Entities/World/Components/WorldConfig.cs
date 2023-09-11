@@ -4,7 +4,7 @@ using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    public class WorldConfig : ScriptableObject, IComponent, IEntityConfig
+    public class WorldConfig : ScriptableObject, IComponent, IConfigSO
     {
         public Asset<World> World;
 

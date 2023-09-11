@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class SelfExplosionConfig : ScriptableObject, IComponent, IEntityConfig
+    public class SelfExplosionConfig : ScriptableObject, IComponent, IConfigSO
     {
         public ItemConfig Item = new()
         {

@@ -13,6 +13,6 @@
         public Entity Entity { get; set; }
         
         public ItemConfig Item => this.Get<ItemConfig>();
-        public ConfigOfEntity ConfigOfEntity => this.Get<ConfigOfEntity>();
+        public ConfigEntity ConfigEntity => this.Get<ConfigEntity>();
     }
 }

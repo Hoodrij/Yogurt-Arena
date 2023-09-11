@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class ItemSpawnerConfig : ScriptableObject, IEntityConfig, ILeveledConfig, IComponent
+    public class ItemSpawnerConfig : ScriptableObject, IConfigSO, ILeveledConfig, IComponent
     {
         [field: SerializeField]
         public int Level { get; set; }

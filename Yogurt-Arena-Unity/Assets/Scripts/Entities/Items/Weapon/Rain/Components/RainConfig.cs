@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class RainConfig : ScriptableObject, IComponent, IEntityConfig
+    public class RainConfig : ScriptableObject, IComponent, IConfigSO
     {
         public ItemConfig Item = new()
         {

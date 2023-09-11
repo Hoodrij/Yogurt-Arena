@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class HealingPotionConfig : ScriptableObject, IComponent, IEntityConfig
+    public class HealingPotionConfig : ScriptableObject, IComponent, IConfigSO
     {
         public ItemConfig Item = new()
         {

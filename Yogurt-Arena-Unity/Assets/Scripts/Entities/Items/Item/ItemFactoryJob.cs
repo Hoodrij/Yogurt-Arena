@@ -12,10 +12,10 @@ namespace Yogurt.Arena
         public async UniTask<ItemAspect> Run(ItemType type, AgentAspect owner)
         {
             ItemConfigAspect config = new GetConfigJob().Run(type);
-            ConfigOfEntity configOfEntity = config.ConfigOfEntity;
+            ConfigEntity configEntity = config.ConfigEntity;
 
             Entity entity = World.Create()
-                .Add(configOfEntity.Components)
+                .Add(configEntity.Components)
                 .Add(new OwnerState
                 {
                     Value = owner

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Yogurt.Arena
 {
-    public class OvermindConfig : ScriptableObject, IComponent, ILeveledConfig, IEntityConfig
+    public class OvermindConfig : ScriptableObject, IComponent, ILeveledConfig, IConfigSO
     {
         [field: SerializeField]
         public int Level { get; set; }

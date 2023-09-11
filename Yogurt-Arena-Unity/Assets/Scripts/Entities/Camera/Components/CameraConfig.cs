@@ -6,7 +6,7 @@ using Yogurt.Arena.Tools;
 namespace Yogurt.Arena
 {
     [Serializable]
-    public class CameraConfig : ScriptableObject, IComponent, IEntityConfig
+    public class CameraConfig : ScriptableObject, IComponent, IConfigSO
     {
         public Asset<CameraView> Asset;
         public float SmoothValue;

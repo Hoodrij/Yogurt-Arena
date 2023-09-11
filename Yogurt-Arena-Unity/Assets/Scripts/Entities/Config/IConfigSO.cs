@@ -2,7 +2,7 @@
 
 namespace Yogurt.Arena
 {
-    public interface IEntityConfig
+    public interface IConfigSO
     {
         IEnumerable<IComponent> GetComponents();
     }

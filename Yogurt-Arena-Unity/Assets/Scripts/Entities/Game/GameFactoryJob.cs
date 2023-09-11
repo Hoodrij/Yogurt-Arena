@@ -13,16 +13,16 @@ namespace Yogurt.Arena
                 ;
 
             Config config = Resources.Load<Config>("Config");
-            foreach (IEntityConfig iConfig in config.All)
+            foreach (IConfigSO configSO in config.All)
             {
-                ConfigOfEntity configOfEntity = new ConfigOfEntity
+                ConfigEntity configEntity = new ConfigEntity
                 {
-                    Components = iConfig.GetComponents()
+                    Components = configSO.GetComponents()
                 };
 
                 Entity.Create()
-                    .Add(configOfEntity)
-                    .Add(configOfEntity.Components)
+                    .Add(configEntity)
+                    .Add(configEntity.Components)
                     .SetParent(game);
             }
         }

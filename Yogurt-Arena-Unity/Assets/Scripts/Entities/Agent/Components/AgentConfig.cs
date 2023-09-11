@@ -4,7 +4,7 @@ using Yogurt.Arena.Tools;
 
 namespace Yogurt.Arena
 {
-    public class AgentConfig : ScriptableObject, IComponent, IEntityConfig
+    public class AgentConfig : ScriptableObject, IComponent, IConfigSO
     {
         public PooledAsset<AgentView> Asset;
         public PooledAsset<AgentDeathVFX> DeathVFX;

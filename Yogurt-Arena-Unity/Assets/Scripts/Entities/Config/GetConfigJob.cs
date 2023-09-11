@@ -5,7 +5,7 @@ namespace Yogurt.Arena
     public struct GetConfigJob
     {
         // of a Leveled Config
-        public TConfig Run<TConfig>(int requiredLevel = -1) where TConfig : IEntityConfig, IComponent
+        public TConfig Run<TConfig>(int requiredLevel = -1) where TConfig : IConfigSO, IComponent
         {
             TConfig config = Query.Single<TConfig>();
             if (config is not ILeveledConfig)
