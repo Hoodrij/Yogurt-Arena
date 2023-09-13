@@ -16,10 +16,11 @@ namespace Yogurt.Arena
 
 		    void Update()
 		    {
-			    if (agent.Has<Kinematic>())
-				    return;
+			    if (!agent.Has<Kinematic>())
+			    {
+					UpdateState();
+			    }
 
-			    UpdateState();
 			    agent.View.transform.position = agent.Body.Position;
 	        }
 		    

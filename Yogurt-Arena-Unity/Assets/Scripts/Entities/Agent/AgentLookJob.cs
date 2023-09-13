@@ -18,12 +18,18 @@ namespace Yogurt.Arena
 
             void Update()
             {
-                if (agent.Has<Kinematic>())
-                    return;
-
-
-                BodyState body = agent.Body;
+                if (!agent.Has<Kinematic>())
+                {
+                    UpdateState();
+                }
                 
+                agent.View.transform.forward = agent.Body.Forward;
+            }
+
+            void UpdateState()
+            {
+                BodyState body = agent.Body;
+
                 if (agent.BattleState.Target.Exist())
                 {
                     BodyState targetBody = agent.BattleState.Target.Get<BodyState>();
@@ -37,8 +43,7 @@ namespace Yogurt.Arena
                 Vector3 lookVector = body.LookPoint - body.Position;
                 if (lookVector.sqrMagnitude > MIN_LOOK_MAGNITUDE)
                 {
-                    agent.View.transform.DOKill();
-                    agent.View.transform.DOLookAt(body.LookPoint, agent.Config.LookSmoothValue);
+                    body.Forward = Vector3.Lerp(body.Forward, lookVector.normalized, agent.Config.LookSmoothValue * time);
                 }
             }
         }

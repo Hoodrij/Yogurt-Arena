@@ -9,11 +9,10 @@ namespace Yogurt.Arena
         {
             Time time = Query.Single<Time>();
             AgentAspect owner = bullet.Owner.Value;
-            Transform transform = owner.View.transform;
             BodyState body = owner.Body;
             
             float timePassed = 0;
-            body.Velocity = transform.forward * bullet.Config.Speed;
+            body.Velocity = body.Forward * bullet.Config.Speed;
             
             bullet.Run(MoveOwner);
             return;
@@ -35,7 +34,7 @@ namespace Yogurt.Arena
                 
                 if (NavMesh.SamplePosition(newPos, out var hit, 1, NavMesh.AllAreas))
                 {
-                    body.Position = transform.position = body.Destination = hit.position;
+                    body.Position = body.Destination = hit.position;
                 }
             }
         }

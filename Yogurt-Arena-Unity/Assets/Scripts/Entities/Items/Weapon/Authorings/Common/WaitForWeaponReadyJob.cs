@@ -36,8 +36,8 @@ namespace Yogurt.Arena
             bool IsLookingAtTarget()
             {
                 AgentAspect target = owner.BattleState.Target;
-                Vector3 lookDir = owner.View.transform.forward;
-                Vector3 vectorToTarget = target.View.transform.position.WithY(0) - owner.View.transform.position.WithY(0);
+                Vector3 lookDir = owner.Body.Forward;
+                Vector3 vectorToTarget = target.Body.Position.WithY(0) - owner.Body.Position.WithY(0);
                 Vector3 dirToTarget = vectorToTarget.normalized;
                 
                 float dot = Vector3.Dot(lookDir, dirToTarget);
@@ -49,7 +49,7 @@ namespace Yogurt.Arena
             bool IsInRange()
             {
                 AgentAspect target = owner.BattleState.Target;
-                float distanceToTarget = Mathf.Abs((target.View.transform.position - owner.View.transform.position).magnitude);
+                float distanceToTarget = Mathf.Abs((target.Body.Position - owner.Body.Position).magnitude);
                 bool isInRange = distanceToTarget < config.Range;
 
                 return isInRange;
