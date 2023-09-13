@@ -20,8 +20,9 @@ namespace Yogurt.Arena
 
                 AddDelta(inputField.Input.MoveDelta.ToV3XZ());
 
-                Transform transform;
-                (transform = beacon.View.transform).position = Vector3.Lerp(beacon.View.transform.position, body.Destination, config.SmoothValue);
+                Transform transform = beacon.View.transform;
+                transform.position = Vector3.Lerp(transform.position, body.Destination, config.SmoothValue);
+                
                 SpecifyTransformY(transform, body);
                 return;
 
