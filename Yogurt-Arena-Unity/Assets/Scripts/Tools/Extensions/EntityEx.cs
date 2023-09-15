@@ -28,11 +28,7 @@ namespace Yogurt.Arena
         private static async UniTask WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
         {
             await entity.WaitForDead();
-
-            if (Application.isPlaying)
-            {
-                component.Dispose();
-            }
+            component.Dispose();
         }
 
         public static Entity Add(this Entity entity, IEnumerable<IComponent> components)
