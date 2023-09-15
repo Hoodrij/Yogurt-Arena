@@ -16,7 +16,11 @@ namespace Yogurt.Arena
             agent.Add(new Kinematic());
             agent.Body.Position = position;
             agent.Body.Destination = position;
-            agent.View.transform.position = agent.Body.Position;
+            
+            new AgentMoveJob().Run(agent);
+            new AgentLookJob().Run(agent);
+
+            await new GiveItemJob().Run(agent.Config.Weapon, agent);
             
             await ActivateAgent();
             return agent;

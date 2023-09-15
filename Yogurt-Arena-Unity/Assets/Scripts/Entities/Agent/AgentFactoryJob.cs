@@ -26,11 +26,6 @@ namespace Yogurt.Arena
                     DeathJob = new AgentDeathJob(),
                 })
                 .As<AgentAspect>();
-
-            new AgentMoveJob().Run(agent);
-            new AgentLookJob().Run(agent);
-
-            await new GiveItemJob().Run(agent.Config.Weapon, agent);
             
             return agent;
         }
