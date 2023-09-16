@@ -5,8 +5,15 @@ namespace Yogurt.Arena
     [Serializable] 
     public class Observable<T>
     {
-        private T value;
+        public T Value
+        {
+            get => value;
+            set => Set(value);
+        }
+
         public Event<T> ChangedEvent { get; } = new Event<T>();
+        
+        private T value;
 
         public Observable(T value = default)
         {
@@ -20,7 +27,6 @@ namespace Yogurt.Arena
             value = newValue;
             ChangedEvent.Fire(value);
         }
-
 
         public void Listen(Action<T> action)
         {
