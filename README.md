@@ -1,4 +1,4 @@
-# ⚔️ Yogurt Arena sample
+# 💣 Yogurt Arena sample
 
 This is a sample project for [Yogurt Unity framework](https://github.com/Hoodrij/Yogurt)
 
