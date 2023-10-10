@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
-using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using Assembly = System.Reflection.Assembly;
 

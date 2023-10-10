@@ -1,11 +1,10 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Yogurt.Arena
 {
     public struct AgentLookJob
     {
-        const float MIN_LOOK_MAGNITUDE = 0.001f;
+        private const float MIN_LOOK_MAGNITUDE = 0.001f;
 
         public void Run(AgentAspect agent)
         {
