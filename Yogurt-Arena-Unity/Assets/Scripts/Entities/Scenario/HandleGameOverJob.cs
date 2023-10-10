@@ -4,11 +4,10 @@ namespace Yogurt.Arena
 {
     public struct HandleGameOverJob
     {
-        public async UniTaskVoid Run()
+        public async UniTask Run()
         {
-            await new WaitForGameOverJob().Run();
             await Wait.Seconds(0.5f);
-
+            
             GameOverWidget gameOverWidget = Query.Single<UIView>().GameOverWidget;
             gameOverWidget.Show();
 
@@ -16,9 +15,6 @@ namespace Yogurt.Arena
             
             Query.Of<World>().Single().Kill();
             await Wait.Seconds(0.1f);
-            
-            await new WorldFactoryJob().Run();
-            new RunScenarioJob().Run();
         }
     }
 }

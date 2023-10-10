@@ -6,8 +6,6 @@ namespace Yogurt.Arena
     {
         public async UniTask Run()
         {
-            new HandleGameOverJob().Run();
-
             await new Quest.PickupWeaponQuest().Run();
             await Wait.Seconds(1);
             
