@@ -2,65 +2,31 @@
 
 namespace Yogurt.Arena
 {
-    [Serializable] 
-    public class Observable<T>
+    public class Observable<T> where T : IEquatable<T>
     {
-        public T Value
-        {
-            get => value;
-            set => Set(value);
-        }
-
-        public Event<T> ChangedEvent { get; } = new Event<T>();
+        public Event<T> OnChanged = new();
         
-        private T value;
-
-        public Observable(T value = default)
+        public Observable(Func<T> getter, Entity lifetime = default)
         {
-            this.value = value;
-        }
-        
-        public void Set(T newValue)
-        {
-            if (value != null && value.Equals(newValue)) return;
+            T currentValue = getter.Invoke();
+            
+            if (!lifetime.Exist)
+            {
+                lifetime = Query.Of<Game>().Single();
+            }
+            lifetime.Run(Update);
+            return;
 
-            value = newValue;
-            ChangedEvent.Fire(value);
-        }
 
-        public void Listen(Action<T> action)
-        {
-            ChangedEvent.Listen(action);
-        }
-
-        public void Unsubscribe(object owner)
-        {
-            ChangedEvent.Unsubscribe(owner);
-        }
-
-        public static implicit operator T(Observable<T> observable)
-        {
-            return observable.value;
-        }
-
-        public bool Equals(Observable<T> other)
-        {
-            return other.value.Equals(value);
-        }
-
-        public override bool Equals(object other)
-        {
-            return other is Observable<T> observable && observable.value.Equals(value);
-        }
-
-        public override int GetHashCode()
-        {
-            return value.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return value.ToString();
+            void Update()
+            {
+                T newValue = getter.Invoke();
+                if (!currentValue.Equals(newValue))
+                {
+                    OnChanged.Fire(newValue);
+                    currentValue = newValue;
+                }
+            }
         }
     }
 }

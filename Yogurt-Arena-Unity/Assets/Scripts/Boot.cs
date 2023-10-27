@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Yogurt.Arena.Analytics;
 
 namespace Yogurt.Arena
 {
@@ -9,6 +10,8 @@ namespace Yogurt.Arena
             Destroy(gameObject);
             await new GameFactoryJob().Run();
             new RunGameLoopJob().Run();
+
+            new AnalyticsLayer().Run();
         }
     }
 }

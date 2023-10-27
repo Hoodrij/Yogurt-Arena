@@ -16,25 +16,15 @@ namespace Yogurt.Arena.Quest
             Entity world = Query.Of<World>().Single();
             int killedEnemies = 0;
             int enemiesToKill = amountToKill;
-            HashSet<Entity> enemies = new();
+            
+            Query.Of<AgentAspect>().Without<PlayerTag>().ListenAdded(OnEnemyAdded);
 
-            world.Run(Update);
             await Wait.While(() => killedEnemies < enemiesToKill, world);
             return;
 
-            void Update()
+            async UniTaskVoid OnEnemyAdded(AgentAspect enemy)
             {
-                foreach (AgentAspect enemy in Query.Of<AgentAspect>().Without<PlayerTag>())
-                {
-                    if (enemies.Add(enemy.Entity))
-                    {
-                        ListenForDeath(enemy.Entity);
-                    }
-                }
-            }
-            async UniTaskVoid ListenForDeath(Entity enemy)
-            {
-                await enemy.WaitForDead();
+                await enemy.Entity.WaitForDead();
                 killedEnemies++;
             }   
         }

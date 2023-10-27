@@ -5,7 +5,7 @@ namespace Yogurt.Arena
 {
     public class Event
     {
-        internal readonly SafeHashSet<WeakAction> listeners = new SafeHashSet<WeakAction>();
+        private readonly SafeHashSet<WeakAction> listeners = new SafeHashSet<WeakAction>();
 
         public void Fire()
         {
@@ -22,7 +22,7 @@ namespace Yogurt.Arena
 
     public class Event<T>
     {
-        internal readonly SafeHashSet<WeakAction<T>> listeners = new SafeHashSet<WeakAction<T>>();
+        private readonly SafeHashSet<WeakAction<T>> listeners = new SafeHashSet<WeakAction<T>>();
 
         public void Fire(T t)
         {
