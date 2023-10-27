@@ -42,7 +42,7 @@ namespace Yogurt.Arena
                 Vector3 lookVector = body.LookPoint - body.Position;
                 if (lookVector.sqrMagnitude > MIN_LOOK_MAGNITUDE)
                 {
-                    body.Forward = Vector3.Lerp(body.Forward, lookVector.normalized, agent.Config.LookSmoothValue * time);
+                    body.Forward = Vector3.RotateTowards(body.Forward, lookVector, agent.Config.LookSmoothValue * time, agent.Config.LookSmoothValue * time);
                 }
             }
         }
