@@ -31,22 +31,9 @@ namespace Yogurt.Arena
                     inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, Vector2.zero, config.DeAccumulativeValue * time);
                 }
 
-                inputState.MoveDelta = AddCameraRotation(delta);
+                inputState.MoveDelta = new AddCameraRotationJob().Run(delta);
                 reader.Delta = Vector2.zero;
             }
-        }
-        
-        private static Vector2 AddCameraRotation(Vector2 delta)
-        {
-            CameraAspect cameraAspect = Query.Single<CameraAspect>();
-            if (!cameraAspect.Exist())
-            {
-                return delta;
-            }
-            Transform cameraTransform = cameraAspect.View.transform;
-
-            float cameraRotation = cameraTransform.eulerAngles.y;
-            return delta.Rotate(-cameraRotation);
         }
     }
 }

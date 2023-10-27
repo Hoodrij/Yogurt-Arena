@@ -17,8 +17,7 @@ namespace Yogurt.Arena
             await new LocationFactoryJob().Run();
             await new UIFactoryJob().Run();
             await new WorldUIFactoryJob().Run();
-            await new InputFieldFactoryJob().Run();
-            await new BeaconFactoryJob().Run();
+            new InputFactoryJob().Run();
             await new CameraFactoryJob().Run();
             await new PlayerFactoryJob().Run();
             await new OvermindFactoryJob().Run();

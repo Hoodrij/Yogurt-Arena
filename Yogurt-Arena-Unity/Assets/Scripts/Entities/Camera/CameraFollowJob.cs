@@ -27,8 +27,10 @@ namespace Yogurt.Arena
 
             Vector3 GetFollowPoint()
             {
-                BeaconAspect beacon = Query.Single<BeaconAspect>();
-                return beacon.Body.RawDestination;
+                PlayerAspect player = Query.Single<PlayerAspect>();
+                if (!player.Exist())
+                    return camera.View.transform.position;
+                return player.Agent.Body.Position;
             }
         }
     }
