@@ -14,8 +14,8 @@ namespace Yogurt.Arena
             {
                 float sensitivity = Query.Single<InputConfig>().Sensitivity;
                 
-                float horizontal = Input.GetAxis("Horizontal");
-                float vertical = Input.GetAxis("Vertical");
+                float horizontal = Input.GetAxisRaw("Horizontal");
+                float vertical = Input.GetAxisRaw("Vertical");
                 Vector2 input = new Vector2(horizontal, vertical) * sensitivity;
                 input = new AddCameraRotationJob().Run(input);
 
