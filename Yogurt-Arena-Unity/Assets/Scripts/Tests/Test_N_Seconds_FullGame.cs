@@ -6,9 +6,6 @@ namespace Yogurt.Arena
 {
     public class Test_N_Seconds_FullGame
     {
-        [OneTimeTearDown]
-        public void TearDownOnce() => ProfileResult.Start();
-
         [Test]
         public async Task Run()
         {
