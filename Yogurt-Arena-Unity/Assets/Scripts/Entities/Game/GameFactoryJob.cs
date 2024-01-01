@@ -9,21 +9,26 @@ namespace Yogurt.Arena
         {
             Entity game = Entity.Create()
                 .Add(new Game())
-                .Add(new Time())
-                ;
+                .Add(new Time());
 
-            Config config = Resources.Load<Config>("Config");
-            foreach (IConfigSO configSO in config.All)
-            {
-                ConfigEntity configEntity = new ConfigEntity
+            LoadConfig();
+            return;
+
+            void LoadConfig()
+            { 
+                Config config = Resources.Load<Config>("Config");
+                foreach (IConfigSO configSO in config.All)
                 {
-                    Components = configSO.GetComponents()
-                };
+                    ConfigEntity configEntity = new ConfigEntity
+                    {
+                        Components = configSO.GetComponents()
+                    };
 
-                Entity.Create()
-                    .Add(configEntity)
-                    .Add(configEntity.Components)
-                    .SetParent(game);
+                    Entity.Create()
+                        .Add(configEntity)
+                        .Add(configEntity.Components)
+                        .SetParent(game);
+                }
             }
         }
     }

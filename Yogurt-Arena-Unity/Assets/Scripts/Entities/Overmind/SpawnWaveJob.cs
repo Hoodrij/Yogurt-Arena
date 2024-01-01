@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Yogurt.Arena
 {
@@ -11,13 +10,7 @@ namespace Yogurt.Arena
 
             for (int i = 0; i < agentsCount; i++)
             {
-                Vector3 spawnPoint = await new GetFreeSpawnPointJob().Run(overmind);
-                AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red, overmind.Config.AvailableTypes);
-                
-                AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint);
-                new SpawnWorldHealthWidget().Run(agent);
-
-                overmind.State.KeepAgent(agent);
+                await new SpawnSingleEnemyJob().Run(overmind);
                 await Wait.Seconds(0.5f, overmind.Entity);
             }
         }

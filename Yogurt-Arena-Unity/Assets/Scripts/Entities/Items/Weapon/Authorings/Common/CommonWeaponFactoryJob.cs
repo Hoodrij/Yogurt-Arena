@@ -18,12 +18,12 @@ namespace Yogurt.Arena
                 });
             }
 
-            if (item.TryGet(out ItemLifetimeConfig lifetimeConfig))
+            if (item.Has<ItemLifetimeConfig>())
             {
                 new WeaponLifetimeJob().Run(item);
             }
             
-            if (item.TryGet(out TargetDetectionConfig targetDetectionConfig))
+            if (item.Has<TargetDetectionConfig>())
             {
                 new CommonTargetDetectionJob().Run(item);
             }
