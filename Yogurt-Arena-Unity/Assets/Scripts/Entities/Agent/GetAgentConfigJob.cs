@@ -7,7 +7,7 @@ namespace Yogurt.Arena
         public AgentConfig Run(TeamType requiredTeam, AgentType availableTypes = AgentType.Any)
         {
             Entity result = Query.Of<AgentConfig>()
-                .With<ConfigEntity>()
+                .With<ConfigEntity>().AsEnumerable()
                 .Where(FitsTeam)
                 .Where(FitsType)
                 .GetRandom();

@@ -51,7 +51,7 @@ namespace Yogurt.Arena
         public ItemConfigAspect Run(ItemType itemType)
         {
             ItemConfigAspect itemConfigAspect = Query.Of<ItemConfigAspect>()
-                .FirstOrDefault(aspect => aspect.Item.Type == itemType);
+                .First(aspect => aspect.Item.Type == itemType);
             return itemConfigAspect;
         }
     }

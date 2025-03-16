@@ -19,7 +19,7 @@ namespace Yogurt.Arena
             }
             AgentAspect GetTarget()
             {
-                AgentAspect target = Query.Of<AgentAspect>()
+                AgentAspect target = Query.Of<AgentAspect>().AsEnumerable()
                     .Where(IsHostile)
                     .Where(IsInRange)
                     .OrderBy(GetDistance)
