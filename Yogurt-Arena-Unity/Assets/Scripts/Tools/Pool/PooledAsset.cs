@@ -12,8 +12,11 @@ namespace Yogurt.Arena.Tools
 
         public async UniTask<TComponent> Spawn()
         {
-            pool ??= new(async () => (await asset.Spawn()).gameObject);
-            return (await pool.Pop()).GetComponent<TComponent>();
+            pool ??= new Pool(Factory);
+            GameObject gameObject = await pool.Pop();
+            return gameObject.GetComponent<TComponent>();
+
+            async UniTask<GameObject> Factory() => (await asset.Spawn()).gameObject;
         }
     }
 }

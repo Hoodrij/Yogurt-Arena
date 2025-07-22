@@ -10,10 +10,10 @@ namespace Yogurt.Arena
         
         public static UniTask While(Func<bool> predicate, Lifetime life = null)
         {
-            if (!predicate.Invoke()) 
-                return UniTask.CompletedTask;
-
-            life ??= AppLifetime;
+            life = life 
+                ? life | AppLifetime 
+                : AppLifetime;
+            
             return UniTask.WaitWhile(predicate, cancellationToken: life);
         }
 
@@ -32,11 +32,7 @@ namespace Yogurt.Arena
         public static UniTask Seconds(float seconds, Lifetime life = null)
         {
             float startTime = UnityEngine.Time.time;
-            life ??= AppLifetime;
-            
-            return seconds > 0 
-                ? Until(IsCompleted, life) 
-                : UniTask.CompletedTask;
+            return Until(IsCompleted, life);
 
             bool IsCompleted() => UnityEngine.Time.time - startTime >= seconds;
         }
