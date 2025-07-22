@@ -7,7 +7,7 @@ namespace Yogurt.Arena
 {
     public static class EntityEx
     {
-        public static Entity AddLink(this Entity entity, GameObject go)
+        public static Entity Link(this Entity entity, GameObject go)
         {
             if (!go.TryGetComponent(out EntityLink link))
             {
@@ -19,15 +19,25 @@ namespace Yogurt.Arena
 
             return entity;
         }
-        
-        public static async UniTask WaitForDead(this Entity entity)
+
+        public static Lifetime Life(this Entity entity)
         {
-            await Wait.While(() => entity.Exist);
+            Lifetime life = new();
+            KillWithEntity();
+            return life;
+
+            async void KillWithEntity() => Wait.While(EntityExist).ContinueWith(life.Kill);
+            bool EntityExist() => entity.Exist;
+        }
+
+        public static Lifetime Life(this IAspect aspect)
+        {
+            return aspect.Entity.Life();
         }
         
         private static async UniTask WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
         {
-            await entity.WaitForDead();
+            await entity.Life();
             component.Dispose();
         }
 
@@ -41,7 +51,7 @@ namespace Yogurt.Arena
             return entity;
         }
 
-        public static async UniTask Run(this Entity entity, Action action)
+        public static async UniTaskVoid Run(this Entity entity, Action action)
         {
             while (entity.Exist)
             {
@@ -50,7 +60,7 @@ namespace Yogurt.Arena
             }
         }
         
-        public static async UniTask Run(this Entity entity, Func<UniTask> action)
+        public static async UniTaskVoid Run(this Entity entity, Func<UniTask> action)
         {
             while (entity.Exist)
             {
@@ -59,7 +69,7 @@ namespace Yogurt.Arena
             }
         }
 
-        public static async UniTask Run(this IAspect aspect, Action action)
+        public static async UniTaskVoid Run(this IAspect aspect, Action action)
         {
             while (aspect.Exist())
             {
@@ -68,7 +78,7 @@ namespace Yogurt.Arena
             }
         }
         
-        public static async UniTask Run(this IAspect aspect, Func<UniTask> action)
+        public static async UniTaskVoid Run(this IAspect aspect, Func<UniTask> action)
         {
             while (aspect.Exist())
             {

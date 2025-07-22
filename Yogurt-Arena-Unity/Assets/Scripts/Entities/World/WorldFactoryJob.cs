@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             World world = await config.World.Spawn();
             
             Entity entity = Entity.Create()
-                .AddLink(world.gameObject)
+                .Link(world.gameObject)
                 .Add(world)
                 .Add(new Level());
 

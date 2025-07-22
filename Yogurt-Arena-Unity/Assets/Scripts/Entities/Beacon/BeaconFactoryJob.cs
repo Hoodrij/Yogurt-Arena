@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             BeaconView view = await beaconConfig.Asset.Spawn();
 
             BeaconAspect beacon = World.Create()
-                .AddLink(view.gameObject)
+                .Link(view.gameObject)
                 .Add(beaconConfig)
                 .Add(view)
                 .Add(new BeaconBodyState())

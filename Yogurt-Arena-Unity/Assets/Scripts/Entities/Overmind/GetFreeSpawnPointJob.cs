@@ -13,11 +13,9 @@ namespace Yogurt.Arena
             PlayerAspect player = Query.Single<PlayerAspect>();
             Vector3 result = Vector3.zero;
 
-            await Wait.Until(HasFreeSpawnPoint, overmind.Entity);
-
+            await Wait.Until(HasFreeSpawnPoint, overmind.Life());
             return result;
-
-
+            
             bool HasFreeSpawnPoint()
             {
                 Vector3 randomPoint = level.navMeshData.sourceBounds.GetRandomPoint().WithY(0);

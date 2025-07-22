@@ -12,7 +12,7 @@ namespace Yogurt.Arena
         {
             TotalSpawned += 1;
             CurrentAgents.Add(agent);
-            await agent.Entity.WaitForDead();
+            await agent.Life();
             CurrentAgents.Remove(agent);
         } 
     }

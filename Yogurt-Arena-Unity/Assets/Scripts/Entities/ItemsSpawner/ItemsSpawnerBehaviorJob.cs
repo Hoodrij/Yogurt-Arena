@@ -10,12 +10,11 @@ namespace Yogurt.Arena
         {
             itemSpawner.Run(Update);
             return;
-
-
+            
             async UniTask Update()
             {
                 await WaitForSpawnAvailable();
-                await Wait.Seconds(0.5f, itemSpawner.Entity);
+                await Wait.Seconds(0.5f, itemSpawner.Life());
                 ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
                 randomSpot.State.Type = new GetRandomItemJob().Run(itemSpawner.Config.AvailableTags, itemSpawner.Config.AvailableItems);
             }
@@ -26,7 +25,7 @@ namespace Yogurt.Arena
                     int itemsCount = itemSpawner.Config.ItemsCount;
                     return Query.Of<ItemSpotAspect>()
                         .Count(itemSpot => itemSpot.Get<ItemSpotState>().Type != ItemType.Empty) >= itemsCount;
-                }, itemSpawner.Entity);
+                }, itemSpawner.Life());
             }
             IEnumerable<ItemSpotAspect> GetFreeSpots()
             {

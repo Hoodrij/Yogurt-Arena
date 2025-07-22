@@ -14,7 +14,7 @@ namespace Yogurt.Arena
             
             weapon.Run(Update);
 
-            await weapon.Entity.WaitForDead();
+            await weapon.Life();
             battleState.Target = default;
 
             return;

@@ -18,7 +18,7 @@ namespace Yogurt.Arena
             locationComp.NavSurface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
 
             World.Create()
-                .AddLink(levelGO)
+                .Link(levelGO)
                 .Add(locationComp);
             
             await new SpawnLocationPartJob().Run(0);

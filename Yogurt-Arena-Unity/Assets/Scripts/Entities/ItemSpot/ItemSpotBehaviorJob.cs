@@ -19,12 +19,12 @@ namespace Yogurt.Arena
                 await new GiveItemJob().Run(itemType, agent);
 
                 itemSpot.View.Hide();
-                await Wait.Seconds(1, itemSpot.Entity);
+                await Wait.Seconds(1, itemSpot.Life());
                 itemSpot.State.Type = ItemType.Empty;
             }
             async UniTask<ItemType> WaitForActivation()
             {
-                await Wait.Until(() => itemSpot.State.Type != ItemType.Empty, itemSpot.Entity);
+                await Wait.Until(() => itemSpot.State.Type != ItemType.Empty, itemSpot.Life());
                 return itemSpot.State.Type;
             }
             

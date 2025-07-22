@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             RaycastHit[] hits = new RaycastHit[3];
             CollisionInfo result = default;
 
-            await Wait.Until(HasHit, bullet.Entity);
+            await Wait.Until(HasHit, bullet.Life());
 
             return result;
 

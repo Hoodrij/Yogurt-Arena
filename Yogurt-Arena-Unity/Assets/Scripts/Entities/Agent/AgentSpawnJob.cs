@@ -43,7 +43,7 @@ namespace Yogurt.Arena
                     .Append(agent.View.transform.DOScale(Vector3.one, animationTime * 4).SetEase(Ease.OutElastic))
                     ;
 
-                await Wait.Seconds(activationTime, agent.Entity);
+                await Wait.Seconds(activationTime, agent.Life());
             }
         }
     }

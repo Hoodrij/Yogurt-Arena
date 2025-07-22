@@ -19,7 +19,7 @@ namespace Yogurt.Arena.Quest
             HashSet<Entity> enemies = new();
 
             world.Run(Update);
-            await Wait.While(() => killedEnemies < enemiesToKill, world);
+            await Wait.While(() => killedEnemies < enemiesToKill, world.Life());
             return;
 
             void Update()
@@ -28,13 +28,13 @@ namespace Yogurt.Arena.Quest
                 {
                     if (enemies.Add(enemy.Entity))
                     {
-                        ListenForDeath(enemy.Entity);
+                        ListenForDeath(enemy);
                     }
                 }
             }
-            async UniTaskVoid ListenForDeath(Entity enemy)
+            async UniTaskVoid ListenForDeath(AgentAspect enemy)
             {
-                await enemy.WaitForDead();
+                await enemy.Life();
                 killedEnemies++;
             }   
         }

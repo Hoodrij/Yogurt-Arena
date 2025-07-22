@@ -14,7 +14,7 @@ namespace Yogurt.Arena
             healthWidget.transform.SetParent(worldUI.transform, false);
             
             Entity entity = World.Create()
-                .AddLink(healthWidget.gameObject)
+                .Link(healthWidget.gameObject)
                 .Add(healthWidget);
             
             entity.SetParent(owner.Entity);

@@ -9,7 +9,7 @@ namespace Yogurt.Arena
             AgentView agentView = await config.Asset.Spawn();
             
             AgentAspect agent = World.Create()
-                .AddLink(agentView.gameObject)
+                .Link(agentView.gameObject)
                 .Add(config)
                 .Add(agentView)
                 .Add(new BodyState())

@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             UIView uiView = await config.UI.Spawn();
 
             Entity entity = World.Create()
-                .AddLink(uiView.gameObject)
+                .Link(uiView.gameObject)
                 .Add(uiView)
                 .Add(config);
 

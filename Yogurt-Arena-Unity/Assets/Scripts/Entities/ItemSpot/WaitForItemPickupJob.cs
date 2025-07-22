@@ -13,7 +13,7 @@ namespace Yogurt.Arena
             LayerMask mask = itemSpot.Config.Mask;
             AgentAspect result = default;
 
-            await Wait.Until(IsPickedUp, itemSpot.Entity);
+            await Wait.Until(IsPickedUp, itemSpot.Life());
 
             return result;
 

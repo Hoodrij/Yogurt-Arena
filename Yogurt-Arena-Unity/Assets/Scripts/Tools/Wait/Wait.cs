@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -7,37 +6,22 @@ namespace Yogurt.Arena
 {
     public static class Wait
     {
-        private static CancellationToken AppLifetime => Application.exitCancellationToken;
+        private static Lifetime AppLifetime => Application.exitCancellationToken;
         
-        public static UniTask While(Func<bool> predicate, Entity entity = default)
+        public static UniTask While(Func<bool> predicate, Lifetime life = null)
         {
-            if (predicate.Invoke())
-            {
-                if (entity.Exist)
-                {
-                    CancellationTokenSource cts = new CancellationTokenSource();
-                    CancellationToken token = cts.Token;
-                    
-                    return UniTask.WaitWhile(() =>
-                    {
-                        if (entity.Exist)
-                            return predicate();
+            if (!predicate.Invoke()) 
+                return UniTask.CompletedTask;
 
-                        cts.Cancel();
-                        return true;
-                    }, cancellationToken: token);
-                }
-                else
-                {
-                    return UniTask.WaitWhile(predicate, cancellationToken: AppLifetime);
-                }
-            }
-            return UniTask.CompletedTask;
+            life ??= AppLifetime;
+            return UniTask.WaitWhile(predicate, cancellationToken: life);
         }
 
-        public static UniTask Until(Func<bool> predicate, Entity entity = default)
+        public static UniTask Until(Func<bool> predicate, Lifetime life = null)
         {
-            return While(() => !predicate(), entity);
+            return While(Predicate, life);
+
+            bool Predicate() => !predicate();
         }
 
         public static UniTask Update()
@@ -45,21 +29,16 @@ namespace Yogurt.Arena
             return UniTask.NextFrame(cancellationToken: AppLifetime);
         }
 
-        public static UniTask Seconds(float seconds, Entity entity = default)
+        public static UniTask Seconds(float seconds, Lifetime life = null)
         {
             float startTime = UnityEngine.Time.time;
-            if (seconds > 0)
-            {
-                return Until(IsCompleted, entity);
-            }
-            return UniTask.CompletedTask;
+            life ??= AppLifetime;
+            
+            return seconds > 0 
+                ? Until(IsCompleted, life) 
+                : UniTask.CompletedTask;
 
-
-            bool IsCompleted()
-            {
-                float now = UnityEngine.Time.time;
-                return now - startTime >= seconds;
-            }
+            bool IsCompleted() => UnityEngine.Time.time - startTime >= seconds;
         }
 
         public static UniTask Any(params UniTask[] tasks)

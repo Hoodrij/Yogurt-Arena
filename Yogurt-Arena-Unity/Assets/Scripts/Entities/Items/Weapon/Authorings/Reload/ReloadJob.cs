@@ -22,7 +22,7 @@ namespace Yogurt.Arena
                 }
             }
             
-            await Wait.Seconds(reloadTime, weapon.Entity);
+            await Wait.Seconds(reloadTime, weapon.Life());
         }
     }
 }

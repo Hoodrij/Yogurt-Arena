@@ -5,14 +5,14 @@ namespace Yogurt.Arena
 {
     public struct GameFactoryJob
     {
-        public async UniTask Run()
+        public async UniTask<Entity> Run()
         {
             Entity game = Entity.Create()
                 .Add(new Game())
                 .Add(new Time());
 
             LoadConfig();
-            return;
+            return game;
 
             void LoadConfig()
             { 

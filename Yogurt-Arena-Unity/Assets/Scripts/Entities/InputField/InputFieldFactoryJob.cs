@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             InputFieldView inputFieldView = await inputConfig.Asset.Spawn();
 
             InputFieldAspect inputField = World.Create()
-                .AddLink(inputFieldView.gameObject)
+                .Link(inputFieldView.gameObject)
                 .Add(inputConfig)
                 .Add(inputFieldView)
                 .Add(inputFieldView.MoveInputReader)

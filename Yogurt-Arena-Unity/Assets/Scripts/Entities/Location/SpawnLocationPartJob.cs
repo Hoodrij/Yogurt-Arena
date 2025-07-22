@@ -12,7 +12,7 @@ namespace Yogurt.Arena
             LocationPartTag locationPart = await config.Asset.Spawn();
             
             locationPart.transform.SetParent(location.NavSurface.transform);
-            location.Entity.AddLink(locationPart.gameObject);
+            location.Entity.Link(locationPart.gameObject);
 
             if (level > 0)
             {

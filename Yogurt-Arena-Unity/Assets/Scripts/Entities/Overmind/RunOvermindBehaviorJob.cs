@@ -14,9 +14,9 @@ namespace Yogurt.Arena
             async UniTask Update()
             {
                 await new SpawnWaveJob().Run(overmind);
-                await Wait.Seconds(overmind.Config.WavesDelay.GetRandom(), overmind.Entity);
-                await Wait.While(HasEnoughAgents, overmind.Entity);
-                await Wait.While(MaximumLimitReached, overmind.Entity);
+                await Wait.Seconds(overmind.Config.WavesDelay.GetRandom(), overmind.Life());
+                await Wait.While(HasEnoughAgents, overmind.Life());
+                await Wait.While(MaximumLimitReached, overmind.Life());
             }
             bool HasEnoughAgents()
             {

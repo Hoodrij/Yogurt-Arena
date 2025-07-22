@@ -9,7 +9,7 @@ namespace Yogurt.Arena.Quest
             PlayerAspect player = Query.Single<PlayerAspect>();
             ItemAspect currentWeapon = player.Agent.Inventory.Weapon;
 
-            await Wait.While(IsWeaponChanged, player.Entity);
+            await Wait.While(IsWeaponChanged, player.Life());
 
 
             bool IsWeaponChanged()

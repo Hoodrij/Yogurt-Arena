@@ -10,7 +10,7 @@ namespace Yogurt.Arena
             CameraView view = await cameraConfig.Asset.Spawn();
 
             CameraAspect camera = World.Create()
-                .AddLink(view.gameObject)
+                .Link(view.gameObject)
                 .Add(cameraConfig)
                 .Add(view)
                 .As<CameraAspect>();

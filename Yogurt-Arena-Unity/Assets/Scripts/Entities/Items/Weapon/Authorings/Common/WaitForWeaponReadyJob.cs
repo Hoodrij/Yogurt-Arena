@@ -10,29 +10,19 @@ namespace Yogurt.Arena
             AgentAspect owner = item.Owner;
             WeaponConfig config = item.Get<WeaponConfig>();
 
-            await Wait.Until(() => !owner.Has<Kinematic>(), owner.Entity);
+            await Wait.Until(() => !owner.Has<Kinematic>(), owner.Life());
             await Wait.Until(() =>
                 IsWeaponAlive() &&
                 HasOwner() && 
                 HasTarget() && 
                 IsInRange() && 
                 IsLookingAtTarget()
-                , owner.Entity);
+                , owner.Life());
             return;
-
-
-            bool IsWeaponAlive()
-            {
-                return item.Exist();
-            }
-            bool HasOwner()
-            {
-                return owner.Exist();
-            }
-            bool HasTarget()
-            {
-                return owner.BattleState.Target.Exist();
-            }
+            
+            bool IsWeaponAlive() => item.Exist();
+            bool HasOwner() => owner.Exist();
+            bool HasTarget() => owner.BattleState.Target.Exist();
             bool IsLookingAtTarget()
             {
                 AgentAspect target = owner.BattleState.Target;

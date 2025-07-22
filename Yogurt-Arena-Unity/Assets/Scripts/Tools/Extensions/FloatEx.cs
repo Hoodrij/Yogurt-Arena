@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,11 +16,6 @@ namespace Yogurt.Arena
         {
             return Random.Range(0, f);
         }
-
-        public static TimeSpan ToSeconds(this float f)
-        {
-            return TimeSpan.FromSeconds(f);
-        }
         
         public static float DotToAngle(this float dot)
         {
@@ -34,6 +30,16 @@ namespace Yogurt.Arena
         public static void Clamp(ref this float f, float min, float max)
         {
             f = Mathf.Clamp(f, min, max);
+        }
+        
+        public static TimeSpan Seconds(this float f)
+        {
+            return TimeSpan.FromSeconds(f);
+        }
+        
+        public static UniTask Seconds(this float f, Lifetime life = null)
+        {
+            return Wait.Seconds(f, life);
         }
     }
 }

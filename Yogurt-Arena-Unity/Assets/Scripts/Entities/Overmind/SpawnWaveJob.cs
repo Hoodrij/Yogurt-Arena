@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             for (int i = 0; i < agentsCount; i++)
             {
                 await new SpawnSingleEnemyJob().Run(overmind);
-                await Wait.Seconds(0.5f, overmind.Entity);
+                await Wait.Seconds(0.5f, overmind.Life());
             }
         }
     }

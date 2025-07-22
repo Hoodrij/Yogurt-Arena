@@ -9,7 +9,7 @@ namespace Yogurt.Arena
             ItemSpotConfig config = new GetConfigJob().Run<ItemSpotConfig>();
             
             ItemSpotAspect entity = World.Create()
-                .AddLink(view.gameObject)
+                .Link(view.gameObject)
                 .Add(view)
                 .Add(config)
                 .Add(new BodyState

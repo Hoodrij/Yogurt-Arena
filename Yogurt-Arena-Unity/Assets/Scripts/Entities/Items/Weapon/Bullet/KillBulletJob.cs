@@ -17,14 +17,14 @@ namespace Yogurt.Arena
             {
                 bullet.View.Particle.Play();
                 bullet.View.transform.DOScale(0, t);
-                await Wait.Seconds(0.3f, bullet.Entity);
+                await Wait.Seconds(0.3f, bullet.Life());
             }
             else
             {
                 bullet.View.transform.DOScale(2, t);
-                await Wait.Seconds(t, bullet.Entity);
+                await Wait.Seconds(t, bullet.Life());
                 bullet.View.transform.DOScale(0, t);
-                await Wait.Seconds(t, bullet.Entity);
+                await Wait.Seconds(t, bullet.Life());
             }
 
             bullet.Kill();

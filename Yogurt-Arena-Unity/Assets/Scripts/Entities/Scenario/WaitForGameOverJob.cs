@@ -7,8 +7,7 @@ namespace Yogurt.Arena
         public async UniTask Run()
         {
             await Query.Single<PlayerAspect>()
-                .Entity
-                .WaitForDead();
+                .Life();
         }
     }
 }

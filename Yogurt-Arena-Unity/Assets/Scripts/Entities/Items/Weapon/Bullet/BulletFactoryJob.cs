@@ -9,7 +9,7 @@ namespace Yogurt.Arena
             BulletView view = await config.Asset.Spawn();
 
             BulletAspect bullet = World.Create()
-                .AddLink(view.gameObject)
+                .Link(view.gameObject)
                 .Add(config)
                 .Add(view)
                 .Add(new BulletState())
