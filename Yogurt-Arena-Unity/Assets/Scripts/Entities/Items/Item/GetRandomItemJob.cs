@@ -6,7 +6,7 @@ namespace Yogurt.Arena
     {
         public ItemType Run(ItemTags availableTags, ItemType availableTypes = ItemType.Any)
         {
-            return Query.Of<ItemConfigAspect>()
+            return Query.Of<ItemConfigAspect>().AsEnumerable()
                 .Where(FitsTags)
                 .Where(FitsType)
                 .GetRandom()

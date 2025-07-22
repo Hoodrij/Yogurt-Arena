@@ -30,7 +30,7 @@ namespace Yogurt.Arena
             }
             IEnumerable<ItemSpotAspect> GetFreeSpots()
             {
-                return Query.Of<ItemSpotAspect>()
+                return Query.Of<ItemSpotAspect>().AsEnumerable()
                     .Where(itemSpot => itemSpot.Get<ItemSpotState>().Type == ItemType.Empty);
             }
         }
