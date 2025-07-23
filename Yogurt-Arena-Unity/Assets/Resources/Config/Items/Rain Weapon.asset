@@ -22,24 +22,24 @@ MonoBehaviour:
           Prefab: {fileID: 7036511241227750618, guid: da46b3360c09a1f4b84586adcf3bc579, type: 3}
       CollisionMask:
         serializedVersion: 2
-        m_Bits: 1
+        m_Bits: 513
       Radius: 0.5
       Damage: 0
       LifeTime: 2
-      Speed: 1
-    Cooldown: 0.07
+      Speed: 1.1
+    Cooldown: 0.03
     Range: 15
     AngleToAttack: 360
   Lifetime:
     LifeTime: 5
   Clip:
     BulletsInClip: 7
-    ClipCooldown: 1
+    ClipCooldown: 1.5
   Scattering:
     VelocityMagnitudeModifier:
       Min: 1
       Max: 1
-    Angle: 90
+    Angle: 180
   TargetDetection:
     Distance: 15
     CollisionMask:

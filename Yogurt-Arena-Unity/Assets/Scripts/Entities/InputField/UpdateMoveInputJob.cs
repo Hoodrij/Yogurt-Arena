@@ -12,41 +12,33 @@ namespace Yogurt.Arena
 
             void Update()
             {
-                Time time = Query.Single<Time>();
-                
                 InputConfig config = inputField.Config;
                 MoveInputReader reader = inputField.MoveInputReader;
-                InputState inputState = inputField.Input;
 
-                Vector2 delta = Vector2.zero;
-                if (reader.IsDown)
+                if (!reader.ScreenPosition.HasValue) 
+                    return;
+
+                inputField.Input.Position = InputToWorldPosition(reader.ScreenPosition.Value, config); 
+                reader.ScreenPosition = null;
+            }
+            
+            Vector3 InputToWorldPosition(Vector3 input, InputConfig config)
+            {
+                CameraAspect cameraAspect = Query.Single<CameraAspect>();
+
+                Ray ray = cameraAspect.Camera.ScreenPointToRay(input);
+                if (Physics.Raycast(ray, out RaycastHit hit, config.LayerMask))
                 {
-                    delta = -reader.Delta;
-                    delta *= config.Sensitivity;
-                    inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, delta, config.AccumulativeValue * time);
+                    return hit.point;
                 }
                 else
                 {
-                    delta = inputState.CumulativeVelocity;
-                    inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, Vector2.zero, config.DeAccumulativeValue * time);
+                    new Plane(Vector3.up, Vector3.zero)
+                        .Raycast(ray, out float distance);
+                    
+                    return ray.GetPoint(distance);
                 }
-
-                inputState.MoveDelta = AddCameraRotation(delta);
-                reader.Delta = Vector2.zero;
             }
-        }
-        
-        private static Vector2 AddCameraRotation(Vector2 delta)
-        {
-            CameraAspect cameraAspect = Query.Single<CameraAspect>();
-            if (!cameraAspect.Exist())
-            {
-                return delta;
-            }
-            Transform cameraTransform = cameraAspect.View.transform;
-
-            float cameraRotation = cameraTransform.eulerAngles.y;
-            return delta.Rotate(-cameraRotation);
         }
     }
 }

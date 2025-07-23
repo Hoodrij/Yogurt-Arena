@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Asset:
     Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
-  SmoothValue: 0.5
+  SmoothValue: 1
   Elasticity: 25

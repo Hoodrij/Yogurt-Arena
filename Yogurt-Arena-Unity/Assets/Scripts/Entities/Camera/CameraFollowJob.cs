@@ -15,7 +15,7 @@ namespace Yogurt.Arena
                 Time time = Query.Single<Time>();
                 
                 Vector3 currentPos = camera.View.transform.position;
-                Vector3 followPoint = GetFollowPoint();
+                Vector3 followPoint = GetFollowPoint() ?? currentPos;
 		    
                 Vector3 lerpPoint = new Vector3(
                     Mathf.Lerp(currentPos.x, followPoint.x, camera.Config.SmoothValue * time), 
@@ -25,10 +25,12 @@ namespace Yogurt.Arena
                 camera.View.transform.position = lerpPoint;
             }
 
-            Vector3 GetFollowPoint()
+            Vector3? GetFollowPoint()
             {
-                BeaconAspect beacon = Query.Single<BeaconAspect>();
-                return beacon.Body.RawDestination;
+                PlayerAspect playerAspect = Query.Single<PlayerAspect>();
+                return playerAspect.Exist()
+                    ? playerAspect.Agent.Body.Position
+                    : null;
             }
         }
     }
