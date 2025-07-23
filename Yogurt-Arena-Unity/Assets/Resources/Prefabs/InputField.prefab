@@ -36,7 +36,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -139,6 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c67809f31f45e4ab9149a613a7bb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &5958332781688065147
 MonoBehaviour:
   m_ObjectHideFlags: 0

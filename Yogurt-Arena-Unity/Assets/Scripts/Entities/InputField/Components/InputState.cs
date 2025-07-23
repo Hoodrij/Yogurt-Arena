@@ -4,8 +4,6 @@ namespace Yogurt.Arena
 {
     public class InputState : IComponent
     {
-        public Vector2 MoveDelta;
-
-        public Vector2 CumulativeVelocity;
+        public Vector3? Position;
     }
 }

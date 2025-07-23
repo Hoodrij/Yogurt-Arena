@@ -3,32 +3,18 @@ using UnityEngine.EventSystems;
 
 namespace Yogurt.Arena
 {
-    public class MoveInputReader : MonoBehaviour, IComponent, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+    public class MoveInputReader : MonoBehaviour, IComponent, IPointerDownHandler, IPointerUpHandler
     {
-        public Vector2 Delta { get; set; }
-        public bool IsDown { get; private set; }
-
-        public void OnBeginDrag(PointerEventData eventData)
-        {
-        }
-
-        public void OnEndDrag(PointerEventData eventData)
-        {
-        }
-
-        public void OnDrag(PointerEventData eventData)
-        {
-            Delta = eventData.delta / Screen.dpi;
-        }
-
+        public Vector3? ScreenPosition;
+        
         public void OnPointerDown(PointerEventData eventData)
         {
-            IsDown = true;
+            ScreenPosition = eventData.position.ToV3XY();
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            IsDown = false;
+            ScreenPosition = null;
         }
     }
 }
