@@ -37,9 +37,9 @@ namespace Yogurt.Arena
             return TimeSpan.FromSeconds(f);
         }
         
-        public static UniTask Seconds(this float f, Lifetime life = null)
+        public static UniTask.Awaiter GetAwaiter(this TimeSpan f)
         {
-            return Wait.Seconds(f, life);
+            return Wait.Seconds((float) f.TotalSeconds).GetAwaiter();
         }
     }
 }

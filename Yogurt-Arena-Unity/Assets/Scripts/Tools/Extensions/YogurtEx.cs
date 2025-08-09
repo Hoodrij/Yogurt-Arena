@@ -15,8 +15,6 @@ namespace Yogurt.Arena
             }
             
             link.Set(entity);
-            entity.WaitForDeadAndDispose(link);
-
             return entity;
         }
 
@@ -35,12 +33,6 @@ namespace Yogurt.Arena
             return aspect.Entity.Life();
         }
         
-        private static async UniTask WaitForDeadAndDispose<TComponent>(this Entity entity, TComponent component) where TComponent : IComponent, IDisposable
-        {
-            await entity.Life();
-            component.Dispose();
-        }
-
         public static Entity Add(this Entity entity, IEnumerable<IComponent> components)
         {
             foreach (IComponent component in components)
