@@ -170,10 +170,10 @@ PlayerAspect player = Query.Single<PlayerAspect>();
 Lifetime is an awaitable, disposable cancellation context used to scope async work. It wraps a CancellationTokenSource and provides:
 - Implicit conversions to/from UniTask and CancellationToken
 - Boolean checks: IsAlive/IsDead (via implicit bool)
-- Composition operators:
-  - life & life → end when BOTH life dies (WhenAll)
-  - life | life → end when EITHER life dies (WhenAny)
-- Parenting: life.SetParent(life) → life ends when parentTask completes
+- Composition operators (with UniTask):
+  - life & task → end when BOTH life and task complete (WhenAll)
+  - life | task → end when EITHER life or task completes (WhenAny)
+- Parenting: life.SetParent(parentTask) → life ends when parentTask completes
 
 Use Lifetime to cleanly stop async loops when the Entity dies, the app quits, or another awaited task finishes.
 
@@ -195,7 +195,7 @@ Note: Wait internally attaches Application.exitCancellationToken so awaits are c
 ### EntityLink (GameObject bridge)
 - MonoBehaviour that implements IComponent and holds the bound Entity
 - Set(Entity): binds to entity, adds itself as component, awaits entity.Life(), then Dispose()s (release to PoolLink or Destroy(gameObject))
-- Clear(): removes EntityLink component from the entity. So GameObject could leave independently of Entity  
+- Clear(): removes EntityLink component from the entity. So GameObject could leave independently of Entity
 
 ---
 
@@ -259,3 +259,133 @@ await PlayAdditionalAnimation();
 // Or explicitly dispose pooled/non-pooled GO via EntityLink
 link.Dispose(); // releases PoolLink if present, else Destroy(gameObject)
 ```
+
+# Layer 3 - Jobs as Unit of work
+
+Jobs encapsulate game logic. They are small, composable units with a single public Run(...) entry. Prefer structs.
+
+### Entry Flow (Boot → Game → Loop)
+- Boot.Awake():
+  - await new GameFactoryJob().Run()
+  - new RunGameLoopJob().Run()
+- RunGameLoopJob.Loop():
+  - await new WorldFactoryJob().Run()
+  - new RunScenarioJob().Run()
+  - await new WaitForGameOverJob().Run()
+  - await new HandleGameOverJob().Run()
+
+### Job Types
+
+1. Factory Jobs (create/init)
+- Purpose: spawn entities/views, link to GameObjects, add components, start behaviors
+- Responsibilities: create/link, set initial state, start behaviors/updates immediately
+- Examples:
+```csharp
+public struct FooFactoryJob 
+{
+    public async UniTask<FooAspect> Run(/* inputs */) 
+    {
+        FooView view = await config.Asset.Spawn();
+        FooAspect foo = World.Create()
+            .Link(view.gameObject)
+            .Add(config).Add(view)
+            .Add(new BodyState())
+            .As<FooAspect>();
+        new FooBehaviorJob().Run(foo); // start behavior if needed
+        return foo;
+    }
+}
+```
+
+2. Behavior/Update Jobs (lifecycle-bound)
+- Purpose: periodic logic bound to an entity/aspect lifetime
+- Responsibilities: never block; use Wait helpers; tie waits to aspect.Life()
+- Examples:
+```csharp
+public struct FooBehaviorJob 
+{
+    public async UniTask Run(FooAspect foo) 
+    {
+        foo.Run(Update);
+        return;
+        
+        async UniTask Update() 
+        {
+            await Wait.Until(() => Ready(), foo.Life());
+            // do stuff
+            await Wait.Seconds(0.2f, foo.Life());
+        }
+    }
+}
+
+public struct UpdateFooJob 
+{
+    public void Run(FooAspect foo) 
+    {
+        foo.Run(Update);
+        return;
+        
+        void Update() 
+        {
+            // do stuff
+        }
+    }
+}
+```
+
+4. WaitFor Jobs (await conditions)
+- Purpose: await until condition/event occurs
+- Responsibilities: return promptly when ready; tie to proper Lifetime
+- Examples:
+```csharp
+public struct WaitForFooJob {
+    public async UniTask<FooResult> Run(FooAspect foo) {
+        FooResult result = default;
+        await Wait.Until(() => HasFoo(out result), foo.Life());
+        return result;
+    }
+}
+```
+
+5. Getter/Query Jobs (compute/return data)
+- Purpose: pick configs/data, no side-effects
+- Responsibilities: pure computation/queries
+- Examples:
+```csharp
+public struct GetFooJob {
+    public FooType Run(/* inputs */) {
+        // compute and return data
+        return default;
+    }
+}
+```
+
+6. Orchestration Jobs (compose flows)
+- Purpose: sequence other jobs with awaits
+- Responsibilities: await other jobs; no per-frame polling inside
+- Examples:
+```csharp
+public struct RunFooScenarioJob {
+    public async UniTask Run() {
+        await new FooFactoryJob().Run();
+        await new WaitForFooJob().Run(Query.Single<FooAspect>());
+        await new HandleFooJob().Run();
+    }
+}
+```
+
+### DOs and DON'Ts
+- DO keep jobs small, focused, composable
+- DO prefer structs and a single public Run(...)
+- DO use UniTask/UniTask<T>; avoid Task
+- DO scope async work with lifetimes (entity.Life(), aspect.Life())
+- DO use aspect.Run(Update)/entity.Run(Update) for per-frame loops
+- DO link Unity via entity.Link(go) and rely on EntityLink for cleanup
+- DO use Query.Single<T>()/Query.Of<T>() for discovery
+- DO name jobs consistently: XFactoryJob, XBehaviorJob, UpdateXJob, WaitForXJob, GetXJob, RunXJob
+
+- DON'T block thread; use Wait helpers instead of busy loops
+- DON'T store long-lived mutable state inside job structs
+- DON'T use async void except to kick a loop that returns immediately
+- DON'T touch dead entities; prefer aspect.Run(Update) scoping
+- DON'T Destroy(gameObject) directly for bound views; kill entity and let EntityLink handle
