@@ -267,12 +267,13 @@ Jobs encapsulate game logic. They are small, composable units with a single publ
 ### Entry Flow (Boot → Game → Loop)
 - Boot.Awake():
   - await new GameFactoryJob().Run()
-  - new RunGameLoopJob().Run()
-- RunGameLoopJob.Loop():
-  - await new WorldFactoryJob().Run()
-  - new RunScenarioJob().Run()
-  - await new WaitForGameOverJob().Run()
-  - await new HandleGameOverJob().Run()
+- new ShowMenuJob().Run():
+   - await WaitForPlayButtonJob().Run()
+   - new StartMatchJob().Run():
+     - await new WorldFactoryJob().Run()
+     - new StartScenarioJob().Run()
+     - await new WaitForGameOverJob().Run()
+     - await new ShowMatchResultsJob().Run()
 
 ### Job Types
 
@@ -281,9 +282,9 @@ Jobs encapsulate game logic. They are small, composable units with a single publ
 - Responsibilities: create/link, set initial state, start behaviors/updates immediately
 - Examples:
 ```csharp
-public struct FooFactoryJob 
+public struct FooFactoryJob
 {
-    public async UniTask<FooAspect> Run(/* inputs */) 
+    public async UniTask<FooAspect> Run(/* inputs */)
     {
         FooView view = await config.Asset.Spawn();
         FooAspect foo = World.Create()
@@ -302,14 +303,14 @@ public struct FooFactoryJob
 - Responsibilities: never block; use Wait helpers; tie waits to aspect.Life()
 - Examples:
 ```csharp
-public struct FooBehaviorJob 
+public struct FooBehaviorJob
 {
-    public async UniTask Run(FooAspect foo) 
+    public async UniTask Run(FooAspect foo)
     {
         foo.Run(Update);
         return;
-        
-        async UniTask Update() 
+
+        async UniTask Update()
         {
             await Wait.Until(() => Ready(), foo.Life());
             // do stuff
@@ -318,14 +319,14 @@ public struct FooBehaviorJob
     }
 }
 
-public struct UpdateFooJob 
+public struct UpdateFooJob
 {
-    public void Run(FooAspect foo) 
+    public void Run(FooAspect foo)
     {
         foo.Run(Update);
         return;
-        
-        void Update() 
+
+        void Update()
         {
             // do stuff
         }
