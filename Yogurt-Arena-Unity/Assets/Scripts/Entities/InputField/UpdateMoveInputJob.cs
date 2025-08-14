@@ -9,44 +9,42 @@ namespace Yogurt.Arena
             inputField.Run(Update);
             return;
 
-
             void Update()
             {
-                Time time = Query.Single<Time>();
-                
-                InputConfig config = inputField.Config;
                 MoveInputReader reader = inputField.MoveInputReader;
                 InputState inputState = inputField.Input;
 
-                Vector2 delta = Vector2.zero;
-                if (reader.IsDown)
+                if (reader.HasClick)
                 {
-                    delta = -reader.Delta;
-                    delta *= config.Sensitivity;
-                    inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, delta, config.AccumulativeValue * time);
-                }
-                else
-                {
-                    delta = inputState.CumulativeVelocity;
-                    inputState.CumulativeVelocity = Vector2.Lerp(inputState.CumulativeVelocity, Vector2.zero, config.DeAccumulativeValue * time);
-                }
+                    reader.HasClick = false;
+                    CameraAspect cameraAspect = Query.Single<CameraAspect>();
+                    if (cameraAspect.Exist())
+                    {
+                        Camera cam = cameraAspect.Camera;
+                        Ray ray = cam.ScreenPointToRay(reader.ClickScreenPosition);
+                        Vector3 worldPoint;
+                        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+                        {
+                            worldPoint = hit.point;
+                        }
+                        else
+                        {
+                            Plane ground = new Plane(Vector3.up, Vector3.zero);
+                            if (ground.Raycast(ray, out float dist))
+                            {
+                                worldPoint = ray.GetPoint(dist);
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
 
-                inputState.MoveDelta = AddCameraRotation(delta);
-                reader.Delta = Vector2.zero;
+                        inputState.HasClick = true;
+                        inputState.ClickWorldPosition = worldPoint;
+                    }
+                }
             }
-        }
-        
-        private static Vector2 AddCameraRotation(Vector2 delta)
-        {
-            CameraAspect cameraAspect = Query.Single<CameraAspect>();
-            if (!cameraAspect.Exist())
-            {
-                return delta;
-            }
-            Transform cameraTransform = cameraAspect.View.transform;
-
-            float cameraRotation = cameraTransform.eulerAngles.y;
-            return delta.Rotate(-cameraRotation);
         }
     }
 }

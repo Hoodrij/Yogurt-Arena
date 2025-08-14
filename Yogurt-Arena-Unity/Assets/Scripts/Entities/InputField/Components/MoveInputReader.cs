@@ -3,32 +3,15 @@ using UnityEngine.EventSystems;
 
 namespace Yogurt.Arena
 {
-    public class MoveInputReader : MonoBehaviour, IComponent, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+    public class MoveInputReader : MonoBehaviour, IComponent, IPointerClickHandler
     {
-        public Vector2 Delta { get; set; }
-        public bool IsDown { get; private set; }
+        public bool HasClick { get; set; }
+        public Vector2 ClickScreenPosition { get; set; }
 
-        public void OnBeginDrag(PointerEventData eventData)
+        public void OnPointerClick(PointerEventData eventData)
         {
-        }
-
-        public void OnEndDrag(PointerEventData eventData)
-        {
-        }
-
-        public void OnDrag(PointerEventData eventData)
-        {
-            Delta = eventData.delta / Screen.dpi;
-        }
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            IsDown = true;
-        }
-
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            IsDown = false;
+            HasClick = true;
+            ClickScreenPosition = eventData.position;
         }
     }
 }

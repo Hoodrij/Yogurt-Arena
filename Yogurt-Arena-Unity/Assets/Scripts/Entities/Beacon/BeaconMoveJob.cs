@@ -11,31 +11,26 @@ namespace Yogurt.Arena
             beacon.Run(Update);
             return;
 
-
             void Update()
             {
                 InputFieldAspect inputField = Query.Single<InputFieldAspect>();
                 BeaconConfig config = beacon.Config;
                 BeaconBodyState body = beacon.Body;
 
-                AddDelta(inputField.Input.MoveDelta.ToV3XZ());
-
-                Transform transform = beacon.View.transform;
-                transform.position = Vector3.Lerp(transform.position, body.Destination, config.SmoothValue);
-                
-                SpecifyTransformY(transform, body);
-                return;
-
-
-                void AddDelta(Vector3 delta)
+                if (inputField.Input.HasClick)
                 {
-                    if (delta == Vector3.zero) return;
-                    
-                    body.RawDestination += delta;
-                    body.Destination = CalcDestination(body.Destination, body.RawDestination);
+                    inputField.Input.HasClick = false;
+                    Vector3 target = inputField.Input.ClickWorldPosition;
+                    body.RawDestination = target;
+                    body.Destination = CalcDestination(body.Destination, target);
                     body.RawDestination = body.RawDestination.WithY(body.Destination.y);
                     body.RawDestination = ClampRawDestination(body.RawDestination, body.Destination, config.Elasticity);
                 }
+
+                Transform transform = beacon.View.transform;
+                transform.position = Vector3.Lerp(transform.position, body.Destination, config.SmoothValue);
+                SpecifyTransformY(transform, body);
+                return;
 
                 Vector3 CalcDestination(Vector3 prevDest, Vector3 newDest)
                 {
