@@ -18,7 +18,7 @@ namespace Yogurt.Arena
                 BeaconConfig config = beacon.Config;
                 BeaconBodyState body = beacon.Body;
 
-                AddDelta(inputField.Input.MoveDelta.ToV3XZ());
+                UpdateDestination(inputField.Input.Position);
 
                 Transform transform = beacon.View.transform;
                 transform.position = Vector3.Lerp(transform.position, body.Destination, config.SmoothValue);
@@ -27,16 +27,16 @@ namespace Yogurt.Arena
                 return;
 
 
-                void AddDelta(Vector3 delta)
+                void UpdateDestination(Vector3? destination)
                 {
-                    if (delta == Vector3.zero) return;
-                    
-                    body.RawDestination += delta;
+                    if (!destination.HasValue) return;
+
+                    body.RawDestination = destination.Value;
                     body.Destination = CalcDestination(body.Destination, body.RawDestination);
                     body.RawDestination = body.RawDestination.WithY(body.Destination.y);
                     body.RawDestination = ClampRawDestination(body.RawDestination, body.Destination, config.Elasticity);
                 }
-
+                
                 Vector3 CalcDestination(Vector3 prevDest, Vector3 newDest)
                 {
                     int mask = NavMesh.AllAreas;

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Asset:
     Prefab: {fileID: 2346468616466672681, guid: 67cb5b8d2da54ff4d815852dde211387, type: 3}
-  AccumulativeValue: 0.2
-  DeAccumulativeValue: 0.05
-  Sensitivity: 10
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 512
