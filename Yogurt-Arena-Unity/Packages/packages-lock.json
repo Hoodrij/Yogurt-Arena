@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.cysharp.csprojmodifier": {
+      "version": "https://github.com/Cysharp/CsprojModifier.git?path=src/CsprojModifier/Assets/CsprojModifier",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e82080dac67f22fa0ef0b7c0aceadda92df76ec3"
+    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
@@ -193,6 +200,13 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "games.corundum.isexternalinit": {
+      "version": "https://github.com/CorundumGames/IsExternalInit.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6512d3811b9899ebc4a6773f299b601ddad410fa"
     },
     "yogurt": {
       "version": "https://github.com/Hoodrij/Yogurt.git",

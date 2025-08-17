@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+        <LangVersion>11</LangVersion>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)IsExternalInit.cs" Visible="false" />
+    </ItemGroup>
+</Project>
