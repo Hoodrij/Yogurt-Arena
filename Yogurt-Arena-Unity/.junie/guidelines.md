@@ -1,4 +1,4 @@
-﻿# Project Guidelines
+# Project Guidelines
 
 # Layer 1 - Yogurt
 
@@ -403,9 +403,9 @@ Note: Some Yogurt runtime versions expose World.Create() instead of Entity.Creat
 - Unity: 2023.2 or newer (this repo uses 2023.2.5f1)
 - Scripting runtime: .NET 4.x / API Compatibility Level .NET Framework
 - Packages (via Package Manager):
-  - UniTask: com.cysharp.unitask (Git URL: https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask)
-  - Yogurt runtime: "yogurt" as a Git package (https://github.com/Hoodrij/Yogurt.git)
-  - Unity Test Framework (optional but recommended): com.unity.test-framework
+    - UniTask: com.cysharp.unitask (Git URL: https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask)
+    - Yogurt runtime: "yogurt" as a Git package (https://github.com/Hoodrij/Yogurt.git)
+    - Unity Test Framework (optional but recommended): com.unity.test-framework
 
 Tip: You can add Git packages directly in Packages/manifest.json or via Window → Package Manager → Add package from git URL.
 
@@ -452,17 +452,17 @@ public struct GameFactoryJob
 
 ## Recommended Folder Structure & Naming
 - Assets/Scripts/
-  - Components/ (IComponent data: Health, Configs, Tags)
-  - Aspects/ (IAspect: PlayerAspect, EnemyAspect)
-  - Jobs/
-    - Factory/ (XFactoryJob)
-    - Behavior/ (XBehaviorJob)
-    - Update/ (UpdateXJob)
-    - WaitFor/ (WaitForXJob)
-    - Get/ (GetXJob)
-    - Run/ (RunXJob)
-  - Views/ (MonoBehaviours, prefabs bindings)
-  - Configs/ (ScriptableObjects, static data)
+    - Components/ (IComponent data: Health, Configs, Tags)
+    - Aspects/ (IAspect: PlayerAspect, EnemyAspect)
+    - Jobs/
+        - Factory/ (XFactoryJob)
+        - Behavior/ (XBehaviorJob)
+        - Update/ (UpdateXJob)
+        - WaitFor/ (WaitForXJob)
+        - Get/ (GetXJob)
+        - Run/ (RunXJob)
+    - Views/ (MonoBehaviours, prefabs bindings)
+    - Configs/ (ScriptableObjects, static data)
 
 Naming: Keep job names consistent with the patterns above for readability and searchability.
 
