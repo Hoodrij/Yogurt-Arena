@@ -11,7 +11,7 @@ namespace Yogurt.Arena
             owner.Add(new Kinematic());
             new ChargeMoveOwnerJob().Run(bullet);
             new ChargeUpdateBulletPositionJob().Run(bullet);
-            TryDealDamage();
+            TryDealDamage().Forget();
             await Wait.Any(WaitForOwnerDeath(), WaitForLifeTime());
             
             if (owner.Exist())

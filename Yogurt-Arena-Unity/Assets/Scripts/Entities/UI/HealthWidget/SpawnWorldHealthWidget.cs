@@ -23,8 +23,7 @@ namespace Yogurt.Arena
             
             entity.Run(UpdatePosition);
             return;
-            
-            
+
             void UpdatePosition()
             {
                 Vector3 position = owner.Body.Position;

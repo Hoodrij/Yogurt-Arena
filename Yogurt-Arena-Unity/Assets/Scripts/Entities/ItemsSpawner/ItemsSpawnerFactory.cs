@@ -10,7 +10,7 @@ namespace Yogurt.Arena
                 .Add(new ItemsSpawnerState())
                 .As<ItemSpawnerAspect>();
 
-            new ItemsSpawnerBehaviorJob().Run(itemSpawner);
+            new ItemsSpawnerBehaviorJob().Run(itemSpawner).Forget();
         }
     }
 }

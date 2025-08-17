@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yogurt.Arena
@@ -11,9 +12,9 @@ namespace Yogurt.Arena
             AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red, overmind.Config.AvailableTypes);
                 
             AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint);
-            new SpawnWorldHealthWidget().Run(agent);
+            new SpawnWorldHealthWidget().Run(agent).Forget();
 
-            overmind.State.KeepAgent(agent);
+            overmind.State.KeepAgent(agent).Forget();
 
             return agent;
         }

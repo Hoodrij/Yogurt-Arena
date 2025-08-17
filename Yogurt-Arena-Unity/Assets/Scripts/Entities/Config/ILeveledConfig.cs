@@ -2,6 +2,6 @@
 {
     public interface ILeveledConfig
     {
-        public int Level { get; set; } 
+        int Level { get; set; } 
     }
 }

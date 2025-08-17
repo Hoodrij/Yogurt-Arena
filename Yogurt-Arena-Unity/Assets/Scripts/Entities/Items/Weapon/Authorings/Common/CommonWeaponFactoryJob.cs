@@ -25,7 +25,7 @@ namespace Yogurt.Arena
             
             if (item.Has<TargetDetectionConfig>())
             {
-                new CommonTargetDetectionJob().Run(item);
+                new CommonTargetDetectionJob().Run(item).Forget();
             }
         }
     }

@@ -20,7 +20,7 @@ namespace Yogurt.Arena
             int expectedFps = TARGET_FRAME_RATE;
             ExpectedDelta = 1f / expectedFps;
 
-            UpdateScale();
+            UpdateScale().Forget();
         }
 
         private async UniTask UpdateScale()
