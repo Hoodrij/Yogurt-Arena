@@ -6,29 +6,26 @@ namespace Yogurt.Arena
     {
         public void Run(CameraAspect camera)
         {
+            float velX = 0f, velY = 0f, velZ = 0f;
             camera.Run(Update);
             return;
-
-
+            
             void Update()
             {
-                Time time = Query.Single<Time>();
-                
                 Vector3 currentPos = camera.View.transform.position;
-                Vector3 followPoint = GetFollowPoint();
+                Vector3 followPoint = new GetFollowPointJob().Run(camera);
 		    
-                Vector3 lerpPoint = new Vector3(
-                    Mathf.Lerp(currentPos.x, followPoint.x, camera.Config.SmoothValue * time), 
-                    Mathf.Lerp(currentPos.y, followPoint.y, camera.Config.SmoothValue / 5 * time), 
-                    Mathf.Lerp(currentPos.z, followPoint.z, camera.Config.SmoothValue * time));
-		    
-                camera.View.transform.position = lerpPoint;
-            }
+                Time time = Query.Single<Time>();
+                float smoothValue = camera.Config.SmoothValue;
+                float smoothTimeBased = time.ExpectedDelta / smoothValue;
+                float smoothTimeY = smoothTimeBased * 5f;
 
-            Vector3 GetFollowPoint()
-            {
-                BeaconAspect beacon = Query.Single<BeaconAspect>();
-                return beacon.Body.RawDestination;
+                float dt = UnityEngine.Time.deltaTime;
+                float newX = Mathf.SmoothDamp(currentPos.x, followPoint.x, ref velX, smoothTimeBased, Mathf.Infinity, dt);
+                float newY = Mathf.SmoothDamp(currentPos.y, followPoint.y, ref velY, smoothTimeY, Mathf.Infinity, dt);
+                float newZ = Mathf.SmoothDamp(currentPos.z, followPoint.z, ref velZ, smoothTimeBased, Mathf.Infinity, dt);
+
+                camera.View.transform.position = new Vector3(newX, newY, newZ);
             }
         }
     }

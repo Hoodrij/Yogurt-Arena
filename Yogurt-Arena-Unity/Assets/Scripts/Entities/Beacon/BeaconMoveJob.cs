@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 namespace Yogurt.Arena
 {
@@ -17,19 +18,32 @@ namespace Yogurt.Arena
                 BeaconConfig config = beacon.Config;
                 BeaconBodyState body = beacon.Body;
 
-                if (inputField.Input.HasClick)
-                {
-                    inputField.Input.HasClick = false;
-                    Vector3 target = inputField.Input.ClickWorldPosition;
-                    body.RawDestination = target;
-                    body.Destination = CalcDestination(body.Destination, target);
-                    body.RawDestination = body.RawDestination.WithY(body.Destination.y);
-                    body.RawDestination = ClampRawDestination(body.RawDestination, body.Destination, config.Elasticity);
-                }
+                if (!inputField.Input.HasClick) 
+                    return;
+                inputField.Input.HasClick = false;
+
+                PlayerAspect player = Query.Single<PlayerAspect>();
+                if (!player.Exist())
+                    return;
+                
+                Vector3 target = inputField.Input.ClickWorldPosition;
+                body.RawDestination = target;
+                body.Destination = CalcDestination(body.Destination, target);
+                body.RawDestination = body.RawDestination.WithY(body.Destination.y);
+                body.RawDestination = ClampRawDestination(body.RawDestination, body.Destination, config.Elasticity);
 
                 Transform transform = beacon.View.transform;
-                transform.position = Vector3.Lerp(transform.position, body.Destination, config.SmoothValue);
-                SpecifyTransformY(transform, body);
+
+                body.Animation?.Kill();
+                body.Animation = DOTween.Sequence()
+                    .Append(transform.DOScale(Vector3.zero, config.DisappearDuration))
+                    .AppendCallback(() =>
+                    {
+                        transform.position = body.Destination;
+                    })
+                    .Append(transform.DOScale(Vector3.one, config.AppearDuration / 5))
+                    .Append(transform.DOPunchScale(Vector3.one * 2, config.AppearDuration));
+
                 return;
 
                 Vector3 CalcDestination(Vector3 prevDest, Vector3 newDest)
@@ -52,15 +66,6 @@ namespace Yogurt.Arena
                 {
                     float magnitude = (rawDest - dest).magnitude * (1/elasticity);
                     return Vector3.Lerp(rawDest, dest, magnitude);
-                }
-                    
-                void SpecifyTransformY(Transform transform, BeaconBodyState body)
-                {
-                    Vector3 requiredPos = transform.position.WithY(body.Destination.y);
-                    if (NavMesh.SamplePosition(requiredPos, out var hit, 10, NavMesh.AllAreas))
-                    {
-                        transform.position = transform.position.WithY(hit.position.y);
-                    }
                 }
             }
         }
