@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public interface IItemUseJob
 {
-    public interface IItemUseJob
-    {
-        UniTask Run(ItemAspect item);
-    }
+    UniTask Run(ItemAspect item);
 }

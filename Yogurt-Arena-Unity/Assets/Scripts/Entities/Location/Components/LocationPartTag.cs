@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class LocationPartTag : MonoBehaviour, IComponent
 {
-    public class LocationPartTag : MonoBehaviour, IComponent
-    {
         
-    }
 }

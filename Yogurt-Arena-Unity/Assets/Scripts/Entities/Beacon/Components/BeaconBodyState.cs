@@ -1,9 +1,8 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class BeaconBodyState : IComponent
 {
-    public class BeaconBodyState : IComponent
-    {
-        public Vector3 RawDestination;
-        public Vector3 Destination;
-        public Sequence Animation;
-    }
+    public Vector3 RawDestination;
+    public Vector3 Destination;
+    public Sequence Animation;
 }

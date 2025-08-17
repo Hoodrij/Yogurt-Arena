@@ -1,17 +1,16 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct OvermindFactoryJob
 {
-    public struct OvermindFactoryJob
+    public async UniTask<OvermindAspect> Run()
     {
-        public async UniTask<OvermindAspect> Run()
-        {
-            OvermindAspect overmind = World.Create()
-                .Add(new GetConfigJob().Run<OvermindConfig>())
-                .Add(new OvermindState())
-                .As<OvermindAspect>();
+        OvermindAspect overmind = World.Create()
+            .Add(new GetConfigJob().Run<OvermindConfig>())
+            .Add(new OvermindState())
+            .As<OvermindAspect>();
 
-            new UpdateOvermindDestinationJob().Run(overmind);
+        new UpdateOvermindDestinationJob().Run(overmind);
 
-            return overmind;
-        }
+        return overmind;
     }
 }

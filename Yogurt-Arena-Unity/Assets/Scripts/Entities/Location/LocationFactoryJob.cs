@@ -1,22 +1,21 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct LocationFactoryJob
 {
-    public struct LocationFactoryJob
+    public async UniTask Run()
     {
-        public async UniTask Run()
-        {
-            GameObject levelGO = new GameObject("Level");
-            Location locationComp = levelGO.AddComponent<Location>();
-            NavMeshSurface navMeshSurface = levelGO.AddComponent<NavMeshSurface>();
-            locationComp.NavSurface = navMeshSurface;
+        GameObject levelGO = new GameObject("Level");
+        Location locationComp = levelGO.AddComponent<Location>();
+        NavMeshSurface navMeshSurface = levelGO.AddComponent<NavMeshSurface>();
+        locationComp.NavSurface = navMeshSurface;
 
-            locationComp.NavSurface.collectObjects = CollectObjects.Children;
-            locationComp.NavSurface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
+        locationComp.NavSurface.collectObjects = CollectObjects.Children;
+        locationComp.NavSurface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
 
-            World.Create()
-                .Link(levelGO)
-                .Add(locationComp);
+        World.Create()
+            .Link(levelGO)
+            .Add(locationComp);
             
-            await new SpawnLocationPartJob().Run(0);
-        }
+        await new SpawnLocationPartJob().Run(0);
     }
 }

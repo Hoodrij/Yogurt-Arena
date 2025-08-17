@@ -1,11 +1,10 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct WaitForGameOverJob
 {
-    public struct WaitForGameOverJob
+    public async UniTask Run()
     {
-        public async UniTask Run()
-        {
-            await Query.Single<PlayerAspect>()
-                .Life();
-        }
+        await Query.Single<PlayerAspect>()
+            .Life();
     }
 }

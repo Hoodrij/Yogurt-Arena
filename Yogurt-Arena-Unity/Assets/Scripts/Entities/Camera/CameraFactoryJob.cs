@@ -1,21 +1,20 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct CameraFactoryJob
 {
-    public struct CameraFactoryJob
+    public async UniTask<CameraAspect> Run()
     {
-        public async UniTask<CameraAspect> Run()
-        {
-            CameraConfig cameraConfig = new GetConfigJob().Run<CameraConfig>();
-            CameraView view = await cameraConfig.Asset.Spawn();
+        CameraConfig cameraConfig = new GetConfigJob().Run<CameraConfig>();
+        CameraView view = await cameraConfig.Asset.Spawn();
 
-            CameraAspect camera = World.Create()
-                .Link(view.gameObject)
-                .Add(cameraConfig)
-                .Add(view)
-                .As<CameraAspect>();
+        CameraAspect camera = World.Create()
+            .Link(view.gameObject)
+            .Add(cameraConfig)
+            .Add(view)
+            .As<CameraAspect>();
 
-            new CameraFollowJob().Run(camera);
+        new CameraFollowJob().Run(camera);
 
-            return camera;
-        }
+        return camera;
     }
 }

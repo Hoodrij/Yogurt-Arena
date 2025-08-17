@@ -1,8 +1,7 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class Config : ScriptableObject
 {
-    public class Config : ScriptableObject
-    {
-        [SerializeReference]
-        public List<ScriptableObject> All;
-    }
+    [SerializeReference]
+    public List<ScriptableObject> All;
 }

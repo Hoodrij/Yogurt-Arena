@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena.Quest
+﻿namespace Yogurt.Arena.Quest;
+
+public interface IQuest
 {
-    public interface IQuest
-    {
-        UniTask Run();
-    }
+    UniTask Run();
 }

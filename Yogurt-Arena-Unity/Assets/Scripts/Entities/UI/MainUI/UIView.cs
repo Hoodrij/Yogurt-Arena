@@ -1,9 +1,8 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class UIView : MonoBehaviour, IComponent
 {
-    public class UIView : MonoBehaviour, IComponent
-    {
-        public HealthWidget HealthWidget;
-        public WeaponLifetimeWidget WeaponLifetimeWidget;
-        public GameOverWidget GameOverWidget;
-    }
+    public HealthWidget HealthWidget;
+    public WeaponLifetimeWidget WeaponLifetimeWidget;
+    public GameOverWidget GameOverWidget;
 }

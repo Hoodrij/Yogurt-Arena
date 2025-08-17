@@ -1,10 +1,9 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct DealDamageJob
 {
-    public struct DealDamageJob
+    public void Run(Entity target, int damage)
     {
-        public void Run(Entity target, int damage)
-        {
-            new ChangeHealthJob().Run(target, -damage);
-        }
+        new ChangeHealthJob().Run(target, -damage);
     }
 }

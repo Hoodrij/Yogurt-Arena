@@ -1,19 +1,18 @@
 ﻿using UnityEngine.Rendering;
 
-namespace Yogurt.Arena
-{
-    public class InvertedMaskImage : Image
-    {
-        private static readonly int stencilComp = Shader.PropertyToID("_StencilComp");
+namespace Yogurt.Arena;
 
-        public override Material materialForRendering
+public class InvertedMaskImage : Image
+{
+    private static readonly int stencilComp = Shader.PropertyToID("_StencilComp");
+
+    public override Material materialForRendering
+    {
+        get
         {
-            get
-            {
-                Material result = base.materialForRendering;
-                result.SetInt(stencilComp, (int)CompareFunction.NotEqual);
-                return result;
-            }
+            Material result = base.materialForRendering;
+            result.SetInt(stencilComp, (int)CompareFunction.NotEqual);
+            return result;
         }
     }
 }

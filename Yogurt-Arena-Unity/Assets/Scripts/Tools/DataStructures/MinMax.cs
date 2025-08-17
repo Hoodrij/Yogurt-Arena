@@ -1,20 +1,19 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+[Serializable]
+public struct MinMax
 {
-    [Serializable]
-    public struct MinMax
+    public float Min;
+    public float Max;
+
+    public MinMax(float min, float max)
     {
-        public float Min;
-        public float Max;
+        Min = min;
+        Max = max;
+    }
 
-        public MinMax(float min, float max)
-        {
-            Min = min;
-            Max = max;
-        }
-
-        public float GetRandom()
-        {
-            return Random.Range(Min, Max);
-        }
+    public float GetRandom()
+    {
+        return Random.Range(Min, Max);
     }
 }

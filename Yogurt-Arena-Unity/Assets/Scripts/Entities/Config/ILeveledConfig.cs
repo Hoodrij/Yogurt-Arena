@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public interface ILeveledConfig
 {
-    public interface ILeveledConfig
-    {
-        int Level { get; set; } 
-    }
+    int Level { get; set; } 
 }

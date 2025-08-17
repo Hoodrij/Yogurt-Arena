@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class ItemSpotState : IComponent
 {
-    public class ItemSpotState : IComponent
-    {
-        public ItemType Type;
-    }
+    public ItemType Type;
 }

@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class Game : IComponent
 {
-    public class Game : IComponent
-    {
         
-    }
 }

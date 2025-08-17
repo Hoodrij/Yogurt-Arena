@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class AgentDeathVFX : MonoBehaviour, IComponent
 {
-    public class AgentDeathVFX : MonoBehaviour, IComponent
-    {
-        public ParticleSystem DeathVFX;
-    }
+    public ParticleSystem DeathVFX;
 }

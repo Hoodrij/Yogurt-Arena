@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class Inventory : IComponent
 {
-    public class Inventory : IComponent
-    {
-        public ItemAspect Weapon;
-    }
+    public ItemAspect Weapon;
 }

@@ -1,9 +1,8 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+[System.Serializable]
+public class ExplosionConfig : IComponent
 {
-    [System.Serializable]
-    public class ExplosionConfig : IComponent
-    {
-        public PooledAsset<ExplosionView> Asset;
-        public AoeDamage Damage;
-    }
+    public PooledAsset<ExplosionView> Asset;
+    public AoeDamage Damage;
 }

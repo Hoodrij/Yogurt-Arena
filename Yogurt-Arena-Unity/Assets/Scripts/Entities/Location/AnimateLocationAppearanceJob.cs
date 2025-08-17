@@ -1,15 +1,14 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct AnimateLocationAppearanceJob
 {
-    public struct AnimateLocationAppearanceJob
+    public async UniTask Run(LocationPartTag location)
     {
-        public async UniTask Run(LocationPartTag location)
-        {
-            location.transform.DOMoveY(-100, 0);
+        location.transform.DOMoveY(-100, 0);
 
-            float appearTime = 1f;
-            location.transform.DOMoveY(0, appearTime).SetEase(Ease.InOutExpo);
+        float appearTime = 1f;
+        location.transform.DOMoveY(0, appearTime).SetEase(Ease.InOutExpo);
 
-            await Wait.Seconds(appearTime);
-        }
+        await Wait.Seconds(appearTime);
     }
 }

@@ -1,13 +1,12 @@
-﻿namespace Yogurt.Arena
-{
-    public struct RainBulletAspect : IAspect
-    {
-        public Entity Entity { get; set; }
+﻿namespace Yogurt.Arena;
 
-        public RainBulletConfig Config => this.Get<RainBulletConfig>();
+public struct RainBulletAspect : IAspect
+{
+    public Entity Entity { get; set; }
+
+    public RainBulletConfig Config => this.Get<RainBulletConfig>();
         
-        public BulletAspect BulletAspect => this.Get<BulletAspect>();
-        public BattleState BattleState => this.Get<BattleState>();
-        public OwnerState Owner => this.Get<OwnerState>();
-    }
+    public BulletAspect BulletAspect => this.Get<BulletAspect>();
+    public BattleState BattleState => this.Get<BattleState>();
+    public OwnerState Owner => this.Get<OwnerState>();
 }

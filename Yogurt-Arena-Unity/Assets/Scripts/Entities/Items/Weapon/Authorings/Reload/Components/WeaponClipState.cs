@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class WeaponClipState : IComponent
 {
-    public class WeaponClipState : IComponent
-    {
-        public int CurrentAmmo;
-    }
+    public int CurrentAmmo;
 }

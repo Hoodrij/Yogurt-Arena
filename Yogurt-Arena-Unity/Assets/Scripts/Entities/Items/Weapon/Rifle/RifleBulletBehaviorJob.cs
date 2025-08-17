@@ -1,33 +1,32 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct RifleBulletBehaviorJob
 {
-    public struct RifleBulletBehaviorJob
+    public async UniTask Run(BulletAspect bullet)
     {
-        public async UniTask Run(BulletAspect bullet)
+        CollisionInfo collision = default;
+
+        UniTask collisionTask = DetectHit();
+        new RifleMoveBulletJob().Run(bullet);
+        await Wait.Any(collisionTask, WaitForLifeTime());
+            
+        if (collision.IsValid)
         {
-            CollisionInfo collision = default;
-
-            UniTask collisionTask = DetectHit();
-            new RifleMoveBulletJob().Run(bullet);
-            await Wait.Any(collisionTask, WaitForLifeTime());
+            new DealDamageJob().Run(collision.Entity, bullet.Config.Damage);
+            bullet.Body.Position = bullet.View.transform.position = collision.Position;
+        }
             
-            if (collision.IsValid)
-            {
-                new DealDamageJob().Run(collision.Entity, bullet.Config.Damage);
-                bullet.Body.Position = bullet.View.transform.position = collision.Position;
-            }
-            
-            await new KillBulletJob().Run(bullet);
-            return;
+        await new KillBulletJob().Run(bullet);
+        return;
 
 
-            async UniTask DetectHit()
-            {
-                collision = await new WaitForBulletHitJob().Run(bullet);
-            }
-            async UniTask WaitForLifeTime()
-            {
-                await new WaitForBulletLiteTimeJob().Run(bullet);
-            }
+        async UniTask DetectHit()
+        {
+            collision = await new WaitForBulletHitJob().Run(bullet);
+        }
+        async UniTask WaitForLifeTime()
+        {
+            await new WaitForBulletLiteTimeJob().Run(bullet);
         }
     }
 }

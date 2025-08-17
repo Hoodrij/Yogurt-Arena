@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class WorldUIView : MonoBehaviour, IComponent
 {
-    public class WorldUIView : MonoBehaviour, IComponent
-    {
         
-    }
 }

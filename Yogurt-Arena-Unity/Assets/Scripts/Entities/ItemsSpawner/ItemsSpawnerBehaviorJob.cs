@@ -1,33 +1,32 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct ItemsSpawnerBehaviorJob
 {
-    public struct ItemsSpawnerBehaviorJob
+    public async UniTask Run(ItemSpawnerAspect itemSpawner)
     {
-        public async UniTask Run(ItemSpawnerAspect itemSpawner)
-        {
-            itemSpawner.Run(Update);
-            return;
+        itemSpawner.Run(Update);
+        return;
             
-            async UniTask Update()
+        async UniTask Update()
+        {
+            await WaitForSpawnAvailable();
+            await Wait.Seconds(0.5f, itemSpawner.Life());
+            ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
+            randomSpot.State.Type = new GetRandomItemJob().Run(itemSpawner.Config.AvailableTags, itemSpawner.Config.AvailableItems);
+        }
+        async UniTask WaitForSpawnAvailable()
+        {
+            await Wait.While(() =>
             {
-                await WaitForSpawnAvailable();
-                await Wait.Seconds(0.5f, itemSpawner.Life());
-                ItemSpotAspect randomSpot = GetFreeSpots().GetRandom();
-                randomSpot.State.Type = new GetRandomItemJob().Run(itemSpawner.Config.AvailableTags, itemSpawner.Config.AvailableItems);
-            }
-            async UniTask WaitForSpawnAvailable()
-            {
-                await Wait.While(() =>
-                {
-                    int itemsCount = itemSpawner.Config.ItemsCount;
-                    return Query.Of<ItemSpotAspect>()
-                        .Count(itemSpot => itemSpot.Get<ItemSpotState>().Type != ItemType.Empty) >= itemsCount;
-                }, itemSpawner.Life());
-            }
-            IEnumerable<ItemSpotAspect> GetFreeSpots()
-            {
-                return Query.Of<ItemSpotAspect>().AsEnumerable()
-                    .Where(itemSpot => itemSpot.Get<ItemSpotState>().Type == ItemType.Empty);
-            }
+                int itemsCount = itemSpawner.Config.ItemsCount;
+                return Query.Of<ItemSpotAspect>()
+                    .Count(itemSpot => itemSpot.Get<ItemSpotState>().Type != ItemType.Empty) >= itemsCount;
+            }, itemSpawner.Life());
+        }
+        IEnumerable<ItemSpotAspect> GetFreeSpots()
+        {
+            return Query.Of<ItemSpotAspect>().AsEnumerable()
+                .Where(itemSpot => itemSpot.Get<ItemSpotState>().Type == ItemType.Empty);
         }
     }
 }

@@ -1,15 +1,14 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class InputConfig : ScriptableObject, IComponent, IConfigSO
 {
-    public class InputConfig : ScriptableObject, IComponent, IConfigSO
-    {
-        public Asset<InputFieldView> Asset;
-        public float AccumulativeValue;
-        public float DeAccumulativeValue;
-        public float Sensitivity;
+    public Asset<InputFieldView> Asset;
+    public float AccumulativeValue;
+    public float DeAccumulativeValue;
+    public float Sensitivity;
         
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-        }
+    public IEnumerable<IComponent> GetComponents()
+    {
+        yield return this;
     }
 }

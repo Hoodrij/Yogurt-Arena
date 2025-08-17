@@ -1,31 +1,30 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct SpawnWorldHealthWidget
 {
-    public struct SpawnWorldHealthWidget
+    public async UniTask Run(AgentAspect owner)
     {
-        public async UniTask Run(AgentAspect owner)
+        WorldUIView worldUI = Query.Single<WorldUIView>();
+        UIConfig config = Query.Single<UIConfig>();
+
+        HealthWidget healthWidget = await config.WorldHealthWidget.Spawn();
+        healthWidget.transform.SetParent(worldUI.transform, false);
+            
+        Entity entity = World.Create()
+            .Link(healthWidget.gameObject)
+            .Add(healthWidget);
+            
+        entity.SetParent(owner.Entity);
+        owner.Health.HealthWidget = healthWidget;
+        healthWidget.SetHealth(1).Forget();
+            
+        entity.Run(UpdatePosition);
+        return;
+
+        void UpdatePosition()
         {
-            WorldUIView worldUI = Query.Single<WorldUIView>();
-            UIConfig config = Query.Single<UIConfig>();
-
-            HealthWidget healthWidget = await config.WorldHealthWidget.Spawn();
-            healthWidget.transform.SetParent(worldUI.transform, false);
-            
-            Entity entity = World.Create()
-                .Link(healthWidget.gameObject)
-                .Add(healthWidget);
-            
-            entity.SetParent(owner.Entity);
-            owner.Health.HealthWidget = healthWidget;
-            healthWidget.SetHealth(1).Forget();
-            
-            entity.Run(UpdatePosition);
-            return;
-
-            void UpdatePosition()
-            {
-                Vector3 position = owner.Body.Position;
-                healthWidget.transform.position = position;
-            }
+            Vector3 position = owner.Body.Position;
+            healthWidget.transform.position = position;
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class AgentView : MonoBehaviour, IComponent
 {
-    public class AgentView : MonoBehaviour, IComponent
-    {
         
-    }
 }

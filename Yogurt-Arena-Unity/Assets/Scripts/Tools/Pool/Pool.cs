@@ -1,41 +1,40 @@
-﻿namespace Yogurt.Arena.Tools
+﻿namespace Yogurt.Arena.Tools;
+
+public class Pool
 {
-    public class Pool
+    private Stack<GameObject> pool = new();
+    private Func<UniTask<GameObject>> factory;
+
+    public Pool(Func<UniTask<GameObject>> factory)
     {
-        private Stack<GameObject> pool = new();
-        private Func<UniTask<GameObject>> factory;
-
-        public Pool(Func<UniTask<GameObject>> factory)
-        {
-            this.factory = factory;
-        }
+        this.factory = factory;
+    }
         
-        public async UniTask<GameObject> Pop()
+    public async UniTask<GameObject> Pop()
+    {
+        GameObject go;
+        if (pool.Count <= 0)
         {
-            GameObject go;
-            if (pool.Count <= 0)
+            go = await factory.Invoke();
+            PoolLink link = go.AddComponent<PoolLink>();
+            link.Pool = this;
+        }
+        else
+        {
+            go = pool.Pop();
+            if (go == null)
             {
-                go = await factory.Invoke();
-                PoolLink link = go.AddComponent<PoolLink>();
-                link.Pool = this;
+                return await Pop();
             }
-            else
-            {
-                go = pool.Pop();
-                if (go == null)
-                {
-                    return await Pop();
-                }
-            }
-
-            go.SetActive(true);
-            return go;
         }
 
-        public void Push(GameObject go)
-        {
-            pool.Push(go);
-            go.SetActive(false);
-        }
+        go.SetActive(true);
+        return go;
+    }
+
+    public void Push(GameObject go)
+    {
+        pool.Push(go);
+        go.SetActive(false);
     }
 }

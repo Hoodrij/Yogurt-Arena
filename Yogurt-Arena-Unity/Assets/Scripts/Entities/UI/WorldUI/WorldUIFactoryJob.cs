@@ -1,18 +1,17 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct WorldUIFactoryJob
 {
-    public struct WorldUIFactoryJob
+    public async UniTask<Entity> Run()
     {
-        public async UniTask<Entity> Run()
-        {
-            UIConfig config = new GetConfigJob().Run<UIConfig>();;
-            WorldUIView worldUI = await config.WorldUI.Spawn();
+        UIConfig config = new GetConfigJob().Run<UIConfig>();;
+        WorldUIView worldUI = await config.WorldUI.Spawn();
 
-            Entity entity = World.Create()
-                .Link(worldUI.gameObject)
-                .Add(worldUI)
-                .Add(config);
+        Entity entity = World.Create()
+            .Link(worldUI.gameObject)
+            .Add(worldUI)
+            .Add(config);
 
-            return entity;
-        }
+        return entity;
     }
 }

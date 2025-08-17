@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class BulletState : IComponent
 {
-    public class BulletState : IComponent
-    {
         
-    }
 }

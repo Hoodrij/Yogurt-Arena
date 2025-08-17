@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class InputFieldView : MonoBehaviour, IComponent
 {
-    public class InputFieldView : MonoBehaviour, IComponent
-    {
-        public MoveInputReader MoveInputReader;
-    }
+    public MoveInputReader MoveInputReader;
 }

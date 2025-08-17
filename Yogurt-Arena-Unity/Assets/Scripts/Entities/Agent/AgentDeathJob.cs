@@ -1,17 +1,16 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct AgentDeathJob : IDeathJob
 {
-    public struct AgentDeathJob : IDeathJob
+    public async UniTaskVoid Run(Entity entity)
     {
-        public async UniTaskVoid Run(Entity entity)
-        {
-            AgentConfig config = entity.Get<AgentConfig>();
-            Vector3 position = entity.Get<BodyState>().MiddlePoint;
+        AgentConfig config = entity.Get<AgentConfig>();
+        Vector3 position = entity.Get<BodyState>().MiddlePoint;
 
-            AgentDeathVFX vfx = await config.DeathVFX.Spawn();
-            vfx.transform.position = position;
+        AgentDeathVFX vfx = await config.DeathVFX.Spawn();
+        vfx.transform.position = position;
 
-            await Wait.Seconds(0.5f);
-            vfx.GetComponent<PoolLink>().Release();
-        }
+        await Wait.Seconds(0.5f);
+        vfx.GetComponent<PoolLink>().Release();
     }
 }

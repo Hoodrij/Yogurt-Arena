@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class Level : IComponent
 {
-    public class Level : IComponent
-    {
-        public int Current = 0;
-    }
+    public int Current = 0;
 }

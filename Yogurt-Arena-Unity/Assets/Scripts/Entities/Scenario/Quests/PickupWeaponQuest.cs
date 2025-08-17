@@ -1,19 +1,18 @@
-﻿namespace Yogurt.Arena.Quest
+﻿namespace Yogurt.Arena.Quest;
+
+public struct PickupWeaponQuest : IQuest
 {
-    public struct PickupWeaponQuest : IQuest
+    public async UniTask Run()
     {
-        public async UniTask Run()
+        PlayerAspect player = Query.Single<PlayerAspect>();
+        ItemAspect currentWeapon = player.Agent.Inventory.Weapon;
+
+        await Wait.While(IsWeaponChanged, player.Life());
+
+
+        bool IsWeaponChanged()
         {
-            PlayerAspect player = Query.Single<PlayerAspect>();
-            ItemAspect currentWeapon = player.Agent.Inventory.Weapon;
-
-            await Wait.While(IsWeaponChanged, player.Life());
-
-
-            bool IsWeaponChanged()
-            {
-                return currentWeapon.Entity == player.Agent.Inventory.Weapon.Entity;
-            }
+            return currentWeapon.Entity == player.Agent.Inventory.Weapon.Entity;
         }
     }
 }

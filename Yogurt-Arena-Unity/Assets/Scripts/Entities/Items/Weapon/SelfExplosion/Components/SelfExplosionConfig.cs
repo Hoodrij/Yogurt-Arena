@@ -1,25 +1,24 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class SelfExplosionConfig : ScriptableObject, IComponent, IConfigSO
 {
-    public class SelfExplosionConfig : ScriptableObject, IComponent, IConfigSO
+    public ItemConfig Item = new()
     {
-        public ItemConfig Item = new()
-        {
-            FactoryJob = new CommonWeaponFactoryJob(),
-            UseJob = new UseSelfExplosionJob(),
-        };
-        public WeaponConfig Weapon;
-        public ItemLifetimeConfig Lifetime;
-        public TargetDetectionConfig TargetDetection;
-        public ExplosionConfig Explosion;
+        FactoryJob = new CommonWeaponFactoryJob(),
+        UseJob = new UseSelfExplosionJob(),
+    };
+    public WeaponConfig Weapon;
+    public ItemLifetimeConfig Lifetime;
+    public TargetDetectionConfig TargetDetection;
+    public ExplosionConfig Explosion;
         
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-            yield return Item;
-            yield return Weapon;
-            yield return Lifetime;
-            yield return TargetDetection;
-            yield return Explosion;
-        }
+    public IEnumerable<IComponent> GetComponents()
+    {
+        yield return this;
+        yield return Item;
+        yield return Weapon;
+        yield return Lifetime;
+        yield return TargetDetection;
+        yield return Explosion;
     }
 }

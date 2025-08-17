@@ -1,10 +1,9 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct WaitForBulletLiteTimeJob
 {
-    public struct WaitForBulletLiteTimeJob
+    public async UniTask Run(BulletAspect bullet)
     {
-        public async UniTask Run(BulletAspect bullet)
-        {
-            await Wait.Seconds(bullet.Config.LifeTime);
-        }   
-    }
+        await Wait.Seconds(bullet.Config.LifeTime);
+    }   
 }

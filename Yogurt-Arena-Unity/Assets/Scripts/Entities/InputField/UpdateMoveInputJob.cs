@@ -1,46 +1,45 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct UpdateMoveInputJob
 {
-    public struct UpdateMoveInputJob
+    public void Run(InputFieldAspect inputField)
     {
-        public void Run(InputFieldAspect inputField)
+        inputField.Run(Update);
+        return;
+
+        void Update()
         {
-            inputField.Run(Update);
-            return;
+            MoveInputReader reader = inputField.MoveInputReader;
+            InputState inputState = inputField.Input;
 
-            void Update()
+            if (reader.HasClick)
             {
-                MoveInputReader reader = inputField.MoveInputReader;
-                InputState inputState = inputField.Input;
-
-                if (reader.HasClick)
+                reader.HasClick = false;
+                CameraAspect cameraAspect = Query.Single<CameraAspect>();
+                if (cameraAspect.Exist())
                 {
-                    reader.HasClick = false;
-                    CameraAspect cameraAspect = Query.Single<CameraAspect>();
-                    if (cameraAspect.Exist())
+                    Camera cam = cameraAspect.Camera;
+                    Ray ray = cam.ScreenPointToRay(reader.ClickScreenPosition);
+                    Vector3 worldPoint;
+                    if (Physics.Raycast(ray, out RaycastHit hit, 1000f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
                     {
-                        Camera cam = cameraAspect.Camera;
-                        Ray ray = cam.ScreenPointToRay(reader.ClickScreenPosition);
-                        Vector3 worldPoint;
-                        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+                        worldPoint = hit.point;
+                    }
+                    else
+                    {
+                        Plane ground = new Plane(Vector3.up, Vector3.zero);
+                        if (ground.Raycast(ray, out float dist))
                         {
-                            worldPoint = hit.point;
+                            worldPoint = ray.GetPoint(dist);
                         }
                         else
                         {
-                            Plane ground = new Plane(Vector3.up, Vector3.zero);
-                            if (ground.Raycast(ray, out float dist))
-                            {
-                                worldPoint = ray.GetPoint(dist);
-                            }
-                            else
-                            {
-                                return;
-                            }
+                            return;
                         }
-
-                        inputState.HasClick = true;
-                        inputState.ClickWorldPosition = worldPoint;
                     }
+
+                    inputState.HasClick = true;
+                    inputState.ClickWorldPosition = worldPoint;
                 }
             }
         }

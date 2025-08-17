@@ -1,31 +1,30 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct ItemSpotBehaviorJob
 {
-    public struct ItemSpotBehaviorJob
+    public async UniTask Run(ItemSpotAspect itemSpot)
     {
-        public async UniTask Run(ItemSpotAspect itemSpot)
+        itemSpot.Run(Update);
+        return;
+
+
+        async UniTask Update()
         {
-            itemSpot.Run(Update);
-            return;
+            ItemType itemType = await WaitForActivation();
 
+            itemSpot.View.Show(itemType);
+            AgentAspect agent = await new WaitForItemPickupJob().Run(itemSpot);
+            await new GiveItemJob().Run(itemType, agent);
 
-            async UniTask Update()
-            {
-                ItemType itemType = await WaitForActivation();
-
-                itemSpot.View.Show(itemType);
-                AgentAspect agent = await new WaitForItemPickupJob().Run(itemSpot);
-                await new GiveItemJob().Run(itemType, agent);
-
-                itemSpot.View.Hide();
-                await Wait.Seconds(1, itemSpot.Life());
-                itemSpot.State.Type = ItemType.Empty;
-            }
-            async UniTask<ItemType> WaitForActivation()
-            {
-                await Wait.Until(() => itemSpot.State.Type != ItemType.Empty, itemSpot.Life());
-                return itemSpot.State.Type;
-            }
-            
+            itemSpot.View.Hide();
+            await Wait.Seconds(1, itemSpot.Life());
+            itemSpot.State.Type = ItemType.Empty;
         }
+        async UniTask<ItemType> WaitForActivation()
+        {
+            await Wait.Until(() => itemSpot.State.Type != ItemType.Empty, itemSpot.Life());
+            return itemSpot.State.Type;
+        }
+            
     }
 }

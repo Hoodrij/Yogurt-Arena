@@ -1,9 +1,8 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+[Serializable]
+public class WeaponClipConfig : IComponent
 {
-    [Serializable]
-    public class WeaponClipConfig : IComponent
-    {
-        public int BulletsInClip;
-        public float ClipCooldown;
-    }
+    public int BulletsInClip;
+    public float ClipCooldown;
 }

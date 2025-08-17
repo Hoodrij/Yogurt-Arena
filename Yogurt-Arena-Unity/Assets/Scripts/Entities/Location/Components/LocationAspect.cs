@@ -1,11 +1,10 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct LocationAspect : IAspect
 {
-    public struct LocationAspect : IAspect
-    {
-        public Entity Entity { get; set; }
+    public Entity Entity { get; set; }
 
-        public Location Location => this.Get<Location>();
+    public Location Location => this.Get<Location>();
 
-        public NavMeshSurface NavSurface => Location.NavSurface;
-    }
+    public NavMeshSurface NavSurface => Location.NavSurface;
 }

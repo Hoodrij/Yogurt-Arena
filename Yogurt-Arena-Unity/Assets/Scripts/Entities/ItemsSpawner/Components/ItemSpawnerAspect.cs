@@ -1,11 +1,10 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct ItemSpawnerAspect : IAspect
 {
-    public struct ItemSpawnerAspect : IAspect
-    {
-        public Entity Entity { get; set; }
+    public Entity Entity { get; set; }
 
-        public ItemsSpawnerState State => this.Get<ItemsSpawnerState>();
+    public ItemsSpawnerState State => this.Get<ItemsSpawnerState>();
 
-        public ItemSpawnerConfig Config => new GetConfigJob().Run<ItemSpawnerConfig>();
-    }
+    public ItemSpawnerConfig Config => new GetConfigJob().Run<ItemSpawnerConfig>();
 }

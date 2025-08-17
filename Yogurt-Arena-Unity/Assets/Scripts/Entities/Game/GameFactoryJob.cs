@@ -1,31 +1,30 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct GameFactoryJob
 {
-    public struct GameFactoryJob
+    public async UniTask<Entity> Run()
     {
-        public async UniTask<Entity> Run()
-        {
-            Entity game = Entity.Create()
-                .Add(new Game())
-                .Add(new Time());
+        Entity game = Entity.Create()
+            .Add(new Game())
+            .Add(new Time());
 
-            LoadConfig();
-            return game;
+        LoadConfig();
+        return game;
 
-            void LoadConfig()
-            { 
-                Config config = Resources.Load<Config>("Config");
-                foreach (IConfigSO configSO in config.All)
+        void LoadConfig()
+        { 
+            Config config = Resources.Load<Config>("Config");
+            foreach (IConfigSO configSO in config.All)
+            {
+                ConfigEntity configEntity = new ConfigEntity
                 {
-                    ConfigEntity configEntity = new ConfigEntity
-                    {
-                        Components = configSO.GetComponents()
-                    };
+                    Components = configSO.GetComponents()
+                };
 
-                    Entity.Create()
-                        .Add(configEntity)
-                        .Add(configEntity.Components)
-                        .SetParent(game);
-                }
+                Entity.Create()
+                    .Add(configEntity)
+                    .Add(configEntity.Components)
+                    .SetParent(game);
             }
         }
     }

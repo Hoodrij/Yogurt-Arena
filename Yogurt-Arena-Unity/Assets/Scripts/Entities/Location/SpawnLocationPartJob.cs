@@ -1,23 +1,22 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct SpawnLocationPartJob
 {
-    public struct SpawnLocationPartJob
+    public async UniTask Run(int level)
     {
-        public async UniTask Run(int level)
+        LocationAspect location = Query.Single<LocationAspect>();
+        LocationConfig config = new GetConfigJob().Run<LocationConfig>(level);
+
+        LocationPartTag locationPart = await config.Asset.Spawn();
+            
+        locationPart.transform.SetParent(location.NavSurface.transform);
+        location.Entity.Link(locationPart.gameObject);
+
+        if (level > 0)
         {
-            LocationAspect location = Query.Single<LocationAspect>();
-            LocationConfig config = new GetConfigJob().Run<LocationConfig>(level);
-
-            LocationPartTag locationPart = await config.Asset.Spawn();
-            
-            locationPart.transform.SetParent(location.NavSurface.transform);
-            location.Entity.Link(locationPart.gameObject);
-
-            if (level > 0)
-            {
-                await new AnimateLocationAppearanceJob().Run(locationPart);
-            }
-            
-            location.NavSurface.BuildNavMesh();
+            await new AnimateLocationAppearanceJob().Run(locationPart);
         }
+            
+        location.NavSurface.BuildNavMesh();
     }
 }

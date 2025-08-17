@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class ConfigEntity : IComponent
 {
-    public class ConfigEntity : IComponent
-    {
-        public IEnumerable<IComponent> Components;
-    }
+    public IEnumerable<IComponent> Components;
 }

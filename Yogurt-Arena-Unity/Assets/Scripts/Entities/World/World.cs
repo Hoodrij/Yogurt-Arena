@@ -1,12 +1,11 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class World : MonoBehaviour, IComponent
 {
-    public class World : MonoBehaviour, IComponent
+    public static Entity Create()
     {
-        public static Entity Create()
-        {
-            Entity World = Query.Of<World>().Single();
-            return Entity.Create()
-                .SetParent(World);
-        }
+        Entity World = Query.Of<World>().Single();
+        return Entity.Create()
+            .SetParent(World);
     }
 }

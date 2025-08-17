@@ -1,10 +1,9 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+[System.Serializable]
+public class AoeDamage : IComponent
 {
-    [System.Serializable]
-    public class AoeDamage : IComponent
-    {
-        public int Damage;
-        public float Radius;
-        public LayerMask HitMask;
-    }
+    public int Damage;
+    public float Radius;
+    public LayerMask HitMask;
 }

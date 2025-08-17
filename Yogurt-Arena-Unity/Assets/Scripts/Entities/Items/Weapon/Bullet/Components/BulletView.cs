@@ -1,8 +1,7 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class BulletView : MonoBehaviour, IComponent
 {
-    public class BulletView : MonoBehaviour, IComponent
-    {
-        public TrailRenderer Trail;
-        public ParticleSystem Particle;
-    }
+    public TrailRenderer Trail;
+    public ParticleSystem Particle;
 }

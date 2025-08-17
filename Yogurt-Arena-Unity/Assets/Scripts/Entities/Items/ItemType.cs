@@ -1,20 +1,19 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+[Flags]
+public enum ItemType
 {
-    [Flags]
-    public enum ItemType
-    {
-        Empty = 0,
+    Empty = 0,
         
-        Rifle = 1 << 1,
-        Rain = 1 << 2,
-        Charge = 1 << 3,
-        SelfExplosion = 1 << 4,
-        Shotgun = 1 << 5,
+    Rifle = 1 << 1,
+    Rain = 1 << 2,
+    Charge = 1 << 3,
+    SelfExplosion = 1 << 4,
+    Shotgun = 1 << 5,
         
-        TutorialRifle = 1 << 20,
+    TutorialRifle = 1 << 20,
         
-        HealingPotion = 1 << 30,
+    HealingPotion = 1 << 30,
         
-        Any = int.MaxValue,
-    }
+    Any = int.MaxValue,
 }

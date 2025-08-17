@@ -1,39 +1,38 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class ItemSpotView : MonoBehaviour, IComponent
 {
-    public class ItemSpotView : MonoBehaviour, IComponent
+    [Serializable]
+    private class ItemTypeToViewDict : SerializableDictionary<ItemType, Transform> { }
+
+    [SerializeField] private ItemTypeToViewDict map;
+        
+    private async void Awake()
     {
-        [Serializable]
-        private class ItemTypeToViewDict : SerializableDictionary<ItemType, Transform> { }
+        Hide(0);
 
-        [SerializeField] private ItemTypeToViewDict map;
-        
-        private async void Awake()
+        new ItemSpotFactoryJob().Run(this).Forget();
+    }
+
+    public void Show(ItemType type)
+    {
+        foreach (Transform otherIcon in map.Values)
         {
-            Hide(0);
-
-            new ItemSpotFactoryJob().Run(this).Forget();
+            otherIcon.gameObject.SetActive(false);
         }
-
-        public void Show(ItemType type)
-        {
-            foreach (Transform otherIcon in map.Values)
-            {
-                otherIcon.gameObject.SetActive(false);
-            }
             
-            if (!map.TryGetValue(type, out Transform icon))
-            {
-                icon = map[ItemType.Empty];
-            }
-            icon.gameObject.SetActive(true);
-            transform.DOKill();
-            transform.DOScale(1, 0.2f).SetEase(Ease.OutBack, 6);
-        }
-        
-        public void Hide(float duration = 0.2f)
+        if (!map.TryGetValue(type, out Transform icon))
         {
-            transform.DOKill();
-            transform.DOScale(0, duration).SetEase(Ease.InBack, 6);
+            icon = map[ItemType.Empty];
         }
+        icon.gameObject.SetActive(true);
+        transform.DOKill();
+        transform.DOScale(1, 0.2f).SetEase(Ease.OutBack, 6);
+    }
+        
+    public void Hide(float duration = 0.2f)
+    {
+        transform.DOKill();
+        transform.DOScale(0, duration).SetEase(Ease.InBack, 6);
     }
 }

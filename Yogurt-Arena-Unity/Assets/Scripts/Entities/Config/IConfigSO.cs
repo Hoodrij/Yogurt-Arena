@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public interface IConfigSO
 {
-    public interface IConfigSO
-    {
-        IEnumerable<IComponent> GetComponents();
-    }
+    IEnumerable<IComponent> GetComponents();
 }

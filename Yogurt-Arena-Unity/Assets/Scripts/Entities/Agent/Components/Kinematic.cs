@@ -1,7 +1,6 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class Kinematic : IComponent
 {
-    public class Kinematic : IComponent
-    {
         
-    }
 }

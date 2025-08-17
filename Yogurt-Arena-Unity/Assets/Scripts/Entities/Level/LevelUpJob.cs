@@ -1,14 +1,13 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public struct LevelUpJob
 {
-    public struct LevelUpJob
+    public async UniTask Run()
     {
-        public async UniTask Run()
-        {
-            Level level = Query.Single<Level>();
+        Level level = Query.Single<Level>();
             
-            await new SpawnLocationPartJob().Run(level.Current + 1);
+        await new SpawnLocationPartJob().Run(level.Current + 1);
             
-            level.Current += 1;
-        }
+        level.Current += 1;
     }
 }

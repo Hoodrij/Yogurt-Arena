@@ -1,6 +1,5 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+public class ItemsSpawnerState : IComponent
 {
-    public class ItemsSpawnerState : IComponent
-    {
-    }
 }

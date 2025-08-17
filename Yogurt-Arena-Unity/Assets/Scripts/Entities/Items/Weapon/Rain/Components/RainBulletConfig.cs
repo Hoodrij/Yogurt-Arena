@@ -1,12 +1,11 @@
-﻿namespace Yogurt.Arena
+﻿namespace Yogurt.Arena;
+
+[System.Serializable]
+public class RainBulletConfig : IComponent
 {
-    [System.Serializable]
-    public class RainBulletConfig : IComponent
-    {
-        public ExplosionConfig Explosion;
-        public Vector3 Gravity;
-        public float FindTargetDistance;
-        public float BulletRotationSpeed;
-        public float BulletSpeedChangeCoef;
-    }
+    public ExplosionConfig Explosion;
+    public Vector3 Gravity;
+    public float FindTargetDistance;
+    public float BulletRotationSpeed;
+    public float BulletSpeedChangeCoef;
 }
