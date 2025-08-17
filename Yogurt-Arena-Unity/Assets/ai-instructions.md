@@ -1,4 +1,4 @@
-AI Instructions
+# Project Guidelines
 
 # Layer 1 - Yogurt
 
@@ -19,14 +19,14 @@ Assert.IsFalse(entity.Exist);
 
 ### 🏷️ Component
 Components should not contain any logic. They are data storages, tags or configs.
-All components implement `IComponent` interface. They could be pure C# classes, structs, MonoBehaviors or ScriptableObjects
+All components implement `IComponent` interface. They could be pure C# classes, structs, MonoBehaviours or ScriptableObjects
 
 ```csharp
 public class Health : IComponent
 {
     public int Value;
 }
-public class PlayerView : MonoBehavior, IComponent
+public class PlayerView : MonoBehaviour, IComponent
 {
     public void Animate() { }
 }
@@ -121,7 +121,7 @@ PlayerAspect playerAspect = Query.Single<PlayerAspect>();
 
 ### 🏷️ Entity hierarchy
 
-Entity provides few methods to combine them into a Parent-Child relationship. All Childs will be killed after a Parent death.
+Entity provides a few methods to create a Parent-Child relationship. All children will be killed after a parent dies.
 
 ```csharp
 entity.SetParent(parentEntity);
@@ -147,7 +147,7 @@ Body body = entity.Get<Body>();
 body.Position = Vector3.zero;
 
 // Via aspects
-AgentAspect agent = entity.As<PlayerAspect>();
+PlayerAspect agent = entity.As<PlayerAspect>();
 agent.Body.Position = Vector3.zero;
 ```
 
@@ -171,8 +171,8 @@ Lifetime is an awaitable, disposable cancellation context used to scope async wo
 - Implicit conversions to/from UniTask and CancellationToken
 - Boolean checks: IsAlive/IsDead (via implicit bool)
 - Composition operators (with UniTask):
-  - life & task → end when BOTH life and task complete (WhenAll)
-  - life | task → end when EITHER life or task completes (WhenAny)
+    - life & task → end when BOTH life and task complete (WhenAll)
+    - life | task → end when EITHER life or task completes (WhenAny)
 - Parenting: life.SetParent(parentTask) → life ends when parentTask completes
 
 Use Lifetime to cleanly stop async loops when the Entity dies, the app quits, or another awaited task finishes.
@@ -266,14 +266,14 @@ Jobs encapsulate game logic. They are small, composable units with a single publ
 
 ### Entry Flow (Boot → Game → Loop)
 - Boot.Awake():
-  - await new GameFactoryJob().Run()
+    - await new GameFactoryJob().Run()
 - new ShowMenuJob().Run():
-   - await WaitForPlayButtonJob().Run()
-   - new StartMatchJob().Run():
-     - await new WorldFactoryJob().Run()
-     - new StartScenarioJob().Run()
-     - await new WaitForGameOverJob().Run()
-     - await new ShowMatchResultsJob().Run()
+    - await WaitForPlayButtonJob().Run()
+    - new StartMatchJob().Run():
+        - await new WorldFactoryJob().Run()
+        - new StartScenarioJob().Run()
+        - await new WaitForGameOverJob().Run()
+        - await new ShowMatchResultsJob().Run()
 
 ### Job Types
 
@@ -287,7 +287,7 @@ public struct FooFactoryJob
     public async UniTask<FooAspect> Run(/* inputs */)
     {
         FooView view = await config.Asset.Spawn();
-        FooAspect foo = World.Create()
+        FooAspect foo = Entity.Create()
             .Link(view.gameObject)
             .Add(config).Add(view)
             .Add(new BodyState())
@@ -390,3 +390,121 @@ public struct RunFooScenarioJob {
 - DON'T use async void except to kick a loop that returns immediately
 - DON'T touch dead entities; prefer aspect.Run(Update) scoping
 - DON'T Destroy(gameObject) directly for bound views; kill entity and let EntityLink handle
+
+
+# Using These Guidelines in a New Project
+
+## Purpose & Audience
+This document is a practical guide for building games/apps using the Yogurt architecture (Entities, Components, Aspects, Queries) with Unity and UniTask. It targets developers starting a new project or porting existing logic to Yogurt patterns.
+
+Note: Some Yogurt runtime versions expose World.Create() instead of Entity.Create(). This guide uses Entity.Create(); if your runtime exposes World.Create(), use that accordingly.
+
+## Prerequisites & Dependencies
+- Unity: 2023.2 or newer (this repo uses 2023.2.5f1)
+- Scripting runtime: .NET 4.x / API Compatibility Level .NET Framework
+- Packages (via Package Manager):
+    - UniTask: com.cysharp.unitask (Git URL: https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask)
+    - Yogurt runtime: "yogurt" as a Git package (https://github.com/Hoodrij/Yogurt.git)
+    - Unity Test Framework (optional but recommended): com.unity.test-framework
+
+Tip: You can add Git packages directly in Packages/manifest.json or via Window → Package Manager → Add package from git URL.
+
+## Quickstart Checklist
+1) Create a new Unity project (2023.2+), set Scripting Backend to .NET 4.x.
+2) Add packages: UniTask and Yogurt (see above). Ensure compilation succeeds.
+3) Create a Boot MonoBehaviour and put it in the first scene:
+```csharp
+using UnityEngine;
+
+public class Boot : MonoBehaviour
+{
+    private async void Awake()
+    {
+        Destroy(gameObject);
+        await new GameFactoryJob().Run();
+        new RunGameLoopJob().Run();
+    }
+}
+```
+4) Create your first components/aspect:
+```csharp
+public class Health : IComponent { public int Value; }
+public struct PlayerAspect : IAspect
+{
+    public Entity Entity { get; set; }
+    public Health Health => this.Get<Health>();
+}
+```
+5) Implement a minimal factory job to create/link an entity:
+```csharp
+public struct GameFactoryJob
+{
+    public async UniTask Run()
+    {
+        Entity.Create()
+            .Add(new Health { Value = 100 })
+            .As<PlayerAspect>();
+        await UniTask.CompletedTask;
+    }
+}
+```
+6) Press Play. Extend with behaviors using aspect.Run(Update) and waits via Wait.* helpers.
+
+## Recommended Folder Structure & Naming
+- Assets/Scripts/
+    - Components/ (IComponent data: Health, Configs, Tags)
+    - Aspects/ (IAspect: PlayerAspect, EnemyAspect)
+    - Jobs/
+        - Factory/ (XFactoryJob)
+        - Behavior/ (XBehaviorJob)
+        - Update/ (UpdateXJob)
+        - WaitFor/ (WaitForXJob)
+        - Get/ (GetXJob)
+        - Run/ (RunXJob)
+    - Views/ (MonoBehaviours, prefabs bindings)
+    - Configs/ (ScriptableObjects, static data)
+
+Naming: Keep job names consistent with the patterns above for readability and searchability.
+
+## Cancellation, Errors, and Threading
+- All long-running logic should be scoped with Lifetime (entity.Life(), aspect.Life()).
+- Most Wait helpers combine with application quit; pass a Lifetime to scope to an entity/aspect.
+- It’s normal for awaited operations to cancel when an entity dies; catch OperationCanceledException only if you must run special cleanup logic.
+- Unity API calls must run on the main thread. When awaiting background work, ensure you’re back on main thread before touching Unity objects.
+
+## Performance & Pitfalls
+- Prefer Aspects for frequent component access to avoid repeated Get<T>() lookups.
+- Use entity.Run(...) / aspect.Run(...) to automatically stop loops when the entity dies.
+- Query.Single<T>() will fail if none or more than one match is found. Use filters carefully before calling Single().
+- Keep jobs small; avoid storing long-lived mutable state in job structs.
+- Avoid per-frame allocations inside update loops; reuse where possible.
+
+## Notes on EntityLink and Pooling
+- EntityLink handles binding a GameObject to an Entity and cleans up when the Entity dies.
+- If you use a pooling solution (e.g., PoolLink), EntityLink.Dispose() should release to pool; otherwise, it will Destroy(gameObject). Pooling is optional—if you don’t use it, you can ignore PoolLink mentions.
+
+## Testing (Optional but Recommended)
+- Enable Unity Test Framework. Create simple EditMode tests to validate components/queries.
+```csharp
+using NUnit.Framework;
+
+public class YogurtBasicsTests
+{
+    [Test]
+    public void Entity_Create_Add_Get()
+    {
+        Entity e = Entity.Create().Add(new Health { Value = 10 });
+        Assert.IsTrue(e.Exist);
+        Assert.IsTrue(e.Has<Health>());
+        Assert.AreEqual(10, e.Get<Health>().Value);
+    }
+}
+```
+- For PlayMode, test Lifetime-driven flows with small delays via Wait.Seconds and ensure loops stop when entities die.
+
+## Adopting in an Existing Project
+- Start by migrating data to Components and grouping access via Aspects.
+- Replace monolithic Update methods with small Jobs bound to entity/aspect lifetimes.
+- Introduce Queries for discovery instead of global/singleton lookups.
+
+This appendix complements the core concepts above and should give you a direct path to bootstrap a new project or integrate Yogurt into an existing codebase.
