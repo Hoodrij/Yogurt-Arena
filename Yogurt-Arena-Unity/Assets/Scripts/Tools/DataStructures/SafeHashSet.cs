@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class SafeHashSet<T>
     {

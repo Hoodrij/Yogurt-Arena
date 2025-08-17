@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using DG.Tweening;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class BeaconBodyState : IComponent
     {

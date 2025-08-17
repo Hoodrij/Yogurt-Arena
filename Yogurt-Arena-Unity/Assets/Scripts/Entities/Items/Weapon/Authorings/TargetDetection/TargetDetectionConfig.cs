@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     [System.Serializable]
     public class TargetDetectionConfig : IComponent

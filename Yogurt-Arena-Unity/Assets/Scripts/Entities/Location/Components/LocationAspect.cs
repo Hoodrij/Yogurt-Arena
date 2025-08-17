@@ -1,6 +1,4 @@
-﻿using Unity.AI.Navigation;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct LocationAspect : IAspect
     {

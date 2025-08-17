@@ -1,9 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using UnityEngine;
-using Yogurt.Arena.Tools;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct SpawnExplosionJob
     {

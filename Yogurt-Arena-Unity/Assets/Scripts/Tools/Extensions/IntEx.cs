@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public static class IntEx
     {

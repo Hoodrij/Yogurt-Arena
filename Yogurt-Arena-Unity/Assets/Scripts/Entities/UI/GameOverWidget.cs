@@ -1,7 +1,4 @@
-﻿using DG.Tweening;
-using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class GameOverWidget : MonoBehaviour
     {

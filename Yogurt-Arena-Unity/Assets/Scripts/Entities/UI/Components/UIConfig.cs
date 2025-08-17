@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Yogurt.Arena.Tools;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class UIConfig : ScriptableObject, IComponent, IConfigSO
     {

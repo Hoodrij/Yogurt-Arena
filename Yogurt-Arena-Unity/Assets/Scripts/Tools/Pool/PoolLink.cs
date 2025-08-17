@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Yogurt.Arena.Tools
+﻿namespace Yogurt.Arena.Tools
 {
     public class PoolLink : MonoBehaviour, IDisposable
     {

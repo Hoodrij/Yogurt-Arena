@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Cysharp.Threading.Tasks;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct ItemsSpawnerBehaviorJob
     {

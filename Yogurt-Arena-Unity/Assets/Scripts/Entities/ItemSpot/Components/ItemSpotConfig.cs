@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class ItemSpotConfig : ScriptableObject, IComponent, IConfigSO
     {

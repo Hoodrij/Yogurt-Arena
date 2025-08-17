@@ -1,8 +1,4 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct SpawnSingleEnemyJob
     {

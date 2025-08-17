@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class OvermindState : IComponent
     {

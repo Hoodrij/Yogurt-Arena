@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     [Serializable]
     public class WeaponScatteringConfig : IComponent

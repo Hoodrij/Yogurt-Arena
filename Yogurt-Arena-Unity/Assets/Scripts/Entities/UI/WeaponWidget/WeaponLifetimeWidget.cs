@@ -1,8 +1,4 @@
-﻿using DG.Tweening;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class WeaponLifetimeWidget : MonoBehaviour
     {

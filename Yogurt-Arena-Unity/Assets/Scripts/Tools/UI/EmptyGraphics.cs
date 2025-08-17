@@ -1,7 +1,4 @@
-﻿using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class EmptyGraphics : Graphic, IPointerClickHandler,
         IBeginDragHandler, IDragHandler, IEndDragHandler

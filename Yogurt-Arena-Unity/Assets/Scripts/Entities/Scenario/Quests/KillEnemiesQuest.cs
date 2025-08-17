@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-
-namespace Yogurt.Arena.Quest
+﻿namespace Yogurt.Arena.Quest
 {
     public struct KillEnemiesQuest : IQuest
     {

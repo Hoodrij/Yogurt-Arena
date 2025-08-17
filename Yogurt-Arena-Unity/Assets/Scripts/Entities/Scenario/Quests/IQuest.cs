@@ -1,6 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-
-namespace Yogurt.Arena.Quest
+﻿namespace Yogurt.Arena.Quest
 {
     public interface IQuest
     {

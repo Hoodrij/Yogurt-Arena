@@ -1,7 +1,3 @@
-using System.Linq;
-using UnityEngine;
-using UnityEngine.AI;
-
 namespace Yogurt.Arena
 {
     public struct AgentMoveJob

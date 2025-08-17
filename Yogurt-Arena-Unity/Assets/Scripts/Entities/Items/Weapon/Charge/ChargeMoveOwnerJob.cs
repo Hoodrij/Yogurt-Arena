@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct ChargeMoveOwnerJob
     {

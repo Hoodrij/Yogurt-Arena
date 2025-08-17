@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class MoveInputReader : MonoBehaviour, IComponent, IPointerClickHandler
     {

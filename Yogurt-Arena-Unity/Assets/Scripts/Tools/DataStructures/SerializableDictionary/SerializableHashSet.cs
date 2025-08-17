@@ -1,10 +1,4 @@
 ﻿#if NET_4_6 || NET_STANDARD_2_0
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using UnityEngine;
-
 public abstract class SerializableHashSetBase
 {
 	public abstract class Storage {}

@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct UpdateRainTargetJob
     {

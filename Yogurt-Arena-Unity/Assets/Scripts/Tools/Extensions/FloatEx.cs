@@ -1,9 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using Random = UnityEngine.Random;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public static class FloatEx
     {

@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Yogurt.Arena
 {

@@ -1,7 +1,4 @@
-﻿using Unity.AI.Navigation;
-using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class Location : MonoBehaviour, IComponent
     {

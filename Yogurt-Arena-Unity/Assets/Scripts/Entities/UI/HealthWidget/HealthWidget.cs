@@ -1,8 +1,3 @@
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace Yogurt.Arena
 {
     public class HealthWidget : MonoBehaviour, IComponent

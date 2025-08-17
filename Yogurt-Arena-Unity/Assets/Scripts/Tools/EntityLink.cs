@@ -1,9 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using Yogurt.Arena.Tools;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class EntityLink : MonoBehaviour, IComponent, IDisposable
     {

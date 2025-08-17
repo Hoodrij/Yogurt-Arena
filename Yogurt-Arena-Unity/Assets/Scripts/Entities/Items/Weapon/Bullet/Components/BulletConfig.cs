@@ -1,8 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Yogurt.Arena.Tools;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     [Serializable]
     public class BulletConfig : IComponent

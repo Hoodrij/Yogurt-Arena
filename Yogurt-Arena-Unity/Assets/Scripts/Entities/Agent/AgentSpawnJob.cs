@@ -1,9 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using UnityEngine;
-using UnityEngine.AI;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct AgentSpawnJob
     {

@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     internal class WeakAction<T>
     {

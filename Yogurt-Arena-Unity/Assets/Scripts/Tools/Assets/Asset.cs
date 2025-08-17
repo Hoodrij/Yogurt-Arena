@@ -1,7 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using Object = UnityEngine.Object;
+﻿using Object = UnityEngine.Object;
 
 namespace Yogurt.Arena.Tools
 {

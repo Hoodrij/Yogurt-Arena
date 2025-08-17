@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public static class IEnumerableEx
     {

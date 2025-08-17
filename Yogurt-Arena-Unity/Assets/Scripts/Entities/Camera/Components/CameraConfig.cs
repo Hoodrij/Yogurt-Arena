@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using Yogurt.Arena.Tools;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     [Serializable]
     public class CameraConfig : ScriptableObject, IComponent, IConfigSO

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class Boot : MonoBehaviour
     {

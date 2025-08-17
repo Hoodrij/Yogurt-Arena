@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class Event
     {

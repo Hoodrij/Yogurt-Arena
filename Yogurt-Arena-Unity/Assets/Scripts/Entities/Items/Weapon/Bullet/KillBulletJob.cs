@@ -1,8 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using UnityEngine;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct KillBulletJob
     {

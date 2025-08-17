@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     [Flags]
     public enum ItemType

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public class ConfigEntity : IComponent
     {

@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
-using UnityEngine.AI;
-using DG.Tweening;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     public struct BeaconMoveJob
     {

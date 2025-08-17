@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Yogurt.Arena
 {
     public struct CameraFollowJob

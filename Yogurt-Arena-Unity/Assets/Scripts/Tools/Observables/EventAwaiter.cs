@@ -1,6 +1,5 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Yogurt.Arena;
+﻿using System.Runtime.CompilerServices;
+using Event = Yogurt.Arena.Event;
 
 public static class EventEx
 {

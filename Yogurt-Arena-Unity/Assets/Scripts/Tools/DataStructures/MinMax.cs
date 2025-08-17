@@ -1,7 +1,4 @@
-﻿using System;
-using Random = UnityEngine.Random;
-
-namespace Yogurt.Arena
+﻿namespace Yogurt.Arena
 {
     [Serializable]
     public struct MinMax
