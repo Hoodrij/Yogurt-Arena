@@ -1,0 +1,16 @@
+﻿global using System;
+global using System.Collections;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Runtime.Serialization;
+global using System.Threading.Tasks;
+global using Cysharp.Threading.Tasks;
+global using DG.Tweening;
+global using Unity.AI.Navigation;
+global using UnityEngine;
+global using UnityEngine.AI;
+global using UnityEngine.EventSystems;
+global using UnityEngine.UI;
+global using Yogurt.Arena;
+global using Yogurt.Arena.Tools;
+global using Random = UnityEngine.Random;
