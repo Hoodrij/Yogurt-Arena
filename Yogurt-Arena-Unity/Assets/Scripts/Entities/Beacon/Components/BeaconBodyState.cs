@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 namespace Yogurt.Arena
 {
@@ -6,5 +7,6 @@ namespace Yogurt.Arena
     {
         public Vector3 RawDestination;
         public Vector3 Destination;
+        public Sequence Animation;
     }
 }
