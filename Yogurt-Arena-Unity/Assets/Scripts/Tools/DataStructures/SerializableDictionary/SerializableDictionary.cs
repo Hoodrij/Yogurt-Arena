@@ -19,11 +19,9 @@ public abstract class SerializableDictionaryBase
 [Serializable]
 public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : SerializableDictionaryBase, IDictionary<TKey, TValue>, IDictionary, ISerializationCallbackReceiver, IDeserializationCallback, ISerializable
 {
-	Dictionary<TKey, TValue> m_dict;
-	[SerializeField]
-	TKey[] m_keys;
-	[SerializeField]
-	TValueStorage[] m_values;
+    private Dictionary<TKey, TValue> m_dict;
+	[SerializeField] private TKey[] m_keys;
+	[SerializeField] private TValueStorage[] m_values;
 
 	public SerializableDictionaryBase()
 	{

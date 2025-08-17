@@ -7,7 +7,7 @@ namespace Yogurt.Arena
 {
     public class HealthWidget : MonoBehaviour, IComponent
     {
-        [SerializeField] Image image;
+        [SerializeField] private Image image;
 
         private float currentPercentage;
         private Color colorRed = new Color(1f, 0.37f, 0.23f);

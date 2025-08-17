@@ -20,9 +20,8 @@ public abstract class SerializableHashSetBase
 [Serializable]
 public abstract class SerializableHashSet<T> : SerializableHashSetBase, ISet<T>, ISerializationCallbackReceiver, IDeserializationCallback, ISerializable
 {
-	HashSet<T> m_hashSet;
-	[SerializeField]
-	T[] m_keys;
+    private HashSet<T> m_hashSet;
+	[SerializeField] private T[] m_keys;
 
 	public SerializableHashSet()
 	{

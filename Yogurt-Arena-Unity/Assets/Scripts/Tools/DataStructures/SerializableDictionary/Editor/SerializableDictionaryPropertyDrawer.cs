@@ -10,20 +10,19 @@ using System;
 #endif
 public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 {
-	const string KeysFieldName = "m_keys";
-	const string ValuesFieldName = "m_values";
+    private const string KeysFieldName = "m_keys";
+    private const string ValuesFieldName = "m_values";
 	protected const float IndentWidth = 15f;
 
-	static GUIContent s_iconPlus = IconContent ("Toolbar Plus", "Add entry");
-	static GUIContent s_iconMinus = IconContent ("Toolbar Minus", "Remove entry");
-	static GUIContent s_warningIconConflict = IconContent ("console.warnicon.sml", "Conflicting key, this entry will be lost");
-	static GUIContent s_warningIconOther = IconContent ("console.infoicon.sml", "Conflicting key");
-	static GUIContent s_warningIconNull = IconContent ("console.warnicon.sml", "Null key, this entry will be lost");
-	static GUIStyle s_buttonStyle = GUIStyle.none;
-	static GUIContent s_tempContent = new GUIContent();
+    private static GUIContent s_iconPlus = IconContent ("Toolbar Plus", "Add entry");
+    private static GUIContent s_iconMinus = IconContent ("Toolbar Minus", "Remove entry");
+    private static GUIContent s_warningIconConflict = IconContent ("console.warnicon.sml", "Conflicting key, this entry will be lost");
+    private static GUIContent s_warningIconOther = IconContent ("console.infoicon.sml", "Conflicting key");
+    private static GUIContent s_warningIconNull = IconContent ("console.warnicon.sml", "Null key, this entry will be lost");
+    private static GUIStyle s_buttonStyle = GUIStyle.none;
+    private static GUIContent s_tempContent = new GUIContent();
 
-
-	class ConflictState
+    private class ConflictState
 	{
 		public object conflictKey = null;
 		public object conflictValue = null;
@@ -34,7 +33,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		public float conflictLineHeight = 0f;
 	}
 
-	struct PropertyIdentity
+    private struct PropertyIdentity
 	{
 		public PropertyIdentity(SerializedProperty property)
 		{
@@ -46,9 +45,9 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		public string propertyPath;
 	}
 
-	static Dictionary<PropertyIdentity, ConflictState> s_conflictStateDict = new Dictionary<PropertyIdentity, ConflictState>();
+    private static Dictionary<PropertyIdentity, ConflictState> s_conflictStateDict = new Dictionary<PropertyIdentity, ConflictState>();
 
-	enum Action
+    private enum Action
 	{
 		None,
 		Add,
@@ -215,7 +214,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		EditorGUI.EndProperty();
 	}
 
-	static float DrawKeyValueLine(SerializedProperty keyProperty, SerializedProperty valueProperty, Rect linePosition, int index)
+    private static float DrawKeyValueLine(SerializedProperty keyProperty, SerializedProperty valueProperty, Rect linePosition, int index)
 	{
 		bool keyCanBeExpanded = CanPropertyBeExpanded(keyProperty);
 
@@ -248,7 +247,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static float DrawKeyValueLineSimple(SerializedProperty keyProperty, SerializedProperty valueProperty, string keyLabel, string valueLabel, Rect linePosition)
+    private static float DrawKeyValueLineSimple(SerializedProperty keyProperty, SerializedProperty valueProperty, string keyLabel, string valueLabel, Rect linePosition)
 	{
 		float labelWidth = EditorGUIUtility.labelWidth;
 		float labelWidthRelative = labelWidth / linePosition.width;
@@ -274,7 +273,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		return Mathf.Max(keyPropertyHeight, valuePropertyHeight);
 	}
 
-	static float DrawKeyValueLineExpand(SerializedProperty keyProperty, SerializedProperty valueProperty, Rect linePosition)
+    private static float DrawKeyValueLineExpand(SerializedProperty keyProperty, SerializedProperty valueProperty, Rect linePosition)
 	{
 		float labelWidth = EditorGUIUtility.labelWidth;
 
@@ -294,7 +293,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		return Mathf.Max(keyPropertyHeight, valuePropertyHeight);
 	}
 
-	static float DrawKeyLine(SerializedProperty keyProperty, Rect linePosition, string keyLabel)
+    private static float DrawKeyLine(SerializedProperty keyProperty, Rect linePosition, string keyLabel)
 	{
 		float keyPropertyHeight = EditorGUI.GetPropertyHeight(keyProperty);
 		var keyPosition = linePosition;
@@ -307,7 +306,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		return keyPropertyHeight;
 	}
 
-	static bool CanPropertyBeExpanded(SerializedProperty property)
+    private static bool CanPropertyBeExpanded(SerializedProperty property)
 	{
 		switch(property.propertyType)
 		{
@@ -320,7 +319,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static void SaveProperty(SerializedProperty keyProperty, SerializedProperty valueProperty, int index, int otherIndex, ConflictState conflictState)
+    private static void SaveProperty(SerializedProperty keyProperty, SerializedProperty valueProperty, int index, int otherIndex, ConflictState conflictState)
 	{
 		conflictState.conflictKey = GetPropertyValue(keyProperty);
 		conflictState.conflictValue = valueProperty != null ? GetPropertyValue(valueProperty) : null;
@@ -364,7 +363,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		return propertyHeight;
 	}
 
-	static ConflictState GetConflictState(SerializedProperty property)
+    private static ConflictState GetConflictState(SerializedProperty property)
 	{
 		ConflictState conflictState;
 		PropertyIdentity propId = new PropertyIdentity(property);
@@ -376,7 +375,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		return conflictState;
 	}
 
-	static Dictionary<SerializedPropertyType, PropertyInfo> s_serializedPropertyValueAccessorsDict;
+    private static Dictionary<SerializedPropertyType, PropertyInfo> s_serializedPropertyValueAccessorsDict;
 
 	static SerializableDictionaryPropertyDrawer()
 	{
@@ -411,19 +410,19 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static GUIContent IconContent(string name, string tooltip)
+    private static GUIContent IconContent(string name, string tooltip)
 	{
 		var builtinIcon = EditorGUIUtility.IconContent (name);
 		return new GUIContent(builtinIcon.image, tooltip);
 	}
 
-	static GUIContent TempContent(string text)
+    private static GUIContent TempContent(string text)
 	{
 		s_tempContent.text = text;
 		return s_tempContent;
 	}
 
-	static void DeleteArrayElementAtIndex(SerializedProperty arrayProperty, int index)
+    private static void DeleteArrayElementAtIndex(SerializedProperty arrayProperty, int index)
 	{
 		var property = arrayProperty.GetArrayElementAtIndex(index);
 		// if(arrayProperty.arrayElementType.StartsWith("PPtr<$"))
@@ -451,7 +450,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static void SetPropertyValue(SerializedProperty p, object v)
+    private static void SetPropertyValue(SerializedProperty p, object v)
 	{
 		PropertyInfo propertyInfo;
 		if(s_serializedPropertyValueAccessorsDict.TryGetValue(p.propertyType, out propertyInfo))
@@ -467,7 +466,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static object GetPropertyValueArray(SerializedProperty property)
+    private static object GetPropertyValueArray(SerializedProperty property)
 	{
 		object[] array = new object[property.arraySize];
 		for(int i = 0; i < property.arraySize; i++)
@@ -478,7 +477,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		return array;
 	}
 
-	static object GetPropertyValueGeneric(SerializedProperty property)
+    private static object GetPropertyValueGeneric(SerializedProperty property)
 	{
 		Dictionary<string, object> dict = new Dictionary<string, object>();
 		var iterator = property.Copy();
@@ -495,7 +494,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		return dict;
 	}
 
-	static void SetPropertyValueArray(SerializedProperty property, object v)
+    private static void SetPropertyValueArray(SerializedProperty property, object v)
 	{
 		object[] array = (object[]) v;
 		property.arraySize = array.Length;
@@ -506,7 +505,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static void SetPropertyValueGeneric(SerializedProperty property, object v)
+    private static void SetPropertyValueGeneric(SerializedProperty property, object v)
 	{
 		Dictionary<string, object> dict = (Dictionary<string, object>) v;
 		var iterator = property.Copy();
@@ -521,7 +520,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static bool ComparePropertyValues(object value1, object value2)
+    private static bool ComparePropertyValues(object value1, object value2)
 	{
 		if(value1 is Dictionary<string, object> && value2 is Dictionary<string, object>)
 		{
@@ -535,7 +534,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static bool CompareDictionaries(Dictionary<string, object> dict1, Dictionary<string, object> dict2)
+    private static bool CompareDictionaries(Dictionary<string, object> dict1, Dictionary<string, object> dict2)
 	{
 		if(dict1.Count != dict2.Count)
 			return false;
@@ -556,7 +555,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		return true;
 	}
 
-	struct EnumerationEntry
+    private struct EnumerationEntry
 	{
 		public SerializedProperty keyProperty;
 		public SerializedProperty valueProperty;
@@ -570,7 +569,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		}
 	}
 
-	static IEnumerable<EnumerationEntry> EnumerateEntries(SerializedProperty keyArrayProperty, SerializedProperty valueArrayProperty, int startIndex = 0)
+    private static IEnumerable<EnumerationEntry> EnumerateEntries(SerializedProperty keyArrayProperty, SerializedProperty valueArrayProperty, int startIndex = 0)
 	{
 		if(keyArrayProperty.arraySize > startIndex)
 		{
