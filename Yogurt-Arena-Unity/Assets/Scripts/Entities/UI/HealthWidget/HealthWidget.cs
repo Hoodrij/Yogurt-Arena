@@ -33,7 +33,7 @@ namespace Yogurt.Arena
             }
             image.rectTransform.DOScale(1, duration);
             image.DOColor(Color.white, duration);
-
+            return;
 
             Color GetColor()
             {

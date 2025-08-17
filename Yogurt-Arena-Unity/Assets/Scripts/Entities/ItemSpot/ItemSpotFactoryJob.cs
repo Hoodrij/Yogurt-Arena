@@ -22,7 +22,7 @@ namespace Yogurt.Arena
                 })
                 .As<ItemSpotAspect>();
             
-            new ItemSpotBehaviorJob().Run(entity);
+            new ItemSpotBehaviorJob().Run(entity).Forget();
 
             return entity;
         }

@@ -28,7 +28,7 @@ namespace Yogurt.Arena.Quest
                 {
                     if (enemies.Add(enemy.Entity))
                     {
-                        ListenForDeath(enemy);
+                        ListenForDeath(enemy).Forget();
                     }
                 }
             }

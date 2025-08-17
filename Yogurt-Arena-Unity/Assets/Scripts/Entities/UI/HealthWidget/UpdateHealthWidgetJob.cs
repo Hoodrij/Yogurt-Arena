@@ -9,7 +9,7 @@
             float percentage = (float) health.Value / health.MaxHealth;
 
             HealthWidget healthWidget = health.HealthWidget;
-            healthWidget.SetHealth(percentage);
+            healthWidget.SetHealth(percentage).Forget();
         }
     }
 }

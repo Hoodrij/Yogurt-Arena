@@ -22,7 +22,7 @@ namespace Yogurt.Arena
                 new DealAoeDamageJob().Run(rainBullet.Owner, collision.Position, rainConfig.Explosion.Damage);
             }
             
-            new SpawnExplosionJob().Run(rainConfig.Explosion, bullet.Body.Position);
+            new SpawnExplosionJob().Run(rainConfig.Explosion, bullet.Body.Position).Forget();
             await new KillBulletJob().Run(bullet);
             return;
 

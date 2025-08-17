@@ -28,7 +28,7 @@ namespace Yogurt.Arena
             {
                 BulletAspect bullet = await new BulletFactoryJob().Run(config.Bullet, owner);
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
-                new RifleBulletBehaviorJob().Run(bullet);
+                new RifleBulletBehaviorJob().Run(bullet).Forget();
             }
             Vector3 GetVelocity(BulletAspect bullet)
             {

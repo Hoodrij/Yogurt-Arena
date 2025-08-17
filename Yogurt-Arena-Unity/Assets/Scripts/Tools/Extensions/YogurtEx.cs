@@ -24,7 +24,7 @@ namespace Yogurt.Arena
             KillWithEntity();
             return life;
 
-            async void KillWithEntity() => Wait.While(EntityExist).ContinueWith(life.Kill);
+            async void KillWithEntity() => Wait.While(EntityExist).ContinueWith(life.Kill).Forget();
             bool EntityExist() => entity.Exist;
         }
 
@@ -43,39 +43,63 @@ namespace Yogurt.Arena
             return entity;
         }
 
-        public static async UniTaskVoid Run(this Entity entity, Action action)
+        public static void Run(this Entity entity, Action action)
         {
-            while (entity.Exist)
+            Loop().Forget();
+            return;
+
+            async UniTask Loop()
             {
-                action();
-                await Wait.Update();
+                while (entity.Exist)
+                {
+                    action();
+                    await Wait.Update();
+                }
             }
         }
         
-        public static async UniTaskVoid Run(this Entity entity, Func<UniTask> action)
+        public static void Run(this Entity entity, Func<UniTask> action)
         {
-            while (entity.Exist)
+            Loop().Forget();
+            return;
+
+            async UniTask Loop()
             {
-                await action();
-                await Wait.Update();
+                while (entity.Exist)
+                {
+                    await action();
+                    await Wait.Update();
+                }
             }
         }
 
-        public static async UniTaskVoid Run(this IAspect aspect, Action action)
+        public static void Run(this IAspect aspect, Action action)
         {
-            while (aspect.Exist())
+            Loop().Forget();
+            return;
+
+            async UniTask Loop()
             {
-                action();
-                await Wait.Update();
+                while (aspect.Exist())
+                {
+                    action();
+                    await Wait.Update();
+                }
             }
         }
         
-        public static async UniTaskVoid Run(this IAspect aspect, Func<UniTask> action)
+        public static void Run(this IAspect aspect, Func<UniTask> action)
         {
-            while (aspect.Exist())
+            Loop().Forget();
+            return;
+
+            async UniTask Loop()
             {
-                await action();
-                await Wait.Update();
+                while (aspect.Exist())
+                {
+                    await action();
+                    await Wait.Update();
+                }
             }
         }
     }

@@ -19,7 +19,7 @@ namespace Yogurt.Arena
             
             entity.SetParent(owner.Entity);
             owner.Health.HealthWidget = healthWidget;
-            healthWidget.SetHealth(1);
+            healthWidget.SetHealth(1).Forget();
             
             entity.Run(UpdatePosition);
             return;

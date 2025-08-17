@@ -14,7 +14,7 @@ namespace Yogurt.Arena
             async UniTask Loop()
             {
                 await new WorldFactoryJob().Run();
-                new RunScenarioJob().Run();
+                new RunScenarioJob().Run().Forget();
                 
                 await new WaitForGameOverJob().Run();
                 await new HandleGameOverJob().Run();

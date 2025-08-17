@@ -20,7 +20,7 @@ namespace Yogurt.Arena
 
                 BulletAspect bullet = await new RainBulletFactoryJob().Run(config.Bullet, item.Get<RainConfig>(), owner);
                 new FireBulletJob().Run(bullet, GetVelocity(bullet));
-                new RainBulletBehaviorJob().Run(bullet.As<RainBulletAspect>());
+                new RainBulletBehaviorJob().Run(bullet.As<RainBulletAspect>()).Forget();
                 
                 await new ReloadJob().Run(item);
             }

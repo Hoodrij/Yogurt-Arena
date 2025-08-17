@@ -16,10 +16,10 @@ namespace Yogurt.Arena
         {
             Hide(0);
 
-            new ItemSpotFactoryJob().Run(this);
+            new ItemSpotFactoryJob().Run(this).Forget();
         }
 
-        public async UniTask Show(ItemType type)
+        public void Show(ItemType type)
         {
             foreach (Transform otherIcon in map.Values)
             {
@@ -35,7 +35,7 @@ namespace Yogurt.Arena
             transform.DOScale(1, 0.2f).SetEase(Ease.OutBack, 6);
         }
         
-        public async UniTask Hide(float duration = 0.2f)
+        public void Hide(float duration = 0.2f)
         {
             transform.DOKill();
             transform.DOScale(0, duration).SetEase(Ease.InBack, 6);
