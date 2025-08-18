@@ -1,16 +1,17 @@
-﻿namespace Yogurt.Arena;
-
-public class HealingPotionConfig : ScriptableObject, IComponent, IConfigSO
+﻿namespace Yogurt.Arena
 {
-    public ItemConfig Item = new()
+    public class HealingPotionConfig : ScriptableObject, IComponent, IConfigSO
     {
-        UseJob = new UseHealingPotionJob()
-    };
-    public int Amount;
+        public ItemConfig Item = new()
+        {
+            UseJob = new UseHealingPotionJob()
+        };
+        public int Amount;
 
-    public IEnumerable<IComponent> GetComponents()
-    {
-        yield return this;
-        yield return Item;
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+            yield return Item;
+        }
     }
 }

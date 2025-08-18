@@ -1,17 +1,18 @@
-﻿namespace Yogurt.Arena;
-
-public class GameOverWidget : MonoBehaviour
+﻿namespace Yogurt.Arena
 {
-    [SerializeField] private CanvasGroup canvasGroup;
-        
-    public Event OnRestartClick = new Event();
-
-    public void Show()
+    public class GameOverWidget : MonoBehaviour
     {
-        gameObject.SetActive(true);
-        canvasGroup.DOFade(1, 0.3f);
-        canvasGroup.blocksRaycasts = true;
-    }
+        [SerializeField] private CanvasGroup canvasGroup;
+        
+        public Event OnRestartClick = new Event();
 
-    public void RestartClick() => OnRestartClick.Fire();
+        public void Show()
+        {
+            gameObject.SetActive(true);
+            canvasGroup.DOFade(1, 0.3f);
+            canvasGroup.blocksRaycasts = true;
+        }
+
+        public void RestartClick() => OnRestartClick.Fire();
+    }
 }

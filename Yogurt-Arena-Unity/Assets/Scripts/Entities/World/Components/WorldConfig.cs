@@ -1,11 +1,12 @@
-﻿namespace Yogurt.Arena;
-
-public class WorldConfig : ScriptableObject, IComponent, IConfigSO
+﻿namespace Yogurt.Arena
 {
-    public Asset<World> World;
-
-    public IEnumerable<IComponent> GetComponents()
+    public class WorldConfig : ScriptableObject, IComponent, IConfigSO
     {
-        yield return this;
+        public Asset<World> World;
+
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+        }
     }
 }

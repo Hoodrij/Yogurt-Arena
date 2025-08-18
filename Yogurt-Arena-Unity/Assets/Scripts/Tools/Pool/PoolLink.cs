@@ -1,16 +1,17 @@
-﻿namespace Yogurt.Arena.Tools;
-
-public class PoolLink : MonoBehaviour, IDisposable
+﻿namespace Yogurt.Arena.Tools
 {
-    internal Pool Pool;
-
-    public void Release()
+    public class PoolLink : MonoBehaviour, IDisposable
     {
-        Pool.Push(gameObject);
-    }
+        internal Pool Pool;
 
-    public void Dispose()
-    {
-        Release();
+        public void Release()
+        {
+            Pool.Push(gameObject);
+        }
+
+        public void Dispose()
+        {
+            Release();
+        }
     }
 }

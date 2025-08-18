@@ -1,11 +1,12 @@
-﻿namespace Yogurt.Arena;
-
-public class Boot : MonoBehaviour
+﻿namespace Yogurt.Arena
 {
-    private async void Awake()
+    public class Boot : MonoBehaviour
     {
-        Destroy(gameObject);
-        await new GameFactoryJob().Run();
-        new RunGameLoopJob().Run();
+        private async void Awake()
+        {
+            Destroy(gameObject);
+            await new GameFactoryJob().Run();
+            new RunGameLoopJob().Run();
+        }
     }
 }

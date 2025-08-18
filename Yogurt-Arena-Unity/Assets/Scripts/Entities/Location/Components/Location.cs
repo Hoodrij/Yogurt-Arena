@@ -1,6 +1,7 @@
-﻿namespace Yogurt.Arena;
-
-public class Location : MonoBehaviour, IComponent
+﻿namespace Yogurt.Arena
 {
-    public NavMeshSurface NavSurface;
+    public class Location : MonoBehaviour, IComponent
+    {
+        public NavMeshSurface NavSurface;
+    }
 }

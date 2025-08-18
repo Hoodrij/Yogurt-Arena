@@ -1,6 +1,7 @@
-﻿namespace Yogurt.Arena;
-
-public class BeaconView : MonoBehaviour, IComponent
+﻿namespace Yogurt.Arena
 {
-    public Transform Transform;
+    public class BeaconView : MonoBehaviour, IComponent
+    {
+        public Transform Transform;
+    }
 }

@@ -1,12 +1,13 @@
-﻿namespace Yogurt.Arena;
-
-public class ItemSpotConfig : ScriptableObject, IComponent, IConfigSO
+﻿namespace Yogurt.Arena
 {
-    public int Radius;
-    public LayerMask Mask;
-        
-    public IEnumerable<IComponent> GetComponents()
+    public class ItemSpotConfig : ScriptableObject, IComponent, IConfigSO
     {
-        yield return this;
+        public int Radius;
+        public LayerMask Mask;
+        
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+        }
     }
 }

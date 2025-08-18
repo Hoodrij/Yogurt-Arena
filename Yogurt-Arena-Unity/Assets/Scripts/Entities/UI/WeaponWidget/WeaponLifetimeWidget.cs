@@ -1,12 +1,13 @@
-﻿namespace Yogurt.Arena;
-
-public class WeaponLifetimeWidget : MonoBehaviour
+﻿namespace Yogurt.Arena
 {
-    [SerializeField] private Image image;
-        
-    public void SetProgress(float value)
+    public class WeaponLifetimeWidget : MonoBehaviour
     {
-        image.DOKill();
-        image.DOFillAmount(value, 0.1f);
+        [SerializeField] private Image image;
+        
+        public void SetProgress(float value)
+        {
+            image.DOKill();
+            image.DOFillAmount(value, 0.1f);
+        }
     }
 }

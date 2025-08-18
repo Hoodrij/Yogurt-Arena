@@ -1,6 +1,7 @@
-﻿namespace Yogurt.Arena;
-
-public class ExplosionView : MonoBehaviour
+﻿namespace Yogurt.Arena
 {
-    public Transform View;
+    public class ExplosionView : MonoBehaviour
+    {
+        public Transform View;
+    }
 }

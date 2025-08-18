@@ -1,21 +1,22 @@
-﻿namespace Yogurt.Arena;
-
-public class AgentConfig : ScriptableObject, IComponent, IConfigSO
+﻿namespace Yogurt.Arena
 {
-    public PooledAsset<AgentView> Asset;
-    public PooledAsset<AgentDeathVFX> DeathVFX;
-    public AgentType Type;
-    public TeamType Team;
-    public ItemType Weapon;
-    public float MoveSpeed;
-    public float SlowDistance;
-    public float MoveSmoothValue;
-    public float LookSmoothValue;
-    public int MaxHealth;
-    public int Health;
-
-    public IEnumerable<IComponent> GetComponents()
+    public class AgentConfig : ScriptableObject, IComponent, IConfigSO
     {
-        yield return this;
+        public PooledAsset<AgentView> Asset;
+        public PooledAsset<AgentDeathVFX> DeathVFX;
+        public AgentType Type;
+        public TeamType Team;
+        public ItemType Weapon;
+        public float MoveSpeed;
+        public float SlowDistance;
+        public float MoveSmoothValue;
+        public float LookSmoothValue;
+        public int MaxHealth;
+        public int Health;
+
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+        }
     }
 }

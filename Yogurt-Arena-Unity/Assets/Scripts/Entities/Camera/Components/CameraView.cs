@@ -1,6 +1,7 @@
-﻿namespace Yogurt.Arena;
-
-public class CameraView : MonoBehaviour, IComponent
+﻿namespace Yogurt.Arena
 {
-    public Camera Camera;
+    public class CameraView : MonoBehaviour, IComponent
+    {
+        public Camera Camera;
+    }
 }

@@ -1,16 +1,17 @@
-﻿namespace Yogurt.Arena;
-
-public class ItemSpawnerConfig : ScriptableObject, IConfigSO, ILeveledConfig, IComponent
+﻿namespace Yogurt.Arena
 {
-    [field: SerializeField]
-    public int Level { get; set; }
-
-    public ItemType AvailableItems;
-    public ItemTags AvailableTags;
-    public int ItemsCount;
-        
-    public IEnumerable<IComponent> GetComponents()
+    public class ItemSpawnerConfig : ScriptableObject, IConfigSO, ILeveledConfig, IComponent
     {
-        yield return this;
+        [field: SerializeField]
+        public int Level { get; set; }
+
+        public ItemType AvailableItems;
+        public ItemTags AvailableTags;
+        public int ItemsCount;
+        
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+        }
     }
 }

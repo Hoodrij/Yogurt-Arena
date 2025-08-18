@@ -1,19 +1,20 @@
-﻿namespace Yogurt.Arena;
-
-public class OvermindConfig : ScriptableObject, IComponent, ILeveledConfig, IConfigSO
+﻿namespace Yogurt.Arena
 {
-    [field: SerializeField]
-    public int Level { get; set; }
-
-    public AgentType AvailableTypes;
-    public MinMaxInt WaveAgentsCount;
-    public int TotalAgentsToSpawn;
-    public int MinimumAgentsInWorld;
-    public MinMax WavesDelay;
-    public float MinRangeToPlayer;
-        
-    public IEnumerable<IComponent> GetComponents()
+    public class OvermindConfig : ScriptableObject, IComponent, ILeveledConfig, IConfigSO
     {
-        yield return this;
+        [field: SerializeField]
+        public int Level { get; set; }
+
+        public AgentType AvailableTypes;
+        public MinMaxInt WaveAgentsCount;
+        public int TotalAgentsToSpawn;
+        public int MinimumAgentsInWorld;
+        public MinMax WavesDelay;
+        public float MinRangeToPlayer;
+        
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+        }
     }
 }

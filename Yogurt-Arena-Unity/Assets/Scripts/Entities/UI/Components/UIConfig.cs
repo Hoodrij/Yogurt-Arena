@@ -1,13 +1,14 @@
-﻿namespace Yogurt.Arena;
-
-public class UIConfig : ScriptableObject, IComponent, IConfigSO
+﻿namespace Yogurt.Arena
 {
-    public Asset<UIView> UI;
-    public Asset<WorldUIView> WorldUI;
-    public PooledAsset<HealthWidget> WorldHealthWidget;
-        
-    public IEnumerable<IComponent> GetComponents()
+    public class UIConfig : ScriptableObject, IComponent, IConfigSO
     {
-        yield return this;
+        public Asset<UIView> UI;
+        public Asset<WorldUIView> WorldUI;
+        public PooledAsset<HealthWidget> WorldHealthWidget;
+        
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+        }
     }
 }

@@ -1,22 +1,23 @@
-﻿namespace Yogurt.Arena;
-
-public class ChargeConfig : ScriptableObject, IComponent, IConfigSO
+﻿namespace Yogurt.Arena
 {
-    public ItemConfig Item = new()
+    public class ChargeConfig : ScriptableObject, IComponent, IConfigSO
     {
-        FactoryJob = new CommonWeaponFactoryJob(),
-        UseJob = new UseChargeJob(),
-    };
-    public WeaponConfig Weapon;
-    public ItemLifetimeConfig Lifetime;
-    public TargetDetectionConfig TargetDetection;
+        public ItemConfig Item = new()
+        {
+            FactoryJob = new CommonWeaponFactoryJob(),
+            UseJob = new UseChargeJob(),
+        };
+        public WeaponConfig Weapon;
+        public ItemLifetimeConfig Lifetime;
+        public TargetDetectionConfig TargetDetection;
 
-    public IEnumerable<IComponent> GetComponents()
-    {
-        yield return this;
-        yield return Item;
-        yield return Weapon;
-        yield return Lifetime;
-        yield return TargetDetection;
+        public IEnumerable<IComponent> GetComponents()
+        {
+            yield return this;
+            yield return Item;
+            yield return Weapon;
+            yield return Lifetime;
+            yield return TargetDetection;
+        }
     }
 }
