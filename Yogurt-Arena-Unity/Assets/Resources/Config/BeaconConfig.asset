@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BeaconConfig
   m_EditorClassIdentifier: 
   Asset:
-    Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
+    asset:
+      Prefab: {fileID: 3742800732004099688, guid: 05246ede1e71b3f4cad47ad34e57ecd9, type: 3}
   SmoothValue: 0.5
   Elasticity: 25
   DisappearDuration: 0

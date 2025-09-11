@@ -3,7 +3,7 @@
     [Serializable]
     public class BeaconConfig : ScriptableObject, IComponent, IConfigSO
     {
-        public Asset<BeaconView> Asset;
+        public PooledAsset<BeaconView> Asset;
         public float SmoothValue;
         public float Elasticity;
 

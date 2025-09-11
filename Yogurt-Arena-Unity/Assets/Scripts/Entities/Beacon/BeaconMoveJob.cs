@@ -27,17 +27,7 @@ public struct BeaconMoveJob
             body.RawDestination = body.RawDestination.WithY(body.Destination.y);
             body.RawDestination = ClampRawDestination(body.RawDestination, body.Destination, config.Elasticity);
 
-            Transform transform = beacon.View.transform;
-
-            body.Animation?.Kill();
-            body.Animation = DOTween.Sequence()
-                .Append(transform.DOScale(Vector3.zero, config.DisappearDuration))
-                .AppendCallback(() =>
-                {
-                    transform.position = body.Destination;
-                })
-                .Append(transform.DOScale(Vector3.one, config.AppearDuration / 5))
-                .Append(transform.DOPunchScale(Vector3.one * 2, config.AppearDuration));
+            new SpawnBeaconVfxJob().Run(config, body.Destination).Forget();
 
             return;
 

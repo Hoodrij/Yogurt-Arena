@@ -7,5 +7,4 @@ public struct BeaconAspect : IAspect
     public BeaconConfig Config => this.Get<BeaconConfig>();
 
     public BeaconBodyState Body => this.Get<BeaconBodyState>();
-    public BeaconView View => this.Get<BeaconView>();
 }
