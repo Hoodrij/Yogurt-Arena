@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-[System.Serializable]
+[Serializable]
 public class ExplosionConfig : IComponent
 {
     public PooledAsset<ExplosionView> Asset;

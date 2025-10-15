@@ -12280,7 +12280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2513757443906828093}
   m_Layer: 0
-  m_Name: Icon Charge
+  m_Name: Icon Charger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

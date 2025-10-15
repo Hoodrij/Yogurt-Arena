@@ -1,10 +1,10 @@
-﻿namespace Yogurt.Arena;
+namespace Yogurt.Arena;
 
-public struct UseSelfExplosionJob : IItemUseJob
+public struct UseBoomerWeaponJob : IItemUseJob
 {
     public async UniTask Run(ItemAspect item)
     {
-        SelfExplosionConfig config = item.Get<SelfExplosionConfig>();
+        BoomerWeaponConfig config = item.Get<BoomerWeaponConfig>();
         AgentAspect owner = item.Owner;
 
         item.Run(FireLoop);

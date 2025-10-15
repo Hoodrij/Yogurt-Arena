@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3475722181034799830, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: m_Name
-      value: SelfExplosion Agent
+      value: Boomer Agent
       objectReference: {fileID: 0}
     - target: {fileID: 3603753428975625230, guid: e018f47050a825e479f88ca38c422afe, type: 3}
       propertyPath: m_RootOrder

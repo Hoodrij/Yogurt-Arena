@@ -1,6 +1,6 @@
-﻿namespace Yogurt.Arena;
+namespace Yogurt.Arena;
 
-public struct ChargeUpdateBulletPositionJob
+public struct ChargerWeaponMoveBulletJob
 {
     public async void Run(BulletAspect bullet)
     {

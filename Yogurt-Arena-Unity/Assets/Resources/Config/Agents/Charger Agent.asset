@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d32c67f54654e998f0d94f950164429, type: 3}
-  m_Name: SelfExplosion Agent
+  m_Name: Charger Agent
   m_EditorClassIdentifier: 
   Asset:
     asset:
-      Prefab: {fileID: 4054261582044863672, guid: 04268dfbc7b65584395003f920cde068, type: 3}
+      Prefab: {fileID: 4054261582044863672, guid: 9a92382644d1b8248ab51de908342ffc, type: 3}
   DeathVFX:
     asset:
-      Prefab: {fileID: 1790015590002962027, guid: 9b9e750345f7e2c4b8a825afedb3568d, type: 3}
-  Type: 64
+      Prefab: {fileID: 1790015590002962027, guid: 99c5b35320df00e4eb8e13852cf1e71f, type: 3}
+  Type: 32
   Team: 2
-  Weapon: 16
-  MoveSpeed: 0.05
+  Weapon: 8
+  MoveSpeed: 0.1
   SlowDistance: 5
   MoveSmoothValue: 0.1
   LookSmoothValue: 0.1
-  MaxHealth: 20
-  Health: 20
+  MaxHealth: 10
+  Health: 10

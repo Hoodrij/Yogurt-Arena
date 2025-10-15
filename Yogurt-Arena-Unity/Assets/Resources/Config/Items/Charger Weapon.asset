@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1e200fc8a142cc8e0008f946daec6c, type: 3}
-  m_Name: Charge Weapon
+  m_Script: {fileID: 11500000, guid: 155c1d1bf6914217bfc8596a1be0410f, type: 3}
+  m_Name: Charger Weapon
   m_EditorClassIdentifier: 
   Item:
     Type: 8

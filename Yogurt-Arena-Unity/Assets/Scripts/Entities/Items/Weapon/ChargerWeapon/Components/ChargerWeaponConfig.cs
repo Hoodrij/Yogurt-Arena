@@ -1,11 +1,11 @@
-﻿namespace Yogurt.Arena
+namespace Yogurt.Arena
 {
-    public class ChargeConfig : ScriptableObject, IComponent, IConfigSO
+    public class ChargerWeaponConfig : ScriptableObject, IComponent, IConfigSO
     {
         public ItemConfig Item = new()
         {
             FactoryJob = new CommonWeaponFactoryJob(),
-            UseJob = new UseChargeJob(),
+            UseJob = new UseChargerWeaponJob(),
         };
         public WeaponConfig Weapon;
         public ItemLifetimeConfig Lifetime;

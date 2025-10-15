@@ -8,8 +8,8 @@ public enum AgentType
     Player = 1 << 1,
     Dummy = 1 << 2,
         
-    Charge = 1 << 5,
-    SelfExplosion = 1 << 6,
+    Charger = 1 << 5,
+    Boomer = 1 << 6,
         
     Any = int.MaxValue,
 }

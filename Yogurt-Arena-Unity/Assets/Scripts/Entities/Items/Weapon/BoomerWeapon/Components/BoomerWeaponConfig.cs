@@ -1,11 +1,11 @@
-﻿namespace Yogurt.Arena
+namespace Yogurt.Arena
 {
-    public class SelfExplosionConfig : ScriptableObject, IComponent, IConfigSO
+    public class BoomerWeaponConfig : ScriptableObject, IComponent, IConfigSO
     {
         public ItemConfig Item = new()
         {
             FactoryJob = new CommonWeaponFactoryJob(),
-            UseJob = new UseSelfExplosionJob(),
+            UseJob = new UseBoomerWeaponJob(),
         };
         public WeaponConfig Weapon;
         public ItemLifetimeConfig Lifetime;
