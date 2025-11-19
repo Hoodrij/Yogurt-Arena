@@ -5,5 +5,5 @@ public struct PlayerAspect : IAspect
     public Entity Entity { get; set; }
 
     public PlayerTag Tag => this.Get<PlayerTag>();
-    public AgentAspect Agent => this.Get<AgentAspect>();
+    public AgentAspect Agent => this.As<AgentAspect>();
 }

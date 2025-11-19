@@ -23,7 +23,7 @@ public static class EntityEx
         bool EntityExist() => entity.Exist;
     }
 
-    public static Lifetime Life(this IAspect aspect)
+    public static Lifetime Life<TAspect>(this TAspect aspect) where TAspect : IAspect
     {
         return aspect.Entity.Life();
     }
@@ -68,14 +68,14 @@ public static class EntityEx
         }
     }
 
-    public static void Run(this IAspect aspect, Action action)
+    public static void Run<TAspect>(this TAspect aspect, Action action) where TAspect : struct, IAspect
     {
         Loop().Forget();
         return;
 
         async UniTask Loop()
         {
-            while (aspect.Exist())
+            while (aspect.Entity.Exist)
             {
                 action();
                 await Wait.Update();
@@ -83,14 +83,14 @@ public static class EntityEx
         }
     }
         
-    public static void Run(this IAspect aspect, Func<UniTask> action)
+    public static void Run<TAspect>(this TAspect aspect, Func<UniTask> action) where TAspect : struct, IAspect
     {
         Loop().Forget();
         return;
 
         async UniTask Loop()
         {
-            while (aspect.Exist())
+            while (aspect.Entity.Exist)
             {
                 await action();
                 await Wait.Update();

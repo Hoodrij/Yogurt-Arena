@@ -29,7 +29,7 @@ public struct AgentLookJob
 
             if (agent.BattleState.Target.Exist())
             {
-                BodyState targetBody = agent.BattleState.Target.Get<BodyState>();
+                BodyState targetBody = agent.BattleState.Target.Body;
                 body.LookPoint = targetBody.Position.WithY(body.Position.y);
             }
             else
