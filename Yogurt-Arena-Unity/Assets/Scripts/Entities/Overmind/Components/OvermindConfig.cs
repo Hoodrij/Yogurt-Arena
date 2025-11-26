@@ -11,10 +11,5 @@
         public int MinimumAgentsInWorld;
         public MinMax WavesDelay;
         public float MinRangeToPlayer;
-        
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-        }
     }
 }

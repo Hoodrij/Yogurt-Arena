@@ -7,11 +7,5 @@
             UseJob = new UseHealingPotionJob()
         };
         public int Amount;
-
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-            yield return Item;
-        }
     }
 }

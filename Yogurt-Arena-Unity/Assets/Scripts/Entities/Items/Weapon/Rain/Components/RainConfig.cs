@@ -13,17 +13,5 @@
         public WeaponScatteringConfig Scattering;
         public TargetDetectionConfig TargetDetection;
         public RainBulletConfig Bullet;
-        
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-            yield return Item;
-            yield return Weapon;
-            yield return Lifetime;
-            yield return Clip;
-            yield return Scattering;
-            yield return TargetDetection;
-            yield return Bullet;
-        }
     }
 }

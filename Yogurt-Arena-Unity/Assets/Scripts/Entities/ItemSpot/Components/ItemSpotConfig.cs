@@ -4,10 +4,5 @@
     {
         public int Radius;
         public LayerMask Mask;
-        
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-        }
     }
 }

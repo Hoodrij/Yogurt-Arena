@@ -5,7 +5,7 @@ public struct GetAgentConfigJob
     public AgentConfig Run(TeamType requiredTeam, AgentType availableTypes = AgentType.Any)
     {
         Entity result = Query.Of<AgentConfig>()
-            .With<ConfigEntity>().AsEnumerable()
+            .With<EntityBlueprint>().AsEnumerable()
             .Where(FitsTeam)
             .Where(FitsType)
             .GetRandom();

@@ -10,10 +10,10 @@ public struct ItemFactoryJob
     public async UniTask<ItemAspect> Run(ItemType type, AgentAspect owner)
     {
         ItemConfigAspect config = new GetConfigJob().Run(type);
-        ConfigEntity configEntity = config.ConfigEntity;
+        EntityBlueprint blueprint = config.Blueprint;
 
         Entity entity = World.Create()
-            .Add(configEntity.Components)
+            .Add(blueprint.Components)
             .Add(new OwnerState
             {
                 Value = owner

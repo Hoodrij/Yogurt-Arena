@@ -13,10 +13,5 @@
         public float LookSmoothValue;
         public int MaxHealth;
         public int Health;
-
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-        }
     }
 }

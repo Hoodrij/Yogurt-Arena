@@ -10,14 +10,5 @@ namespace Yogurt.Arena
         public WeaponConfig Weapon;
         public ItemLifetimeConfig Lifetime;
         public TargetDetectionConfig TargetDetection;
-
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-            yield return Item;
-            yield return Weapon;
-            yield return Lifetime;
-            yield return TargetDetection;
-        }
     }
 }

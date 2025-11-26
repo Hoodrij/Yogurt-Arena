@@ -6,10 +6,5 @@
         public float AccumulativeValue;
         public float DeAccumulativeValue;
         public float Sensitivity;
-        
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-        }
     }
 }

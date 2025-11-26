@@ -13,5 +13,5 @@ public struct ItemConfigAspect : IAspect
     public Entity Entity { get; set; }
         
     public ItemConfig Item => this.Get<ItemConfig>();
-    public ConfigEntity ConfigEntity => this.Get<ConfigEntity>();
+    public EntityBlueprint Blueprint => this.Get<EntityBlueprint>();
 }

@@ -11,12 +11,7 @@
         public float MouseInfluence = 0.1f;
 
         [Min(0f)]
-        [Tooltip("Maximum distance (in world units) that mouse can offset the camera target. 0 = unlimited")] 
+        [Tooltip("Maximum distance (in world units) that mouse can offset the camera target. 0 = unlimited")]
         public float MouseInfluenceMaxDistance = 6f;
-        
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-        }
     }
 }

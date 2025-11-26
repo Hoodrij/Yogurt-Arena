@@ -14,16 +14,5 @@
         public TargetDetectionConfig TargetDetection;
         public WeaponClipConfig Clip;
         public int BulletsInShot;
-
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-            yield return Item;
-            yield return Weapon;
-            yield return Lifetime;
-            yield return Scattering;
-            yield return TargetDetection;
-            yield return Clip;
-        }
     }
 }

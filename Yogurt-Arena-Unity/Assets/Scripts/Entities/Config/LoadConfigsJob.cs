@@ -11,14 +11,14 @@ public struct LoadConfigsJob
         {
             IEnumerable<IComponent> components = new GetConfigComponentsJob().Run(configSO);
 
-            ConfigEntity configEntity = new ConfigEntity
+            EntityBlueprint blueprint = new EntityBlueprint
             {
                 Components = components
             };
 
             Entity.Create()
-                .Add(configEntity)
-                .Add(configEntity.Components)
+                .Add(blueprint)
+                .Add(blueprint.Components)
                 .SetParent(game);
         }
     }
