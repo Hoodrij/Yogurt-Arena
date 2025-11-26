@@ -8,24 +8,7 @@ public struct GameFactoryJob
             .Add(new Game())
             .Add(new Time());
 
-        LoadConfig();
+        new LoadConfigsJob().Run(game);
         return game;
-
-        void LoadConfig()
-        { 
-            Config config = Resources.Load<Config>("Config");
-            foreach (IConfigSO configSO in config.All)
-            {
-                ConfigEntity configEntity = new ConfigEntity
-                {
-                    Components = configSO.GetComponents()
-                };
-
-                Entity.Create()
-                    .Add(configEntity)
-                    .Add(configEntity.Components)
-                    .SetParent(game);
-            }
-        }
     }
 }

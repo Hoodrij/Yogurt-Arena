@@ -8,10 +8,5 @@
         public ItemType AvailableItems;
         public ItemTags AvailableTags;
         public int ItemsCount;
-        
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-        }
     }
 }

@@ -2,5 +2,5 @@
 
 public interface IConfigSO
 {
-    IEnumerable<IComponent> GetComponents();
+    
 }

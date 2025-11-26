@@ -4,12 +4,7 @@
     {
         [field: SerializeField]
         public int Level { get; set; }
-        
+
         public Asset<LocationPartTag> Asset;
-        
-        public IEnumerable<IComponent> GetComponents()
-        {
-            yield return this;
-        }
     }
 }

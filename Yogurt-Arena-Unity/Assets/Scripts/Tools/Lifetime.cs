@@ -23,82 +23,35 @@ public class Lifetime : IDisposable
 
 public static class LifetimeEx
 {
-    public static void Kill(this Lifetime life)
-    {
-        life?.Cts?.Cancel();
-    }
+    public static void Kill(this Lifetime life) 
+        => life?.Cts?.Cancel();
 
-    public static bool IsAlive(this Lifetime lifetime)
-    {
-        if (lifetime == null)
-            return false;
+    public static bool IsAlive(this Lifetime lifetime) 
+        => lifetime != null && !lifetime.Cts.IsCancellationRequested;
 
-        return !lifetime.Cts.IsCancellationRequested;
-    }
+    public static bool IsDead(this Lifetime lifetime) 
+        => !lifetime;
 
-    public static bool IsDead(this Lifetime lifetime)
-    {
-        return !lifetime;
-    }
+    public static UniTask AsUniTask(this Lifetime life) 
+        => life.IsDead() ? UniTask.CompletedTask : life.Cts.Token.ToUniTask().Item1;
+    
+    public static Lifetime AsLife(this CancellationToken token) 
+        => new Lifetime().SetParent(token.ToUniTask().Item1);
 
-    public static UniTask AsUniTask(this Lifetime life)
-    {
-        if (life.IsDead())
-            return UniTask.CompletedTask;
-
-        return life.Cts.Token.ToUniTask().Item1;
-    }
-        
-    public static Lifetime AsLife(this CancellationToken token)
-    {
-        if (token.IsCancellationRequested)
-            return UniTask.CompletedTask;
-            
-        Lifetime life = new();
-        token.Register(() => life.Kill());
-        return life;
-    }
-
-    public static Lifetime And(this Lifetime a, UniTask b)
-    {
-        Lifetime resultLife = new();
-        KillWhenAll();
-        return resultLife;
-
-        async void KillWhenAll()
-        {
-            await UniTask.WhenAll(a, b);
-            resultLife.Kill();
-        }
-    }
+    public static Lifetime And(this Lifetime a, UniTask b) 
+        => new Lifetime()
+            .SetParent(UniTask.WhenAll(a, b));
 
     public static Lifetime Or(this Lifetime a, UniTask b)
-    {
-        Lifetime resultLife = new();
-        KillWhenAny();
-        return resultLife;
-
-        async void KillWhenAny()
-        {
-            await UniTask.WhenAny(a, b);
-            resultLife.Kill();
-        }
-    }
+        => new Lifetime()
+            .SetParent(UniTask.WhenAny(a, b));
 
     public static Lifetime SetParent(this Lifetime one, UniTask parent)
     {
-        KillWithParent();
+        parent.ContinueWith(one.Kill);
         return one;
-
-        async void KillWithParent()
-        {
-            await parent;
-            one.Kill();
-        }
     }
 
-    public static UniTask.Awaiter GetAwaiter(this Lifetime life)
-    {
-        return ((UniTask)life).GetAwaiter();
-    }
+    public static UniTask.Awaiter GetAwaiter(this Lifetime life) 
+        => life.AsUniTask().GetAwaiter();
 }
