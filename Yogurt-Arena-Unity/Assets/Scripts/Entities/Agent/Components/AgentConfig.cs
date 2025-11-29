@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena
 {
-    public class AgentConfig : ScriptableObject, IComponent, IConfigSO
+    public class AgentConfig : ScriptableObject, IComponent, IConfigSO, IBlueprint
     {
         public PooledAsset<AgentView> Asset;
         public PooledAsset<AgentDeathVFX> DeathVFX;
@@ -13,5 +13,10 @@
         public float LookSmoothValue;
         public int MaxHealth;
         public int Health;
+        
+        public void Populate(Entity entity)
+        {
+            entity.Add(this);
+        }
     }
 }

@@ -27,14 +27,10 @@ public static class EntityEx
     {
         return aspect.Entity.Life();
     }
-        
-    public static Entity Add(this Entity entity, IEnumerable<IComponent> components)
-    {
-        foreach (IComponent component in components)
-        {
-            entity.Add(component);
-        }
 
+    public static Entity PopulateFrom(this Entity entity, EntityBlueprint blueprint)
+    {
+        blueprint.Blueprint.Populate(entity);
         return entity;
     }
 

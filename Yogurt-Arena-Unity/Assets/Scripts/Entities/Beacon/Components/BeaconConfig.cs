@@ -1,7 +1,7 @@
 ﻿namespace Yogurt.Arena
 {
     [Serializable]
-    public class BeaconConfig : ScriptableObject, IComponent, IConfigSO
+    public class BeaconConfig : ScriptableObject, IComponent, IConfigSO, IBlueprint
     {
         public PooledAsset<BeaconView> Asset;
         public float SmoothValue;
@@ -10,5 +10,10 @@
         [Header("Beacon Animation")]
         [Min(0f)] public float DisappearDuration = 0.12f;
         [Min(0f)] public float AppearDuration = 0.15f;
+        
+        public void Populate(Entity entity)
+        {
+            entity.Add(this);
+        }
     }
 }

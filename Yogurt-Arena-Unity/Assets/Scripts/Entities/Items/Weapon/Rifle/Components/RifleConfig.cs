@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena
 {
-    public class RifleConfig : ScriptableObject, IComponent, IConfigSO
+    public class RifleConfig : ScriptableObject, IComponent, IConfigSO, IBlueprint
     {
         public ItemConfig Item = new()
         {
@@ -14,5 +14,16 @@
         public TargetDetectionConfig TargetDetection;
         public WeaponClipConfig Clip;
         public int BulletsInShot;
+        
+        public void Populate(Entity entity)
+        {
+            entity.Add(this);
+            entity.Add(Item);
+            entity.Add(Weapon);
+            entity.Add(Lifetime);
+            entity.Add(Scattering);
+            entity.Add(TargetDetection);
+            entity.Add(Clip);
+        }
     }
 }

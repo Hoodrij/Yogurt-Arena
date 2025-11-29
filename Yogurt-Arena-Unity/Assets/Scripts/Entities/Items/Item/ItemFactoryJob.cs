@@ -12,16 +12,15 @@ public struct ItemFactoryJob
         ItemConfigAspect config = new GetConfigJob().Run(type);
         EntityBlueprint blueprint = config.Blueprint;
 
-        Entity entity = World.Create()
-            .Add(blueprint.Components)
+        ItemAspect item = World.Create()
             .Add(new OwnerState
             {
                 Value = owner
-            });
-            
-        entity.SetParent(owner.Entity);
-            
-        ItemAspect item = entity.As<ItemAspect>();
+            })
+            .PopulateFrom(blueprint)
+            .SetParent(owner)
+            .As<ItemAspect>();
+        
         config.Item.FactoryJob?.Run(item);
 
         return item;

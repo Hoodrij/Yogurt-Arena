@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena
 {
-    public class RainConfig : ScriptableObject, IComponent, IConfigSO
+    public class RainConfig : ScriptableObject, IComponent, IConfigSO, IBlueprint
     {
         public ItemConfig Item = new()
         {
@@ -13,5 +13,17 @@
         public WeaponScatteringConfig Scattering;
         public TargetDetectionConfig TargetDetection;
         public RainBulletConfig Bullet;
+        
+        public void Populate(Entity entity)
+        {
+            entity.Add(this);
+            entity.Add(Item);
+            entity.Add(Weapon);
+            entity.Add(Lifetime);
+            entity.Add(Clip);
+            entity.Add(Scattering);
+            entity.Add(TargetDetection);
+            entity.Add(Bullet);
+        }
     }
 }

@@ -9,16 +9,14 @@ public struct LoadConfigsJob
 
         foreach (IConfigSO configSO in configSOs)
         {
-            IEnumerable<IComponent> components = new GetConfigComponentsJob().Run(configSO);
-
             EntityBlueprint blueprint = new EntityBlueprint
             {
-                Components = components
+                Blueprint = configSO as IBlueprint
             };
 
             Entity.Create()
                 .Add(blueprint)
-                .Add(blueprint.Components)
+                .PopulateFrom(blueprint)
                 .SetParent(game);
         }
     }

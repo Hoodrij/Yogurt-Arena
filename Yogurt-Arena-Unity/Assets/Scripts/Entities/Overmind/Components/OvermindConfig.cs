@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena
 {
-    public class OvermindConfig : ScriptableObject, IComponent, ILeveledConfig, IConfigSO
+    public class OvermindConfig : ScriptableObject, IComponent, ILeveledConfig, IConfigSO, IBlueprint
     {
         [field: SerializeField]
         public int Level { get; set; }
@@ -11,5 +11,10 @@
         public int MinimumAgentsInWorld;
         public MinMax WavesDelay;
         public float MinRangeToPlayer;
+        
+        public void Populate(Entity entity)
+        {
+            entity.Add(this);
+        }
     }
 }
