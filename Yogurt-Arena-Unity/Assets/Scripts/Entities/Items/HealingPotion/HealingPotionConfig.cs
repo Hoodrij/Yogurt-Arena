@@ -11,6 +11,7 @@
         public void Populate(Entity entity)
         {
             entity.Add(this);
+            entity.Add(Item);
         }
     }
 }
