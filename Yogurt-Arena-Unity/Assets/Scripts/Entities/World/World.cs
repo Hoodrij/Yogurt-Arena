@@ -4,9 +4,9 @@
     {
         public static Entity Create()
         {
-            Entity World = Query.Of<World>().Single();
+            Entity world = Query.Of<World>().Single();
             return Entity.Create()
-                .SetParent(World);
+                .SetParent(world);
         }
     }
 }

@@ -15,7 +15,7 @@
             {
                 await Entity.Life();
                 // we Clear Entity in case if GO want to live longer
-                if (Entity != Entity.Null)
+                if (Entity != Entity.Null && this != null)
                     Dispose();
             }
         }

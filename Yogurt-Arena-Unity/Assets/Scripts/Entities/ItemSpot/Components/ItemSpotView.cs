@@ -7,7 +7,7 @@
 
         [SerializeField] private ItemTypeToViewDict map;
         
-        private async void Awake()
+        private void Awake()
         {
             Hide(0);
 

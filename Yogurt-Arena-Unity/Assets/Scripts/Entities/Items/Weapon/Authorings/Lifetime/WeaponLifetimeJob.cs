@@ -2,7 +2,7 @@
 
 public struct WeaponLifetimeJob
 {
-    public async void Run(ItemAspect item)
+    public void Run(ItemAspect item)
     {
         Time time = Query.Single<Time>();
         AgentAspect owner = item.Owner.Value;

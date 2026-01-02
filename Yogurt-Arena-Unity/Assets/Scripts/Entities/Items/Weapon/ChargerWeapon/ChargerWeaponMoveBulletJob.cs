@@ -2,7 +2,7 @@ namespace Yogurt.Arena;
 
 public struct ChargerWeaponMoveBulletJob
 {
-    public async void Run(BulletAspect bullet)
+    public void Run(BulletAspect bullet)
     {
         AgentAspect owner = bullet.Owner.Value;
         bullet.Run(Update);

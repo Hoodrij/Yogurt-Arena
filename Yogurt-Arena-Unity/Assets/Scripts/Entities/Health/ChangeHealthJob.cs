@@ -2,7 +2,7 @@
 
 public struct ChangeHealthJob
 {
-    public async void Run(Entity target, int delta)
+    public void Run(Entity target, int delta)
     {
         if (!target.Exist) return;
             

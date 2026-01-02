@@ -2,7 +2,7 @@
 
 public struct RunOvermindBehaviorJob
 {
-    public async void Run()
+    public void Run()
     {
         OvermindAspect overmind = Query.Single<OvermindAspect>();
         overmind.Run(Update);

@@ -15,7 +15,7 @@ public struct ChargerWeaponMoveOwnerJob
         return;
 
 
-        async void MoveOwner()
+        void MoveOwner()
         {
             if (!owner.Has<Kinematic>())
                 return;

@@ -1,4 +1,6 @@
-﻿namespace Yogurt.Arena;
+﻿using Cathei.LinqGen;
+
+namespace Yogurt.Arena;
 
 public struct CommonTargetDetectionJob
 {
@@ -23,6 +25,7 @@ public struct CommonTargetDetectionJob
         AgentAspect GetTarget()
         {
             AgentAspect target = Query.Of<AgentAspect>().AsEnumerable()
+                .Gen()
                 .Where(IsHostile)
                 .Where(IsInRange)
                 .Where(IsNotBlockedByEnv)
@@ -34,7 +37,7 @@ public struct CommonTargetDetectionJob
             
         bool IsHostile(AgentAspect target)
         {
-            return !target.Id.teamType.HasFlag(agent.Id.teamType);
+            return !target.Id.teamType.HasFlagNonAlloc(agent.Id.teamType);
         }
         bool IsInRange(AgentAspect target)
         {

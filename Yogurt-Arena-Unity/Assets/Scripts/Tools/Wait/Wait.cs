@@ -2,30 +2,51 @@
 
 public static class Wait
 {
-    private static Lifetime AppLifetime => Application.exitCancellationToken;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void EnterPlayMode() => AppLifetime = Application.exitCancellationToken;
+    private static Lifetime AppLifetime { get; set; } = Application.exitCancellationToken;
         
-    public static UniTask While(Func<bool> predicate, Lifetime life = null)
+    public static async UniTask While(Func<bool> predicate, Lifetime life = default)
     {
-        life = life 
-            ? life | AppLifetime 
+        Lifetime token = life
+            ? life | AppLifetime
             : AppLifetime;
-            
-        return UniTask.WaitWhile(predicate, cancellationToken: life);
+        
+        while (token && predicate())
+        {
+            await UniTask.NextFrame();
+        }
+
+        if (!token)
+            await UniTask.FromCanceled();
     }
 
-    public static UniTask Until(Func<bool> predicate, Lifetime life = null)
+    public static async UniTask While<T>(Func<T, bool> predicate, T state, Lifetime life = default)
     {
-        return While(Predicate, life);
+        Lifetime token = life 
+            ? life | AppLifetime
+            : AppLifetime;
+        
+        while (token && predicate(state))
+        {
+            await UniTask.NextFrame();
+        }
+        
+        if (!token)
+            await UniTask.FromCanceled();
+    }
 
-        bool Predicate() => !predicate();
+    public static UniTask Until(Func<bool> predicate, Lifetime life = default)
+    {
+        return While(p => !p(), predicate, life);
     }
 
     public static UniTask Update()
     {
-        return UniTask.NextFrame(cancellationToken: AppLifetime);
+        return UniTask.NextFrame(AppLifetime);
     }
 
-    public static UniTask Seconds(float seconds, Lifetime life = null)
+    public static UniTask Seconds(float seconds, Lifetime life = default)
     {
         float startTime = UnityEngine.Time.time;
         return Until(IsCompleted, life);

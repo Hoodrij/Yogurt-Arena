@@ -25,7 +25,7 @@ public struct ChargerWeaponBehaviorJob
             CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
             new DealDamageJob().Run(collisionInfo.Entity, damage);
         }
-        async UniTask WaitForOwnerDeath() => await Wait.While(() => owner.Exist());
+        async UniTask WaitForOwnerDeath() => await owner.Life();
         async UniTask WaitForLifeTime() => await new WaitForBulletLiteTimeJob().Run(bullet);
     }
 }

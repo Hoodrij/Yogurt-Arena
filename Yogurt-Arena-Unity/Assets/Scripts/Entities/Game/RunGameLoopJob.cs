@@ -2,7 +2,7 @@
 
 public struct RunGameLoopJob
 {
-    public async void Run()
+    public void Run()
     {
         Entity game = Query.Of<Game>().Single();
         game.Run(Loop);

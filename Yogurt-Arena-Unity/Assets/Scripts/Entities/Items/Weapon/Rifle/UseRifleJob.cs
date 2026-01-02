@@ -17,11 +17,11 @@ public struct UseRifleJob : IItemUseJob
             await new WaitForWeaponReadyJob().Run(item);
             for (int i = 0; i < rifleConfig.BulletsInShot; i++)
             {
-                FireBullet();
+                FireBullet().Forget();
             }
             await new ReloadJob().Run(item);
         }
-        async void FireBullet()
+        async UniTaskVoid FireBullet()
         {
             BulletAspect bullet = await new BulletFactoryJob().Run(config.Bullet, owner);
             new FireBulletJob().Run(bullet, GetVelocity(bullet));

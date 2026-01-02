@@ -1,8 +1,10 @@
-﻿namespace Yogurt.Arena;
+﻿using Cathei.LinqGen;
+
+namespace Yogurt.Arena;
 
 public struct UpdateRainTargetJob
 {
-    public async void Run(RainBulletAspect bullet)
+    public void Run(RainBulletAspect bullet)
     {
         RainBulletConfig rainConfig = bullet.Config;
         AgentAspect owner = bullet.Owner;
@@ -18,6 +20,7 @@ public struct UpdateRainTargetJob
         AgentAspect GetTarget()
         {
             AgentAspect target = Query.Of<AgentAspect>().AsEnumerable()
+                .Gen()
                 .Where(IsHostile)
                 .Where(IsInRange)
                 .OrderBy(GetDistance)
@@ -26,7 +29,7 @@ public struct UpdateRainTargetJob
         }
         bool IsHostile(AgentAspect other)
         {
-            return !other.Id.teamType.HasFlag(owner.Id.teamType);
+            return !other.Id.teamType.HasFlagNonAlloc(owner.Id.teamType);
         }
         bool IsInRange(AgentAspect other)
         {
