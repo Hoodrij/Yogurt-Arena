@@ -1,20 +1,16 @@
 ﻿namespace Yogurt.Arena;
 
 public static class Wait
-{
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void EnterPlayMode() => AppLifetime = Application.exitCancellationToken;
-    private static Lifetime AppLifetime { get; set; } = Application.exitCancellationToken;
-        
+{ 
     public static async UniTask While(Func<bool> predicate, Lifetime life = default)
     {
         Lifetime token = life
-            ? life | AppLifetime
-            : AppLifetime;
+            ? life
+            : Game.Life;
         
         while (token && predicate())
         {
-            await UniTask.NextFrame();
+            await UniTask.NextFrame(Game.Token);
         }
 
         if (!token)
@@ -23,13 +19,13 @@ public static class Wait
 
     public static async UniTask While<T>(Func<T, bool> predicate, T state, Lifetime life = default)
     {
-        Lifetime token = life 
-            ? life | AppLifetime
-            : AppLifetime;
+        Lifetime token = life
+            ? life
+            : Game.Life;
         
         while (token && predicate(state))
         {
-            await UniTask.NextFrame();
+            await UniTask.NextFrame(Game.Token);
         }
         
         if (!token)
@@ -43,7 +39,7 @@ public static class Wait
 
     public static UniTask Update()
     {
-        return UniTask.NextFrame(AppLifetime);
+        return UniTask.NextFrame(Game.Token);
     }
 
     public static UniTask Seconds(float seconds, Lifetime life = default)
@@ -57,12 +53,12 @@ public static class Wait
     public static UniTask Any(params UniTask[] tasks)
     {
         return UniTask.WhenAny(tasks)
-            .AttachExternalCancellation(AppLifetime);
+            .AttachExternalCancellation(Game.Token);
     }
         
     public static UniTask All(params UniTask[] tasks)
     {
         return UniTask.WhenAll(tasks)
-            .AttachExternalCancellation(AppLifetime);
+            .AttachExternalCancellation(Game.Token);
     }
 }

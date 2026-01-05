@@ -62,7 +62,7 @@ public static class LifetimeAPI
         => LifetimePool.GetAwaiter(life);
 }
 
-public static class LifetimePool
+internal static class LifetimePool
 {
     private static readonly HashSet<int> activeLifetimes = new(capacity: 31);
     private static readonly Dictionary<int, CancellationTokenSource> tokenSources = new(capacity: 31);
