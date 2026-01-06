@@ -5,7 +5,7 @@ global using System.Linq;
 global using System.Runtime.Serialization;
 global using System.Threading.Tasks;
 global using Cysharp.Threading.Tasks;
-global using DG.Tweening;
+global using PrimeTween;
 global using Unity.AI.Navigation;
 global using UnityEngine;
 global using UnityEngine.AI;
