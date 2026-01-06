@@ -2,9 +2,9 @@
 
 public static class Wait
 { 
-    public static async UniTask While(Func<bool> predicate, Lifetime life = default)
+    public static async UniTask While(Func<bool> predicate, Life life = default)
     {
-        Lifetime token = life
+        Life token = life
             ? life
             : Game.Life;
         
@@ -17,9 +17,9 @@ public static class Wait
             await UniTask.FromCanceled();
     }
 
-    public static async UniTask While<T>(Func<T, bool> predicate, T state, Lifetime life = default)
+    public static async UniTask While<T>(Func<T, bool> predicate, T state, Life life = default)
     {
-        Lifetime token = life
+        Life token = life
             ? life
             : Game.Life;
         
@@ -32,7 +32,7 @@ public static class Wait
             await UniTask.FromCanceled();
     }
 
-    public static UniTask Until(Func<bool> predicate, Lifetime life = default)
+    public static UniTask Until(Func<bool> predicate, Life life = default)
     {
         return While(p => !p(), predicate, life);
     }
@@ -42,7 +42,7 @@ public static class Wait
         return UniTask.NextFrame(Game.Token);
     }
 
-    public static UniTask Seconds(float seconds, Lifetime life = default)
+    public static UniTask Seconds(float seconds, Life life = default)
     {
         float startTime = UnityEngine.Time.time;
         return Until(IsCompleted, life);

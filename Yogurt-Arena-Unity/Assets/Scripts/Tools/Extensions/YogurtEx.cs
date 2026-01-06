@@ -13,43 +13,6 @@ public static class EntityEx
         return entity;
     }
 
-    private static Dictionary<Entity, Lifetime> lifes = new();
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void EnterPlayMode()
-    {
-        foreach (Lifetime life in lifes.Values)
-        {
-            life.Kill();
-        }
-        lifes.Clear();
-    }
-
-    public static Lifetime Life(this Entity entity)
-    {
-        if (lifes.TryGetValue(entity, out Lifetime life))
-        {
-            return life;
-        }
-        
-        life = new();
-        lifes.Add(entity, life);
-        KillWithEntity(entity, life).Forget();
-        return life;
-        
-        static async UniTaskVoid KillWithEntity(Entity entity, Lifetime life)
-        {
-            await Wait.While(static e => e.Exist, state: entity);
-            life.Kill();
-            lifes.Remove(entity);
-        }
-    }
-    
-    public static Lifetime Life<TAspect>(this TAspect aspect) where TAspect : IAspect
-    {
-        return aspect.Entity.Life();
-    }
-
     public static Entity PopulateFrom(this Entity entity, EntityBlueprint blueprint)
     {
         blueprint.Blueprint.Populate(entity);

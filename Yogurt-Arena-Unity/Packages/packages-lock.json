@@ -221,8 +221,10 @@
       "version": "https://github.com/Hoodrij/Yogurt.git",
       "depth": 0,
       "source": "git",
-      "dependencies": {},
-      "hash": "8ece62c0aacb44f02f2e4b66833041cb57fce646"
+      "dependencies": {
+        "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
+      },
+      "hash": "0b2150ab57a7d5c483bbe49a81275ed86a4321e0"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
