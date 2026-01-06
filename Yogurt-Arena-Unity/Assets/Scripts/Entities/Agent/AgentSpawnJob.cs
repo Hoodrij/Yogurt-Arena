@@ -33,9 +33,9 @@ public struct AgentSpawnJob
             float activationTime = animationTime * 0.9f;
             agent.View.transform.DOKill();
             agent.View.transform.localScale = new Vector3(0, 2, 0);
-            DOTween.Sequence()
-                .Append(agent.View.transform.DOScale(new Vector3(1.3f, 0.4f, 1.3f), animationTime))
-                .Append(agent.View.transform.DOScale(Vector3.one, animationTime * 4).SetEase(Ease.OutElastic))
+            _ = DOTween.Sequence()
+                    .Append(agent.View.transform.DOScale(new Vector3(1.3f, 0.4f, 1.3f), animationTime))
+                    .Append(agent.View.transform.DOScale(Vector3.one, animationTime * 4).SetEase(Ease.OutElastic))
                 ;
 
             await Wait.Seconds(activationTime, agent.Life());

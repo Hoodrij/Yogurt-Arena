@@ -18,16 +18,16 @@ namespace Yogurt.Arena
             image.DOKill();
             image.rectTransform.DOKill();
             
-            image.DOFillAmount(percentage, duration);
-            image.rectTransform.DOShakeScale(duration, new Vector3(0, 1f, 0));
-            image.DOColor(animationColor, duration);
+            _ = image.DOFillAmount(percentage, duration);
+            _ = image.rectTransform.DOShakeScale(duration, new Vector3(0, 1f, 0));
+            _ = image.DOColor(animationColor, duration);
             await Wait.Seconds(duration);
             if (image == null)
             {
                 return;
             }
-            image.rectTransform.DOScale(1, duration);
-            image.DOColor(Color.white, duration);
+            _ = image.rectTransform.DOScale(1, duration);
+            _ = image.DOColor(Color.white, duration);
             return;
 
             Color GetColor()
