@@ -1,6 +1,4 @@
-﻿using Cathei.LinqGen;
-
-namespace Yogurt.Arena;
+﻿namespace Yogurt.Arena;
 
 public struct CommonTargetDetectionJob
 {
@@ -9,43 +7,67 @@ public struct CommonTargetDetectionJob
         TargetDetectionConfig config = weapon.Get<TargetDetectionConfig>();
         BattleState battleState = weapon.Get<BattleState>();
         AgentAspect agent = weapon.Owner.Value;
-            
-        weapon.Run(Update);
+
+        UpdateJob updateJob = new UpdateJob
+        {
+            BattleState = battleState,
+            Config = config,
+            Agent = agent
+        };
+
+        weapon.Run(updateJob.Update);
 
         await weapon.Life();
         battleState.Target = default;
+    }
 
-        return;
+    private struct UpdateJob
+    {
+        public BattleState BattleState;
+        public TargetDetectionConfig Config;
+        public AgentAspect Agent;
 
+        public void Update()
+        {
+            BattleState.Target = GetTarget();
+        }
 
-        void Update()
+        private AgentAspect GetTarget()
         {
-            battleState.Target = GetTarget();
+            AgentAspect closestTarget = default;
+            float closestDistance = float.MaxValue;
+
+            foreach (AgentAspect target in Query.Of<AgentAspect>())
+            {
+                if (!IsHostile(target)) continue;
+                if (!IsInRange(target)) continue;
+                if (!IsNotBlockedByEnv(target)) continue;
+                if (!IsReachableByY(target)) continue;
+
+                float distance = GetDistance(target);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTarget = target;
+                }
+            }
+
+            return closestTarget;
         }
-        AgentAspect GetTarget()
+
+        private bool IsHostile(AgentAspect target)
         {
-            AgentAspect target = Query.Of<AgentAspect>().AsEnumerable()
-                .Gen()
-                .Where(IsHostile)
-                .Where(IsInRange)
-                .Where(IsNotBlockedByEnv)
-                .Where(IsReachableByY)
-                .OrderBy(GetDistance)
-                .FirstOrDefault();
-            return target;
+            return !target.Id.teamType.HasFlagNonAlloc(Agent.Id.teamType);
         }
-            
-        bool IsHostile(AgentAspect target)
+
+        private bool IsInRange(AgentAspect target)
         {
-            return !target.Id.teamType.HasFlagNonAlloc(agent.Id.teamType);
+            return GetDistance(target) < Config.Distance;
         }
-        bool IsInRange(AgentAspect target)
+
+        private bool IsNotBlockedByEnv(AgentAspect target)
         {
-            return GetDistance(target) < config.Distance;
-        }
-        bool IsNotBlockedByEnv(AgentAspect target)
-        {
-            Vector3 firePoint = agent.Body.MiddlePoint;
+            Vector3 firePoint = Agent.Body.MiddlePoint;
             Vector3 targetBodyCenter = target.Body.MiddlePoint;
             Vector3 vectorToTarget = targetBodyCenter - firePoint;
             Ray ray = new Ray
@@ -54,19 +76,20 @@ public struct CommonTargetDetectionJob
                 direction = vectorToTarget
             };
 
-            bool hasEnvHit = Physics.Raycast(ray, vectorToTarget.magnitude, config.CollisionMask);
+            bool hasEnvHit = Physics.Raycast(ray, vectorToTarget.magnitude, Config.CollisionMask);
             return !hasEnvHit;
         }
-        bool IsReachableByY(AgentAspect target)
+
+        private bool IsReachableByY(AgentAspect target)
         {
-            float firePointY = agent.Body.Position.y;
+            float firePointY = Agent.Body.Position.y;
             float targetY = target.Body.Position.y;
-            return (firePointY - targetY).Abs() <= config.YTolerance;
+            return (firePointY - targetY).Abs() <= Config.YTolerance;
         }
-            
-        float GetDistance(AgentAspect target)
+
+        private float GetDistance(AgentAspect target)
         {
-            return (agent.Body.Position - target.Body.Position).magnitude.Abs();
+            return (Agent.Body.Position - target.Body.Position).magnitude.Abs();
         }
     }
 }
