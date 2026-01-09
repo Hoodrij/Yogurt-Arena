@@ -1,7 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
 [Serializable]
-public class WeaponConfig : IComponent
+public record struct WeaponConfig() : IComponent
 {
     public BulletConfig Bullet = new();
     public float Cooldown;

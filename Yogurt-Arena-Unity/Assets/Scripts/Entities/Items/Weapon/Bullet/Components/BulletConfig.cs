@@ -1,7 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
 [Serializable]
-public class BulletConfig : IComponent
+public record struct BulletConfig() : IComponent
 {
     public PooledAsset<BulletView> Asset = new();
     public LayerMask CollisionMask;

@@ -1,7 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
 [System.Serializable]
-public class AoeDamage : IComponent
+public record struct AoeDamage : IComponent
 {
     public int Damage;
     public float Radius;

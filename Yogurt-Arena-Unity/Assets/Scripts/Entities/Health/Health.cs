@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-public class Health : IComponent
+public record struct Health : IComponent
 {
     public int MaxHealth;
     public int Value;

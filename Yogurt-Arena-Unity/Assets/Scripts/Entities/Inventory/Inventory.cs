@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-public class Inventory : IComponent
+public record struct Inventory : IComponent
 {
     public ItemAspect Weapon;
 }

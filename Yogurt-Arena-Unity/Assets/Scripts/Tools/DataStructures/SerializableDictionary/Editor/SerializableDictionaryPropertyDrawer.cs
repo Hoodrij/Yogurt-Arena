@@ -33,7 +33,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		public float conflictLineHeight = 0f;
 	}
 
-    private struct PropertyIdentity
+    private record struct PropertyIdentity
 	{
 		public PropertyIdentity(SerializedProperty property)
 		{

@@ -6,8 +6,7 @@ public struct AgentLookJob
 
     public void Run(AgentAspect agent)
     {
-        Time time = Query.Single<Time>();
-        int frameRate = time.TARGET_FRAME_RATE;
+        int frameRate = Time.TARGET_FRAME_RATE;
             
         agent.Run(Update);
         return;
@@ -25,7 +24,8 @@ public struct AgentLookJob
 
         void UpdateState()
         {
-            BodyState body = agent.Body;
+            ref Time time = ref Query.Single<GameAspect>().Time;
+            ref BodyState body = ref agent.Body;
 
             if (agent.BattleState.Target.Exist())
             {

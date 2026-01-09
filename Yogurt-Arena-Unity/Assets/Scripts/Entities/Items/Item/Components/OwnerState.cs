@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-public class OwnerState : IComponent
+public record struct OwnerState : IComponent
 {
     public AgentAspect Value;
         

@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-public class ItemSpotState : IComponent
+public record struct ItemSpotState : IComponent
 {
     public ItemType Type;
 }

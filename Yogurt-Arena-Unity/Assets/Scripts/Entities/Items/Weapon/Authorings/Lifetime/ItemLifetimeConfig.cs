@@ -1,7 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
 [System.Serializable]
-public class ItemLifetimeConfig : IComponent
+public record struct ItemLifetimeConfig : IComponent
 {
     public float LifeTime;
 }

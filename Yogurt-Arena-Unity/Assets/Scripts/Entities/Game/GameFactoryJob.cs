@@ -2,12 +2,14 @@
 
 public struct GameFactoryJob
 {
-    public async UniTask<Entity> Run()
+    public async UniTask<GameAspect> Run()
     {
-        Entity game = Entity.Create()
+        GameAspect game = Entity.Create()
             .Add(new Game())
-            .Add(new Time());
+            .Add(new Time())
+            .As<GameAspect>();
 
+        new UpdateTimeJob().Run(game);
         new LoadConfigsJob().Run(game);
         return game;
     }

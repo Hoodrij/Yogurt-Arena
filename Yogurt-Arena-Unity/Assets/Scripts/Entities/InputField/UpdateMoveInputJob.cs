@@ -10,7 +10,7 @@ public struct UpdateMoveInputJob
         void Update()
         {
             MoveInputReader reader = inputField.MoveInputReader;
-            InputState inputState = inputField.Input;
+            ref InputState inputState = ref inputField.Input;
 
             if (reader.HasClick)
             {

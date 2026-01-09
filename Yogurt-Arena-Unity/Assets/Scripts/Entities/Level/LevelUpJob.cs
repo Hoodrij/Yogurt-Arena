@@ -4,10 +4,10 @@ public struct LevelUpJob
 {
     public async UniTask Run()
     {
-        Level level = Query.Single<Level>();
+        LevelAspect level = Query.Single<LevelAspect>();
             
-        await new SpawnLocationPartJob().Run(level.Current + 1);
+        await new SpawnLocationPartJob().Run(level.Level.Current + 1);
             
-        level.Current += 1;
+        level.Level.Current += 1;
     }
 }

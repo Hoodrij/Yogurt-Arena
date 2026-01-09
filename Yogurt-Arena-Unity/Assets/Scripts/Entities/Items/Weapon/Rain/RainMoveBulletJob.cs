@@ -4,7 +4,6 @@ public struct RainMoveBulletJob
 {
     public void Run(RainBulletAspect bullet)
     {
-        Time time = Query.Single<Time>();
         RainBulletConfig rainConfig = bullet.Config;
             
         bullet.Run(MoveBullet);
@@ -16,9 +15,10 @@ public struct RainMoveBulletJob
             if (bullet.Has<Kinematic>())
                 return;
                 
+            ref Time time = ref Query.Single<Time>();
             BattleState battleState = bullet.Get<BattleState>();
             Transform transform = bullet.BulletAspect.View.transform;
-            BodyState body = bullet.BulletAspect.Body;
+            ref BodyState body = ref bullet.BulletAspect.Body;
                 
             Vector3 newPos = body.Position + body.Velocity * time;
             body.Position = transform.position = newPos;

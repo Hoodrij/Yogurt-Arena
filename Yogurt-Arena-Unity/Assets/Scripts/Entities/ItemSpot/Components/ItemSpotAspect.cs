@@ -4,9 +4,9 @@ public struct ItemSpotAspect : IAspect
 {
     public Entity Entity { get; set; }
         
-    public ItemSpotConfig Config => this.Get<ItemSpotConfig>();
+    public ref ItemSpotConfig Config => ref this.Get<ItemSpotConfig>();
 
-    public ItemSpotState State => this.Get<ItemSpotState>();
-    public BodyState Body => this.Get<BodyState>();
-    public ItemSpotView View => this.Get<ItemSpotView>();
+    public ref ItemSpotState State => ref this.Get<ItemSpotState>();
+    public ref BodyState Body => ref this.Get<BodyState>();
+    public ref ItemSpotView View => ref this.Get<ItemSpotView>();
 }

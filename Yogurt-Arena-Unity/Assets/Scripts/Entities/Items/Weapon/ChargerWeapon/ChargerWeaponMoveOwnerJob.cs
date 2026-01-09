@@ -4,9 +4,8 @@ public struct ChargerWeaponMoveOwnerJob
 {
     public void Run(BulletAspect bullet)
     {
-        Time time = Query.Single<Time>();
         AgentAspect owner = bullet.Owner.Value;
-        BodyState body = owner.Body;
+        ref BodyState body = ref owner.Body;
             
         float timePassed = 0;
         body.Velocity = body.Forward * bullet.Config.Speed;
@@ -20,6 +19,8 @@ public struct ChargerWeaponMoveOwnerJob
             if (!owner.Has<Kinematic>())
                 return;
                 
+            ref Time time = ref Query.Single<Time>();
+            ref BodyState body = ref owner.Body;
             float deltaTime = time.Delta;
             Vector3 newPos = body.Position + body.Velocity * time.Scale;
                 

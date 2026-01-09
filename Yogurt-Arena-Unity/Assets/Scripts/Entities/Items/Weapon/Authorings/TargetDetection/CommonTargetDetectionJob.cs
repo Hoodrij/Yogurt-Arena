@@ -4,28 +4,25 @@ public struct CommonTargetDetectionJob
 {
     public async UniTaskVoid Run(ItemAspect weapon)
     {
-        TargetDetectionConfig config = weapon.Get<TargetDetectionConfig>();
-        BattleState battleState = weapon.Get<BattleState>();
-        AgentAspect agent = weapon.Owner.Value;
+        // ref BattleState battleState = ref weapon.Get<BattleState>();
 
         UpdateJob updateJob = new UpdateJob
         {
-            BattleState = battleState,
-            Config = config,
-            Agent = agent
+            Weapon = weapon
         };
 
         weapon.Run(updateJob.Update);
 
         await weapon.Life();
-        battleState.Target = default;
+        weapon.Get<BattleState>().Target = default;
     }
 
     private struct UpdateJob
     {
-        public BattleState BattleState;
-        public TargetDetectionConfig Config;
-        public AgentAspect Agent;
+        public ItemAspect Weapon;
+        private ref BattleState BattleState => ref Weapon.Get<BattleState>();
+        private ref TargetDetectionConfig Config => ref Weapon.Get<TargetDetectionConfig>();
+        private ref AgentAspect Agent => ref Weapon.Owner.Value;
 
         public void Update()
         {
@@ -57,7 +54,7 @@ public struct CommonTargetDetectionJob
 
         private bool IsHostile(AgentAspect target)
         {
-            return !target.Id.teamType.HasFlagNonAlloc(Agent.Id.teamType);
+            return !target.Id.TeamType.HasFlagNonAlloc(Agent.Id.TeamType);
         }
 
         private bool IsInRange(AgentAspect target)

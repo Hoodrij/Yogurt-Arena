@@ -4,9 +4,8 @@ public struct RifleMoveBulletJob
 {
     public void Run(BulletAspect bullet)
     {
-        Time time = Query.Single<Time>();
         Transform transform = bullet.View.transform;
-        BodyState body = bullet.Body;
+        ref BodyState body = ref bullet.Body;
         float timePassed = 0;
         float startingSpeed = body.Velocity.magnitude;
             
@@ -19,6 +18,8 @@ public struct RifleMoveBulletJob
             if (bullet.Has<Kinematic>())
                 return;
                 
+            ref Time time = ref Query.Single<Time>();
+            ref BodyState body = ref bullet.Body;
             Vector3 newPos = body.Position + body.Velocity * time;
             body.Position = transform.position = newPos;
                 

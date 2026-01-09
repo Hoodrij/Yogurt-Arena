@@ -6,5 +6,5 @@ public struct OvermindAspect : IAspect
 
     public OvermindConfig Config => new GetConfigJob().Run<OvermindConfig>();
 
-    public OvermindState State => this.Get<OvermindState>();
+    public ref OvermindState State => ref this.Get<OvermindState>();
 }

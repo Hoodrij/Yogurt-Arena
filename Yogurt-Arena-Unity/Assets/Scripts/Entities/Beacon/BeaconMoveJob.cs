@@ -11,7 +11,7 @@ public struct BeaconMoveJob
         {
             InputFieldAspect inputField = Query.Single<InputFieldAspect>();
             BeaconConfig config = beacon.Config;
-            BeaconBodyState body = beacon.Body;
+            ref BeaconBodyState body = ref beacon.Body;
 
             if (!inputField.Input.HasClick) 
                 return;

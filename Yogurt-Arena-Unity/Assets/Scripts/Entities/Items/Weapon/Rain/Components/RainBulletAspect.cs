@@ -7,6 +7,6 @@ public struct RainBulletAspect : IAspect
     public RainBulletConfig Config => this.Get<RainBulletConfig>();
         
     public BulletAspect BulletAspect => this.As<BulletAspect>();
-    public BattleState BattleState => this.Get<BattleState>();
-    public OwnerState Owner => this.Get<OwnerState>();
+    public ref BattleState BattleState => ref this.Get<BattleState>();
+    public ref OwnerState Owner => ref this.Get<OwnerState>();
 }

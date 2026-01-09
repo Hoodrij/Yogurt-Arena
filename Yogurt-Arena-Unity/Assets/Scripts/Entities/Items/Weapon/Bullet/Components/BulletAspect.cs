@@ -6,8 +6,7 @@ public struct BulletAspect : IAspect
         
     public BulletConfig Config => this.Get<BulletConfig>();
 
-    public BodyState Body => this.Get<BodyState>();
-    public BulletState State => this.Get<BulletState>();
-    public OwnerState Owner => this.Get<OwnerState>();
-    public BulletView View => this.Get<BulletView>();
+    public ref BodyState Body => ref this.Get<BodyState>();
+    public ref OwnerState Owner => ref this.Get<OwnerState>();
+    public ref BulletView View => ref this.Get<BulletView>();
 }

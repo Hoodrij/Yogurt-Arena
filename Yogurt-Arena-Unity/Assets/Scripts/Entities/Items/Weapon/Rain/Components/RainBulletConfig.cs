@@ -1,7 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
 [System.Serializable]
-public class RainBulletConfig : IComponent
+public record struct RainBulletConfig : IComponent
 {
     public ExplosionConfig Explosion;
     public Vector3 Gravity;

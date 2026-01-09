@@ -1,7 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
 [Serializable]
-public class ExplosionConfig : IComponent
+public record struct ExplosionConfig : IComponent
 {
     public PooledAsset<ExplosionView> Asset;
     public AoeDamage Damage;

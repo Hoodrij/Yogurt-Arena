@@ -15,7 +15,7 @@ public struct AgentFactoryJob
             .Add(new Inventory())
             .Add(new AgentId
             {
-                teamType = teamType
+                TeamType = teamType
             })
             .Add(new Health
             {

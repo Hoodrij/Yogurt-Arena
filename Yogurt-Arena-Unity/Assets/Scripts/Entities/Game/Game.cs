@@ -2,7 +2,7 @@
 
 namespace Yogurt.Arena;
 
-public class Game : IComponent
+public record struct Game : IComponent
 {
     public static CancellationToken Token => Application.exitCancellationToken;
     public static Life Life { get; private set; }
@@ -10,5 +10,11 @@ public class Game : IComponent
     public Game()
     {
         Life = Application.exitCancellationToken;
+        
+        PrimeTweenConfig.warnBenchmarkWithAsserts = false;
+        PrimeTweenConfig.warnEndValueEqualsCurrent = false;
+        PrimeTweenConfig.warnZeroDuration = false;
+        PrimeTweenConfig.warnTweenOnDisabledTarget = false;
+        PrimeTweenConfig.warnStructBoxingAllocationInCoroutine = false;
     }
 }

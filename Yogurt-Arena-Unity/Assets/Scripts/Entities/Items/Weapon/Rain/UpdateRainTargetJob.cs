@@ -1,43 +1,63 @@
-﻿using Cathei.LinqGen;
-
-namespace Yogurt.Arena;
+﻿namespace Yogurt.Arena;
 
 public struct UpdateRainTargetJob
 {
     public void Run(RainBulletAspect bullet)
     {
-        RainBulletConfig rainConfig = bullet.Config;
-        AgentAspect owner = bullet.Owner;
+        UpdateJob updateJob = new UpdateJob
+        {
+            Bullet = bullet
+        };
 
-        bullet.Run(Update);
-        return;
+        bullet.Run(updateJob.Update);
+    }
 
+    private struct UpdateJob
+    {
+        public RainBulletAspect Bullet;
+        private ref BattleState BattleState => ref Bullet.BattleState;
+        private ref AgentAspect Owner => ref Bullet.Owner.Value;
+        private RainBulletConfig Config => Bullet.Config;
 
-        void Update()
+        public void Update()
         {
-            bullet.BattleState.Target = GetTarget();
+            BattleState.Target = GetTarget();
         }
-        AgentAspect GetTarget()
+
+        private AgentAspect GetTarget()
         {
-            AgentAspect target = Query.Of<AgentAspect>().AsEnumerable()
-                .Gen()
-                .Where(IsHostile)
-                .Where(IsInRange)
-                .OrderBy(GetDistance)
-                .FirstOrDefault();
-            return target;
+            AgentAspect closestTarget = default;
+            float closestDistance = float.MaxValue;
+
+            foreach (AgentAspect target in Query.Of<AgentAspect>())
+            {
+                if (!IsHostile(target)) continue;
+                if (!IsInRange(target)) continue;
+
+                float distance = GetDistance(target);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTarget = target;
+                }
+            }
+
+            return closestTarget;
         }
-        bool IsHostile(AgentAspect other)
+
+        private bool IsHostile(AgentAspect target)
         {
-            return !other.Id.teamType.HasFlagNonAlloc(owner.Id.teamType);
+            return !target.Id.TeamType.HasFlagNonAlloc(Owner.Id.TeamType);
         }
-        bool IsInRange(AgentAspect other)
+
+        private bool IsInRange(AgentAspect target)
         {
-            return GetDistance(other) < rainConfig.FindTargetDistance;
+            return GetDistance(target) < Config.FindTargetDistance;
         }
-        float GetDistance(AgentAspect other)
+
+        private float GetDistance(AgentAspect target)
         {
-            return (bullet.BulletAspect.Body.Position - other.Body.Position).magnitude.Abs();
+            return (Bullet.BulletAspect.Body.Position - target.Body.Position).magnitude.Abs();
         }
     }
 }

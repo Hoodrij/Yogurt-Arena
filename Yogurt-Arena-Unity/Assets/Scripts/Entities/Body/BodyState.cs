@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-public class BodyState : IComponent
+public record struct BodyState() : IComponent
 {
     public Vector3 Position;
     public Vector3 Velocity;

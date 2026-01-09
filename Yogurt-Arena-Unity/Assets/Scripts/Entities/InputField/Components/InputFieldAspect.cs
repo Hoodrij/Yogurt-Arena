@@ -6,6 +6,6 @@ public struct InputFieldAspect : IAspect
 
     public InputConfig Config => this.Get<InputConfig>();
         
-    public InputState Input => this.Get<InputState>();
+    public ref InputState Input => ref this.Get<InputState>();
     public MoveInputReader MoveInputReader => this.Get<MoveInputReader>();
 }

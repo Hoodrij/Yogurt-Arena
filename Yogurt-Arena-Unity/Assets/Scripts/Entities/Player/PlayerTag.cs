@@ -1,6 +1,3 @@
 ﻿namespace Yogurt.Arena;
 
-public struct PlayerTag : IComponent
-{
-        
-}
+public record struct PlayerTag : IComponent;

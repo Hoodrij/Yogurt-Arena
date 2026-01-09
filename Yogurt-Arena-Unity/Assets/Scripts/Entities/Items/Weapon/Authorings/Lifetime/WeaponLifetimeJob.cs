@@ -4,7 +4,6 @@ public struct WeaponLifetimeJob
 {
     public void Run(ItemAspect item)
     {
-        Time time = Query.Single<Time>();
         AgentAspect owner = item.Owner.Value;
             
         if (!owner.Has<PlayerTag>())
@@ -21,6 +20,7 @@ public struct WeaponLifetimeJob
 
         void Update()
         {
+            ref Time time = ref Query.Single<Time>();
             timeRemains -= time.Delta;
             float progress = timeRemains / lifetimeConfig.LifeTime;
             widget.SetProgress(progress);

@@ -1,15 +1,13 @@
 ﻿namespace Yogurt.Arena;
 
-public struct AgentAspect : IAspect
+public record struct AgentAspect(Entity Entity) : IAspect
 {
-    public Entity Entity { get; set; }
-
     public AgentConfig Config => this.Get<AgentConfig>();
 
-    public AgentId Id => this.Get<AgentId>();
-    public BodyState Body => this.Get<BodyState>();
-    public Health Health => this.Get<Health>();
-    public AgentView View => this.Get<AgentView>();
-    public BattleState BattleState => this.Get<BattleState>();
-    public Inventory Inventory => this.Get<Inventory>();
+    public ref AgentId Id => ref this.Get<AgentId>();
+    public ref BodyState Body => ref this.Get<BodyState>();
+    public ref Health Health => ref this.Get<Health>();
+    public ref AgentView View => ref this.Get<AgentView>();
+    public ref BattleState BattleState => ref this.Get<BattleState>();
+    public ref Inventory Inventory => ref this.Get<Inventory>();
 }

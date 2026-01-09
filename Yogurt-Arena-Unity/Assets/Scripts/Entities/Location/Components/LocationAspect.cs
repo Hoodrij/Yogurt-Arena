@@ -4,7 +4,7 @@ public struct LocationAspect : IAspect
 {
     public Entity Entity { get; set; }
 
-    public Location Location => this.Get<Location>();
+    public ref Location Location => ref this.Get<Location>();
 
     public NavMeshSurface NavSurface => Location.NavSurface;
 }

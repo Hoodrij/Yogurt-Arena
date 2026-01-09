@@ -4,8 +4,6 @@ public struct AgentMoveJob
 {
     public void Run(AgentAspect agent)
     {
-        Time time = Query.Single<Time>();
-		    
         agent.Run(Update);
         return;
 
@@ -22,7 +20,8 @@ public struct AgentMoveJob
 		    
         void UpdateState()
         {
-            BodyState body = agent.Body;
+            ref Time time = ref Query.Single<Time>();
+            ref BodyState body = ref agent.Body;
 
             if (!NavMesh.SamplePosition(body.Destination, out var destinationHit, 100, NavMesh.AllAreas))
                 return;
@@ -32,7 +31,7 @@ public struct AgentMoveJob
             NavMeshPath path = CalculatePath(currentPos, requiredPos);
             Vector3 requiredVelocity = GetNextVelocityByPath(agent.Config.MoveSpeed * time, path);
             float distanceToTarget = (currentPos - requiredPos).magnitude;
-            requiredVelocity = GetSmoothedVelocity(distanceToTarget, requiredVelocity, time);
+            requiredVelocity = GetSmoothedVelocity(distanceToTarget, requiredVelocity);
 
             Vector3 newPos = currentPos + requiredVelocity;
             NavMesh.SamplePosition(newPos, out var hit, 1, NavMesh.AllAreas);
@@ -72,8 +71,9 @@ public struct AgentMoveJob
             return finalPoint - path.corners.First();
         }
 	        
-        Vector3 GetSmoothedVelocity(float distanceToTarget, Vector3 requiredVelocity, Time time)
+        Vector3 GetSmoothedVelocity(float distanceToTarget, Vector3 requiredVelocity)
         {
+            ref Time time = ref Query.Single<Time>();
             AgentConfig config = agent.Config;
             Vector3 prevVelocity = agent.Body.Velocity;
 

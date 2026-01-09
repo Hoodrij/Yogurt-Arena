@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-public class EntityBlueprint : IComponent
+public record struct EntityBlueprint : IComponent
 {
     public IBlueprint Blueprint;
 }

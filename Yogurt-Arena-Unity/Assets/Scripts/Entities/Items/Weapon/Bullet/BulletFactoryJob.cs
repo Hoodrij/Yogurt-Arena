@@ -10,7 +10,6 @@ public struct BulletFactoryJob
             .Link(view.gameObject)
             .Add(config)
             .Add(view)
-            .Add(new BulletState())
             .Add(new BodyState())
             .Add(new OwnerState
             {

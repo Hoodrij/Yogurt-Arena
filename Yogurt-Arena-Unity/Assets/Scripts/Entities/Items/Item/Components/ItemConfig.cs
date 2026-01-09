@@ -1,7 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
 [Serializable]
-public class ItemConfig : IComponent
+public record struct ItemConfig : IComponent
 {
     public ItemType Type;
     public ItemTags Tags;

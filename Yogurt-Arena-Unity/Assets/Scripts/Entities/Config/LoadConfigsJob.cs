@@ -2,7 +2,7 @@ namespace Yogurt.Arena;
 
 public struct LoadConfigsJob
 {
-    public void Run(Entity game)
+    public void Run(GameAspect game)
     {
         ScriptableObject[] allSOs = Resources.LoadAll<ScriptableObject>(string.Empty);
         IEnumerable<IConfigSO> configSOs = allSOs.OfType<IConfigSO>();

@@ -10,10 +10,10 @@ public struct CameraFollowJob
             
         void Update()
         {
+            ref Time time = ref Query.Single<Time>();
             Vector3 currentPos = camera.View.transform.position;
             Vector3 followPoint = new GetFollowPointJob().Run(camera);
 		    
-            Time time = Query.Single<Time>();
             float smoothValue = camera.Config.SmoothValue;
             float smoothTimeBased = time.ExpectedDelta / smoothValue;
             float smoothTimeY = smoothTimeBased * 5f;

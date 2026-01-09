@@ -5,9 +5,10 @@ public struct ChangeHealthJob
     public void Run(Entity target, int delta)
     {
         if (!target.Exist) return;
-            
-        if (target.TryGet(out Health health))
+
+        if (target.Has<Health>())
         {
+            ref Health health = ref target.Get<Health>();
             health.Value += delta;
             health.Value.Clamp(0, health.MaxHealth);
             new UpdateHealthWidgetJob().Run(health);

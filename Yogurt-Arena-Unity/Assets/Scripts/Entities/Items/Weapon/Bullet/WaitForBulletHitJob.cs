@@ -4,7 +4,6 @@ public struct WaitForBulletHitJob
 {
     public async UniTask<CollisionInfo> Run(BulletAspect bullet)
     {
-        Time time = Query.Single<Time>();
         RaycastHit[] hits = new RaycastHit[3];
         CollisionInfo result = default;
 
@@ -37,6 +36,8 @@ public struct WaitForBulletHitJob
         }
         int GetHits()
         {
+            ref Time time = ref Query.Single<Time>();
+
             Vector3 velocity = bullet.Body.Velocity;
             Vector3 dir = velocity.normalized;
             float speed = velocity.magnitude * time;

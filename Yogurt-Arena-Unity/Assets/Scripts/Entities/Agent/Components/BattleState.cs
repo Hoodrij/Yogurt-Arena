@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-public class BattleState : IComponent
+public class BattleState : ISharedComponent<BattleState>
 {
     public AgentAspect Target;
 }

@@ -1,6 +1,3 @@
 ﻿namespace Yogurt.Arena;
 
-public class Kinematic : IComponent
-{
-        
-}
+public record struct Kinematic : IComponent;

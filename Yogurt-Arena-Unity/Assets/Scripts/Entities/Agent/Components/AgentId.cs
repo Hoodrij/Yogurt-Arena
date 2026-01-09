@@ -8,7 +8,7 @@ public enum TeamType
     Red = 2,
 }
     
-public class AgentId : IComponent
+public record struct AgentId : IComponent
 {
-    public TeamType teamType;
+    public TeamType TeamType;
 }
