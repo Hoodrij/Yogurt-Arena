@@ -1,9 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
-public struct PlayerAspect : IAspect
+public record struct PlayerAspect(Entity Entity) : IAspect
 {
-    public Entity Entity { get; set; }
-
     public PlayerTag Tag => this.Get<PlayerTag>();
     public AgentAspect Agent => this.As<AgentAspect>();
 }

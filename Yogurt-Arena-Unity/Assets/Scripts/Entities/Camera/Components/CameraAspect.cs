@@ -1,9 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
-public struct CameraAspect : IAspect
+public record struct CameraAspect(Entity Entity) : IAspect
 {
-    public Entity Entity { get; set; }
-
     public CameraConfig Config => this.Get<CameraConfig>();
 
     public CameraView View => this.Get<CameraView>();

@@ -1,9 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
-public struct ItemSpotAspect : IAspect
+public record struct ItemSpotAspect(Entity Entity) : IAspect
 {
-    public Entity Entity { get; set; }
-        
     public ref ItemSpotConfig Config => ref this.Get<ItemSpotConfig>();
 
     public ref ItemSpotState State => ref this.Get<ItemSpotState>();

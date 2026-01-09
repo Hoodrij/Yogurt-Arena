@@ -1,9 +1,7 @@
 ﻿namespace Yogurt.Arena;
 
-public struct RainBulletAspect : IAspect
+public record struct RainBulletAspect(Entity Entity) : IAspect
 {
-    public Entity Entity { get; set; }
-
     public RainBulletConfig Config => this.Get<RainBulletConfig>();
         
     public BulletAspect BulletAspect => this.As<BulletAspect>();

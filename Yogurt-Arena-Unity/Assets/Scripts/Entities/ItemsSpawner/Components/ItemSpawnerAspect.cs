@@ -1,8 +1,6 @@
 ﻿namespace Yogurt.Arena;
 
-public struct ItemSpawnerAspect : IAspect
+public record struct ItemSpawnerAspect(Entity Entity) : IAspect
 {
-    public Entity Entity { get; set; }
-
     public ItemSpawnerConfig Config => new GetConfigJob().Run<ItemSpawnerConfig>();
 }
