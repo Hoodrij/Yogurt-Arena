@@ -45,20 +45,9 @@ public static class Wait
     public static UniTask Seconds(float seconds, Life life = default)
     {
         float startTime = UnityEngine.Time.time;
-        return Until(IsCompleted, life);
+        return While(ShouldWait, (startTime, seconds), life);
 
-        bool IsCompleted() => UnityEngine.Time.time - startTime >= seconds;
-    }
-
-    public static UniTask Any(params UniTask[] tasks)
-    {
-        return UniTask.WhenAny(tasks)
-            .AttachExternalCancellation(Game.Token);
-    }
-        
-    public static UniTask All(params UniTask[] tasks)
-    {
-        return UniTask.WhenAll(tasks)
-            .AttachExternalCancellation(Game.Token);
+        static bool ShouldWait((float startTime, float seconds) tuple) 
+            => UnityEngine.Time.time - tuple.startTime < tuple.seconds;
     }
 }

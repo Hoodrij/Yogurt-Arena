@@ -10,7 +10,8 @@ public struct ChargerWeaponBehaviorJob
         new ChargerWeaponMoveOwnerJob().Run(bullet);
         new ChargerWeaponMoveBulletJob().Run(bullet);
         TryDealDamage().Forget();
-        await Wait.Any(WaitForOwnerDeath(), WaitForLifeTime());
+        await WaitForOwnerDeath()
+            .Or(WaitForLifeTime());
             
         if (owner.Exist())
         {
@@ -25,7 +26,7 @@ public struct ChargerWeaponBehaviorJob
             CollisionInfo collisionInfo = await new WaitForBulletHitJob().Run(bullet);
             new DealDamageJob().Run(collisionInfo.Entity, damage);
         }
-        async UniTask WaitForOwnerDeath() => await owner.Life();
-        async UniTask WaitForLifeTime() => await new WaitForBulletLiteTimeJob().Run(bullet);
+        async Life WaitForOwnerDeath() => await owner.Life();
+        async Life WaitForLifeTime() => await new WaitForBulletLiteTimeJob().Run(bullet);
     }
 }

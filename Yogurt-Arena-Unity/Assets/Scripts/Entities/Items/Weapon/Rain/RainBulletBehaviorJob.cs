@@ -8,11 +8,12 @@ public struct RainBulletBehaviorJob
         RainBulletConfig rainConfig = rainBullet.Config;
         CollisionInfo collision = default;
             
-        UniTask collisionTask = DetectHit();
+        Life collisionTask = DetectHit();
         new UpdateRainTargetJob().Run(rainBullet);
         new RainMoveBulletJob().Run(rainBullet);
 
-        await Wait.Any(collisionTask, WaitForLifeTime());
+        await collisionTask
+            .Or(WaitForLifeTime());
 
         if (collision.IsValid)
         {
@@ -25,11 +26,11 @@ public struct RainBulletBehaviorJob
         return;
 
 
-        async UniTask DetectHit()
+        async Life DetectHit()
         {
             collision = await new WaitForBulletHitJob().Run(bullet);
         }
-        async UniTask WaitForLifeTime()
+        async Life WaitForLifeTime()
         {
             await new WaitForBulletLiteTimeJob().Run(bullet);
         }
