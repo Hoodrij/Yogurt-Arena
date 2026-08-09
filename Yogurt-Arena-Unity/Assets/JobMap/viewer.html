@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yogurt Arena Job Map</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #090d14; --sidebar: #121827ee; --panel: #151d2d; --line: #263248;
+    --text: #d9e2f1; --muted: #8490a6; --job: #69a6ff; --job-fill: #17263b;
+    --edge: #54647f; --select: #315b9d; --accent: #9bdc72;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; overflow: hidden; background: var(--bg); color: var(--text); font: 14px/1.4 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  #sidebar { position: fixed; z-index: 3; inset: 14px auto 14px 14px; width: min(350px, calc(100vw - 28px)); padding: 16px 12px; overflow: auto; border: 1px solid #25324a; border-radius: 16px; background: linear-gradient(180deg, #151d2eeb, #0f1522f2); box-shadow: 0 20px 60px #0008, inset 0 1px #ffffff08; }
+  #brand { display: flex; align-items: center; gap: 10px; padding: 3px 6px 18px; font-size: 18px; font-weight: 700; }
+  #brand i { width: 25px; height: 25px; border-radius: 8px; background: linear-gradient(135deg, #58a6ff, #75d8a9); box-shadow: 0 0 18px #58a6ff70; }
+  #brand span { color: var(--muted); font-size: 14px; font-weight: 500; }
+  #search { width: 100%; padding: 10px 12px; border: 1px solid #31405c; border-radius: 8px; outline: none; background: #0d1421; color: var(--text); font: inherit; }
+  #search:focus { border-color: var(--job); box-shadow: 0 0 0 3px #69a6ff22; }
+  #results { display: grid; gap: 3px; margin: 7px 0; }
+  .search-result, .nav-job, #whole-tree { display: block; width: 100%; padding: 8px 9px; border: 0; border-radius: 7px; background: transparent; color: var(--text); text-align: left; font: inherit; cursor: pointer; }
+  .search-result:hover, .nav-job:hover, #whole-tree:hover { background: #202c40; }
+  .search-result { color: var(--job); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+  #whole-tree { display: flex; gap: 8px; align-items: center; margin: 10px 0 7px; background: #1d2c47; font-weight: 600; }
+  #whole-tree.active { box-shadow: inset 3px 0 var(--job); background: #263957; }
+  #nav { display: grid; gap: 1px; }
+  .nav-job { padding-block: 5px; font-size: 13px; color: #b7c2d5; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .nav-job.active { color: #fff; background: var(--select); }
+  #empty { padding: 22px 8px; color: var(--muted); }
+  #stage { position: fixed; inset: 0; touch-action: none; cursor: grab; background-image: radial-gradient(#34425b66 1px, transparent 1.3px); background-size: 32px 32px; }
+  #stage.dragging { cursor: grabbing; }
+  #graph { display: block; width: 100%; height: 100%; }
+  #edges { fill: none; stroke: var(--edge); stroke-width: 1.45; opacity: .84; }
+  .edge { marker-end: url(#arrow); }
+  .job-node { cursor: pointer; }
+  .job-node rect { fill: var(--job-fill); stroke: #354866; stroke-width: 1.2; rx: 7; transition: fill .12s, stroke .12s; }
+  .job-node:hover rect { fill: #1c3351; stroke: var(--job); }
+  .job-node.selected rect { fill: #24487b; stroke: #9fc7ff; stroke-width: 1.8; }
+  .job-node text { fill: var(--job); font: 600 13px ui-monospace, SFMono-Regular, Consolas, monospace; pointer-events: none; }
+  .job-node .source { fill: var(--muted); font-size: 10px; font-weight: 400; }
+  .job-node.cycle rect { fill: #2a2434; stroke: #9e75b8; }
+  .job-node.cycle text { fill: #d8a9ee; }
+  #hint { position: fixed; z-index: 2; right: 18px; bottom: 18px; padding: 9px 12px; border: 1px solid #27344b; border-radius: 9px; background: #101827e8; color: var(--muted); font-size: 12px; pointer-events: none; }
+  #selected { position: fixed; z-index: 2; left: 380px; bottom: 18px; max-width: calc(100vw - 420px); padding: 9px 12px; overflow: hidden; border: 1px solid #27344b; border-radius: 9px; background: #101827e8; color: var(--text); text-overflow: ellipsis; white-space: nowrap; font: 12px ui-monospace, SFMono-Regular, Consolas, monospace; pointer-events: none; }
+  @media (max-width: 680px) { #sidebar { width: 290px; } #selected { left: 18px; bottom: 52px; max-width: calc(100vw - 36px); } }
+</style>
+</head>
+<body>
+<aside id="sidebar">
+  <div id="brand"><i aria-hidden="true"></i> Yogurt <span>Job Map</span></div>
+  <input id="search" type="search" autocomplete="off" placeholder="Search jobs…" aria-label="Search jobs">
+  <div id="results" aria-live="polite"></div>
+  <button id="whole-tree" class="active" type="button">⌂ Whole tree</button>
+  <nav id="nav" aria-label="Job roots"></nav>
+</aside>
+<main id="stage" aria-label="Job call hierarchy. Drag to pan, use the mouse wheel to zoom.">
+  <svg id="graph" role="img" aria-label="Left-to-right job call hierarchy">
+    <defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#54647f"></path></marker></defs>
+    <g id="world"><g id="edges"></g><g id="nodes"></g></g>
+  </svg>
+</main>
+<div id="selected">Whole tree</div>
+<div id="hint">Drag to pan · wheel to zoom · click a job to focus</div>
+<script>window.JOB_MAP = {
+  "version": 2,
+  "jobs": [
+    {"id": "Yogurt.Arena.AgentDeathJob", "name": "AgentDeathJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Agent/AgentDeathJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.AgentFactoryJob", "name": "AgentFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Agent/AgentFactoryJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.AgentLookJob", "name": "AgentLookJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Agent/AgentLookJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.AgentMoveJob", "name": "AgentMoveJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Agent/AgentMoveJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.AgentSpawnJob", "name": "AgentSpawnJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Agent/AgentSpawnJob.cs", "line": 3, "calls": ["Yogurt.Arena.AgentFactoryJob", "Yogurt.Arena.AgentLookJob", "Yogurt.Arena.AgentMoveJob", "Yogurt.Arena.GiveItemJob"]},
+    {"id": "Yogurt.Arena.AnimateLocationAppearanceJob", "name": "AnimateLocationAppearanceJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Location/AnimateLocationAppearanceJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.ApplyScatteringJob", "name": "ApplyScatteringJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Authorings/Scattering/ApplyScatteringJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.BeaconFactoryJob", "name": "BeaconFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Beacon/BeaconFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.BeaconMoveJob", "Yogurt.Arena.GetConfigJob"]},
+    {"id": "Yogurt.Arena.BeaconMoveJob", "name": "BeaconMoveJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Beacon/BeaconMoveJob.cs", "line": 3, "calls": ["Yogurt.Arena.SpawnBeaconVfxJob"]},
+    {"id": "Yogurt.Arena.BulletFactoryJob", "name": "BulletFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Bullet/BulletFactoryJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.CameraFactoryJob", "name": "CameraFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Camera/CameraFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.CameraFollowJob", "Yogurt.Arena.GetConfigJob"]},
+    {"id": "Yogurt.Arena.CameraFollowJob", "name": "CameraFollowJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Camera/CameraFollowJob.cs", "line": 3, "calls": ["Yogurt.Arena.GetFollowPointJob"]},
+    {"id": "Yogurt.Arena.ChangeHealthJob", "name": "ChangeHealthJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Health/ChangeHealthJob.cs", "line": 3, "calls": ["Yogurt.Arena.UpdateHealthWidgetJob"]},
+    {"id": "Yogurt.Arena.ChargerWeaponBehaviorJob", "name": "ChargerWeaponBehaviorJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/ChargerWeapon/ChargerWeaponBehaviorJob.cs", "line": 3, "calls": ["Yogurt.Arena.ChargerWeaponMoveBulletJob", "Yogurt.Arena.ChargerWeaponMoveOwnerJob", "Yogurt.Arena.DealDamageJob", "Yogurt.Arena.KillBulletJob", "Yogurt.Arena.WaitForBulletHitJob", "Yogurt.Arena.WaitForBulletLiteTimeJob"]},
+    {"id": "Yogurt.Arena.ChargerWeaponMoveBulletJob", "name": "ChargerWeaponMoveBulletJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/ChargerWeapon/ChargerWeaponMoveBulletJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.ChargerWeaponMoveOwnerJob", "name": "ChargerWeaponMoveOwnerJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/ChargerWeapon/ChargerWeaponMoveOwnerJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.CommonTargetDetectionJob", "name": "CommonTargetDetectionJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Authorings/TargetDetection/CommonTargetDetectionJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.CommonTargetDetectionJob.UpdateJob", "name": "UpdateJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Authorings/TargetDetection/CommonTargetDetectionJob.cs", "line": 20, "calls": []},
+    {"id": "Yogurt.Arena.CommonWeaponFactoryJob", "name": "CommonWeaponFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Authorings/Common/CommonWeaponFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.CommonTargetDetectionJob", "Yogurt.Arena.WeaponLifetimeJob"]},
+    {"id": "Yogurt.Arena.DealAoeDamageJob", "name": "DealAoeDamageJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Health/DealAoeDamageJob.cs", "line": 3, "calls": ["Yogurt.Arena.DealDamageJob"]},
+    {"id": "Yogurt.Arena.DealDamageJob", "name": "DealDamageJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Health/DealDamageJob.cs", "line": 3, "calls": ["Yogurt.Arena.ChangeHealthJob"]},
+    {"id": "Yogurt.Arena.FireBulletJob", "name": "FireBulletJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Bullet/FireBulletJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.GameFactoryJob", "name": "GameFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Game/GameFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.LoadConfigsJob", "Yogurt.Arena.UpdateTimeJob"]},
+    {"id": "Yogurt.Arena.GetAgentConfigJob", "name": "GetAgentConfigJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Agent/GetAgentConfigJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.GetConfigJob", "name": "GetConfigJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Config/GetConfigJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.GetFollowPointJob", "name": "GetFollowPointJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Camera/GetFollowPointJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.GetFreeSpawnPointJob", "name": "GetFreeSpawnPointJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Overmind/GetFreeSpawnPointJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.GetRandomItemJob", "name": "GetRandomItemJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Item/GetRandomItemJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.GiveItemJob", "name": "GiveItemJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Inventory/GiveItemJob.cs", "line": 3, "calls": ["Yogurt.Arena.ItemFactoryJob"]},
+    {"id": "Yogurt.Arena.HandleGameOverJob", "name": "HandleGameOverJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Scenario/HandleGameOverJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.InputFieldFactoryJob", "name": "InputFieldFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/InputField/InputFieldFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.GetConfigJob", "Yogurt.Arena.UpdateMoveInputJob"]},
+    {"id": "Yogurt.Arena.ItemFactoryJob", "name": "ItemFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Item/ItemFactoryJob.cs", "line": 8, "calls": ["Yogurt.Arena.GetConfigJob"]},
+    {"id": "Yogurt.Arena.ItemSpotBehaviorJob", "name": "ItemSpotBehaviorJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/ItemSpot/ItemSpotBehaviorJob.cs", "line": 3, "calls": ["Yogurt.Arena.GiveItemJob", "Yogurt.Arena.WaitForItemPickupJob"]},
+    {"id": "Yogurt.Arena.ItemSpotFactoryJob", "name": "ItemSpotFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/ItemSpot/ItemSpotFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.GetConfigJob", "Yogurt.Arena.ItemSpotBehaviorJob"]},
+    {"id": "Yogurt.Arena.ItemsSpawnerBehaviorJob", "name": "ItemsSpawnerBehaviorJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/ItemsSpawner/ItemsSpawnerBehaviorJob.cs", "line": 3, "calls": ["Yogurt.Arena.GetRandomItemJob"]},
+    {"id": "Yogurt.Arena.KillBulletJob", "name": "KillBulletJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Bullet/KillBulletJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.LevelUpJob", "name": "LevelUpJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Level/LevelUpJob.cs", "line": 3, "calls": ["Yogurt.Arena.SpawnLocationPartJob"]},
+    {"id": "Yogurt.Arena.LoadConfigsJob", "name": "LoadConfigsJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Config/LoadConfigsJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.LocationFactoryJob", "name": "LocationFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Location/LocationFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.SpawnLocationPartJob"]},
+    {"id": "Yogurt.Arena.OvermindFactoryJob", "name": "OvermindFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Overmind/OvermindFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.GetConfigJob", "Yogurt.Arena.UpdateOvermindDestinationJob"]},
+    {"id": "Yogurt.Arena.PlayerFactoryJob", "name": "PlayerFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Player/PlayerFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.AgentSpawnJob", "Yogurt.Arena.GetAgentConfigJob", "Yogurt.Arena.UpdatePlayerDestinationJob"]},
+    {"id": "Yogurt.Arena.RainBulletBehaviorJob", "name": "RainBulletBehaviorJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rain/RainBulletBehaviorJob.cs", "line": 3, "calls": ["Yogurt.Arena.DealAoeDamageJob", "Yogurt.Arena.KillBulletJob", "Yogurt.Arena.RainMoveBulletJob", "Yogurt.Arena.SpawnExplosionJob", "Yogurt.Arena.UpdateRainTargetJob", "Yogurt.Arena.WaitForBulletHitJob", "Yogurt.Arena.WaitForBulletLiteTimeJob"]},
+    {"id": "Yogurt.Arena.RainBulletFactoryJob", "name": "RainBulletFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rain/RainBulletFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.BulletFactoryJob"]},
+    {"id": "Yogurt.Arena.RainMoveBulletJob", "name": "RainMoveBulletJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rain/RainMoveBulletJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.ReloadJob", "name": "ReloadJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Authorings/Reload/ReloadJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.RifleBulletBehaviorJob", "name": "RifleBulletBehaviorJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rifle/RifleBulletBehaviorJob.cs", "line": 3, "calls": ["Yogurt.Arena.DealDamageJob", "Yogurt.Arena.KillBulletJob", "Yogurt.Arena.RifleMoveBulletJob", "Yogurt.Arena.WaitForBulletHitJob", "Yogurt.Arena.WaitForBulletLiteTimeJob"]},
+    {"id": "Yogurt.Arena.RifleMoveBulletJob", "name": "RifleMoveBulletJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rifle/RifleMoveBulletJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.RunGameLoopJob", "name": "RunGameLoopJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Game/RunGameLoopJob.cs", "line": 3, "calls": ["Yogurt.Arena.HandleGameOverJob", "Yogurt.Arena.RunScenarioJob", "Yogurt.Arena.WaitForGameOverJob", "Yogurt.Arena.WorldFactoryJob"]},
+    {"id": "Yogurt.Arena.RunOvermindBehaviorJob", "name": "RunOvermindBehaviorJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Overmind/RunOvermindBehaviorJob.cs", "line": 3, "calls": ["Yogurt.Arena.SpawnWaveJob"]},
+    {"id": "Yogurt.Arena.RunScenarioJob", "name": "RunScenarioJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Scenario/RunScenarioJob.cs", "line": 3, "calls": ["Yogurt.Arena.LevelUpJob", "Yogurt.Arena.RunOvermindBehaviorJob"]},
+    {"id": "Yogurt.Arena.SpawnBeaconVfxJob", "name": "SpawnBeaconVfxJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Beacon/SpawnBeaconVfxJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.SpawnExplosionJob", "name": "SpawnExplosionJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Explosion/SpawnExplosionJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.SpawnLocationPartJob", "name": "SpawnLocationPartJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Location/SpawnLocationPartJob.cs", "line": 3, "calls": ["Yogurt.Arena.AnimateLocationAppearanceJob", "Yogurt.Arena.GetConfigJob"]},
+    {"id": "Yogurt.Arena.SpawnSingleEnemyJob", "name": "SpawnSingleEnemyJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Overmind/SpawnSingleEnemyJob.cs", "line": 3, "calls": ["Yogurt.Arena.AgentSpawnJob", "Yogurt.Arena.GetAgentConfigJob", "Yogurt.Arena.GetFreeSpawnPointJob"]},
+    {"id": "Yogurt.Arena.SpawnWaveJob", "name": "SpawnWaveJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Overmind/SpawnWaveJob.cs", "line": 3, "calls": ["Yogurt.Arena.SpawnSingleEnemyJob"]},
+    {"id": "Yogurt.Arena.UIFactoryJob", "name": "UIFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/UI/MainUI/UIFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.GetConfigJob"]},
+    {"id": "Yogurt.Arena.UpdateHealthWidgetJob", "name": "UpdateHealthWidgetJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/UI/HealthWidget/UpdateHealthWidgetJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.UpdateMoveInputJob", "name": "UpdateMoveInputJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/InputField/UpdateMoveInputJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.UpdateOvermindDestinationJob", "name": "UpdateOvermindDestinationJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Overmind/UpdateOvermindDestinationJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.UpdatePlayerDestinationJob", "name": "UpdatePlayerDestinationJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Player/UpdatePlayerDestinationJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.UpdateRainTargetJob", "name": "UpdateRainTargetJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rain/UpdateRainTargetJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.UpdateRainTargetJob.UpdateJob", "name": "UpdateJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rain/UpdateRainTargetJob.cs", "line": 15, "calls": []},
+    {"id": "Yogurt.Arena.UpdateTimeJob", "name": "UpdateTimeJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Game/UpdateTimeJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.UseBoomerWeaponJob", "name": "UseBoomerWeaponJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/BoomerWeapon/UseBoomerWeaponJob.cs", "line": 3, "calls": ["Yogurt.Arena.DealAoeDamageJob", "Yogurt.Arena.SpawnExplosionJob", "Yogurt.Arena.WaitForWeaponReadyJob"]},
+    {"id": "Yogurt.Arena.UseChargerWeaponJob", "name": "UseChargerWeaponJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/ChargerWeapon/UseChargerWeaponJob.cs", "line": 3, "calls": ["Yogurt.Arena.BulletFactoryJob", "Yogurt.Arena.ChargerWeaponBehaviorJob", "Yogurt.Arena.FireBulletJob", "Yogurt.Arena.ReloadJob", "Yogurt.Arena.WaitForWeaponReadyJob"]},
+    {"id": "Yogurt.Arena.UseHealingPotionJob", "name": "UseHealingPotionJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/HealingPotion/UseHealingPotionJob.cs", "line": 3, "calls": ["Yogurt.Arena.ChangeHealthJob"]},
+    {"id": "Yogurt.Arena.UseRainJob", "name": "UseRainJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rain/UseRainJob.cs", "line": 3, "calls": ["Yogurt.Arena.ApplyScatteringJob", "Yogurt.Arena.FireBulletJob", "Yogurt.Arena.RainBulletBehaviorJob", "Yogurt.Arena.ReloadJob", "Yogurt.Arena.WaitForWeaponReadyJob"]},
+    {"id": "Yogurt.Arena.UseRifleJob", "name": "UseRifleJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Rifle/UseRifleJob.cs", "line": 3, "calls": ["Yogurt.Arena.ApplyScatteringJob", "Yogurt.Arena.BulletFactoryJob", "Yogurt.Arena.FireBulletJob", "Yogurt.Arena.ReloadJob", "Yogurt.Arena.RifleBulletBehaviorJob", "Yogurt.Arena.WaitForWeaponReadyJob"]},
+    {"id": "Yogurt.Arena.WaitForBulletHitJob", "name": "WaitForBulletHitJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Bullet/WaitForBulletHitJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.WaitForBulletLiteTimeJob", "name": "WaitForBulletLiteTimeJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Bullet/WaitForBulletLiteTimeJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.WaitForGameOverJob", "name": "WaitForGameOverJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Scenario/WaitForGameOverJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.WaitForItemPickupJob", "name": "WaitForItemPickupJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/ItemSpot/WaitForItemPickupJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.WaitForWeaponReadyJob", "name": "WaitForWeaponReadyJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Authorings/Common/WaitForWeaponReadyJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.WeaponLifetimeJob", "name": "WeaponLifetimeJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/Items/Weapon/Authorings/Lifetime/WeaponLifetimeJob.cs", "line": 3, "calls": []},
+    {"id": "Yogurt.Arena.WorldFactoryJob", "name": "WorldFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/World/WorldFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.BeaconFactoryJob", "Yogurt.Arena.CameraFactoryJob", "Yogurt.Arena.GetConfigJob", "Yogurt.Arena.InputFieldFactoryJob", "Yogurt.Arena.LocationFactoryJob", "Yogurt.Arena.OvermindFactoryJob", "Yogurt.Arena.PlayerFactoryJob", "Yogurt.Arena.UIFactoryJob", "Yogurt.Arena.WorldUIFactoryJob"]},
+    {"id": "Yogurt.Arena.WorldUIFactoryJob", "name": "WorldUIFactoryJob", "namespace": "Yogurt.Arena", "file": "Assets/Scripts/Entities/UI/WorldUI/WorldUIFactoryJob.cs", "line": 3, "calls": ["Yogurt.Arena.GetConfigJob"]}
+  ]
+}
+;</script>
+<script>
+(() => {
+  const data = window.JOB_MAP || { jobs: [] };
+  const jobs = data.jobs || [];
+  const byId = new Map(jobs.map(job => [job.id, job]));
+  const incoming = new Map(jobs.map(job => [job.id, []]));
+  jobs.forEach(job => job.calls.forEach(id => { if (incoming.has(id)) incoming.get(id).push(job.id); }));
+  const roots = jobs.filter(job => incoming.get(job.id).length === 0).sort((a, b) => a.name.localeCompare(b.name));
+  const graph = document.getElementById('graph');
+  const stage = document.getElementById('stage');
+  const world = document.getElementById('world');
+  const edgesEl = document.getElementById('edges');
+  const nodesEl = document.getElementById('nodes');
+  const search = document.getElementById('search');
+  const results = document.getElementById('results');
+  const nav = document.getElementById('nav');
+  const wholeTree = document.getElementById('whole-tree');
+  const selectedEl = document.getElementById('selected');
+  const SVG = 'http://www.w3.org/2000/svg';
+  const H_GAP = 245, V_GAP = 74, TOP = 68, LEFT = 70;
+  let nodes = [], selected = null, transform = { x: 0, y: 0, scale: 1 }, drag = null;
+
+  const svg = (tag, attrs = {}) => { const el = document.createElementNS(SVG, tag); Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value)); return el; };
+  const short = id => byId.get(id)?.name || id.split('.').pop();
+  const branch = (id, depth, ancestor, parent) => {
+    const job = byId.get(id);
+    const repeating = ancestor.has(id);
+    const item = { id, job, depth, parent, repeating, children: [], y: 0, x: depth * H_GAP + LEFT };
+    nodes.push(item);
+    if (!job || repeating) return item;
+    const next = new Set(ancestor); next.add(id);
+    job.calls.forEach(child => item.children.push(branch(child, depth + 1, next, item)));
+    return item;
+  };
+  const layout = rootsList => {
+    nodes = [];
+    const forest = rootsList.map(root => branch(root.id, 0, new Set(), null));
+    let row = 0;
+    const place = node => {
+      if (!node.children.length) { node.y = TOP + row++ * V_GAP; return node.y; }
+      const values = node.children.map(place);
+      node.y = values.reduce((sum, value) => sum + value, 0) / values.length;
+      return node.y;
+    };
+    forest.forEach(root => { place(root); row++; });
+  };
+  const nodeWidth = item => Math.max(165, (item.job ? item.job.name.length : short(item.id).length) * 8 + 34);
+  const nodeHeight = 45;
+  const applyTransform = () => world.setAttribute('transform', `translate(${transform.x} ${transform.y}) scale(${transform.scale})`);
+  const focus = item => {
+    if (!item) return;
+    selected = item;
+    const rect = graph.getBoundingClientRect();
+    transform.x = rect.width * .58 - (item.x + nodeWidth(item) / 2) * transform.scale;
+    transform.y = rect.height * .48 - item.y * transform.scale;
+    applyTransform(); renderNodes(); renderNavigation();
+    const job = item.job;
+    selectedEl.textContent = job ? job.id + '  ·  ' + job.file + ':' + job.line : short(item.id);
+  };
+  const whole = () => {
+    selected = null;
+    const width = Math.max(...nodes.map(item => item.x + nodeWidth(item)), 1) + 80;
+    const height = Math.max(...nodes.map(item => item.y), 1) + 80;
+    const rect = graph.getBoundingClientRect();
+    const scale = Math.min(1, (rect.width - 420) / width, (rect.height - 90) / height);
+    transform.scale = Math.max(.25, scale);
+    transform.x = 390 - LEFT * transform.scale;
+    transform.y = Math.max(28, (rect.height - height * transform.scale) / 2);
+    applyTransform(); renderNodes(); renderNavigation(); selectedEl.textContent = 'Whole tree';
+  };
+  const renderEdges = () => {
+    edgesEl.textContent = '';
+    nodes.forEach(item => {
+      if (!item.parent) return;
+      const startX = item.parent.x + nodeWidth(item.parent), startY = item.parent.y;
+      const endX = item.x, endY = item.y;
+      const middle = (startX + endX) / 2;
+      edgesEl.appendChild(svg('path', { class: 'edge', d: `M ${startX} ${startY} C ${middle} ${startY}, ${middle} ${endY}, ${endX - 7} ${endY}` }));
+    });
+  };
+  const renderNodes = () => {
+    nodesEl.textContent = '';
+    nodes.forEach(item => {
+      const group = svg('g', { class: 'job-node' + (item.repeating ? ' cycle' : '') + (selected === item ? ' selected' : ''), transform: `translate(${item.x} ${item.y - nodeHeight / 2})` });
+      const width = nodeWidth(item);
+      group.appendChild(svg('rect', { width, height: nodeHeight }));
+      const title = svg('text', { x: 13, y: item.job ? 20 : 24 });
+      title.textContent = item.repeating ? '↻ ' + short(item.id) : short(item.id);
+      group.appendChild(title);
+      if (item.job) {
+        const source = svg('text', { class: 'source', x: 13, y: 35 });
+        source.textContent = item.job.file + ':' + item.job.line;
+        group.appendChild(source);
+      }
+      group.addEventListener('click', event => { event.stopPropagation(); focus(item); });
+      nodesEl.appendChild(group);
+    });
+  };
+  const renderNavigation = () => {
+    wholeTree.classList.toggle('active', !selected);
+    [...nav.children].forEach(button => button.classList.toggle('active', selected?.id === button.dataset.id));
+    renderNodes();
+  };
+  const renderNav = () => {
+    nav.textContent = '';
+    roots.forEach(root => {
+      const button = document.createElement('button');
+      button.className = 'nav-job'; button.type = 'button'; button.dataset.id = root.id; button.textContent = root.name;
+      button.addEventListener('click', () => focus(nodes.find(item => item.id === root.id)));
+      nav.appendChild(button);
+    });
+  };
+  const renderSearch = () => {
+    const query = search.value.trim().toLowerCase();
+    results.textContent = '';
+    if (!query) return;
+    jobs.filter(job => (job.name + ' ' + job.namespace).toLowerCase().includes(query)).slice(0, 12).forEach(job => {
+      const button = document.createElement('button');
+      button.className = 'search-result'; button.type = 'button'; button.textContent = job.name;
+      button.addEventListener('click', () => { search.value = ''; renderSearch(); focus(nodes.find(item => item.id === job.id)); });
+      results.appendChild(button);
+    });
+  };
+  const render = () => {
+    if (!jobs.length) { selectedEl.textContent = 'No jobs found in Assets/Scripts'; return; }
+    layout(roots.length ? roots : jobs);
+    renderEdges(); renderNodes(); renderNav(); whole();
+  };
+  search.addEventListener('input', renderSearch);
+  wholeTree.addEventListener('click', whole);
+  stage.addEventListener('pointerdown', event => { if (event.target !== stage && event.target !== graph) return; drag = { x: event.clientX, y: event.clientY, tx: transform.x, ty: transform.y }; stage.setPointerCapture(event.pointerId); stage.classList.add('dragging'); });
+  stage.addEventListener('pointermove', event => { if (!drag) return; transform.x = drag.tx + event.clientX - drag.x; transform.y = drag.ty + event.clientY - drag.y; applyTransform(); });
+  stage.addEventListener('pointerup', event => { drag = null; stage.releasePointerCapture(event.pointerId); stage.classList.remove('dragging'); });
+  stage.addEventListener('wheel', event => { event.preventDefault(); const rect = graph.getBoundingClientRect(); const old = transform.scale; const factor = event.deltaY < 0 ? 1.12 : .89; const next = Math.max(.2, Math.min(2.4, old * factor)); const x = event.clientX - rect.left, y = event.clientY - rect.top; transform.x = x - (x - transform.x) * (next / old); transform.y = y - (y - transform.y) * (next / old); transform.scale = next; applyTransform(); }, { passive: false });
+  window.addEventListener('resize', () => { if (!selected) whole(); });
+  render();
+})();
+</script>
+</body>
+</html>
