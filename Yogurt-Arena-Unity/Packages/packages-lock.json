@@ -127,7 +127,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.pipeline": {
-      "version": "0.4.0-exp.1",
+      "version": "0.5.0-exp.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -241,7 +241,7 @@
       "dependencies": {
         "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
       },
-      "hash": "011a359d03104cec108e03d064266473b459f64a"
+      "hash": "f0b91d387724faa7d5433e7b31abc4d36b702f74"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
