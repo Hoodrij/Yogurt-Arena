@@ -2,8 +2,6 @@ namespace Yogurt.Arena;
 
 public struct AgentMoveJob
 {
-    private static Vector3[] corners = new Vector3[32];
-    
     public void Run(AgentAspect agent)
     {
         agent.Run(Update);
@@ -55,24 +53,22 @@ public struct AgentMoveJob
                 return Vector3.zero;
 				
             float soFar = 0.0f;
-            int cornersCount = path.GetCornersNonAlloc(corners);
-            Vector3 finalPoint = corners.Last();
+            Vector3 finalPoint = path.corners.Last();
 
-            for (int i = 0; i < cornersCount - 1; i++)
+            for (int i = 0; i < path.corners.Length - 1; i++)
             {
-                float segmentDistance = (corners[i + 1] - corners[i]).magnitude;
+                float segmentDistance = (path.corners[i + 1] - path.corners[i]).magnitude;
                 if (soFar + segmentDistance <= speed)
                 {
                     soFar += segmentDistance;
                 }
                 else
                 {
-                    finalPoint = corners[i] + (corners[i + 1] - corners[i]).normalized * (speed - soFar);
+                    finalPoint = path.corners[i] + (path.corners[i + 1] - path.corners[i]).normalized * (speed - soFar);
                     break;
                 }
             }
-            return finalPoint - corners.First();
-            
+            return finalPoint - path.corners.First();
         }
 	        
         Vector3 GetSmoothedVelocity(float distanceToTarget, Vector3 requiredVelocity)
