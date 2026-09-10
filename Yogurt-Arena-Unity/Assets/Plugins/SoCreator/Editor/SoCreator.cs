@@ -1,4 +1,4 @@
-#define SO_CREATOR
+﻿#define SO_CREATOR
 
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace SoCreator
         private static HashSet<Type> s_ValidSet;
         
         // =======================================================================
+        [Obsolete("Obsolete")]
         private class DoCreateFile : EndNameEditAction
         {
             public Type ObjectType;
@@ -107,12 +108,12 @@ namespace SoCreator
                                   }
                                   
                                   doCreateFile.ObjectType = pickedType;
-                                  ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
-                                      0,
-                                      doCreateFile,
-                                      path,
-                                      s_ScriptableObjectIcon,
-                                      string.Empty);
+                                  // ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
+                                  //     0,
+                                  //     doCreateFile,
+                                  //     path,
+                                  //     s_ScriptableObjectIcon,
+                                  //     string.Empty);
                               }, null, types, 0, s => new GUIContent(showNamespace ? s.FullName : s.Name), 
                               title: "ScriptableObject Type", 
                               firstClickTrigger: true, 
