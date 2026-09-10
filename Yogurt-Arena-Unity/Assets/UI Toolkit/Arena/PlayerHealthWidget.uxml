@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="player-health" class="health" picking-mode="Ignore">
+        <ui:Label text="HP" class="health-label" picking-mode="Ignore" />
+        <ui:VisualElement class="health-bar" picking-mode="Ignore">
+            <ui:VisualElement class="health-track" picking-mode="Ignore" />
+            <ui:VisualElement name="health-fill" class="health-fill" picking-mode="Ignore" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

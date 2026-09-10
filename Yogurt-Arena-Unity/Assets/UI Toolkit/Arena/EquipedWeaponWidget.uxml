@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="equipped-weapon" class="weapon" picking-mode="Ignore">
+        <ui:Label text="Weapon" class="weapon-label" picking-mode="Ignore" />
+        <ui:VisualElement class="weapon-bar" picking-mode="Ignore">
+            <ui:VisualElement class="weapon-track" picking-mode="Ignore" />
+            <ui:VisualElement name="weapon-fill" class="weapon-fill" picking-mode="Ignore" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

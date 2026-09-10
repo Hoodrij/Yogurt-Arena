@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="game-over" class="game-over" picking-mode="Ignore">
+        <ui:Button name="restart-button" text="Restart" class="restart-button" />
+        <ui:VisualElement class="restart-underline" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>

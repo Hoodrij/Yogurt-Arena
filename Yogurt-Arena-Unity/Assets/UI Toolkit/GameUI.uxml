@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/styles.uss?fileID=7433441132597879392&amp;guid=e9e3f8500f0625b489fee211bbbee3fb&amp;type=3#styles"/>
+    <ui:Button text="Button" class="button" style="position: absolute; height: 411px; width: 502px; top: 143px; left: 171px;"/>
+</ui:UXML>
