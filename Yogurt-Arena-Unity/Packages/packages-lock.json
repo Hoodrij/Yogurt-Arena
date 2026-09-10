@@ -21,7 +21,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "f213ff497e4ff462a77319cf677cf20cc0860ca9"
+      "hash": "ceac8d6946b1125fe782cd171fbcb245b567dbf9"
     },
     "com.kyrylokuzyk.primetween": {
       "version": "1.4.11",
@@ -241,7 +241,7 @@
       "dependencies": {
         "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
       },
-      "hash": "a611e0d0ec944230f9abb9ff2324f94862d7028b"
+      "hash": "78c6b404ad06446b81e32eee53a4a3b9899f05b6"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
