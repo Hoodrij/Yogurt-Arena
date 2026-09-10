@@ -18,7 +18,15 @@ public struct ItemSpotBehaviorJob
 
             itemSpot.View.Hide();
             await Wait.Seconds(1, itemSpot.Life());
-            itemSpot.State.Type = ItemType.Empty;
+
+            if (itemSpot.Entity.Has<ItemDropTag>())
+            {
+                itemSpot.Kill();
+            }
+            else
+            {
+                itemSpot.State.Type = ItemType.Empty;
+            }
         }
         async UniTask<ItemType> WaitForActivation()
         {

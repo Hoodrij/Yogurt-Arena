@@ -7,7 +7,7 @@ public struct SpawnSingleEnemyJob
         Vector3 spawnPoint = await new GetFreeSpawnPointJob().Run(overmind);
         AgentConfig config = new GetAgentConfigJob().Run(TeamType.Red, overmind.Config.AvailableTypes);
                 
-        AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint);
+        AgentAspect agent = await new AgentSpawnJob().Run(config, spawnPoint, new EnemyDeathJob());
         new SpawnWorldHealthWidget().Run(agent).Forget();
 
         KeepAgent(overmind, agent).Forget();

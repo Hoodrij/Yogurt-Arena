@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5357813e9a48ffadbc63e678c2cc33, type: 3}
   m_Name: ItemSpotConfig
   m_EditorClassIdentifier: 
+  DropAsset:
+    asset:
+      Prefab: {fileID: 5147446481549789530, guid: f610544fb6d5f431ef3bbef8515c5e7e, type: 3}
   Radius: 2
   Mask:
     serializedVersion: 2
