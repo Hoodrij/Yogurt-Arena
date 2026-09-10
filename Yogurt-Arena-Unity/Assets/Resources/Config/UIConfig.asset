@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UIConfig
   m_EditorClassIdentifier: 
   UI:
-    Prefab: {fileID: 3138433627695680921, guid: 9bcbce9b6b87f144eba2cc8710274688, type: 3}
+    Prefab: {fileID: 5392028458040852505, guid: 88b5ac235e9eb23409633ef0f7b9b14e, type: 3}
   WorldUI:
     Prefab: {fileID: 8982728415267594274, guid: 026fd5c9b9942bf47823d860bd0048a9, type: 3}
   WorldHealthWidget:
