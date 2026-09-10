@@ -2,12 +2,10 @@
 id: ui-module
 type: module-design
 title: UI Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-depends-on:
-  - config-module
-tags:
-  - imported
+depends-on: [config-module]
+tags: [imported]
 ---
 
 # UI Module

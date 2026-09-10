@@ -2,13 +2,10 @@
 id: items-module
 type: module-design
 title: Items Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-depends-on:
-  - agent-module
-  - config-module
-tags:
-  - imported
+depends-on: [agent-module, config-module]
+tags: [imported]
 ---
 
 # Items Module

@@ -2,9 +2,8 @@
 id: yogurt-arena-goal
 type: goal-and-requirements
 title: Yogurt Arena Goal and Requirements
-status: draft
-tags:
-  - imported
+status: active
+tags: [imported]
 ---
 
 # Yogurt Arena Goal and Requirements

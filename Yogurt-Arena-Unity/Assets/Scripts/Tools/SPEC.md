@@ -2,10 +2,9 @@
 id: tools-module
 type: module-design
 title: Tools Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-tags:
-  - imported
+tags: [imported]
 ---
 
 # Tools Module

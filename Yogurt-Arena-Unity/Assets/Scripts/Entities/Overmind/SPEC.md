@@ -2,14 +2,10 @@
 id: overmind-module
 type: module-design
 title: Overmind Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-depends-on:
-  - agent-module
-  - player-module
-  - ui-module
-tags:
-  - imported
+depends-on: [agent-module, player-module, ui-module]
+tags: [imported]
 ---
 
 # Overmind Module
