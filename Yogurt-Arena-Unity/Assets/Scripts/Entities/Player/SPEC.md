@@ -4,7 +4,7 @@ type: module-design
 title: Player Module
 status: active
 parent: yogurt-arena-architecture
-depends-on: [agent-module, ui-module]
+depends-on: [agent-module, ui-module, beacon-module]
 tags: [imported]
 ---
 
