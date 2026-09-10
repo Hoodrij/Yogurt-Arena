@@ -6,14 +6,14 @@ namespace Yogurt.Arena
     {
         private VisualElement fill;
         private IVisualElementScheduledItem resetFlash;
-        private float currentPercentage;
+        private float displayedPercentage;
         private bool hasValue;
 
         public void Bind(VisualElement root)
         {
             Unbind();
             fill = root.Q<VisualElement>("health-fill");
-            fill.style.width = Length.Percent(hasValue ? currentPercentage * 100f : 100f);
+            fill.style.width = Length.Percent(hasValue ? displayedPercentage * 100f : 100f);
         }
 
         public void Unbind()
@@ -26,9 +26,9 @@ namespace Yogurt.Arena
         public override UniTaskVoid SetHealth(float percentage)
         {
             percentage = Mathf.Clamp01(percentage);
-            bool damaged = currentPercentage > percentage;
-            bool healed = currentPercentage > 0 && currentPercentage < percentage;
-            currentPercentage = percentage;
+            bool damaged = displayedPercentage > percentage;
+            bool healed = displayedPercentage > 0 && displayedPercentage < percentage;
+            displayedPercentage = percentage;
             hasValue = true;
 
             if (fill == null)
