@@ -2,12 +2,10 @@
 id: world-module
 type: module-design
 title: World Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-depends-on:
-  - game-module
-tags:
-  - imported
+depends-on: [game-module]
+tags: [imported]
 ---
 
 # World Module

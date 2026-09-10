@@ -2,10 +2,9 @@
 id: game-module
 type: module-design
 title: Game Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-tags:
-  - imported
+tags: [imported]
 ---
 
 # Game Module

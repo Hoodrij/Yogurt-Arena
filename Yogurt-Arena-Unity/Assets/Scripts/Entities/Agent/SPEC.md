@@ -2,12 +2,10 @@
 id: agent-module
 type: module-design
 title: Agent Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-depends-on:
-  - config-module
-tags:
-  - imported
+depends-on: [config-module]
+tags: [imported]
 ---
 
 # Agent Module

@@ -2,14 +2,10 @@
 id: scenario-module
 type: module-design
 title: Scenario Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-depends-on:
-  - world-module
-  - agent-module
-  - items-module
-tags:
-  - imported
+depends-on: [world-module, agent-module, items-module]
+tags: [imported]
 ---
 
 # Scenario Module

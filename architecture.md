@@ -2,10 +2,9 @@
 id: yogurt-arena-architecture
 type: architecture-design
 title: Yogurt Arena Architecture
-status: draft
+status: active
 parent: yogurt-arena-goal
-tags:
-  - imported
+tags: [imported]
 ---
 
 # Yogurt Arena Architecture

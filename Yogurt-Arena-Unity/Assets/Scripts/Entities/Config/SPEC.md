@@ -2,10 +2,9 @@
 id: config-module
 type: module-design
 title: Config Module
-status: draft
+status: active
 parent: yogurt-arena-architecture
-tags:
-  - imported
+tags: [imported]
 ---
 
 # Config Module
