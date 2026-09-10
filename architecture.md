@@ -49,7 +49,7 @@ Module dependency edges observed in code:
 - World creates Location, UI, Input Field, Beacon, Camera, Player, Overmind, and Items Spawner entities.
 - Input Field provides screen-to-world intent to Beacon; Beacon provides the destination observed by Player and Camera.
 - Player and Overmind both create or direct Agent entities. Agent delegates default equipment to Inventory; Items creates the equipped item behavior.
-- Items Spawner activates Item Spots; Item Spots delegate grants to Inventory. Items supplies valid item types and use behavior.
+- Items Spawner activates normal Item Spots and creates directed transient drops; Item Spots delegate grants to Inventory. Items supplies valid item types and use behavior. Overmind requests enemy drops from Items Spawner.
 - Scenario requests Level progression; Level requests the next Location part. Location rebuilds navigation after composition.
 - Health requests UI updates and performs death transition; UI can observe Health but must not own health rules.
 
