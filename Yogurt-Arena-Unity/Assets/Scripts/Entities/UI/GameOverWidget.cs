@@ -6,7 +6,7 @@
         
         public Event OnRestartClick = new Event();
 
-        public void Show()
+        public virtual void Show()
         {
             gameObject.SetActive(true);
             canvasGroup.DOFade(1, 0.3f);

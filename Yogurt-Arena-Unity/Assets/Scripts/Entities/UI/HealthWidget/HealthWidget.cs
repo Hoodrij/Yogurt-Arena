@@ -9,7 +9,7 @@ namespace Yogurt.Arena
         private Color colorGreen = new Color(0f, 1f, 0.38f);
         private Color colorWhite = Color.white;
             
-        public async UniTaskVoid SetHealth(float percentage)
+        public virtual async UniTaskVoid SetHealth(float percentage)
         {
             Color animationColor = GetColor();
             currentPercentage = percentage;

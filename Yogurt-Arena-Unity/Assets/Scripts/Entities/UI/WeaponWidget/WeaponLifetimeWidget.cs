@@ -4,7 +4,7 @@
     {
         [SerializeField] private Image image;
         
-        public void SetProgress(float value)
+        public virtual void SetProgress(float value)
         {
             image.DOKill();
             image.DOFillAmount(value, 0.1f);

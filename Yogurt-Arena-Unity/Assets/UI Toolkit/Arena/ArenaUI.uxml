@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Template name="PlayerHealthWidget" src="PlayerHealthWidget.uxml" />
+    <ui:Template name="EquipedWeaponWidget" src="EquipedWeaponWidget.uxml" />
+    <ui:Template name="GameOverWidget" src="GameOverWidget.uxml" />
+    <Style src="ArenaUI.uss" />
+    <ui:VisualElement name="arena-ui" class="arena-ui" picking-mode="Ignore">
+        <ui:Instance template="PlayerHealthWidget" class="health-widget" picking-mode="Ignore" />
+        <ui:Instance template="EquipedWeaponWidget" class="weapon-widget" picking-mode="Ignore" />
+        <ui:Instance template="GameOverWidget" class="game-over-widget" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,190 @@
+.item-editor, .item-library {
+    --item-card: rgb(48, 50, 54);
+    --item-border: rgb(65, 69, 75);
+    --item-muted: rgb(165, 174, 185);
+    --item-accent: rgb(122, 193, 226);
+}
+
+.item-editor--light {
+    --item-card: rgb(228, 232, 237);
+    --item-border: rgb(187, 197, 207);
+    --item-muted: rgb(82, 93, 104);
+    --item-accent: rgb(25, 101, 139);
+}
+
+.item-editor {
+    padding: 10px;
+    min-width: 0;
+    max-width: 100%;
+    flex-shrink: 1;
+}
+
+.item-details {
+    overflow: hidden;
+}
+
+.item-search {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    flex-shrink: 1;
+    align-self: stretch;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.item-field-tools {
+    min-width: 0;
+    margin-top: 6px;
+}
+
+.item-header {
+    padding: 6px 2px 10px 2px;
+}
+
+.item-title {
+    font-size: 20px;
+    -unity-font-style: bold;
+    white-space: normal;
+    margin-bottom: 4px;
+}
+
+.item-subtitle {
+    color: var(--item-muted);
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-actions, .item-navigation {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    align-items: center;
+    min-width: 0;
+    flex-shrink: 0;
+}
+
+.item-actions > Button, .item-navigation > Button {
+    min-height: 23px;
+}
+
+.item-navigation > Button {
+    color: var(--item-accent);
+    margin-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.item-summary {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+    min-width: 0;
+    flex-shrink: 0;
+}
+
+.item-stat {
+    flex-grow: 1;
+    flex-basis: 100px;
+    min-width: 85px;
+    background-color: var(--item-card);
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 8px;
+}
+
+.item-stat-value {
+    font-size: 17px;
+    -unity-font-style: bold;
+    margin-top: 4px;
+}
+
+.item-card {
+    background-color: var(--item-card);
+    border-color: var(--item-border);
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    padding: 7px;
+}
+
+.item-card > .unity-foldout__toggle {
+    -unity-font-style: bold;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.item-card > .unity-foldout__content {
+    margin-left: 2px;
+}
+
+.item-field {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.item-reference {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.item-field .unity-base-field__label,
+.item-reference .unity-base-field__label {
+    min-width: 130px;
+    max-width: 240px;
+    white-space: normal;
+}
+
+.item-browser {
+    padding: 8px;
+    border-right-width: 1px;
+    border-right-color: var(--item-border);
+    overflow: hidden;
+}
+
+.item-browser ToolbarSearchField {
+    margin-bottom: 6px;
+}
+
+.item-browser-count {
+    color: var(--item-muted);
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.item-browser-row {
+    justify-content: center;
+    padding-left: 9px;
+    padding-right: 7px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--item-border);
+    flex-grow: 1;
+}
+
+.item-browser-name {
+    -unity-font-style: bold;
+    font-size: 13px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-browser-hint {
+    white-space: normal;
+    color: var(--item-muted);
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.item-empty {
+    white-space: normal;
+    color: var(--item-muted);
+    padding: 22px;
+    -unity-text-align: middle-center;
+}
