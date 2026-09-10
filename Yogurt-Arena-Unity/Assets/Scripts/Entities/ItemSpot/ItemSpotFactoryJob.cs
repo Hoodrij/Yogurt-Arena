@@ -2,7 +2,7 @@
 
 public struct ItemSpotFactoryJob
 {
-    public async UniTask<ItemSpotAspect> Run(ItemSpotView view)
+    public async UniTask<ItemSpotAspect> Run(ItemSpotView view, bool isTransient = false)
     {
         ItemSpotConfig config = new GetConfigJob().Run<ItemSpotConfig>();
             
@@ -19,6 +19,11 @@ public struct ItemSpotFactoryJob
                 Type = ItemType.Empty,
             })
             .As<ItemSpotAspect>();
+
+        if (isTransient)
+        {
+            entity.Add(new ItemDropTag());
+        }
             
         new ItemSpotBehaviorJob().Run(entity).Forget();
 

@@ -6,12 +6,16 @@
         private class ItemTypeToViewDict : SerializableDictionary<ItemType, Transform> { }
 
         [SerializeField] private ItemTypeToViewDict map;
+        [SerializeField] private bool initializeOnAwake = true;
         
         private void Awake()
         {
             Hide(0);
 
-            new ItemSpotFactoryJob().Run(this).Forget();
+            if (initializeOnAwake)
+            {
+                new ItemSpotFactoryJob().Run(this).Forget();
+            }
         }
 
         public void Show(ItemType type)

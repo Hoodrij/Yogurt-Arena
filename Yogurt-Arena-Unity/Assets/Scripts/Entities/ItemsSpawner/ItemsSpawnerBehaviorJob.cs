@@ -20,12 +20,15 @@ public struct ItemsSpawnerBehaviorJob
             {
                 int itemsCount = itemSpawner.Config.ItemsCount;
                 return Query.Of<ItemSpotAspect>()
+                    .Without<ItemDropTag>()
                     .Count(itemSpot => itemSpot.Get<ItemSpotState>().Type != ItemType.Empty) >= itemsCount;
             }, itemSpawner.Life());
         }
         IEnumerable<ItemSpotAspect> GetFreeSpots()
         {
-            return Query.Of<ItemSpotAspect>().AsEnumerable()
+            return Query.Of<ItemSpotAspect>()
+                .Without<ItemDropTag>()
+                .AsEnumerable()
                 .Where(itemSpot => itemSpot.Get<ItemSpotState>().Type == ItemType.Empty);
         }
     }

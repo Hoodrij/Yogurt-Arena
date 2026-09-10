@@ -18,4 +18,4 @@ Overmind may spawn and steer enemy agents and request their drops from Items Spa
 
 ## Decisions
 
-Enemy spawning is tied to world and location state, not to individual enemy entities. The spawner samples valid NavMesh positions and filters them against player position. Enemy-only death behavior belongs here, so it delegates the generic death presentation to Agent and the directed pickup to Items Spawner.
+Enemy spawning is tied to world and location state, not to individual enemy entities. The spawner samples valid NavMesh positions and filters them against player position. Enemy-only death behavior is supplied during agent creation, so it delegates the generic death presentation to Agent and the directed pickup to Items Spawner.

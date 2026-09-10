@@ -2,7 +2,7 @@ namespace Yogurt.Arena;
 
 public struct AgentFactoryJob
 {
-    public async UniTask<AgentAspect> Run(AgentConfig config, TeamType teamType)
+    public async UniTask<AgentAspect> Run(AgentConfig config, TeamType teamType, IDeathJob deathJob = null)
     {
         AgentView agentView = await config.Asset.Spawn();
             
@@ -21,7 +21,7 @@ public struct AgentFactoryJob
             {
                 MaxHealth = config.MaxHealth,
                 Value = config.Health,
-                DeathJob = new AgentDeathJob(),
+                DeathJob = deathJob ?? new AgentDeathJob(),
             })
             .As<AgentAspect>();
             
