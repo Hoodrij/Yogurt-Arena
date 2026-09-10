@@ -4,7 +4,7 @@ type: module-design
 title: Scenario Module
 status: active
 parent: yogurt-arena-architecture
-depends-on: [world-module, agent-module, items-module]
+depends-on: [world-module, agent-module, items-module, player-module, overmind-module, level-module, ui-module]
 tags: [imported]
 ---
 
